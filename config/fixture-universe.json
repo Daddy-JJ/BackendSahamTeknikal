@@ -1,0 +1,7 @@
+{
+  "data_mode": "fixture",
+  "version": "SYNTHETIC-EXAMPLE-v1",
+  "source": "synthetic://not-kompas100",
+  "effective_from": "2026-01-01",
+  "effective_to": "2026-02-01"
+}

@@ -1,0 +1,332 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "data_mode": {
+      "const": "fixture"
+    },
+    "label": {
+      "type": "string"
+    },
+    "session": {
+      "type": "string",
+      "format": "date"
+    },
+    "coverage": {
+      "type": "object",
+      "properties": {
+        "valid": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "valid",
+        "total"
+      ]
+    },
+    "signals": {
+      "type": "array",
+      "items": {
+        "$ref": "https://idx-night-scanner.local/contracts/signal.schema.json"
+      }
+    },
+    "paper": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "ticker": {
+            "type": "string"
+          },
+          "strategy": {
+            "enum": [
+              "MACD_EMA200_V1",
+              "FRACTAL_BREAKOUT_V1",
+              "RS_BREAKOUT_V1",
+              "PULLBACK_RECLAIM_V1"
+            ]
+          },
+          "state": {
+            "enum": [
+              "pending_entry",
+              "open",
+              "closed",
+              "skipped",
+              "expired",
+              "data_hold"
+            ]
+          },
+          "entry": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
+          },
+          "stop": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
+          },
+          "target": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
+          },
+          "initial_risk": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
+          },
+          "realized_r": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
+          },
+          "alternate_r": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
+          }
+        },
+        "required": [
+          "id",
+          "ticker",
+          "strategy",
+          "state",
+          "entry",
+          "stop",
+          "target",
+          "initial_risk",
+          "realized_r",
+          "alternate_r"
+        ]
+      }
+    },
+    "charts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "properties": {
+            "session": {
+              "type": "string",
+              "format": "date"
+            },
+            "open": {
+              "type": "number"
+            },
+            "high": {
+              "type": "number"
+            },
+            "low": {
+              "type": "number"
+            },
+            "close": {
+              "type": "number"
+            },
+            "volume": {
+              "type": "number"
+            },
+            "ema20": {
+              "type": "number"
+            },
+            "ema50": {
+              "type": "number"
+            },
+            "ema200": {
+              "type": "number"
+            },
+            "histogram": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "session",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "ema20",
+            "ema50",
+            "ema200",
+            "histogram"
+          ]
+        }
+      }
+    },
+    "ranking": {
+      "type": "object",
+      "properties": {
+        "ordered": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "status": {
+          "type": "string"
+        },
+        "excluded": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "ordered",
+        "status",
+        "excluded"
+      ]
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "closed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "open": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "win_rate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
+        },
+        "expectancy_r": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
+        },
+        "profit_factor": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
+        },
+        "ambiguous_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "closed",
+        "open",
+        "win_rate",
+        "expectancy_r",
+        "profit_factor",
+        "ambiguous_count"
+      ]
+    },
+    "strategy_metrics": {
+      "type": "object",
+      "required": [
+        "MACD_EMA200_V1",
+        "FRACTAL_BREAKOUT_V1",
+        "RS_BREAKOUT_V1",
+        "PULLBACK_RECLAIM_V1"
+      ],
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "closed": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "open": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "win_rate": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
+          },
+          "expectancy_r": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
+          },
+          "profit_factor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
+          },
+          "ambiguous_count": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "closed",
+          "open",
+          "win_rate",
+          "expectancy_r",
+          "profit_factor",
+          "ambiguous_count"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "data_mode",
+    "label",
+    "session",
+    "coverage",
+    "signals",
+    "paper",
+    "charts",
+    "ranking",
+    "metrics",
+    "strategy_metrics"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

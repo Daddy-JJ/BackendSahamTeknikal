@@ -1,0 +1,146 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "ticker": {
+      "type": "string"
+    },
+    "session": {
+      "type": "string",
+      "format": "date"
+    },
+    "planned_entry_session": {
+      "type": "string",
+      "format": "date"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "config_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "input_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "provider": {
+      "enum": [
+        "fixture",
+        "yfinance",
+        "eodhd"
+      ]
+    },
+    "price_basis": {
+      "type": "string"
+    },
+    "data_mode": {
+      "enum": [
+        "fixture",
+        "live"
+      ]
+    },
+    "cohort": {
+      "enum": [
+        "forward",
+        "late_model_only",
+        "backtest"
+      ]
+    },
+    "candidate": {
+      "type": "object",
+      "properties": {
+        "strategy": {
+          "enum": [
+            "MACD_EMA200_V1",
+            "FRACTAL_BREAKOUT_V1",
+            "RS_BREAKOUT_V1",
+            "PULLBACK_RECLAIM_V1"
+          ]
+        },
+        "triggered": {
+          "type": "boolean"
+        },
+        "stop": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "reference_close": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "reason": {
+          "type": "string"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "passed": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name",
+              "passed"
+            ]
+          }
+        }
+      },
+      "required": [
+        "strategy",
+        "triggered",
+        "stop",
+        "reference_close",
+        "reason",
+        "rules"
+      ]
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "type": "string"
+          },
+          {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        ],
+        "minItems": 2,
+        "maxItems": 2
+      }
+    }
+  },
+  "required": [
+    "id",
+    "ticker",
+    "session",
+    "planned_entry_session",
+    "published_at",
+    "config_hash",
+    "input_digest",
+    "provider",
+    "price_basis",
+    "data_mode",
+    "cohort",
+    "candidate",
+    "features"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://idx-night-scanner.local/contracts/signal.schema.json"
+}
