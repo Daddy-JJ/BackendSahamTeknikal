@@ -65,3 +65,11 @@ Deploy migration 003 before using the updated scanner adapter (002 alone is
 insufficient). No production migration, GitHub schedule or live market proof is
 implied by these local tests. Official calendar/universe and remaining M2 gates
 are recorded in IMPLEMENTATION_STATUS.md.
+
+## Remote development evidence - 2026-09-29
+
+The owner applied the SQL Editor handoff successfully. Independent schema
+preflight and the guarded --execute smoke passed on the allowlisted dev project:
+two receipts, bar counts 3 and 2, four changed-bar rows, exact digest read-back
+and replay verified. These checks used a backend service key. Remote JWT/RLS
+checks for this new RPC, live provider inputs and production rollout remain open.
