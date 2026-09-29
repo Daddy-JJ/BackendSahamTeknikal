@@ -158,10 +158,13 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   PT409. Exact committed replay remains valid after deadline. CLI now requires
   deadline_version=1 capability before live provider IO and sends the configured
   next-session open in the immutable run envelope.
-- SQL verification: 31 PGlite tests passed, including expired rollback, missing
+- SQL verification at implementation time: 31 PGlite tests passed, including expired rollback, missing
   deadline, mismatched entry date, replay after deadline and a delayed write.
   Generated SQL Editor handoff was separately tested: live mode rejected,
-  fixture application returned deadline_version=1. Remote application pending.
+  fixture application returned deadline_version=1. Development application is
+  now confirmed by the user's SQL Editor screenshot (deadline_version=1,
+  data_mode=fixture) and an independent read-only capability check. Production
+  remains untouched; no live scan has been run.
 - Source progress: actual BEI 2026 calendar PDF downloaded from public IDXCarbon,
   hash recorded and table visually verified. 22 weekday holidays and 239 trading
   days reconcile per month. Stored as reference only; amendments, historical
@@ -169,3 +172,15 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   See docs/MARKET_SOURCE_STATUS.md. No live scan or production write executed.
 
 - Final local verification for deadline slice: 129 full Python tests, 31 PGlite SQL tests, and Ruff passed. Frontend unchanged. Development SQL application remains pending user confirmation.
+
+
+- Development migration 004 confirmation - 2026-09-29: user screenshot shows
+  deadline_version=1 and data_mode=fixture in Supabase development. Independent
+  read-only REST capability query returned deadline_version=1 and deployment
+  mode fixture. This unlocks a capability-gated CLI path but does not authorize
+  or prove a live scan. No provider scan or production write was performed.
+- Official market-source progress: the 2025 BEI holiday baseline (237 trading
+  days) and the official 2025-08-18 amendment are transcribed into
+  config/reference/idx-holidays-2025-source.json. Known amended total is 236.
+  It remains a source reference, not runtime config; no local PDF hash/visual
+  verification or post-amendment reconciliation is claimed.
