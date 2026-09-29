@@ -1,0 +1,67 @@
+{
+  "purpose": "official_source_reference_not_runtime_calendar",
+  "status": "baseline_and_known_amendment_verified_session_hours_pending",
+  "year": 2025,
+  "sources": [
+    {
+      "announcement": "Peng-00213/BEI.POP/10-2024",
+      "published_date": "2024-10-16",
+      "source": "https://www.idxcarbon.co.id/document/share/109/e11c312a-95d6-4525-b71a-f70377cc7777",
+      "baseline_trading_days": 237
+    },
+    {
+      "announcement": "Peng-00149/BEI.POP/08-2025",
+      "published_date": "2025-08-08",
+      "source": "https://www.idxcarbon.co.id/document/share/143/cf878b0d-87c1-45e2-98a5-4c54d6efc8c2",
+      "amendments": ["2025-08-18"]
+    }
+  ],
+  "holidays": [
+    "2025-01-01",
+    "2025-01-27",
+    "2025-01-28",
+    "2025-01-29",
+    "2025-03-28",
+    "2025-03-31",
+    "2025-04-01",
+    "2025-04-02",
+    "2025-04-03",
+    "2025-04-04",
+    "2025-04-07",
+    "2025-04-18",
+    "2025-05-01",
+    "2025-05-12",
+    "2025-05-13",
+    "2025-05-29",
+    "2025-05-30",
+    "2025-06-06",
+    "2025-06-09",
+    "2025-06-27",
+    "2025-08-18",
+    "2025-09-05",
+    "2025-12-25",
+    "2025-12-26",
+    "2025-12-31"
+  ],
+  "monthly_trading_days_after_known_amendment": [
+    19,
+    20,
+    19,
+    16,
+    17,
+    18,
+    23,
+    20,
+    21,
+    23,
+    20,
+    20
+  ],
+  "total_trading_days_after_known_amendment": 236,
+  "limitations": [
+    "Calendar amendments after Peng-00149/BEI.POP/08-2025 have not been reconciled",
+    "Historical regular-equity open/close times are not defined here",
+    "This reference has not been accepted by the runtime calendar loader",
+    "The original PDF files have not yet been downloaded, hashed, and visually reviewed locally"
+  ]
+}
