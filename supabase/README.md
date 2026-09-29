@@ -56,3 +56,34 @@ Referensi implementasi:
 - [Supabase RLS dan grants](https://supabase.com/docs/guides/database/postgres/row-level-security)
 - [Supabase fungsi, search_path, dan execute grants](https://supabase.com/docs/guides/database/functions)
 - [PGlite test runtime](https://pglite.dev/docs/)
+
+
+## SQL Editor setup handoff and production boundary
+
+The owner UUID is stored only in ignored backend/.env. Build a private SQL Editor
+handoff from the committed migration:
+
+```powershell
+cd C:\xampp\htdocs\SahamTeknikal\backend
+.\scanner\.venv\Scripts\python.exe supabase\scripts\prepare_dev_setup.py --project-ref hcjfxbynqzsaidlwvdfx
+```
+
+Open backend/data/dev-supabase-setup.sql, confirm the project ref in its header,
+then paste its entire contents into that project's Supabase SQL Editor and Run
+once **only for a new, empty project**. The SQL creates nine application
+tables and registers the existing Auth
+user as owner in one transaction. A final SELECT should return owner_ready=true
+and data_mode=live. The file is Git-ignored and contains the owner UUID, no key.
+The owner applied this SQL to project hcjfxbynqzsaidlwvdfx on branch main
+(PROD) on 2026-09-29. Read-only REST checks confirmed all nine tables, owner
+membership and live mode. **Do not rerun it there**: the migration is versioned
+and is not idempotent. Do not write test data to that production project.
+Remote owner/non-owner RLS and PostgREST still require separate verification.
+
+Migration history caveat: SQL Editor applies schema outside the Supabase CLI
+migration ledger. After the dev schema is verified, run the documented
+`supabase migration repair --status applied 202609290001` through a linked CLI,
+or reconcile the remote migration history before any future `db push`.
+Never run `db push` against this project while this version is missing from
+its migration history. Do not mark it applied without verifying the tables and
+RLS policies first. See the official Supabase database migrations guide.

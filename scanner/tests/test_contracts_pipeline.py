@@ -24,7 +24,9 @@ def test_demo_matches_contract_is_reproducible_and_current():
     payload = json.loads(current)
     validator.validate(payload)
     assert current == canonical_json(demo_snapshot())
-    committed = json.loads((root / "contracts/demo-snapshot.fixture.json").read_text(encoding="utf-8"))
+    committed = json.loads(
+        (root / "contracts/demo-snapshot.fixture.json").read_text(encoding="utf-8")
+    )
     assert payload == committed
     for signal in payload["signals"]:
         assert signal["planned_entry_session"] > signal["session"]
