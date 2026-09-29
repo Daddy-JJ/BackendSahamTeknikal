@@ -4,13 +4,14 @@ import json
 import re
 import time
 from collections.abc import Callable
+from dataclasses import asdict
 from datetime import date, datetime
 from urllib.parse import urlsplit
 
 import httpx
 
 from .engine import ScanResult
-from .models import Candidate, Rule, ScanState, Signal, canonical_json, digest
+from .models import Candidate, Rule, ScanState, Series, Signal, canonical_json, digest
 
 
 class PersistenceError(RuntimeError):
@@ -32,6 +33,35 @@ def scan_envelope(result: ScanResult, namespace: str, data_mode: str) -> dict:
     signals = payload.pop("signals")
     payload.update(namespace=namespace, data_mode=data_mode)
     return {"p_run": payload, "p_signals": signals}
+
+
+def market_series_envelope(series: Series, *, namespace: str, data_mode: str) -> dict:
+    if not re.fullmatch(r"[a-z0-9_-]{1,64}", namespace):
+        raise ValueError("invalid_namespace")
+    if data_mode not in ("fixture", "live") or (series.provider == "fixture") != (
+        data_mode == "fixture"
+    ):
+        raise ValueError("mixed_fixture_live_persistence")
+    if not series.bars or series.fetched_at is None or series.fetched_at.tzinfo is None:
+        raise ValueError("unfetched_or_empty_series")
+    content = asdict(series)
+    content.pop("fetched_at")
+    content.pop("provider_version")
+    snapshot = json.loads(canonical_json(content))
+    return {
+        "p_record": {
+            "namespace": namespace,
+            "data_mode": data_mode,
+            "provider": series.provider,
+            "ticker": series.ticker,
+            "provider_symbol": series.provider_symbol,
+            "price_basis": series.price_basis,
+            "provider_version": series.provider_version,
+            "input_digest": series.input_digest,
+            "fetched_at": series.fetched_at.isoformat(),
+            "snapshot": snapshot,
+        }
+    }
 
 
 def signal_from_snapshot(value: dict) -> Signal:
@@ -134,6 +164,22 @@ class SupabaseScanStore:
         if (
             not isinstance(response, dict)
             or not isinstance(response.get("run_id"), str)
+            or not isinstance(response.get("replayed"), bool)
+        ):
+            raise PersistenceError("database_invalid_response")
+        return response
+
+    def ingest_series(
+        self, series: Series, *, namespace: str = "forward", data_mode: str = "live"
+    ) -> dict:
+        response = self._request(
+            "POST",
+            "rpc/ingest_market_series",
+            json=market_series_envelope(series, namespace=namespace, data_mode=data_mode),
+        )
+        if (
+            not isinstance(response, dict)
+            or not isinstance(response.get("revision_id"), str)
             or not isinstance(response.get("replayed"), bool)
         ):
             raise PersistenceError("database_invalid_response")

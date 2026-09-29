@@ -1,6 +1,6 @@
 import json
 from dataclasses import replace
-from datetime import timedelta
+from datetime import UTC, datetime, timedelta
 
 import httpx
 import pytest
@@ -11,6 +11,7 @@ from idx_scanner.models import ScanState, canonical_json
 from idx_scanner.persistence import (
     PersistenceError,
     SupabaseScanStore,
+    market_series_envelope,
     scan_envelope,
     signal_from_snapshot,
 )
@@ -143,3 +144,31 @@ def test_future_snapshot_or_broken_pagination_rejected(result):
 def test_service_key_only_sent_to_explicit_supabase_origin(url):
     with pytest.raises(PersistenceError, match="invalid_supabase_origin"):
         SupabaseScanStore(url, SECRET)
+
+
+def test_market_revision_adapter_keeps_content_digest_and_retries_safely():
+    series, _, _ = sample_market(620)
+    source = replace(series["DEMO-A"], fetched_at=datetime(2030, 1, 2, tzinfo=UTC))
+    body = market_series_envelope(source, namespace="forward", data_mode="fixture")
+    assert body["p_record"]["input_digest"] == source.input_digest
+    assert "fetched_at" not in body["p_record"]["snapshot"]
+    assert "provider_version" not in body["p_record"]["snapshot"]
+    calls = []
+
+    def handler(request):
+        assert request.url.path == "/rest/v1/rpc/ingest_market_series"
+        assert request.headers["apikey"] == SECRET
+        assert "authorization" not in request.headers
+        calls.append(json.loads(request.content))
+        if len(calls) == 1:
+            raise httpx.ReadTimeout("secret-safe")
+        return httpx.Response(200, json={"revision_id": "saved-revision", "replayed": True})
+
+    with store(handler) as db:
+        assert db.ingest_series(source, data_mode="fixture") == {
+            "revision_id": "saved-revision",
+            "replayed": True,
+        }
+    assert calls == [body, body]
+    with pytest.raises(ValueError, match="mixed_fixture_live"):
+        market_series_envelope(source, namespace="forward", data_mode="live")

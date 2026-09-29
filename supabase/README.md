@@ -112,8 +112,8 @@ one audit event; exact replay did not duplicate the run, persisted signals
 reloaded, and a changed payload with the same run digest was rejected. The
 fixture run is immutable and stays in the isolated development project.
 Production remained live and had no dev_smoke_m2 run. The owner read path was
-subsequently verified through the development app login; owner action RPC
-remains pending.
+subsequently verified through the development app login. The owner action
+RPC was also verified on the fixture as described below.
 
 ### Disposable non-owner RLS test
 
@@ -157,4 +157,29 @@ owner's Auth JWT. This standalone probe remains optional: the app's GitHub
 OAuth flow has now shown the same owner read path on localhost:3050/auth/check.
 The user supplied a screenshot with the matching UID and one run/two signals;
 read-only service queries independently matched those development counts.
-Owner action/write RPC has not yet been verified.
+The owner clicked the development-only fixture action button in the app.
+The same request was replayed, and a separate read-only database check found
+one watchlist action at revision 1, one idempotency request, one matching
+audit event, and two unchanged fixture signals. No production write occurred.
+
+### Market-series revision migration (local only)
+
+Migration 202609290002_market_series_revisions.sql adds immutable,
+owner-readable fetch receipts and changed-bar rows. The service-role-only
+ingest_market_series RPC receives a normalized series. An exact replay
+returns the same receipt ID; a changed bar with a new input digest creates
+one new bar revision. A new fetch with unchanged bars adds no bar rows.
+Duplicate session dates and digest reuse with changed content are rejected
+transactionally. Receipt metadata retains provider actions and quality
+issues, while provider_version is part of receipt identity; bar_cutoff records the revision high-water mark. Published signal
+snapshots are never rewritten.
+
+This migration passed local PGlite tests but has **not** been applied to
+either remote project. Apply it to the isolated development project first,
+then verify owner RLS and RPC behavior there before production rollout.
+The scanner pipeline does not yet call ingest_series automatically.
+Full-series reconstruction and production storage sizing remain to be
+validated. The database trusts the service role for the supplied Python
+input digest; its own snapshot_hash detects conflicting RPC replay but is
+not a server-side recomputation of the engine digest. Service-role keys
+remain in backend environment only, never browser code or Git.

@@ -7,8 +7,8 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
 - M2: local SQL scan foundation and REST persistence adapter implemented.
   User applied the migration in the Supabase main (PROD) branch. Read-only
   REST checks verified all nine tables, enabled owner membership and live mode.
-  No live scan yet. Development owner JWT/RLS read access is verified below;
-  owner write/action proof is pending.
+  No live scan yet. Development owner JWT/RLS reads and the signal-action
+  RPC write/replay are verified below; journal writes remain unimplemented.
 - Owner Auth UID supplied via ignored backend/.env. A read-only Auth Admin request
   returned HTTP 200, matched that UID, and found a confirmed, non-anonymous user.
 - Backend .env SUPABASE_URL matches project hcjfxbynqzsaidlwvdfx, key is present
@@ -29,10 +29,17 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   nine tables, owner membership, Auth UID, and initial live mode. Dev was
   explicitly switched to fixture for smoke. Anonymous reads/RPC were denied.
   An invalid service RPC returned 22023 and left scan_runs empty.
-- Remaining M2 gates: prove owner action RPC with Auth JWT and real PostgREST;
-  market-data revisions, official calendar/universe, paper persistence, 5–10
-  ticker live proof and GitHub runner.
-- EODHD key has not been supplied. No scheduled scan or deployment is active.
+- Market-series revision migration 202609290002 and Python ingest adapter are
+  implemented and tested only locally. Compact fetch receipts and changed-bar
+  rows are immutable; exact replay returns the original receipt. Changed bars
+  require a new input digest; digest reuse with changed content is rejected.
+  The migration has not been applied to development or production Supabase.
+- Remaining M2 gates: apply and verify the revision migration in development,
+  integrate ingestion into the run pipeline, official calendar/universe,
+  paper persistence, 5–10 ticker live proof and GitHub runner.
+- EODHD key has not been supplied. No scheduled scan is active. The frontend
+  Vercel production domain responds HTTP 200 with a live-connection placeholder;
+  this is not a live scanner deployment.
 - The generated SQL Editor handoff was executed on an in-memory PostgreSQL
   PGlite database: nine application tables created, owner enabled, live mode
   retained. The user then ran it on the production branch; read-only remote
@@ -51,7 +58,7 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   duplicate. A disposable non-owner Auth user signed in with a real JWT:
   scan_runs, signals and app_members reads were empty; owner action was denied
   with 42501 and left no residue; the temporary user was deleted. Owner
-  write/action proof remains pending; owner read evidence is recorded below.
+  signal-action proof is recorded below.
 - Supabase new API keys are sent via `apikey` only in the backend adapter.
   Thirteen persistence tests passed; one read-only production REST call with
   the revised header returned 200 and live mode. No production write was attempted.
@@ -64,4 +71,15 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   and one dev_smoke_m2 run plus two signals visible through the app's JWT/RLS
   read path. Separate read-only service queries confirmed GitHub Auth enabled,
   development data_mode=fixture, and the same one-run/two-signal counts. No raw
-  owner JWT was copied to chat or shell. Owner action/write RPC remains untested.
+  owner JWT was copied to chat or shell. The owner then used the app's guarded
+  development fixture button to call set_signal_action and replay the same
+  request. The user reported success; an independent read-only check found one
+  watchlist action at revision 1, one matching idempotency request, one audit
+  event, and the same two fixture signals. Production was not written.
+
+- Latest local verification: 97 scanner tests, 19 PGlite SQL tests and Ruff
+  passed after adding revisioned market-series storage. PGlite tests cover
+  fixture-in-production rejection, immutable revisions, replay, unchanged-bar
+  reuse, duplicate-session rollback, digest conflict, RLS owner/outsider/anon
+  isolation, and denied direct writes. This does not prove remote migration,
+  full-series reconstruction, production storage sizing, or provider quality.
