@@ -22,10 +22,13 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   browser tests, frontend lint/typecheck/build. The standalone backend contract
   fixture path was checked independently: four targeted contract tests passed.
 - New isolated development project ref vgmkpsestahkfahzdtae supplied; its
-  Auth UID was supplied and the ignored dev env is configured without a key.
+  Auth UID and dev API keys are configured only in ignored local env files.
   Generated dev-only SQL passed an in-memory PGlite execution: nine tables,
-  enabled owner, live mode. Owner reports successful SQL Editor execution in
-  dev; remote API verification awaits the local dev key before write-path testing. Prove RLS with Auth JWT and real PostgREST;
+  enabled owner, live mode. Owner ran it in dev; read-only API checks confirmed
+  nine tables, owner membership, Auth UID, and initial live mode. Dev was
+  explicitly switched to fixture for smoke. Anonymous reads/RPC were denied.
+  An invalid service RPC returned 22023 and left scan_runs empty.
+- Remaining M2 gates: prove RLS with Auth JWT and real PostgREST;
   market-data revisions, official calendar/universe, paper persistence, 5–10
   ticker live proof and GitHub runner.
 - EODHD key has not been supplied. No scheduled scan or deployment is active.
@@ -40,8 +43,15 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   the owner confirmed this is production. No fixture/live smoke writes, test
   scans, seeds, or repeated migration against this project.
 - Dev setup generator now reads only ignored backend/.env.development and
-  rejects the known production project ref. The development SQL has not run
-  remotely at this status update.
+  rejects the known production project ref. Development SQL is applied and
+  read-only verified. A labeled synthetic dev scan published once and replayed
+  exactly: one run, five items, two signals and one audit event; snapshot reload
+  matched. An altered payload with the same digest returned 23514 with no
+  duplicate. Authenticated JWT RLS remains unproved.
 - Supabase new API keys are sent via `apikey` only in the backend adapter.
   Thirteen persistence tests passed; one read-only production REST call with
-  the revised header returned 200 and live mode. No write was attempted.
+  the revised header returned 200 and live mode. No production write was attempted.
+- Development credentials are present only in ignored local env files.
+  Development data_mode=fixture; production remains live and its dev_smoke_m2
+  namespace is empty. The smoke script rejects the production URL and requires
+  --execute for writes.

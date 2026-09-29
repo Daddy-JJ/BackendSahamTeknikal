@@ -93,3 +93,23 @@ the existing dev Auth user as owner. Its final SELECT should return
 `owner_ready=true` and `data_mode=live`. Do not run it against production.
 Afterward, put the development secret key in the ignored dev env file for
 read/write integration checks; never put a key in a browser or Git.
+
+### Development fixture RPC smoke
+
+After verifying the development project only, set its
+`public.deployment_settings.data_mode` to `fixture` in its SQL Editor. This
+never applies to production. The script checks the exact development URL and
+mode, defaults to a read-only dry run, and uses namespace `dev_smoke_m2`.
+
+```powershell
+cd C:\xampp\htdocs\SahamTeknikal\backend
+.\scanner\.venv\Scripts\python.exe supabase\scripts\smoke_dev_fixture.py
+.\scanner\.venv\Scripts\python.exe supabase\scripts\smoke_dev_fixture.py --execute
+```
+
+Verified on 2026-09-29: one labeled fixture run, five items, two signals and
+one audit event; exact replay did not duplicate the run, persisted signals
+reloaded, and a changed payload with the same run digest was rejected. The
+fixture run is immutable and stays in the isolated development project.
+Production remained `live` and had no `dev_smoke_m2` run. Authenticated user
+JWT/RLS through PostgREST still needs a separate test.
