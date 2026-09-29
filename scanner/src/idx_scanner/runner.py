@@ -63,5 +63,10 @@ def run_once(
         tuple(sorted(series_by_ticker)),
         tuple(series_by_ticker[t] for t in sorted(series_by_ticker)),
     )
-    publication = store.publish(pipeline.scan, namespace=namespace, data_mode=universe.data_mode)
+    options = {}
+    if universe.data_mode == "live":
+        options["publication_deadline"] = calendar.next(target).opens_at
+    publication = store.publish(
+        pipeline.scan, namespace=namespace, data_mode=universe.data_mode, **options
+    )
     return RunOutcome(pipeline, tuple(revisions), publication)

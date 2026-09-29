@@ -221,9 +221,26 @@ class SupabaseScanStore:
         )
         if rows != []:
             raise PersistenceError("database_invalid_response")
+        self.require_publication_deadline()
 
-    def publish(self, result: ScanResult, *, namespace="forward", data_mode="live") -> dict:
+    def require_publication_deadline(self) -> None:
+        capability = self._request("POST", "rpc/scan_publish_capabilities", json={})
+        if capability != {"deadline_version": 1}:
+            raise PersistenceError("database_deadline_migration_required")
+
+    def publish(
+        self,
+        result: ScanResult,
+        *,
+        namespace="forward",
+        data_mode="live",
+        publication_deadline: datetime | None = None,
+    ) -> dict:
         payload = scan_envelope(result, namespace, data_mode)
+        if publication_deadline is not None:
+            if publication_deadline.tzinfo is None:
+                raise ValueError("publication_deadline_timezone_required")
+            payload["p_run"]["publication_deadline"] = publication_deadline.isoformat()
         response = self._request("POST", "rpc/publish_scan", json=payload)
         if (
             not isinstance(response, dict)

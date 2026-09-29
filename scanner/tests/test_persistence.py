@@ -264,3 +264,35 @@ def test_live_preflight_requires_revision_columns():
     with store(handler) as db:
         with pytest.raises(PersistenceError, match="database_request_failed"):
             db.require_live_schema()
+
+
+def test_deadline_is_transmitted_and_expired_response_is_not_retried(result):
+    calls = []
+    deadline = datetime(2030, 1, 2, tzinfo=UTC)
+
+    def handler(request):
+        calls.append(json.loads(request.content))
+        return httpx.Response(409, json={"code": "PT409"})
+
+    with store(handler) as db:
+        with pytest.raises(PersistenceError, match="database_conflict"):
+            db.publish(result, data_mode="fixture", publication_deadline=deadline)
+    assert len(calls) == 1
+    assert calls[0]["p_run"]["publication_deadline"] == deadline.isoformat()
+
+
+def test_naive_deadline_is_rejected_before_network(result):
+    with store(lambda _: pytest.fail("unexpected network")) as db:
+        with pytest.raises(ValueError, match="publication_deadline_timezone_required"):
+            db.publish(result, data_mode="fixture", publication_deadline=datetime(2030, 1, 2))
+
+
+def test_old_database_capability_blocks_live_execution():
+    with store(lambda _: httpx.Response(200, json={"deadline_version": 0})) as db:
+        with pytest.raises(PersistenceError, match="database_deadline_migration_required"):
+            db.require_publication_deadline()
+
+
+def test_deadline_capability_accepts_supported_version():
+    with store(lambda _: httpx.Response(200, json={"deadline_version": 1})) as db:
+        db.require_publication_deadline()

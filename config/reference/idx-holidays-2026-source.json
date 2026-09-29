@@ -1,0 +1,60 @@
+{
+  "purpose": "official_source_reference_not_runtime_calendar",
+  "status": "baseline_verified_revisions_and_session_hours_pending",
+  "source": "https://www.idxcarbon.co.id/document/share/158/0a901391-a0ad-4ca5-930e-2788cb7eb27f",
+  "announcement": "Peng-00171/BEI.POP/09-2025",
+  "published_date": "2025-09-23",
+  "source_checksum": "5273a6f5724a5ac7f17027bdfcc8205ff8491e8299a6c0230347c59332e25324",
+  "reviewed_pages": [
+    1,
+    2,
+    3
+  ],
+  "visual_table_review_page": 2,
+  "year": 2026,
+  "holidays": [
+    "2026-01-01",
+    "2026-01-16",
+    "2026-02-16",
+    "2026-02-17",
+    "2026-03-18",
+    "2026-03-19",
+    "2026-03-20",
+    "2026-03-23",
+    "2026-03-24",
+    "2026-04-03",
+    "2026-05-01",
+    "2026-05-14",
+    "2026-05-15",
+    "2026-05-27",
+    "2026-05-28",
+    "2026-06-01",
+    "2026-06-16",
+    "2026-08-17",
+    "2026-08-25",
+    "2026-12-24",
+    "2026-12-25",
+    "2026-12-31"
+  ],
+  "monthly_trading_days": [
+    20,
+    18,
+    17,
+    21,
+    16,
+    20,
+    23,
+    19,
+    22,
+    22,
+    21,
+    20
+  ],
+  "total_trading_days": 239,
+  "limitations": [
+    "Not yet reconciled with subsequent exchange announcements",
+    "Does not define historical open/close times",
+    "Not enough years for 600-session warm-up",
+    "Not accepted by the runtime calendar loader"
+  ]
+}

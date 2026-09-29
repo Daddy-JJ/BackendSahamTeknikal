@@ -150,3 +150,22 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   See docs/SCANNER_RUN.md; no scheduled job was activated.
 
 - Frontend production build also passed after the owner revision probe addition.
+
+- In progress: enforce the forward publication deadline inside PostgreSQL, and verify authoritative market configuration sources.
+
+- Publication deadline slice: migration 004 checks PostgreSQL clock before new
+  forward signal insertion and after all writes, rolling back expired runs with
+  PT409. Exact committed replay remains valid after deadline. CLI now requires
+  deadline_version=1 capability before live provider IO and sends the configured
+  next-session open in the immutable run envelope.
+- SQL verification: 31 PGlite tests passed, including expired rollback, missing
+  deadline, mismatched entry date, replay after deadline and a delayed write.
+  Generated SQL Editor handoff was separately tested: live mode rejected,
+  fixture application returned deadline_version=1. Remote application pending.
+- Source progress: actual BEI 2026 calendar PDF downloaded from public IDXCarbon,
+  hash recorded and table visually verified. 22 weekday holidays and 239 trading
+  days reconcile per month. Stored as reference only; amendments, historical
+  calendar/hours and full effective KOMPAS100 attachment remain unverified.
+  See docs/MARKET_SOURCE_STATUS.md. No live scan or production write executed.
+
+- Final local verification for deadline slice: 129 full Python tests, 31 PGlite SQL tests, and Ruff passed. Frontend unchanged. Development SQL application remains pending user confirmation.

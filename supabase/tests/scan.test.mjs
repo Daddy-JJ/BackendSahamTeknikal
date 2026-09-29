@@ -42,6 +42,7 @@ before(async () => {
     grant execute on function auth.uid() to anon,authenticated,service_role;
   `);
   await db.exec(readFileSync(new URL("migrations/202609290001_scan_foundation.sql",root),"utf8"));
+  await db.exec(readFileSync(new URL("migrations/202609290004_publication_deadline.sql",root),"utf8"));
   await sql("insert into auth.users values ($1),($2),($3)",[owner,outsider,otherOwner]);
   await sql("insert into public.app_members(user_id) values ($1),($2)",[owner,otherOwner]);
 });
@@ -189,4 +190,62 @@ test("every application table has RLS and no client/service direct mutation gran
       assert.equal(allowed,false,roleName+":"+tablename);
     }
   }
+});
+
+test("expired forward deadline rolls back all publication rows", async () => {
+  await db.exec("update public.deployment_settings set data_mode='fixture'");
+  await role("service_role");
+  const late = structuredClone(payload);
+  late.p_run.publication_deadline = late.p_signals[0].planned_entry_session + "T09:00:00+07:00";
+  await denied(() => publish(late), "PT409");
+  for (const table of ["scan_runs","signals","scan_run_items","audit_events"]) {
+    assert.equal((await sql("select count(*)::int as n from public." + table)).rows[0].n, 0);
+  }
+});
+
+test("live forward insert requires a deadline; fixture and late cohorts retain compatibility", async () => {
+  await role("service_role");
+  const live = structuredClone(payload);
+  live.p_run.data_mode = "live";
+  live.p_signals.forEach(s => { s.data_mode = "live"; s.provider = "yfinance"; });
+  await denied(() => publish(live), "22023");
+  live.p_signals.forEach(s => { s.cohort = "late_model_only"; });
+  assert.equal((await publish(live)).rows[0].result.replayed, false);
+});
+
+test("deadline must match next-entry date, not an arbitrary future timestamp", async () => {
+  await db.exec("update public.deployment_settings set data_mode='fixture'");
+  await role("service_role");
+  const invalid = structuredClone(payload);
+  invalid.p_run.publication_deadline = "2099-01-01T09:00:00+07:00";
+  await denied(() => publish(invalid), "22023");
+});
+
+test("replay after deadline preserves an already published snapshot", async () => {
+  await db.exec("update public.deployment_settings set data_mode='fixture'");
+  const future = structuredClone(payload);
+  const deadline = new Date(Date.now() + 1500).toISOString();
+  const entryDay = (await sql("select ($1::timestamptz at time zone 'Asia/Jakarta')::date::text as day", [deadline])).rows[0].day;
+  future.p_run.publication_deadline = deadline;
+  future.p_signals.forEach(s => { s.planned_entry_session = entryDay; });
+  await role("service_role");
+  const first = (await publish(future)).rows[0].result;
+  await sql("select pg_sleep(1.6)");
+  const replay = (await publish(future)).rows[0].result;
+  assert.equal(replay.replayed, true);
+  assert.equal(replay.run_id, first.run_id);
+});
+
+test("delay during row writes triggers final deadline check and atomic rollback", async () => {
+  await db.exec("update public.deployment_settings set data_mode='fixture'");
+  await db.exec("create function public.test_publication_delay() returns trigger language plpgsql as $$ begin perform pg_sleep(0.6); return new; end $$; create trigger test_delay before insert on public.audit_events for each row execute function public.test_publication_delay()");
+  const delayed = structuredClone(payload);
+  const deadline = new Date(Date.now() + 400).toISOString();
+  const entryDay = (await sql("select ($1::timestamptz at time zone 'Asia/Jakarta')::date::text as day", [deadline])).rows[0].day;
+  delayed.p_run.publication_deadline = deadline;
+  delayed.p_signals.forEach(s => { s.planned_entry_session = entryDay; });
+  await role("service_role");
+  await denied(() => publish(delayed), "PT409");
+  assert.equal((await sql("select count(*)::int as n from public.scan_runs")).rows[0].n, 0);
+  assert.equal((await sql("select count(*)::int as n from public.signals")).rows[0].n, 0);
 });

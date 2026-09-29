@@ -30,7 +30,7 @@ command arguments or store them in a committed config.
 Only add --execute after reviewing the preflight and destination.
 The SUPABASE_URL must exactly match https://<project-ref>.supabase.co.
 Before contacting a provider the command requires database live mode and
-revision-schema columns. The current dev database is fixture, so this command
+revision-schema columns plus deadline_version=1 capability (migration 004). The current dev database is fixture, so this command
 deliberately refuses to publish live data there until a separately authorized
 live-testing configuration is prepared. Do not change mode to bypass this gate.
 
@@ -47,8 +47,14 @@ Evaluation uses UTC wall-clock time after provider/storage IO. Crossing next-ope
 before evaluation produces late_model_only in the forward namespace; crossing
 while evaluating blocks publication so a retry can evaluate as late. Immutable
 signals previously published retain their original timing. Transaction-side
-publication-deadline enforcement during an in-flight network call/retry is still
-a release gate; this CLI is not a claim that production scheduling is ready.
+publication-deadline enforcement is implemented in migration 004: PostgreSQL
+checks its wall clock before a new forward insert and after all row writes.
+An expired window rolls the entire transaction back with PT409. Already committed
+identical runs can replay after the deadline. The deadline is the configured
+next-session open, retained in the immutable run envelope. The source calendar
+must still be verified; the database does not independently authenticate that
+calendar's exchange hours. Remote migration/smoke is a gate until confirmed.
+This CLI is not a claim that production scheduling is ready.
 
 ## Current evidence
 
@@ -57,3 +63,15 @@ database mode checked before provider IO, partial exit status, delayed evaluatio
 and crossing the entry window before publication. The CLI help was executed.
 No live CLI execution, official universe/calendar import or GitHub runner was
 performed for this slice. No cron workflow is enabled.
+
+## Migration 004 handoff
+
+Generate the ignored development SQL file with:
+
+    scanner/.venv/Scripts/python.exe supabase/scripts/prepare_dev_deadline_setup.py
+
+Run data/dev-publication-deadline-vgmkpsestahkfahzdtae.sql once through the
+development SQL Editor. It checks fixture mode, enabled dev owner, and revision
+migration presence. Expected result: deadline_version=1, data_mode=fixture.
+It does not modify existing scan/signal rows or change deployment mode.
+The updated CLI refuses a live database without the capability RPC.

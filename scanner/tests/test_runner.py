@@ -206,3 +206,27 @@ def test_crossing_next_open_during_evaluation_blocks_publication():
             clock=lambda: next(ticks),
         )
     assert not any(kind == "publish" for kind, _ in store.calls)
+
+
+def test_live_runner_sends_calendar_deadline_to_atomic_publisher():
+    series, calendar, universe, target, requests = setup_market()
+    calendar = replace(calendar, data_mode="live")
+    universe = replace(universe, data_mode="live")
+    series = {ticker: replace(source, provider="yfinance") for ticker, source in series.items()}
+
+    class DeadlineStore(FakeStore):
+        def publish(self, result, **kwargs):
+            assert kwargs["data_mode"] == "live"
+            assert kwargs["publication_deadline"] == calendar.next(target.day).opens_at
+            return super().publish(result, **kwargs)
+
+    outcome = run_once(
+        FakeProvider(series),
+        DeadlineStore(),
+        requests,
+        target.day,
+        calendar,
+        universe,
+        target.closes_at + timedelta(hours=3),
+    )
+    assert outcome.publication["run_id"] == "test-run"
