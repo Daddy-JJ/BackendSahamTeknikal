@@ -42,8 +42,8 @@ def market_series_envelope(series: Series, *, namespace: str, data_mode: str) ->
         data_mode == "fixture"
     ):
         raise ValueError("mixed_fixture_live_persistence")
-    if not series.bars or series.fetched_at is None or series.fetched_at.tzinfo is None:
-        raise ValueError("unfetched_or_empty_series")
+    if series.fetched_at is None or series.fetched_at.tzinfo is None:
+        raise ValueError("unfetched_series")
     content = asdict(series)
     content.pop("fetched_at")
     content.pop("provider_version")

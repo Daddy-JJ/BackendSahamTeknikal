@@ -77,9 +77,23 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   watchlist action at revision 1, one matching idempotency request, one audit
   event, and the same two fixture signals. Production was not written.
 
-- Latest local verification: 97 scanner tests, 19 PGlite SQL tests and Ruff
+- Earlier revision-slice verification: 97 scanner tests, 19 PGlite SQL tests and Ruff
   passed after adding revisioned market-series storage. PGlite tests cover
   fixture-in-production rejection, immutable revisions, replay, unchanged-bar
   reuse, duplicate-session rollback, digest conflict, RLS owner/outsider/anon
   isolation, and denied direct writes. This does not prove remote migration,
   full-series reconstruction, production storage sizing, or provider quality.
+
+- Local M2 orchestration now preflights calendar/universe and mapping before
+  database/provider IO, reloads published signal state, fetches the complete
+  cross-section, stores each fetched series receipt, and only then publishes
+  the run. Provider failures remain explicit and reduce coverage; empty-bar
+  results remain auditable missing-data receipts. A revision ingest failure
+  prevents publication. Five targeted runner tests passed, including these
+  failure paths. No CLI workflow, GitHub schedule, remote migration, or live
+  publish has been run.
+
+- Follow-up verification: 101 full scanner tests, 20 PGlite SQL tests, Ruff,
+  and five targeted runner tests after the empty-series case. The additional
+  runner test was run targeted after the 101-test full suite; no claim of a
+  102-test full-suite run is made.

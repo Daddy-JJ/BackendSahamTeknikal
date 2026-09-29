@@ -96,6 +96,18 @@ test("duplicate sessions roll back receipt and bar rows", async () => {
   assert.equal((await sql("select count(*)::int as n from public.market_series_revisions")).rows[0].n, 0);
   assert.equal((await sql("select count(*)::int as n from public.market_bar_revisions")).rows[0].n, 0);
 });
+test("no-bar provider result remains an auditable missing-data receipt", async () => {
+  await db.exec("update public.deployment_settings set data_mode='fixture'");
+  await role("service_role");
+  const missing = structuredClone(record);
+  missing.input_digest = "d".repeat(64);
+  missing.snapshot.bars = [];
+  missing.snapshot.provider_row_issues = [{session: "2030-01-02", code: "incomplete_ohlcv"}];
+  const receipt = (await ingest(missing)).rows[0].result;
+  assert.equal(receipt.bars_changed, 0);
+  assert.equal((await sql("select bar_count from public.market_series_revisions")).rows[0].bar_count, 0);
+  assert.equal((await sql("select count(*)::int as n from public.market_bar_revisions")).rows[0].n, 0);
+});
 test("digest reuse with changed content is rejected without overwrite", async () => {
   await db.exec("update public.deployment_settings set data_mode='fixture'");
   await role("service_role");

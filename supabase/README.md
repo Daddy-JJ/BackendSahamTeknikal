@@ -177,8 +177,10 @@ snapshots are never rewritten.
 This migration passed local PGlite tests but has **not** been applied to
 either remote project. Apply it to the isolated development project first,
 then verify owner RLS and RPC behavior there before production rollout.
-The scanner pipeline does not yet call ingest_series automatically.
-Full-series reconstruction and production storage sizing remain to be
+The local run_once orchestrator calls ingest_series for every fetched series
+before publish; it is not connected to a CLI or GitHub runner yet. Zero-bar
+provider results create a receipt without bar rows, preserving missing-data
+status. Full-series reconstruction and production storage sizing remain to be
 validated. The database trusts the service role for the supplied Python
 input digest; its own snapshot_hash detects conflicting RPC replay but is
 not a server-side recomputation of the engine digest. Service-role keys

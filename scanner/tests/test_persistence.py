@@ -172,3 +172,10 @@ def test_market_revision_adapter_keeps_content_digest_and_retries_safely():
     assert calls == [body, body]
     with pytest.raises(ValueError, match="mixed_fixture_live"):
         market_series_envelope(source, namespace="forward", data_mode="live")
+    missing = replace(source, bars=())
+    assert (
+        market_series_envelope(missing, namespace="forward", data_mode="fixture")["p_record"][
+            "snapshot"
+        ]["bars"]
+        == []
+    )

@@ -14,7 +14,7 @@ create table public.market_series_revisions (
   input_digest text not null check (input_digest ~ '^[a-f0-9]{64}$'),
   snapshot_hash text not null check (snapshot_hash ~ '^[a-f0-9]{32}$'),
   metadata jsonb not null check (jsonb_typeof(metadata) = 'object'),
-  bar_count integer not null check (bar_count > 0),
+  bar_count integer not null check (bar_count >= 0),
   bar_cutoff bigint not null check (bar_cutoff >= 0),
   fetched_at timestamptz not null,
   stored_at timestamptz not null default now(),
@@ -88,8 +88,7 @@ begin
   then
     raise exception 'invalid_market_series' using errcode = '22023';
   end if;
-  if jsonb_array_length(v_snapshot->'bars') = 0
-    or p_record->>'fetched_at' is null
+  if p_record->>'fetched_at' is null
     or p_record->>'provider_symbol' is null
     or p_record->>'price_basis' is null then
     raise exception 'invalid_market_series' using errcode = '22023';
