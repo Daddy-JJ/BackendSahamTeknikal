@@ -171,7 +171,7 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   calendar/hours and full effective KOMPAS100 attachment remain unverified.
   See docs/MARKET_SOURCE_STATUS.md. No live scan or production write executed.
 
-- Final local verification for deadline slice: 129 full Python tests, 31 PGlite SQL tests, and Ruff passed. Frontend unchanged. Development SQL application remains pending user confirmation.
+- Final local verification at deadline-slice implementation time: 129 full Python tests, 31 PGlite SQL tests, and Ruff passed. Frontend unchanged. Development SQL application was later confirmed by the user and a read-only capability check; no live scan was run.
 
 
 - Development migration 004 confirmation - 2026-09-29: user screenshot shows
