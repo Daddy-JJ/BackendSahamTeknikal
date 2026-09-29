@@ -83,7 +83,7 @@ class SupabaseScanStore:
             raise PersistenceError("missing_or_invalid_service_key")
         self._client = httpx.Client(
             base_url=url.rstrip("/") + "/rest/v1/",
-            headers={"apikey": service_key, "Authorization": f"Bearer {service_key}"},
+            headers={"apikey": service_key},
             timeout=20,
             follow_redirects=False,
             transport=transport,

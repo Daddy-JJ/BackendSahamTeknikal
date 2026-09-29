@@ -24,8 +24,8 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
 - New isolated development project ref vgmkpsestahkfahzdtae supplied; its
   Auth UID was supplied and the ignored dev env is configured without a key.
   Generated dev-only SQL passed an in-memory PGlite execution: nine tables,
-  enabled owner, live mode. Await SQL Editor execution and local dev key before
-  write-path testing. Prove RLS with Auth JWT and real PostgREST;
+  enabled owner, live mode. Owner reports successful SQL Editor execution in
+  dev; remote API verification awaits the local dev key before write-path testing. Prove RLS with Auth JWT and real PostgREST;
   market-data revisions, official calendar/universe, paper persistence, 5–10
   ticker live proof and GitHub runner.
 - EODHD key has not been supplied. No scheduled scan or deployment is active.
@@ -42,3 +42,6 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
 - Dev setup generator now reads only ignored backend/.env.development and
   rejects the known production project ref. The development SQL has not run
   remotely at this status update.
+- Supabase new API keys are sent via `apikey` only in the backend adapter.
+  Thirteen persistence tests passed; one read-only production REST call with
+  the revised header returned 200 and live mode. No write was attempted.

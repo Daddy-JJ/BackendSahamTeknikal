@@ -52,6 +52,7 @@ def test_atomic_rpc_retry_uses_identical_payload_and_safe_headers(result):
         sent.append(json.loads(request.content))
         assert request.url.path == "/rest/v1/rpc/publish_scan"
         assert request.headers["apikey"] == SECRET
+        assert "authorization" not in request.headers
         if len(sent) == 1:
             raise httpx.ReadTimeout("could contain " + SECRET)
         return httpx.Response(200, json={"run_id": "uuid-from-rpc", "replayed": True})
