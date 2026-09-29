@@ -239,3 +239,28 @@ def test_read_revision_rejects_corruption_without_secret_leak(corruption):
                 REVISION_ID, data_mode="fixture", expected_input_digest=source.input_digest
             )
     assert SECRET not in str(error.value)
+
+
+def test_live_preflight_stops_on_fixture_database():
+    calls = []
+
+    def handler(request):
+        calls.append(request.url.path)
+        return httpx.Response(200, json=[{"data_mode": "fixture"}])
+
+    with store(handler) as db:
+        with pytest.raises(PersistenceError, match="database_not_live"):
+            db.require_live_schema()
+    assert calls == ["/rest/v1/deployment_settings"]
+
+
+def test_live_preflight_requires_revision_columns():
+    def handler(request):
+        if request.url.path.endswith("deployment_settings"):
+            return httpx.Response(200, json=[{"data_mode": "live"}])
+        assert request.url.params["select"] == "bar_sessions,source_hash"
+        return httpx.Response(404, json={"code": "42703"})
+
+    with store(handler) as db:
+        with pytest.raises(PersistenceError, match="database_request_failed"):
+            db.require_live_schema()

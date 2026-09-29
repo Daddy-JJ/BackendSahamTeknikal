@@ -70,6 +70,41 @@ def verify() -> None:
         ) as service,
     ):
         try:
+            mode = service.get("deployment_settings", params={"select": "data_mode"})
+            if mode.status_code != 200 or mode.json() != [{"data_mode": "fixture"}]:
+                raise ValueError("dev_fixture_mode_required")
+            revisions = service.get(
+                "market_series_revisions",
+                params={
+                    "select": "id",
+                    "namespace": "eq.dev_market_revision_m2",
+                    "data_mode": "eq.fixture",
+                },
+            )
+            if revisions.status_code != 200 or len(revisions.json()) != 2:
+                raise ValueError("dev_revision_fixture_missing")
+            revision_id = revisions.json()[0]["id"]
+            with httpx.Client(
+                base_url=rest_url,
+                headers={"apikey": publishable},
+                timeout=20,
+                follow_redirects=False,
+            ) as anonymous:
+                for table in ("market_series_revisions", "market_bar_revisions"):
+                    denied = anonymous.get(table, params={"select": "*", "limit": 1})
+                    if (
+                        denied.status_code not in (401, 403)
+                        or denied.json().get("code") != "42501"
+                    ):
+                        raise ValueError("anonymous_market_read_not_denied")
+                denied = anonymous.post(
+                    "rpc/read_market_series", json={"p_revision_id": revision_id}
+                )
+                if (
+                    denied.status_code not in (401, 403)
+                    or denied.json().get("code") != "42501"
+                ):
+                    raise ValueError("anonymous_revision_rpc_not_denied")
             signals = service.get(
                 "signals", params={"select": "id", "namespace": "eq.dev_smoke_m2"}
             )
@@ -114,10 +149,30 @@ def verify() -> None:
                 timeout=20,
                 follow_redirects=False,
             ) as outsider:
-                for table in ("scan_runs", "signals", "app_members"):
+                for table in (
+                    "scan_runs",
+                    "signals",
+                    "app_members",
+                    "market_series_revisions",
+                    "market_bar_revisions",
+                ):
                     response = outsider.get(table, params={"select": "*", "limit": "5"})
                     if response.status_code != 200 or response.json() != []:
                         raise ValueError(f"non_owner_{table}_not_empty")
+                for queried_id in (revision_id, str(uuid4())):
+                    denied = outsider.post(
+                        "rpc/read_market_series", json={"p_revision_id": queried_id}
+                    )
+                    if (
+                        denied.status_code != 500
+                        or denied.json().get("code") != "P0002"
+                    ):
+                        raise ValueError("non_owner_revision_rpc_not_hidden")
+                denied = outsider.post(
+                    "rpc/ingest_market_series", json={"p_record": {}}
+                )
+                if denied.status_code != 403 or denied.json().get("code") != "42501":
+                    raise ValueError("non_owner_market_ingest_not_denied")
                 action = outsider.post(
                     "rpc/set_signal_action",
                     json={
@@ -134,7 +189,12 @@ def verify() -> None:
             after = service.get("signal_actions", params={"select": "owner_id"})
             if after.status_code != 200 or len(after.json()) != before_count:
                 raise ValueError("non_owner_action_left_residue")
-            print("Dev non-owner JWT: three private reads empty, action denied, no residue.")
+            print(
+                "Dev non-owner JWT: five private reads empty; existing/unknown revision IDs hidden."
+            )
+            print(
+                "Anonymous revision reads/RPC and non-owner ingest denied; action denied without residue."
+            )
         finally:
             if user_id is not None:
                 try:

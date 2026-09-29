@@ -10,7 +10,9 @@ import httpx
 
 from .demo import demo_snapshot
 from .models import canonical_json
+from .persistence import PersistenceError
 from .providers import FetchRequest, ProviderError, make_provider
+from .run_command import add_run_parser, execute_run
 
 
 def main() -> int:
@@ -28,8 +30,13 @@ def main() -> int:
     probe.add_argument("--start", type=date.fromisoformat, required=True)
     probe.add_argument("--end", type=date.fromisoformat, required=True)
     probe.add_argument("--output", type=Path, required=True)
+    add_run_parser(commands)
     args = parser.parse_args()
     try:
+        if args.command == "run":
+            payload = execute_run(args)
+            print(canonical_json(payload))
+            return 0 if payload["status"] in ("preflight_passed", "complete") else 3
         if args.command == "demo":
             payload = demo_snapshot()
         else:
@@ -52,10 +59,10 @@ def main() -> int:
         else:
             print(output, end="")
         return 0
-    except ProviderError as exc:
+    except (ProviderError, PersistenceError) as exc:
         print(canonical_json({"error": exc.code, "fallback": False}), file=sys.stderr)
         return 2
-    except (ValueError, OSError):
+    except (ValueError, OSError, KeyError, TypeError):
         print(canonical_json({"error": "invalid_configuration_or_output_path"}), file=sys.stderr)
         return 2
 

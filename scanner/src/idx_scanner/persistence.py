@@ -208,6 +208,20 @@ class SupabaseScanStore:
                 raise PersistenceError("database_invalid_response") from None
         raise PersistenceError("database_request_failed")
 
+    def require_live_schema(self) -> None:
+        settings = self._request(
+            "GET", "deployment_settings", params={"select": "data_mode", "singleton": "eq.true"}
+        )
+        if settings != [{"data_mode": "live"}]:
+            raise PersistenceError("database_not_live")
+        rows = self._request(
+            "GET",
+            "market_series_revisions",
+            params={"select": "bar_sessions,source_hash", "limit": "0"},
+        )
+        if rows != []:
+            raise PersistenceError("database_invalid_response")
+
     def publish(self, result: ScanResult, *, namespace="forward", data_mode="live") -> dict:
         payload = scan_envelope(result, namespace, data_mode)
         response = self._request("POST", "rpc/publish_scan", json=payload)

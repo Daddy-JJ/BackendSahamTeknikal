@@ -50,14 +50,21 @@ def collect_and_scan(
     namespace: str = "forward",
 ) -> PipelineResult:
     require_scan_context(requests, target, calendar, universe, published_at)
-    series: dict[str, Series] = {}
-    errors = []
-    for ticker in sorted(universe.tickers):
-        try:
-            series[ticker] = provider.fetch(requests[ticker])
-        except ProviderError as error:
-            errors.append((ticker, error.code))
+    series, errors = fetch_series(provider, requests)
     result = scan(series, target, calendar, universe, published_at, state, namespace=namespace)
     return PipelineResult(
         result, tuple(errors), tuple(sorted(series)), tuple(series[t] for t in sorted(series))
     )
+
+
+def fetch_series(
+    provider: Provider, requests: dict[str, FetchRequest]
+) -> tuple[dict[str, Series], tuple[tuple[str, str], ...]]:
+    series: dict[str, Series] = {}
+    errors = []
+    for ticker in sorted(requests):
+        try:
+            series[ticker] = provider.fetch(requests[ticker])
+        except ProviderError as error:
+            errors.append((ticker, error.code))
+    return series, tuple(errors)

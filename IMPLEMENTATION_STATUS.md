@@ -114,7 +114,7 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   Changed bars additionally retain numeric source text; real storage sizing
   remains open. Legacy 002 receipts are never guessed or overwritten.
 - M2 remains in progress: remote revision/RLS smoke, official calendar/universe,
-  5–10 ticker live fetch-to-web proof, paper persistence and GitHub runner.
+  5-10 ticker live fetch-to-web proof, paper persistence and GitHub runner.
   See docs/MARKET_REVISIONS.md for the handoff and rollout constraints.
 
 - Development confirmation on 2026-09-29: user SQL Editor result shows
@@ -127,3 +127,26 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
 - This proves remote service-key revision persistence and reconstruction.
   Owner/outsider JWT tests for the new revision RPC remain a separate gate;
   existing local RLS tests are not presented as remote revision-RLS proof.
+
+- In progress: remote revision RPC denial tests with a disposable non-owner JWT,
+  anonymous access checks, and a read-only owner-session probe in the frontend.
+
+- Revision access gate completed in development: anonymous table/RPC access
+  denied; disposable non-owner JWT sees five private tables empty, cannot read
+  existing or unknown revision IDs, and cannot call ingestion. Auth account
+  cleanup succeeded. The owner confirmed the frontend status "2 revisi fixture
+  terbaca melalui RPC owner" using their existing application session.
+- First remote denial test failed because the test expected HTTP 400 for P0002.
+  PostgREST maps P0* to HTTP 500. Corrected that expectation per official docs;
+  rerun passed without changing database policies.
+- Live CLI run command now provides offline preflight and explicit --execute,
+  exact project binding, live database/schema guard, safe summary and nonzero
+  partial status. Orchestration evaluates after IO with current UTC, and blocks
+  crossing next-open during evaluation. No live CLI run was executed.
+- Verification: 124 full Python tests and Ruff passed; frontend lint/typecheck
+  and nine Auth Playwright tests passed. No database migration changed.
+- M2 remains open: authoritative calendar/universe/mapping, 5-10 ticker live
+  proof, GitHub runner, paper persistence, and transaction-side timing deadline.
+  See docs/SCANNER_RUN.md; no scheduled job was activated.
+
+- Frontend production build also passed after the owner revision probe addition.

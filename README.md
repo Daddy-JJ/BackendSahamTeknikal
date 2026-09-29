@@ -20,6 +20,8 @@ Data demo ditandai fixture dan sintetis. Jangan commit file .env, key, database 
 
 ## Status batasan
 
-Engine empat strategi, exit paper, provider adapters, migrasi Supabase scan RPC, dan adapter persistence sudah ada dalam kode lokal. Migrasi scan foundation sudah ada di Supabase production dan development; uji fixture serta owner RLS/action berhasil di development. Migrasi revisi market 002-003 sudah diterapkan di development; smoke test simpan, baca ulang digest, dan replay dua revisi fixture berhasil. Orkestrator fetch -> ingest -> verifikasi baca ulang -> publish diuji lokal; belum ada CLI/runner GitHub aktif. Kalender/universe resmi, scanner scheduled live, persistence paper, jurnal actual, dan backup-restore masih gate pengembangan. Lihat DEVELOPMENT_ADDENDUM.md dan IMPLEMENTATION_STATUS.md pada checkout sumber kerja saat ini.
+Engine empat strategi, exit paper, provider adapters, migrasi Supabase scan RPC, dan adapter persistence sudah ada dalam kode lokal. Migrasi scan foundation sudah ada di Supabase production dan development; uji fixture serta owner RLS/action berhasil di development. Migrasi revisi market 002-003 sudah diterapkan di development; smoke test simpan, baca ulang digest, dan replay dua revisi fixture berhasil. Orkestrator fetch -> ingest -> verifikasi baca ulang -> publish diuji lokal; CLI manual dengan preflight tersedia; belum ada eksekusi live atau runner GitHub aktif. Kalender/universe resmi, scanner scheduled live, persistence paper, jurnal actual, dan backup-restore masih gate pengembangan. Lihat DEVELOPMENT_ADDENDUM.md dan IMPLEMENTATION_STATUS.md pada checkout sumber kerja saat ini.
 
 Rekonstruksi histori, handoff SQL development, dan batas rollout: lihat docs/MARKET_REVISIONS.md.
+
+CLI scanner manual dan gate live: docs/SCANNER_RUN.md.

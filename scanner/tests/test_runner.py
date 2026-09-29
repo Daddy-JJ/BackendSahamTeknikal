@@ -161,3 +161,48 @@ def test_readback_failure_blocks_publication():
             target.closes_at + timedelta(hours=3),
         )
     assert not any(kind == "publish" for kind, _ in store.calls)
+
+
+def test_provider_or_storage_delay_past_next_open_is_late_not_forward():
+    series, calendar, universe, target, requests = setup_market()
+    store, provider = FakeStore(), FakeProvider(series)
+    late = calendar.next(target.day).opens_at + timedelta(seconds=1)
+
+    def clock():
+        assert store.calls[-1][0] == "verify"
+        return late
+
+    outcome = run_once(
+        provider,
+        store,
+        requests,
+        target.day,
+        calendar,
+        universe,
+        target.closes_at + timedelta(hours=3),
+        clock=clock,
+    )
+    assert outcome.pipeline.scan.signals
+    assert all(
+        signal.cohort == "late_model_only" and signal.published_at == late
+        for signal in outcome.pipeline.scan.signals
+    )
+
+
+def test_crossing_next_open_during_evaluation_blocks_publication():
+    series, calendar, universe, target, requests = setup_market()
+    store, provider = FakeStore(), FakeProvider(series)
+    next_open = calendar.next(target.day).opens_at
+    ticks = iter((next_open - timedelta(seconds=1), next_open))
+    with pytest.raises(ValueError, match="publication_window_elapsed"):
+        run_once(
+            provider,
+            store,
+            requests,
+            target.day,
+            calendar,
+            universe,
+            target.closes_at + timedelta(hours=3),
+            clock=lambda: next(ticks),
+        )
+    assert not any(kind == "publish" for kind, _ in store.calls)

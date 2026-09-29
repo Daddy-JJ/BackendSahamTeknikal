@@ -73,3 +73,14 @@ preflight and the guarded --execute smoke passed on the allowlisted dev project:
 two receipts, bar counts 3 and 2, four changed-bar rows, exact digest read-back
 and replay verified. These checks used a backend service key. Remote JWT/RLS
 checks for this new RPC, live provider inputs and production rollout remain open.
+
+Remote access follow-up: anonymous reads/RPC denied; a disposable non-owner JWT
+saw empty private tables and could not read either an existing or random revision
+ID, nor call ingestion. The disposable Auth account was deleted. The owner
+confirmed the read-only frontend probe using their existing session. The probe
+checks two fixture receipts through the JWT/RLS RPC; canonical numeric digest
+verification remains the separately passed Python backend smoke.
+
+PostgREST returns HTTP 500 for PostgreSQL P0002; the negative probe checks that
+specific code, not any arbitrary 500. Reference:
+https://docs.postgrest.org/en/stable/references/errors.html#http-status-codes
