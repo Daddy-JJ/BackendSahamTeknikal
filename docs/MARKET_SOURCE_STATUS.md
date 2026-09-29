@@ -22,7 +22,7 @@ public idxcarbon.co.id host and returned an actual PDF.
 ## Remaining source gates
 
 - Reconcile any subsequent amendments to the 2026 baseline.
-- Obtain and verify 2024/2025 calendars and amendments, needed for 600 bars.
+- 2025 baseline and one official amendment are now transcribed in a reference file; original PDFs, checksums, visual review, later amendments, and 2024 calendar remain pending.
 - Verify historical regular-equity open/close rules and their effective dates.
 - Obtain the full effective KOMPAS100 constituent attachment. News references
   Peng-00148/BEI.POP/07-2026, attachment 4, but the original full attachment has
