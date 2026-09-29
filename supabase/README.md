@@ -111,8 +111,9 @@ Verified on 2026-09-29: one labeled fixture run, five items, two signals and
 one audit event; exact replay did not duplicate the run, persisted signals
 reloaded, and a changed payload with the same run digest was rejected. The
 fixture run is immutable and stays in the isolated development project.
-Production remained `live` and had no `dev_smoke_m2` run. Authenticated user
-Owner JWT/RLS through PostgREST still needs a separate test.
+Production remained live and had no dev_smoke_m2 run. The owner read path was
+subsequently verified through the development app login; owner action RPC
+remains pending.
 
 ### Disposable non-owner RLS test
 
@@ -129,7 +130,8 @@ cd C:\xampp\htdocs\SahamTeknikal\backend
 
 Verified on 2026-09-29: real non-owner JWT saw no scan_runs, signals or
 app_members rows; `set_signal_action` returned 42501, left no action residue,
-and the temporary Auth user was deleted. Owner JWT access remains untested.
+and the temporary Auth user was deleted. Owner read access was later verified
+through the app.
 
 ### Owner JWT/RLS read probe
 
@@ -151,4 +153,8 @@ cd C:\xampp\htdocs\SahamTeknikal\backend
 Use the command without --access-token for email/password login. A successful
 run should report the owner membership, one `dev_smoke_m2`
 fixture run and two signals visible through the publishable key plus the
-owner's Auth JWT. Until this is run successfully, owner RLS remains unproved.
+owner's Auth JWT. This standalone probe remains optional: the app's GitHub
+OAuth flow has now shown the same owner read path on localhost:3050/auth/check.
+The user supplied a screenshot with the matching UID and one run/two signals;
+read-only service queries independently matched those development counts.
+Owner action/write RPC has not yet been verified.

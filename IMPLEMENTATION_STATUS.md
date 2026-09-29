@@ -7,7 +7,8 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
 - M2: local SQL scan foundation and REST persistence adapter implemented.
   User applied the migration in the Supabase main (PROD) branch. Read-only
   REST checks verified all nine tables, enabled owner membership and live mode.
-  No live scan or authenticated owner RLS proof yet.
+  No live scan yet. Development owner JWT/RLS read access is verified below;
+  owner write/action proof is pending.
 - Owner Auth UID supplied via ignored backend/.env. A read-only Auth Admin request
   returned HTTP 200, matched that UID, and found a confirmed, non-anonymous user.
 - Backend .env SUPABASE_URL matches project hcjfxbynqzsaidlwvdfx, key is present
@@ -28,7 +29,7 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   nine tables, owner membership, Auth UID, and initial live mode. Dev was
   explicitly switched to fixture for smoke. Anonymous reads/RPC were denied.
   An invalid service RPC returned 22023 and left scan_runs empty.
-- Remaining M2 gates: prove owner RLS with Auth JWT and real PostgREST;
+- Remaining M2 gates: prove owner action RPC with Auth JWT and real PostgREST;
   market-data revisions, official calendar/universe, paper persistence, 5–10
   ticker live proof and GitHub runner.
 - EODHD key has not been supplied. No scheduled scan or deployment is active.
@@ -49,8 +50,8 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   matched. An altered payload with the same digest returned 23514 with no
   duplicate. A disposable non-owner Auth user signed in with a real JWT:
   scan_runs, signals and app_members reads were empty; owner action was denied
-  with 42501 and left no residue; the temporary user was deleted. Owner JWT
-  read/action proof remains pending.
+  with 42501 and left no residue; the temporary user was deleted. Owner
+  write/action proof remains pending; owner read evidence is recorded below.
 - Supabase new API keys are sent via `apikey` only in the backend adapter.
   Thirteen persistence tests passed; one read-only production REST call with
   the revised header returned 200 and live mode. No production write was attempted.
@@ -58,8 +59,9 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   Development data_mode=fixture; production remains live and its dev_smoke_m2
   namespace is empty. The smoke script rejects the production URL and requires
   --execute for writes.
-- A local read-only owner JWT probe supports password login or a hidden terminal
-  prompt for an existing dev-project Auth user JWT, validated through Auth
-  /user before RLS reads. The supplied Dashboard Personal Access Token is not
-  an app Auth JWT. Owner RLS remains unproved until an app Auth session exists
-  and this probe passes; no owner result is claimed yet.
+- The owner completed GitHub OAuth on localhost:3050/auth/check. The user-provided
+  screenshot shows the development Auth UID matching the enabled owner membership,
+  and one dev_smoke_m2 run plus two signals visible through the app's JWT/RLS
+  read path. Separate read-only service queries confirmed GitHub Auth enabled,
+  development data_mode=fixture, and the same one-run/two-signal counts. No raw
+  owner JWT was copied to chat or shell. Owner action/write RPC remains untested.
