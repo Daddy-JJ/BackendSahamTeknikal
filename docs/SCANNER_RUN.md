@@ -16,10 +16,12 @@ timing only: no provider/database calls and no credentials required.
 
 The calendar and universe must have data_mode=live and provenance metadata
 required by config_io.py. A source URL/checksum format check does not itself
-verify that a publication is official. Effective KOMPAS100 membership, all
-historical exchange sessions, next session, and provider mappings must first
-be reviewed against authoritative publications. No live config is supplied
-or implied by the synthetic fixture files in this repository.
+verify that a publication is official. The owner supplied the BEI KOMPAS100
+July 2026 major-evaluation roster (100 unique IDX codes, effective 2026-08-03
+through 2027-01-29); it is transcribed under config/reference and is not a runtime
+config. The workbook binary checksum/sheet review, complete historical exchange
+sessions and next-session hours, and provider mappings must still be verified.
+No live config is supplied or implied by synthetic fixture files.
 
 ## Explicit execution
 
