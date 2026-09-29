@@ -37,3 +37,13 @@ Official index/holiday landing pages failed to open through the web tool during
 this review. Missing documents do not justify weekday-only or invented configs.
 
 No live provider scan or live database publication was performed.
+
+## Additional official 2025 source review - 2026-09-29
+
+IDXCarbon-hosted text extraction confirms baseline announcement Peng-00213/BEI.POP/10-2024 dated 2024-10-16 lists 237 trading days. The official amendment Peng-00149/BEI.POP/08-2025 dated 2025-08-08 adds 2025-08-18 as a market holiday. The listed weekday closures therefore reconcile to 236 trading days after this known amendment. Source dates and closure list are recorded in config/reference/idx-holidays-2025-source.json.
+
+Sources:
+- https://www.idxcarbon.co.id/document/share/109/e11c312a-95d6-4525-b71a-f70377cc7777
+- https://www.idxcarbon.co.id/document/share/143/cf878b0d-87c1-45e2-98a5-4c54d6efc8c2
+
+This is an official-source transcription, not a runtime calendar. The original PDFs have not yet been downloaded, hashed, and visually checked locally; subsequent amendments and historical session hours remain open. The same primary-source search did not locate the full KOMPAS100 attachment 4. Media extracts are not being used as universe data. No provider scan or production write was performed.
