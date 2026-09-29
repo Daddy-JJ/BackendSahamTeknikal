@@ -130,3 +130,19 @@ cd C:\xampp\htdocs\SahamTeknikal\backend
 Verified on 2026-09-29: real non-owner JWT saw no scan_runs, signals or
 app_members rows; `set_signal_action` returned 42501, left no action residue,
 and the temporary Auth user was deleted. Owner JWT access remains untested.
+
+### Owner JWT/RLS read probe
+
+The owner can run a read-only probe locally. It prompts for the development
+Auth account's email/password in the terminal, keeps the JWT in memory, and
+prints only a sanitized result. Do not paste credentials into chat.
+
+```powershell
+cd C:\xampp\htdocs\SahamTeknikal\backend
+.\scanner\.venv\Scripts\python.exe supabase\scripts\verify_dev_owner_rls.py --check-config
+.\scanner\.venv\Scripts\python.exe supabase\scripts\verify_dev_owner_rls.py
+```
+
+A successful run should report the owner membership, one `dev_smoke_m2`
+fixture run and two signals visible through the publishable key plus the
+owner's Auth JWT. Until this is run successfully, owner RLS remains unproved.

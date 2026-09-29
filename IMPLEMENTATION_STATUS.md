@@ -58,3 +58,6 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   Development data_mode=fixture; production remains live and its dev_smoke_m2
   namespace is empty. The smoke script rejects the production URL and requires
   --execute for writes.
+- A local read-only owner JWT probe is prepared and its config check passed;
+  it has not been run because owner credentials are entered only by the user
+  in a terminal. No owner RLS result is claimed yet.
