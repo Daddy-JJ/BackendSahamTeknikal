@@ -1,7 +1,7 @@
 """Read-only owner JWT/RLS probe for the isolated Supabase development project.
 
-The owner types credentials into a local terminal. Password and JWT stay in
-memory and are never written to a file or printed.
+The owner types credentials or an app Auth JWT into a local terminal. Secrets
+stay in memory and are never written to a file or printed.
 """
 
 import argparse
@@ -38,8 +38,24 @@ def config() -> tuple[str, str]:
     return backend["APP_OWNER_USER_ID"], frontend["NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY"]
 
 
-def verify() -> None:
-    owner_uid, publishable = config()
+def owner_jwt(owner_uid: str, publishable: str, use_access_token: bool) -> str:
+    if use_access_token:
+        jwt = getpass.getpass("Dev project Supabase Auth access JWT: ").strip()
+        if jwt.count(".") != 2:
+            raise ValueError("app_auth_jwt_required_not_dashboard_access_token")
+        with httpx.Client(
+            base_url=DEV_URL + "/auth/v1/",
+            headers={"apikey": publishable, "Authorization": f"Bearer {jwt}"},
+            timeout=20,
+            follow_redirects=False,
+        ) as auth:
+            response = auth.get("user")
+        if response.status_code != 200:
+            raise ValueError(f"owner_jwt_validation_status_{response.status_code}")
+        if response.json().get("id") != owner_uid:
+            raise ValueError("signed_in_user_is_not_dev_owner")
+        return jwt
+
     email = input("Email akun Auth owner di proyek development: ").strip()
     password = getpass.getpass("Password akun tersebut: ")
     if not email or not password:
@@ -63,6 +79,12 @@ def verify() -> None:
     jwt = body.get("access_token")
     if not isinstance(jwt, str) or not jwt:
         raise ValueError("owner_jwt_missing")
+    return jwt
+
+
+def verify(use_access_token: bool = False) -> None:
+    owner_uid, publishable = config()
+    jwt = owner_jwt(owner_uid, publishable, use_access_token)
     with httpx.Client(
         base_url=DEV_URL + "/rest/v1/",
         headers={"apikey": publishable, "Authorization": f"Bearer {jwt}"},
@@ -89,13 +111,18 @@ def verify() -> None:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check-config", action="store_true")
+    parser.add_argument(
+        "--access-token",
+        action="store_true",
+        help="Prompt locally for a dev-project Supabase Auth user JWT (not Dashboard PAT)",
+    )
     args = parser.parse_args()
     try:
         if args.check_config:
             config()
             print("Dev owner RLS probe configured; no login attempted.")
         else:
-            verify()
+            verify(use_access_token=args.access_token)
         return 0
     except (EOFError, OSError, KeyError, ValueError, httpx.HTTPError) as error:
         code = str(error) if isinstance(error, ValueError) else "owner_rls_probe_failed"
