@@ -5,13 +5,25 @@ import re
 import time
 from collections.abc import Callable
 from dataclasses import asdict
-from datetime import date, datetime
+from datetime import UTC, date, datetime
 from urllib.parse import urlsplit
+from uuid import UUID
 
 import httpx
 
 from .engine import ScanResult
-from .models import Candidate, Rule, ScanState, Series, Signal, canonical_json, digest
+from .models import (
+    Bar,
+    Candidate,
+    CorporateAction,
+    ProviderRowIssue,
+    Rule,
+    ScanState,
+    Series,
+    Signal,
+    canonical_json,
+    digest,
+)
 
 
 class PersistenceError(RuntimeError):
@@ -60,8 +72,46 @@ def market_series_envelope(series: Series, *, namespace: str, data_mode: str) ->
             "input_digest": series.input_digest,
             "fetched_at": series.fetched_at.isoformat(),
             "snapshot": snapshot,
+            # JSONB normalizes numeric tokens. Keep source text on changed bars so
+            # float/int types, scientific notation and negative zero round-trip.
+            "metadata_source": canonical_json({k: v for k, v in content.items() if k != "bars"}),
+            "bar_sources": [canonical_json(bar) for bar in series.bars],
         }
     }
+
+
+def series_from_revision(value: dict) -> Series:
+    """Decode exact source tokens; never coerce numbers or repair missing history."""
+    data = json.loads(value["metadata_source"])
+    bars = [json.loads(source) for source in value["bar_sources"]]
+    data["bars"] = tuple(
+        Bar(**{**bar, "session": date.fromisoformat(bar["session"])}) for bar in bars
+    )
+    data["actions"] = tuple(
+        CorporateAction(**{**action, "session": date.fromisoformat(action["session"])})
+        for action in data["actions"]
+    )
+    data["reconciled_actions"] = tuple(data["reconciled_actions"])
+    data["provider_missing_sessions"] = tuple(
+        date.fromisoformat(day) for day in data["provider_missing_sessions"]
+    )
+    data["provider_row_issues"] = tuple(
+        ProviderRowIssue(
+            session=date.fromisoformat(issue["session"]),
+            code=issue["code"],
+            observed_values=tuple(tuple(pair) for pair in issue["observed_values"]),
+        )
+        for issue in data["provider_row_issues"]
+    )
+    data["fetched_at"] = datetime.fromisoformat(value["fetched_at"])
+    if data["fetched_at"].tzinfo is None:
+        raise ValueError("market_revision_timezone_missing")
+    data["fetched_at"] = data["fetched_at"].astimezone(UTC)
+    data["provider_version"] = value["provider_version"]
+    series = Series(**data)
+    if series.fetched_at.tzinfo is None or series.input_digest != value["input_digest"]:
+        raise ValueError("market_revision_digest_mismatch")
+    return series
 
 
 def signal_from_snapshot(value: dict) -> Signal:
@@ -184,6 +234,39 @@ class SupabaseScanStore:
         ):
             raise PersistenceError("database_invalid_response")
         return response
+
+    def load_series(
+        self,
+        revision_id: str,
+        *,
+        namespace: str = "forward",
+        data_mode: str = "live",
+        expected_input_digest: str,
+    ) -> Series:
+        if (
+            str(UUID(revision_id)) != revision_id
+            or not re.fullmatch(r"[a-z0-9_-]{1,64}", namespace)
+            or data_mode not in ("fixture", "live")
+            or not re.fullmatch(r"[a-f0-9]{64}", expected_input_digest)
+        ):
+            raise ValueError("invalid_revision_query")
+        response = self._request(
+            "POST", "rpc/read_market_series", json={"p_revision_id": revision_id}
+        )
+        try:
+            if (
+                response["revision_id"] != revision_id
+                or response["namespace"] != namespace
+                or response["data_mode"] != data_mode
+                or response["input_digest"] != expected_input_digest
+            ):
+                raise ValueError("invalid_revision_context")
+            series = series_from_revision(response)
+            if (series.provider == "fixture") != (data_mode == "fixture"):
+                raise ValueError("mixed_fixture_live")
+            return series
+        except (ValueError, KeyError, TypeError, AttributeError, OverflowError):
+            raise PersistenceError("database_invalid_market_revision") from None
 
     def load_state(
         self, *, through_session: date, namespace="forward", data_mode="live", page_size=200

@@ -97,3 +97,22 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   and five targeted runner tests after the empty-series case. The additional
   runner test was run targeted after the 101-test full suite; no claim of a
   102-test full-suite run is made.
+
+- Completed locally: exact normalized Series reconstruction via ordered session
+  manifests, immutable cutoffs, preserved Python numeric tokens, owner/RLS read
+  RPC and Python input-digest verification. Runner now verifies every stored
+  input before publication; read failure blocks publication.
+- Verification on 2026-09-29: 112 full Python tests, 26 PGlite SQL tests and Ruff
+  passed. Includes actual Python/PostgreSQL/Python round-trip with numeric edge
+  cases; omitted dates, empty series, revision replay and outsider/anon denial.
+- Read-only dev preflight: deployment mode fixture; market_series_revisions
+  returned HTTP 404. No market migration or new fixture write was executed
+  remotely in this slice. Guarded SQL Editor file for 002+003 prepared; wrapper
+  tested for wrong mode, missing owner, successful application and duplicate
+  application rejection. Owner was asked to run this file per chosen workflow.
+- Read-back preserves engine inputs, not original vendor HTTP responses.
+  Changed bars additionally retain numeric source text; real storage sizing
+  remains open. Legacy 002 receipts are never guessed or overwritten.
+- M2 remains in progress: remote revision/RLS smoke, official calendar/universe,
+  5–10 ticker live fetch-to-web proof, paper persistence and GitHub runner.
+  See docs/MARKET_REVISIONS.md for the handoff and rollout constraints.

@@ -36,4 +36,6 @@ Probe provider tidak menerbitkan sinyal. EODHD meminta EODHD_API_TOKEN. Mapping 
 
 ## Batas implementasi saat ini
 
-Empat entry rules, indikator, exit paper, provider adapter, Supabase scan RPC dan snapshot/reload adapter tersedia secara lokal. Scheduler scan live, revisi market bar yang terpersisten, kalender/universe resmi, paper persistence, actual ledger, owner auth frontend, dan integrasi live masih dalam pengembangan. Lihat IMPLEMENTATION_STATUS.md dan docs/LOCAL_PROVIDER_PROBE.md untuk bukti terkini.
+Empat entry rules, indikator, exit paper, provider adapter, Supabase scan RPC dan snapshot/reload adapter tersedia secara lokal. Owner Auth/RLS sudah dibuktikan di development. Penyimpanan dan rekonstruksi revisi market tersedia secara lokal; penerapan migrasi 002–003 remote masih menunggu SQL Editor. Scheduler scan live, kalender/universe resmi, paper persistence, actual ledger, dan integrasi live masih dalam pengembangan. Lihat IMPLEMENTATION_STATUS.md dan docs/LOCAL_PROVIDER_PROBE.md untuk bukti terkini.
+
+Panduan migrasi revisi development dan smoke test: docs/MARKET_REVISIONS.md.

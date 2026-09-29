@@ -20,9 +20,10 @@ def setup_market():
 
 
 class FakeStore:
-    def __init__(self, fail_ingest=False):
+    def __init__(self, fail_ingest=False, fail_read=False):
         self.calls = []
         self.fail_ingest = fail_ingest
+        self.fail_read = fail_read
 
     def load_state(self, **kwargs):
         self.calls.append(("load", kwargs["through_session"]))
@@ -33,6 +34,11 @@ class FakeStore:
         if self.fail_ingest:
             raise RuntimeError("test-only-ingest-failure")
         return {"revision_id": "revision-" + series.ticker, "replayed": False}
+
+    def load_series(self, revision_id, **kwargs):
+        self.calls.append(("verify", revision_id))
+        if self.fail_read:
+            raise RuntimeError("test-only-read-failure")
 
     def publish(self, result, **kwargs):
         self.calls.append(("publish", result.status))
@@ -66,7 +72,7 @@ def test_run_persists_every_fetched_revision_before_publish():
     )
     assert len(outcome.revision_ids) == 5
     assert store.calls[0][0] == "load"
-    assert [kind for kind, _ in store.calls[1:-1]] == ["ingest"] * 5
+    assert [kind for kind, _ in store.calls[1:-1]] == ["ingest", "verify"] * 5
     assert store.calls[-1] == ("publish", outcome.pipeline.scan.status)
     assert outcome.pipeline.fetched == tuple(sorted(universe.tickers))
 
@@ -139,3 +145,19 @@ def test_bad_calendar_blocks_database_and_provider_io():
         )
     assert store.calls == []
     assert provider.calls == []
+
+
+def test_readback_failure_blocks_publication():
+    series, calendar, universe, target, requests = setup_market()
+    store, provider = FakeStore(fail_read=True), FakeProvider(series)
+    with pytest.raises(RuntimeError, match="test-only-read-failure"):
+        run_once(
+            provider,
+            store,
+            requests,
+            target.day,
+            calendar,
+            universe,
+            target.closes_at + timedelta(hours=3),
+        )
+    assert not any(kind == "publish" for kind, _ in store.calls)

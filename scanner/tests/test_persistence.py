@@ -179,3 +179,63 @@ def test_market_revision_adapter_keeps_content_digest_and_retries_safely():
         ]["bars"]
         == []
     )
+
+
+REVISION_ID = "12345678-1234-4234-8234-123456789012"
+
+
+def revision_response():
+    series, _, _ = sample_market(3)
+    source = replace(series["DEMO-A"], fetched_at=datetime(2030, 1, 2, tzinfo=UTC))
+    record = market_series_envelope(source, namespace="forward", data_mode="fixture")["p_record"]
+    return source, {**record, "revision_id": REVISION_ID}
+
+
+def test_read_revision_checks_exact_digest_and_context():
+    source, response = revision_response()
+
+    def handler(request):
+        assert request.url.path == "/rest/v1/rpc/read_market_series"
+        assert json.loads(request.content) == {"p_revision_id": REVISION_ID}
+        return httpx.Response(200, json=response)
+
+    with store(handler) as db:
+        restored = db.load_series(
+            REVISION_ID, data_mode="fixture", expected_input_digest=source.input_digest
+        )
+    assert restored == source
+
+
+@pytest.mark.parametrize(
+    "corruption",
+    [
+        "bar",
+        "namespace",
+        "data_mode",
+        "revision_id",
+        "input_digest",
+        "metadata",
+        "time",
+        "malformed",
+    ],
+)
+def test_read_revision_rejects_corruption_without_secret_leak(corruption):
+    source, response = revision_response()
+    if corruption == "bar":
+        bar = json.loads(response["bar_sources"][0])
+        bar["close"] += 1
+        response["bar_sources"][0] = json.dumps(bar)
+    elif corruption == "metadata":
+        response["metadata_source"] = SECRET
+    elif corruption == "time":
+        response["fetched_at"] = "2030-01-02T00:00:00"
+    elif corruption == "malformed":
+        response = []
+    else:
+        response[corruption] = SECRET
+    with store(lambda _: httpx.Response(200, json=response)) as db:
+        with pytest.raises(PersistenceError, match="database_invalid_market_revision") as error:
+            db.load_series(
+                REVISION_ID, data_mode="fixture", expected_input_digest=source.input_digest
+            )
+    assert SECRET not in str(error.value)

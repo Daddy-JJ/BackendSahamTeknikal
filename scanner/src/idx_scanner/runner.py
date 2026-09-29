@@ -47,6 +47,12 @@ def run_once(
     revisions = []
     for series in pipeline.fetched_series:
         receipt = store.ingest_series(series, namespace=namespace, data_mode=universe.data_mode)
+        store.load_series(
+            receipt["revision_id"],
+            namespace=namespace,
+            data_mode=universe.data_mode,
+            expected_input_digest=series.input_digest,
+        )
         revisions.append(receipt["revision_id"])
     publication = store.publish(pipeline.scan, namespace=namespace, data_mode=universe.data_mode)
     return RunOutcome(pipeline, tuple(revisions), publication)
