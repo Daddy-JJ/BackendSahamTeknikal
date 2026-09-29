@@ -116,3 +116,14 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
 - M2 remains in progress: remote revision/RLS smoke, official calendar/universe,
   5–10 ticker live fetch-to-web proof, paper persistence and GitHub runner.
   See docs/MARKET_REVISIONS.md for the handoff and rollout constraints.
+
+- Development confirmation on 2026-09-29: user SQL Editor result shows
+  revision_schema_ready=true and data_mode=fixture. Independent read-only API
+  preflight found the 003 columns; the guarded revision smoke then passed.
+  Exactly two receipts (3 bars and 2 bars) and four changed-bar rows exist in
+  dev_market_revision_m2. Original and revised Series digests match on read-back;
+  replay returns the original receipt. No live-provider fetch, scan publication
+  or production write was performed.
+- This proves remote service-key revision persistence and reconstruction.
+  Owner/outsider JWT tests for the new revision RPC remain a separate gate;
+  existing local RLS tests are not presented as remote revision-RLS proof.
