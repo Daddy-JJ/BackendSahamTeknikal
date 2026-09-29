@@ -57,33 +57,39 @@ Referensi implementasi:
 - [Supabase fungsi, search_path, dan execute grants](https://supabase.com/docs/guides/database/functions)
 - [PGlite test runtime](https://pglite.dev/docs/)
 
+## Production boundary and migration history
 
-## SQL Editor setup handoff and production boundary
+The owner applied migration `202609290001_scan_foundation.sql` through the SQL
+Editor on project `hcjfxbynqzsaidlwvdfx`, branch `main (PROD)`, on 2026-09-29.
+Read-only REST checks confirmed all nine tables, enabled owner membership,
+`data_mode=live`, and denied anonymous table reads. Authenticated owner/non-owner
+RLS and write-path behavior are **not yet verified remotely**. Do not rerun the
+setup SQL or write fixture/test scans to this production project.
 
-The owner UUID is stored only in ignored backend/.env. Build a private SQL Editor
-handoff from the committed migration:
+SQL Editor does not update Supabase CLI migration history. Before a future
+`supabase db push` against production, inspect the applied schema/policies and
+reconcile migration version `202609290001` using the official `migration repair`
+workflow. Do not mark it applied on an unverified project.
+
+## Isolated development project setup
+
+The new development project has ref `vgmkpsestahkfahzdtae`. The ignored
+`backend/.env.development` contains its URL and empty key/owner fields. Create
+your own Auth user in that project and put **that project's UID** in
+`APP_OWNER_USER_ID`; production's Auth UID is not copied across projects. The
+SQL generator reads only the dev env and rejects the known production ref. It
+does not need the development secret key.
 
 ```powershell
 cd C:\xampp\htdocs\SahamTeknikal\backend
-.\scanner\.venv\Scripts\python.exe supabase\scripts\prepare_dev_setup.py --project-ref hcjfxbynqzsaidlwvdfx
+.\scanner\.venv\Scripts\python.exe supabase\scripts\prepare_dev_setup.py --project-ref vgmkpsestahkfahzdtae
 ```
 
-Open backend/data/dev-supabase-setup.sql, confirm the project ref in its header,
-then paste its entire contents into that project's Supabase SQL Editor and Run
-once **only for a new, empty project**. The SQL creates nine application
-tables and registers the existing Auth
-user as owner in one transaction. A final SELECT should return owner_ready=true
-and data_mode=live. The file is Git-ignored and contains the owner UUID, no key.
-The owner applied this SQL to project hcjfxbynqzsaidlwvdfx on branch main
-(PROD) on 2026-09-29. Read-only REST checks confirmed all nine tables, owner
-membership and live mode. **Do not rerun it there**: the migration is versioned
-and is not idempotent. Do not write test data to that production project.
-Remote owner/non-owner RLS and PostgREST still require separate verification.
-
-Migration history caveat: SQL Editor applies schema outside the Supabase CLI
-migration ledger. After the dev schema is verified, run the documented
-`supabase migration repair --status applied 202609290001` through a linked CLI,
-or reconcile the remote migration history before any future `db push`.
-Never run `db push` against this project while this version is missing from
-its migration history. Do not mark it applied without verifying the tables and
-RLS policies first. See the official Supabase database migrations guide.
+Open the generated, Git-ignored
+`backend/data/dev-supabase-setup-vgmkpsestahkfahzdtae.sql`. Confirm its project
+ref, paste its entire contents into **the development project's** SQL Editor,
+and run once. The transaction creates nine application tables and registers
+the existing dev Auth user as owner. Its final SELECT should return
+`owner_ready=true` and `data_mode=live`. Do not run it against production.
+Afterward, put the development secret key in the ignored dev env file for
+read/write integration checks; never put a key in a browser or Git.

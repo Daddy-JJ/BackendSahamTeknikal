@@ -10,13 +10,12 @@ from uuid import UUID
 
 ROOT = Path(__file__).resolve().parents[2]
 MIGRATION = ROOT / "supabase/migrations/202609290001_scan_foundation.sql"
-OUTPUT = ROOT / "data/dev-supabase-setup.sql"
+PRODUCTION_REF = "hcjfxbynqzsaidlwvdfx"
 
 
-def local_env() -> dict[str, str]:
-    path = ROOT / ".env"
+def local_env(path: Path) -> dict[str, str]:
     if not path.is_file():
-        raise ValueError("backend/.env is missing")
+        raise ValueError("development env file is missing")
     values: dict[str, str] = {}
     for line in path.read_text(encoding="utf-8-sig").splitlines():
         row = line.strip()
@@ -27,10 +26,15 @@ def local_env() -> dict[str, str]:
     return values
 
 
-def prepare(project_ref: str) -> Path:
+def prepare(project_ref: str, env_file: Path) -> Path:
+    if project_ref == PRODUCTION_REF:
+        raise ValueError("production project cannot use development setup")
     if not project_ref.isalnum() or not project_ref.islower():
         raise ValueError("project ref must contain lowercase letters and digits")
-    env = local_env()
+    path = (ROOT / env_file).resolve()
+    if path != ROOT / ".env.development":
+        raise ValueError("use backend/.env.development only")
+    env = local_env(path)
     expected_url = f"https://{project_ref}.supabase.co"
     if env.get("SUPABASE_URL", "").rstrip("/") != expected_url:
         raise ValueError("SUPABASE_URL does not match requested project")
@@ -76,17 +80,19 @@ select
           where user_id = '{owner_uid}'::uuid and enabled) as owner_ready,
   (select data_mode from public.deployment_settings where singleton) as data_mode;
 """
-    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_text(setup, encoding="utf-8")
-    return OUTPUT
+    output = ROOT / f"data/dev-supabase-setup-{project_ref}.sql"
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(setup, encoding="utf-8")
+    return output
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--project-ref", required=True)
+    parser.add_argument("--env-file", type=Path, default=Path(".env.development"))
     args = parser.parse_args()
     try:
-        path = prepare(args.project_ref)
+        path = prepare(args.project_ref, args.env_file)
     except (ValueError, OSError) as error:
         parser.exit(2, f"Could not prepare SQL: {error}\n")
     print(f"Prepared local SQL Editor file: {path}")

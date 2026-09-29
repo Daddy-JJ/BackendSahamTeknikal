@@ -21,8 +21,11 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
 - Earlier local verification: 92 scanner tests, 13 PGlite SQL tests, six frontend
   browser tests, frontend lint/typecheck/build. The standalone backend contract
   fixture path was checked independently: four targeted contract tests passed.
-- Remaining M2 gates: provision an isolated development project before
-  write-path testing; prove RLS with Auth JWT and real PostgREST;
+- New isolated development project ref vgmkpsestahkfahzdtae supplied; its
+  Auth UID was supplied and the ignored dev env is configured without a key.
+  Generated dev-only SQL passed an in-memory PGlite execution: nine tables,
+  enabled owner, live mode. Await SQL Editor execution and local dev key before
+  write-path testing. Prove RLS with Auth JWT and real PostgREST;
   market-data revisions, official calendar/universe, paper persistence, 5–10
   ticker live proof and GitHub runner.
 - EODHD key has not been supplied. No scheduled scan or deployment is active.
@@ -36,3 +39,6 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
 - Production boundary: screenshot identifies Supabase branch main (PROD), and
   the owner confirmed this is production. No fixture/live smoke writes, test
   scans, seeds, or repeated migration against this project.
+- Dev setup generator now reads only ignored backend/.env.development and
+  rejects the known production project ref. The development SQL has not run
+  remotely at this status update.
