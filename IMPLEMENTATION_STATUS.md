@@ -28,7 +28,7 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   nine tables, owner membership, Auth UID, and initial live mode. Dev was
   explicitly switched to fixture for smoke. Anonymous reads/RPC were denied.
   An invalid service RPC returned 22023 and left scan_runs empty.
-- Remaining M2 gates: prove RLS with Auth JWT and real PostgREST;
+- Remaining M2 gates: prove owner RLS with Auth JWT and real PostgREST;
   market-data revisions, official calendar/universe, paper persistence, 5–10
   ticker live proof and GitHub runner.
 - EODHD key has not been supplied. No scheduled scan or deployment is active.
@@ -47,7 +47,10 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   read-only verified. A labeled synthetic dev scan published once and replayed
   exactly: one run, five items, two signals and one audit event; snapshot reload
   matched. An altered payload with the same digest returned 23514 with no
-  duplicate. Authenticated JWT RLS remains unproved.
+  duplicate. A disposable non-owner Auth user signed in with a real JWT:
+  scan_runs, signals and app_members reads were empty; owner action was denied
+  with 42501 and left no residue; the temporary user was deleted. Owner JWT
+  read/action proof remains pending.
 - Supabase new API keys are sent via `apikey` only in the backend adapter.
   Thirteen persistence tests passed; one read-only production REST call with
   the revised header returned 200 and live mode. No production write was attempted.

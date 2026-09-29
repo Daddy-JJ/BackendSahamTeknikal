@@ -112,4 +112,21 @@ one audit event; exact replay did not duplicate the run, persisted signals
 reloaded, and a changed payload with the same run digest was rejected. The
 fixture run is immutable and stays in the isolated development project.
 Production remained `live` and had no `dev_smoke_m2` run. Authenticated user
-JWT/RLS through PostgREST still needs a separate test.
+Owner JWT/RLS through PostgREST still needs a separate test.
+
+### Disposable non-owner RLS test
+
+The development-only script creates a random `@example.invalid` Auth user
+without sending email, signs it in, checks private reads and action denial,
+then deletes it in a `finally` block. If cleanup is interrupted, the ignored
+`backend/data/dev-rls-temp-user.json` marker prevents a duplicate test user
+and identifies the user for manual recovery.
+
+```powershell
+cd C:\xampp\htdocs\SahamTeknikal\backend
+.\scanner\.venv\Scripts\python.exe supabase\scripts\verify_dev_non_owner_rls.py --execute
+```
+
+Verified on 2026-09-29: real non-owner JWT saw no scan_runs, signals or
+app_members rows; `set_signal_action` returned 42501, left no action residue,
+and the temporary Auth user was deleted. Owner JWT access remains untested.
