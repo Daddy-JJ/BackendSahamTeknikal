@@ -53,8 +53,9 @@ An expired window rolls the entire transaction back with PT409. Already committe
 identical runs can replay after the deadline. The deadline is the configured
 next-session open, retained in the immutable run envelope. The source calendar
 must still be verified; the database does not independently authenticate that
-calendar's exchange hours. Remote migration/smoke is a gate until confirmed.
-This CLI is not a claim that production scheduling is ready.
+calendar's exchange hours. Migration 004 capability is now confirmed in the
+fixture-mode development project. The development fixture guard still refuses
+live provider execution. This CLI is not a claim that production scheduling is ready.
 
 ## Current evidence
 
