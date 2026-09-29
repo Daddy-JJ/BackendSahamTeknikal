@@ -24,9 +24,7 @@ public idxcarbon.co.id host and returned an actual PDF.
 - Reconcile any subsequent amendments to the 2026 baseline.
 - 2025 baseline and one official amendment are now transcribed in a reference file; original PDFs, checksums, visual review, later amendments, and 2024 calendar remain pending.
 - Verify historical regular-equity open/close rules and their effective dates.
-- Obtain the full effective KOMPAS100 constituent attachment. News references
-  Peng-00148/BEI.POP/07-2026, attachment 4, but the original full attachment has
-  not yet been verified. No news-derived ticker list has been imported.
+- The owner supplied the BEI KOMPAS100 July 2026 major-evaluation workbook and pasted its full roster. All 100 IDX ticker codes are transcribed in config/reference/kompas100-2026-08-transcribed.csv with period metadata in config/reference/kompas100-2026-08-source.json. Original workbook checksum/sheet review and provider mappings remain pending.
 - Verify provider symbols against the selected provider; EODHD key remains pending.
 
 A BEI 2025 amendment is available at:
@@ -46,4 +44,15 @@ Sources:
 - https://www.idxcarbon.co.id/document/share/109/e11c312a-95d6-4525-b71a-f70377cc7777
 - https://www.idxcarbon.co.id/document/share/143/cf878b0d-87c1-45e2-98a5-4c54d6efc8c2
 
-This is an official-source transcription, not a runtime calendar. The original PDFs have not yet been downloaded, hashed, and visually checked locally; subsequent amendments and historical session hours remain open. The same primary-source search did not locate the full KOMPAS100 attachment 4. Media extracts are not being used as universe data. No provider scan or production write was performed.
+This is an official-source transcription, not a runtime calendar. The original PDFs have not yet been downloaded, hashed, and visually checked locally; subsequent amendments and historical session hours remain open. The full KOMPAS100 table is now recorded from the owner-provided official attachment transcription, not from media. Its source checksum and workbook sheet-level review remain pending. No provider scan or production write was performed.
+
+
+## Official KOMPAS100 roster supplied by owner - 2026-09-29
+
+The project owner supplied the workbook named "4. Lamp Peng-00148-BEI POP - KOMPAS100 - Jul 2026 Mayor.xlsx" and pasted its 100 IDX ticker codes. The stated effective period is 2026-08-03 through 2027-01-29 inclusive; the half-open interval for the loader is [2026-08-03, 2027-01-30). The transcribed list has 100 rows and 100 unique codes.
+
+Reference files:
+- config/reference/kompas100-2026-08-transcribed.csv
+- config/reference/kompas100-2026-08-source.json
+
+This remains a non-runtime source reference. Local workspace execution could not open the workbook, so its binary checksum, sheet structure and exact publication date are unverified. No provider symbol mapping or live scan is implied.
