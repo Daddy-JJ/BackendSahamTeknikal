@@ -184,3 +184,13 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   config/reference/idx-holidays-2025-source.json. Known amended total is 236.
   It remains a source reference, not runtime config; no local PDF hash/visual
   verification or post-amendment reconciliation is claimed.
+
+
+- Official universe evidence - 2026-09-29: owner provided the BEI
+  Peng-00148/BEI.POP/07-2026 attachment 4 roster and its stated effective
+  interval, 2026-08-03 through 2027-01-29 inclusive. The pasted roster was
+  checked as 100 ticker codes with 100 unique values. It is stored only as a
+  reference transcription in config/reference/kompas100-2026-08-transcribed.csv
+  and config/reference/kompas100-2026-08-source.json. Runtime live configuration
+  is still gated on inspection/hash of the source workbook, full session
+  calendar/hours, and yfinance/EODHD symbol mappings. No scan was run.
