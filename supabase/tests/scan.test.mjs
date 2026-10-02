@@ -43,6 +43,7 @@ before(async () => {
   `);
   await db.exec(readFileSync(new URL("migrations/202609290001_scan_foundation.sql",root),"utf8"));
   await db.exec(readFileSync(new URL("migrations/202609290004_publication_deadline.sql",root),"utf8"));
+  await db.exec(readFileSync(new URL("migrations/202610010007_signal_action_conflict_http.sql",root),"utf8"));
   await sql("insert into auth.users values ($1),($2),($3)",[owner,outsider,otherOwner]);
   await sql("insert into public.app_members(user_id) values ($1),($2)",[owner,otherOwner]);
 });
@@ -119,9 +120,47 @@ test("request replay, stale revision and different-body reuse do not duplicate a
   assert.deepEqual((await call()).rows[0].result,first);
   assert.equal(first.revision,1);
   await denied(() => sql("select public.set_signal_action($1,'skipped',0,$2)",[firstSignal,requestId]),"23514");
-  await denied(() => sql("select public.set_signal_action($1,'skipped',0,gen_random_uuid())",[firstSignal]),"40001");
+  await denied(() => sql("select public.set_signal_action($1,'skipped',0,gen_random_uuid())",[firstSignal]),"PT412");
+  assert.equal((await sql("select count(*)::int as n from public.signal_action_requests")).rows[0].n,1);
   assert.equal((await sql("select count(*)::int as n from public.signal_actions")).rows[0].n,1);
   assert.equal((await sql("select count(*)::int as n from public.audit_events where owner_id=$1",[owner])).rows[0].n,1);
+});
+test("stale PT412 has no receipt/audit residue and a committed replay survives newer revisions",async () => {
+  await seed();
+  await role("authenticated",owner);
+  const first=(await sql("select public.set_signal_action($1,'planned',0,$2) r",[firstSignal,requestId])).rows[0].r;
+  await sql("select public.set_signal_action($1,'skipped',1,gen_random_uuid())",[firstSignal]);
+  const stale=crypto.randomUUID();
+  await denied(() => sql("select public.set_signal_action($1,'watchlist',1,$2)",[firstSignal,stale]),"PT412");
+  assert.deepEqual((await sql("select public.set_signal_action($1,'planned',0,$2) r",[firstSignal,requestId])).rows[0].r,first);
+  assert.deepEqual((await sql("select revision,action from public.signal_actions")).rows,[{revision:2,action:"skipped"}]);
+  assert.equal((await sql("select count(*)::int n from public.signal_action_requests where request_id=$1",[stale])).rows[0].n,0);
+  assert.equal((await sql("select count(*)::int n from public.signal_action_requests")).rows[0].n,2);
+  assert.equal((await sql("select count(*)::int n from public.audit_events where owner_id=$1",[owner])).rows[0].n,2);
+});
+
+test("concurrent submitted identical requests coalesce on PGlite's serialized connection",async () => {
+  await seed();
+  await role("authenticated",owner);
+  const request=() => sql("select public.set_signal_action($1,'planned',0,$2) r",[firstSignal,requestId]);
+  const responses=await Promise.all(Array.from({length:8},request));
+  for(const response of responses) assert.deepEqual(response.rows[0].r,responses[0].rows[0].r);
+  assert.equal((await sql("select count(*)::int n from public.signal_action_requests")).rows[0].n,1);
+  assert.equal((await sql("select count(*)::int n from public.audit_events where owner_id=$1",[owner])).rows[0].n,1);
+  // Not independent PostgreSQL sessions: see the separate concurrency rehearsal plan.
+});
+
+test("007 changes only creation mode and stale error code from frozen001",async () => {
+  const old=readFileSync(new URL("migrations/202609290001_scan_foundation.sql",root),"utf8").replaceAll("\r\n","\n");
+  const next=readFileSync(new URL("migrations/202610010007_signal_action_conflict_http.sql",root),"utf8").replaceAll("\r\n","\n");
+  const expected=old.slice(old.indexOf("create function public.set_signal_action("))
+    .replace("create function","create or replace function").replace("errcode = '40001'","errcode = 'PT412'");
+  assert.equal(next.slice(next.indexOf("create or replace function")),expected);
+  const signature=(await sql(`select proargnames,prosecdef,proconfig from pg_proc
+    where oid='public.set_signal_action(text,text,integer,uuid)'::regprocedure`)).rows[0];
+  assert.deepEqual(signature.proargnames,["p_signal_id","p_action","p_expected_revision","p_request_id"]);
+  assert.equal(signature.prosecdef,true);
+  assert.deepEqual(signature.proconfig,['search_path=""']);
 });
 test("another enabled owner cannot read or change private actions using guessed IDs",async () => {
   await seed();

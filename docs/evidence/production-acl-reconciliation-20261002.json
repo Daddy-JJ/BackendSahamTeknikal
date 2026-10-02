@@ -1,0 +1,30 @@
+{
+  "project_ref": "hcjfxbynqzsaidlwvdfx",
+  "observed_via": "Authenticated Dashboard SQL Editor at exact project URL",
+  "production_write": true,
+  "acl_reconciled_at_utc": "2026-10-02T05:16:25.481422+00:00",
+  "operation": "Guarded REVOKE EXECUTE on public.reject_immutable_mutation() from service_role; COMMIT",
+  "acl_before": "{postgres=X/postgres,service_role=X/postgres}",
+  "acl_after": "{postgres=X/postgres}",
+  "preflight": {
+    "data_mode": "live",
+    "history_present": false,
+    "postgres_database_owner": true,
+    "auth_users": 1,
+    "enabled_owners": 1,
+    "actual_schema_exists": false,
+    "ten_catalog_groups_match_prior_observed_production": true
+  },
+  "postflight": {
+    "ten_catalog_groups_match_expected_clean001": true,
+    "function_grants_count": 8,
+    "function_grants_sha256": "86aec60e1bd573fbbfc35bce3decbfa4e6838020718c3ef4224a14fc1d459032",
+    "reference": "foundation001-production-20261001.json expected_clean001",
+    "history_repaired": false,
+    "migrations_002_007_applied": false
+  },
+  "owner_jwt_tested": false,
+  "production_smoke_passed": false,
+  "full_stack_live": false,
+  "note": "An initial concatenated read-only editor query failed with 42601; editor was cleared and complete read-only catalog query rerun successfully before the ACL write. No migration or Auth settings changed in this phase."
+}

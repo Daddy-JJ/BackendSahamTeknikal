@@ -1,5 +1,29 @@
 # Supabase development — M2 local foundation
 
+Current M4 backend contract and guarded migration 005 rollout:
+[ACTUAL_JOURNAL.md](../docs/ACTUAL_JOURNAL.md). Migration 005 is applied in
+development mode fixture; production has not received it. SQL Editor application
+does not update CLI migration history. Historical M2 notes below describe
+earlier stages; IMPLEMENTATION_STATUS.md records subsequent verification.
+
+Migration 006 maps actual-journal stale revisions to non-retryable HTTP 412 and
+is also applied only to development. The guarded generator is
+`scripts/prepare_dev_actual_conflict_fix.py`; the 201-closed-trade hosted
+cursor check is `tests/dev_actual_cursor_smoke.sql` and rolls back all rows.
+
+Migration 007 maps scanner `set_signal_action` stale revisions to PT412. It was
+applied to development fixture mode on2026-10-01 through the checksum-verified
+guarded handoff from `scripts/prepare_dev_signal_conflict_fix.py`. The hosted
+rollback-only SQL smoke is `tests/dev_signal_conflict_smoke.sql`. Real owner-JWT
+HTTP and two independent PostgreSQL sessions remain open. Production is unchanged.
+
+Production preflight2026-10-01 confirmed foundation001 only, live mode, no CLI
+migration history and no actual tables. See
+[production readiness](../docs/PRODUCTION_READINESS.md) before any release.
+`release-manifest.json` freezes001–007; `scripts/plan_production_release.mjs`
+only plans from reviewed history and never executes. `operations/` contains a
+READ ONLY catalog query and a separately gated, unexecuted containment script.
+
 Migration: `migrations/202609290001_scan_foundation.sql`.
 Belum diterapkan ke Supabase remote. Tidak ada akun owner atau market fixture
 yang disisipkan migration. Mode database default **live**, fixture ditolak.

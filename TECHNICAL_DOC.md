@@ -4,6 +4,12 @@ Versi: 0.2.0 • 2026-09-28 • Status: rancangan, belum di-deploy
 
 Aturan finansial ada di [SOT.md](SOT.md). Dokumen ini menentukan cara membangun dan mengoperasikan sistem. Jangan mengulang rumus berbeda dalam frontend.
 
+Kontrak backend M4 pada migration 005 yang sudah diterapkan di development mode
+fixture (belum production), termasuk
+RPC, lifecycle open/provisional, koreksi, decimal policy, CSV dan gate development:
+[docs/ACTUAL_JOURNAL.md](docs/ACTUAL_JOURNAL.md). Tabel/API di bawah tetap rancangan
+untuk scope yang belum diimplementasikan; bukan bukti deployment.
+
 ## 1. Arsitektur
 
 ```mermaid
@@ -232,9 +238,9 @@ Pengaturan akun: Actions spending cap/paid overage nonaktif jika target biaya no
 | NEXT_PUBLIC_SUPABASE_URL | Vercel + local web | URL proyek; bukan secret |
 | NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY | Vercel + local web | Public key, RLS wajib; legacy anon jika sesuai SDK |
 | SUPABASE_URL | GitHub Secrets/config scanner | URL proyek |
-| SUPABASE_SERVICE_ROLE_KEY | GitHub Secrets saja | Privileged, jangan kirim browser/log |
+| SUPABASE_SECRET_KEY | GitHub protected environment secret | Nama aktual adapter scanner; privileged, jangan kirim Vercel/browser/log |
 | APP_OWNER_USER_ID | Protected config server/DB | UUID akun owner, bukan alamat email dalam repo |
-| APP_BASE_URL | Vercel/local | Auth redirect origin yang diizinkan |
+| ALLOW_FIXTURE_PREVIEW | Vercel Preview/local saja | Production false/unset; preview fixture harus eksplisit |
 | DATA_MODE | Per environment | fixture atau live; production harus live |
 | AI_ENABLED | Vercel | false default |
 | AI_PROVIDER / AI_MODEL | Vercel | Pilihan model terverifikasi, tidak hardcode model tebakan |
@@ -242,6 +248,13 @@ Pengaturan akun: Actions spending cap/paid overage nonaktif jika target biaya no
 | AI_BASE_URL | Vercel server config | HTTPS allowlist; tidak dapat diubah melalui request user |
 
 Fee/risk/universe/strategy config disimpan berversi di DB/config release, bukan secret env tersembunyi. Jangan menambahkan API key Yahoo palsu; yfinance tidak menjadi layanan berlisensi hanya karena ada key AI.
+
+Implementasi saat ini memakai `SUPABASE_SECRET_KEY`, bukan nama rancangan lama
+`SUPABASE_SERVICE_ROLE_KEY`. `APP_BASE_URL` belum digunakan frontend; callback
+berasal dari origin browser dan wajib diizinkan di Supabase Auth. Provider dipilih
+eksplisit lewat CLI `--provider`; env saja tidak mengganti provider atau mode DB.
+Baseline tidak memerlukan AI secrets. Daftar env production/preview serta hasil
+preflight aktual: [PRODUCTION_READINESS](docs/PRODUCTION_READINESS.md).
 
 ## 9. AI contract (P1)
 
@@ -265,7 +278,7 @@ Output schema: summary, rule_explanations[], risks[], evidence_ids[], limitation
 2. Buat/pilih repo privat baru dan Supabase dev project sesuai akses yang diberikan. Jangan menyentuh proyek lain.
 3. Migrasi non-destruktif, seed config/owner terkontrol; fixture dilarang pada production.
 4. Verifikasi universe/calendar dan koneksi provider pada runner dengan 5–10 ticker nyata.
-5. Sambungkan Vercel ke repo, root `apps/web`; set env, auth redirect, preview terisolasi.
+5. Sambungkan Vercel ke repository frontend yang terpisah, root repository; set env, auth redirect, preview terisolasi. `apps/web` adalah rancangan monorepo lama, bukan struktur implementasi saat ini.
 6. Jalankan manual scanner dan smoke test owner/non-owner, chart, fill, metrics.
 7. Aktifkan primary/recovery cron, monitor beberapa sesi, perluas ke seluruh universe setelah gate lulus.
 8. Catat deployed commit, migration version, live source dates, dan hasil smoke test.

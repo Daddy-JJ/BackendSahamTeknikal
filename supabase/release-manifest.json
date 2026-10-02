@@ -1,0 +1,42 @@
+{
+  "release": "backend-m4-production-candidate-2026-10-01",
+  "project_ref": "hcjfxbynqzsaidlwvdfx",
+  "hash_normalization": "UTF-8 with LF newlines; original migration files unchanged",
+  "migrations": [
+    {
+      "version": "202609290001",
+      "file": "202609290001_scan_foundation.sql",
+      "sha256_lf": "a0ddec0ce5fc71b4c7386405b25836cd1c4c6420cc872b726a6ab55de4f8b1f2"
+    },
+    {
+      "version": "202609290002",
+      "file": "202609290002_market_series_revisions.sql",
+      "sha256_lf": "881ba28e920945e3f4309c08293db177b8ec555cfdc7293d85caaa78e1e684e7"
+    },
+    {
+      "version": "202609290003",
+      "file": "202609290003_market_series_reconstruction.sql",
+      "sha256_lf": "3115167086da16d9fe2ebd6a23fe53cebfd915b3084109d800c86ef9a9510d93"
+    },
+    {
+      "version": "202609290004",
+      "file": "202609290004_publication_deadline.sql",
+      "sha256_lf": "875eabd53a2c82a2cd65feb27ac082aef341f7e08cbd8dc71f25228b72060b70"
+    },
+    {
+      "version": "202609290005",
+      "file": "202609290005_actual_journal.sql",
+      "sha256_lf": "91bfc1f8c288e7b13adc8d1ce9fa57ed81439c476e37f8c9f8b46b2ab65d58dd"
+    },
+    {
+      "version": "202609300006",
+      "file": "202609300006_actual_journal_conflict_http.sql",
+      "sha256_lf": "5bafdccbaf1394b0bf7e29b98aa218858826027e5be4c9cbe1ed784deae0ff57"
+    },
+    {
+      "version": "202610010007",
+      "file": "202610010007_signal_action_conflict_http.sql",
+      "sha256_lf": "f86bff5666a89521c391b0063a0bb015de8764fcb0a9cdf9b49c62d70c70dded"
+    }
+  ]
+}

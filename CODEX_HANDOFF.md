@@ -2,6 +2,22 @@
 
 Versi: 0.2.0 • 2026-09-28
 
+Production continuation (2026-10-02): user explicitly authorized backend
+production deployment/smoke; do not request that authorization again.
+`docs/PRODUCTION_READINESS.md` and IMPLEMENTATION_STATUS are current evidence.
+Recovery capture/native actual restore/002–007 rehearsal/source counts passed;
+latest USB copy explicitly waived, older USB verified. Production foundation
+ACL reduced through guarded transaction at2026-10-02T05:16:25.481422Z; all10
+clean001 fingerprints matched afterward. Production still001/history absent
+until local operator runs hidden-password `deploy_production_prompt.py`.
+CLI001 repair, exact dry-run002–007, application/readback and real JWT/HTTP/RLS/
+concurrency remain gates. Original001/006 unchanged. GitHub Auth GET remained
+disabled; no Auth changes, scheduler, frontend edits/deploy, commit or push.
+Development007 remains active fixture; hosted SQL simulated-claim checks are
+not real-JWT HTTP proof. See `docs/SIGNAL_ACTION_CONFLICT.md` and backup runbook.
+Full-stack GO cannot precede backend production smoke and separately authorized
+frontend Vercel smoke. No permanent synthetic production ledger fixtures.
+
 ## 1. Misi
 
 Bangun IDX Night Scanner sesuai PRD/SOT/TECHNICAL_DOC. Pemilik menyetujui Supabase + GitHub + Vercel, scanner EOD KOMPAS100 memakai yfinance, empat setup MACD, Fractal Breakout, RS Breakout, Pullback Reclaim serta exit modular fixed RR/MA, serta jurnal/statistik. Paket ini berisi spesifikasi awal saja; jangan berasumsi akun, repository, migrasi, atau deployment sudah tersedia.
@@ -72,6 +88,21 @@ Tasks:
 Done: owner dapat menjelaskan mengapa sinyal muncul dari snapshot yang sama dengan engine; no-data tidak terlihat sebagai no-signal; tidak ada service secret di browser bundle.
 
 ## 7. Milestone 4 — Journal dan analytics
+
+Kelanjutan backend: baca [docs/ACTUAL_JOURNAL.md](docs/ACTUAL_JOURNAL.md) untuk
+kontrak aktual migration 005, export closed cohort dan handoff SQL development.
+Migration 005 sudah diterapkan ke development mode fixture, belum ke production.
+Koreksi konflik revision 006 juga diterapkan di development. Laporan frontend
+2026-10-01 mengonfirmasi owner-JWT HTTP412 dua-tab lulus tanpa extra note/revision.
+Jangan menjalankan generator SQL hasilnya pada production; wrapper menolak mode
+live. Smoke production dan frontend Vercel tetap gate. Bukti ada di status terbaru.
+
+Persiapan production 2026-10-01: baca
+[docs/PRODUCTION_READINESS.md](docs/PRODUCTION_READINESS.md) dan
+[handoff frontend](docs/FRONTEND_DEPLOYMENT_HANDOFF.md). Production masih live
+dengan fondasi001, tanpa migration history;002–007 belum diterapkan. Backup/
+restore, Auth GitHub/HTTPS callback, rekonsiliasi001 dan smoke production masih
+NO-GO. Jangan mengeksekusi repair/deploy sebelum instruksi **deploy production**.
 
 Tasks:
 

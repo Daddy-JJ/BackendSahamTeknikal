@@ -1,0 +1,28 @@
+{
+  "observed_on_utc": "2026-10-01",
+  "project_ref": "hcjfxbynqzsaidlwvdfx",
+  "method": "Dashboard SQL Editor catalog queries inside BEGIN READ ONLY; ROLLBACK",
+  "function": "public.reject_immutable_mutation()",
+  "actual_acl": "{postgres=X/postgres,service_role=X/postgres}",
+  "actual_service_role_grantor": "postgres",
+  "postgres_public_function_default_grantees": [
+    "anon",
+    "authenticated",
+    "postgres",
+    "service_role"
+  ],
+  "return_type": "trigger",
+  "security_definer": false,
+  "effective_execute": {
+    "anon": false,
+    "authenticated": false,
+    "service_role": true
+  },
+  "migration_001_observation": "Migration 001 revokes PUBLIC, anon and authenticated on this function; service_role is omitted.",
+  "causal_assessment": "The hosted default EXECUTE grant and migration 001's omitted service_role revoke explain the present ACL. No historical grant event log was examined, so a later equivalent grant cannot be excluded.",
+  "risk_assessment": "No new anon/authenticated execute path was observed. This is a SECURITY INVOKER trigger function that raises immutable_record; the extra grant belongs to the already privileged service_role. It remains a real schema drift and unnecessary privilege.",
+  "reconciliation_decision": "After verified backup and restore plus explicit production approval, run the guarded one-function REVOKE in supabase/operations/reconcile_foundation_acl.sql, then rerun the ten-group foundation comparison. Only a full match permits recording 001 in CLI history.",
+  "production_acl_changed": false,
+  "history_repaired": false,
+  "backup_verified": false
+}

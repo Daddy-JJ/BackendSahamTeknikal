@@ -1,0 +1,20 @@
+{
+  "evidence_source": "direct user maintenance confirmations",
+  "observed_date": "2026-10-02",
+  "source_project_ref": "hcjfxbynqzsaidlwvdfx",
+  "application_activity_stopped_reported": true,
+  "github_actions_workflow_present_reported": false,
+  "cron_jobs_table_present_reported": false,
+  "operator_reports_current_writers_paused": true,
+  "database_enforced_write_fence": false,
+  "new_capture_completed": false,
+  "pause_continuity_through_capture_confirmed": false,
+  "old_capture_quiescence_verified": false,
+  "production_write_by_agent": false,
+  "deployment_gate_passed": false,
+  "limitations": [
+    "Operator-reported maintenance state; not database-enforced exclusion of writers",
+    "Must confirm pause remained uninterrupted through new capture",
+    "Does not retroactively prove old capture quiescence"
+  ]
+}

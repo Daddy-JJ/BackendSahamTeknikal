@@ -1,0 +1,36 @@
+{
+  "project_ref": "hcjfxbynqzsaidlwvdfx",
+  "started_at_utc": "2026-10-02T06:56:30.757540+00:00",
+  "verified_at_utc": "2026-10-02T06:57:07.427441+00:00",
+  "cli_version": "2.119.0",
+  "stage": "postflight_history",
+  "status": "cli_release_completed_smoke_pending",
+  "history_before": [],
+  "history_after": [
+    "202609290001",
+    "202609290002",
+    "202609290003",
+    "202609290004",
+    "202609290005",
+    "202609300006",
+    "202610010007"
+  ],
+  "release_checksums_verified": true,
+  "foundation_clean001_verified": true,
+  "history_001_repaired_via_cli": true,
+  "migration_history_cli_verified": true,
+  "production_smoke_passed": false,
+  "full_stack_live": false,
+  "independent_get_postflight": {
+    "live_mode": true,
+    "configured_owner_enabled": true,
+    "market_tables_http": 200,
+    "seven_actual_tables_http": 200,
+    "correction_embedding_http": 200,
+    "deadline_version": 1,
+    "fixture_counts": 0,
+    "owner_jwt_tested": false,
+    "rls_smoke_proven": false
+  },
+  "execution_note": "Sandbox GET initially ConnectError; network-authorized retry passed. Privileged GET does not prove RLS. Script deployment_authorized:false is a static probe field, not revocation of user rollout authorization."
+}

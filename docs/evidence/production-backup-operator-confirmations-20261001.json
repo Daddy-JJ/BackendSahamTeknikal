@@ -1,0 +1,22 @@
+{
+  "evidence_source": "direct user confirmations",
+  "observed_date": "2026-10-01",
+  "source_project_ref": "hcjfxbynqzsaidlwvdfx",
+  "source_counts_dashboard_project_confirmed_by_user": true,
+  "backup_copy_reported_by_user": true,
+  "backup_copy_medium": "USB",
+  "backup_copy_path_provided": false,
+  "backup_copy_checksums_verified": false,
+  "separate_physical_custody_verified": false,
+  "offsite_copy_verified": false,
+  "capture_time_writer_activity": "unknown",
+  "writers_quiescent_verified": false,
+  "production_write_by_agent": false,
+  "deployment_gate_passed": false,
+  "next_actions": [
+    "Compare database.age, roles.age and evidence.json hashes between source and USB",
+    "Confirm USB custody separate from computer and recovery passphrase availability without disclosure",
+    "Establish a maintenance window with all application, scanner, job, Auth/admin writers paused",
+    "Recapture encrypted backup during confirmed window, restore and reconcile new capture before production changes"
+  ]
+}

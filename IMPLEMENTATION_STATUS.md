@@ -1,6 +1,636 @@
-# Implementation status — IDX Night Scanner backend
+# Implementation status â€” IDX Night Scanner backend
 
-Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
+## Production CLI release verified — 2026-10-02T06:57:07.427441Z
+
+Operator hidden-password CLI report was read from the local evidence file.
+CLI2.119.0 repaired001 history after clean foundation verification and applied
+original002–007; readback contains all seven versions through202610010007.
+Execution window06:56:30.757540Z–06:57:07.427441Z (13:56–13:57 WIB).
+These are batch timestamps, not independently measured per-migration timestamps.
+Independent privileged GET postflight now returns HTTP200 for both market revision
+and all seven actual tables, explicit correction FK embedding, and deadline RPC
+version1. Mode remains live; checked fixture counts are zero; configured owner is
+enabled. Initial sandbox ConnectError resolved with authorized network retry.
+
+This is CLI history/API readiness evidence, not complete policy/ACL/RPC-signature
+verification or owner-JWT/RLS smoke. GitHub provider/redirect setup is operator
+reported, not yet independently login-tested. No journal mutation, canonical
+production ledger, two-session concurrency or scanner live smoke has passed yet.
+Frontend production deployment and scanner scheduling remain NO-GO pending gates.
+Evidence: docs/evidence/production-cli-release-20261002.json.
+
+
+## Readiness recheck â€” 2026-10-02T06:02:53Z
+
+Production read-only Dashboard query reconfirmed live mode, history absent,
+actual/market-revision schema absent and trigger ACL `{postgres=X/postgres}`.
+All source counts match the restored archive. Both latest encrypted backup files
+still match capture sizes/SHA256; recovery was not repeated. GET-only development
+checks returned 200 for all seven actual tables and explicit correction FK.
+These are schema observations, not owner-JWT/RLS or concurrency proof.
+
+Operator reports the deployment prompt has not run yet and will run it locally;
+no new production write was performed during this recheck. Sanitized result is
+pending. Offline disposable CLI init completed with seed/analytics disabled and
+7/7 migration copy checksums matching; containers/Auth/tests have not started.
+See docs/AUTH_AND_DISPOSABLE_SMOKE_GUIDE.md and
+ docs/evidence/readiness-recheck-20261002.json. Production journal and scanner
+remain NO-GO. No frontend edit, commit/push, Vercel deploy or scheduler activation.
+
+
+Updated: 2026-10-02 (Asia/Jakarta). Status uses verified evidence only.
+
+## Current status
+
+- User explicitly authorized "deploy production ... tuntaskan ... smoke".
+  Controlled deployment STARTED2026-10-02: repo audit preserves local changes;
+  authenticated in-app Dashboard SQL Editor for exact production project is
+  accessible. Fresh read-only preflight completed; known trigger ACL reduction
+  COMMITTED at2026-10-02T05:16:25.481422Z. All10 catalog groups then matched
+  clean001. Evidence: docs/evidence/production-acl-reconciliation-20261002.json.
+  No history repair/002â€“007/Auth/application writes yet. Local hidden-password
+  CLI package prepared; operator input required to perform history repair001,
+  exact dry-run and original002â€“007 push. GitHub Auth GET settings still disabled.
+  Latest USB waiver retained. Do not imply migration/Auth/JWT/scheduler/Vercel
+  success until observed. Frontend edits/deploy and scheduler remain separate.
+
+- Current local verification: SQL suite68/68 passed; additional production
+  rollback smoke asset tests3/3 passed (71 SQL tests across two commands).
+  Full Python with IDX_NATIVE_RESTORE_TEST=1: first run190 passed/1 failed
+  at isolated Docker startup; focused retry1/1 passed; final full run191/191
+  passed in85.91s. Full Ruff and diff check passed. No financial rule changes.
+  These are local/PGlite/native Docker evidence, not production JWT/HTTP smoke.
+  New fixed-target CLI helper guard/credential tests6/6 are included in191.
+  Production smoke/GO remains pending CLI application, real Auth owner access,
+  RLS/HTTP/concurrency and live scanner inputs/runner. Final frontend deployment
+  remains separately authorized and Vercel smoke unproven.
+
+- Latest source-count comparison for NEW candidate PASSED at
+  2026-10-02T04:45:07.035624Z (11:45:07WIB), user-run read-only/live/no-write.
+  Nine public counts, Auth/linked-owner counts match new restored archive;
+  CLI history absent. Evidence:
+  docs/evidence/production-backup-source-counts-user-20261002.json.
+  User explicitly waived NEW USB copy; accepted latest C: loss leaves older
+  verified2026-10-01 USB snapshot. Do not re-block on waived new-copy requirement
+  or mark offsite_copy_verified=true. New capture decrypt/hash/native restore,
+  actual local ACL/002â€“007/005 rollback/schema rehearsal and current aggregate
+  source comparison now passed; operator pause confirmation recorded separately.
+  No more backup retries required absent new change/failure. Remaining controlled
+  production steps: guarded ACL reduction, clean001 catalog confirmation,
+  reviewed CLI history repair001 + dry-run exactly002â€“007, original chain,
+  postflight/Auth/JWT/RLS/concurrency/ledger/export smoke. Full-stack/live scanner
+  remain NO-GO. This turn evidence/docs only, diff check passed; no test rerun,
+  production DDL/Auth/history/write, frontend edit, commit or push.
+
+- User ACTUAL new-archive native release rehearsal PASSED after owner fix:
+  restore/catalog/owner linkage, exact LOCAL ACL repair + clean001 catalog,
+  frozen002â€“007 chain as postgres NOSUPERUSER,005 injected rollback/resume,
+  correction FK, analytics/export signatures and PT412 function definitions.
+  Live mode/Auth counts preserved, actual_trades=0/fixture_runs=0, target removed.
+  Evidence: docs/evidence/actual-backup-release-passed-user-20261002.json.
+  This supersedes failed002 rehearsal below; all migration writes were local.
+  No CLI history/JWT/HTTP/RLS/concurrency proof. Source count comparison for NEW
+  candidate and NEW USB copy still pending (D: folder absent at fresh check).
+  Operator capture continuity confirmed separately; report flags conservative.
+  This turn docs/evidence + file existence checks only, diff check passed; no
+  test rerun, decryption or remote SQL by agent. Production still001/no history.
+
+- Source owner read-only screenshot verified database_owner=postgres,
+  public_schema_owner=pg_database_owner and postgres CREATE privileges true.
+  Evidence: docs/evidence/production-database-owner-user-20261002.json.
+  Target bare initdb had bootstrap supabase_admin as DB owner; helper now
+  reproduces verified source DB ownership locally after roles restore via
+  --source-database-owner postgres. No role promotion or additional grants.
+  Rehearsal requires explicit source DB owner; keeps bootstrap identity separate.
+  Actual new-archive retest remains pending; original migrations/production unchanged.
+  Native owner/release/restore/target regressions14/14 passed, including full
+  synthetic002â€“007 as postgres NOSUPERUSER, guarded ACL repair,005 rollback/resume,
+  schema/PT412 definitions and target cleanup. Ruff and diff check passed.
+  This validates local helper, not actual archive retest, JWT/PostgREST or remote
+  production migration. No secret/password used by agent.
+
+- User actual new-archive native release rehearsal FAILED at002 before any new
+  migration succeeded. Restore/catalog/linkage and LOCAL ACL repair/clean001
+  comparison/checksums PASSED; target removed; production_write=false.
+  Evidence: docs/evidence/actual-backup-release-failure002-user-20261002.json.
+  Missing SQLSTATE traced to duplicate module/__main__ exception identity;
+  now explicit caller SQL function/error class are supplied to rehearsal.
+  Added local postgres privilege booleans to diagnostics. Native tests3/3
+  passed, including reproduced nonsuperuser public CREATE denial when restored
+  DB owner differs, plus full synthetic ACL/002â€“007/005 rollback/schema test.
+  Ruff and diff check passed. Source DB-owner mismatch is still a HYPOTHESIS;
+  read-only source owner/privilege query requested before target adaptation.
+  No superuser promotion, broad grants, original migration changes or production
+  mutations. Actual migration rehearsal remains NOT passed, deployment NO-GO.
+
+- NEW candidate000758Z-dc7502a0 ACTUAL logical restore passed (user-run):
+  ten catalog groups match prior production, live mode, one linked enabled
+  owner/Auth user/identity; seven public workload tables empty; target removed.
+  Operator pause continuity confirmed separately. Evidence:
+  docs/evidence/production-backup-logical-restore-user-20261002.json.
+  New USB folder not present at D: when agent checked; old copy remains.
+  Added --rehearse-release: local-only guarded ACL repair as restored postgres,
+  clean001 catalog comparison, frozen002â€“007 hashes, injected005 rollback and
+  resume, FK/RPC definition/schema checks, live/no-fixture/Auth preservation.
+  CLI history repair, owner-JWT/HTTP/RLS/concurrency are explicitly NOT tested
+  by this mode. Actual new-archive rehearsal still needs hidden user input.
+  Native synthetic rehearsal + restore/target regression13/13 passed with
+  IDX_NATIVE_RESTORE_TEST=1; Ruff and diff check passed after formatting.
+  No original migrations changed, production writes or frontend edits.
+
+- User confirmed pause remained uninterrupted throughout new2026-10-02 capture
+  07:07:58â€“07:08:55WIB. Operator maintenance-continuity evidence recorded;
+  distinct from database-enforced write fence, which was not applied. This
+  closes requested operator continuity confirmation, superseding pending note
+  below. New archive actual restore, copy and native release rehearsal remain.
+
+- NEW user-run encrypted capture2026-10-02T00:07:58.307996â€“00:08:55.339542UTC
+  completed live PG17.6/verify-full. Candidate folder ends000758Z-dc7502a0;
+  database.age408785 bytes, roles.age6082; full-stream decryption verified by
+  user helper. Agent independently validated manifest and ciphertext hashes:
+  01dc7ead...d7a74ee / c096d4e6...7284a3c. Evidence:
+  docs/evidence/production-backup-capture-user-20261002.json.
+  Old archive/copies preserved. New actual restore/native release rehearsal,
+  new-copy integrity and pause continuity confirmation remain pending; do not
+  carry old restore/copy success flags onto new capture. Agent did not connect
+  or decrypt this capture. Production DDL/Auth/history remain untouched.
+
+- 2026-10-02 user maintenance confirmation: application activity stopped,
+  GitHub Actions has no workflow, cron_jobs_table_present=false. Recorded as
+  operator-reported current paused-writer state, not DB-enforced write fence or
+  retroactive proof of old capture quiescence. Evidence:
+  docs/evidence/production-maintenance-operator-20261002.json.
+  Python executable and public production CA file exist locally. New capture
+  command uses existing hidden-input helper and unique directory outside repo;
+  not run by agent because DB password/recovery passphrases remain user-only.
+  Await new capture plus uninterrupted-pause confirmation, then restore/new-copy
+  verification and actual native migration rehearsal. Production NO-GO.
+
+- 2026-10-02 follow-up: all three backup files now exist at original C: path
+  AND user-reported USB D: path. Independent byte lengths and SHA256 match
+  for database.age/roles.age/evidence.json. Two complete copies VERIFIED;
+  supersedes missing-C: observation below. Evidence:
+  docs/evidence/backup-two-copies-verified-20261002.json. Separate physical
+  custody remains an operator step, not proven by identical hashes.
+  Current paused-writer confirmation/capture and native actual-backup migration
+  rehearsal remain open. No database connection, decryption or production write.
+
+- 2026-10-02 inspected user-supplied D:\hcjfxbynqzsaidlwvdfx-20261001T114028Z-fbe8e14b:
+  database.age and roles.age sizes/SHA256 match recorded successful capture;
+  evidence.json exists. Original C: database.age path was not found, so two
+  complete copies are NOT verified. D: physical USB type/custody not independently
+  measured; capture-time/current paused-writer evidence remains incomplete.
+  No decryption, database connection or production write. Evidence:
+  docs/evidence/backup-d-drive-integrity-20261002.json. Deployment remains NO-GO.
+
+- 2026-10-02 local continuation: node --test
+  supabase/tests/release-plan.test.mjs PASSED4/4. Frozen001â€“007 LF checksums
+  verified by offline planner; conditional pending after reconciled001 remains
+  202609290002/003/004/005,202609300006,202610010007. PGlite test covered
+  full chain/live mode, upgrade001â†’007, injected005 rollback/resume, invalid
+  history and changed applied SQL rejection. This is local PGlite/simulated
+  history, NOT native actual-archive rehearsal or hosted CLI/RLS evidence.
+  git diff --check passed. No production connection/write or frontend edit.
+  Awaiting USB destination/hash evidence and current paused-writer confirmation
+  before a new controlled encrypted capture. Production deployment NO-GO.
+
+- User independently confirmed source-count query ran in production Dashboard
+  hcjfxbynqzsaidlwvdfx. User reports backup copied to USB; no destination path,
+  checksum comparison or separate-custody evidence yet, so offsite_copy_verified
+  remains false. User reports capture-time writer activity UNKNOWN; do not infer
+  quiescence from matching counts. Evidence:
+  docs/evidence/production-backup-operator-confirmations-20261001.json.
+  Next close USB integrity/custody and perform fresh capture during explicitly
+  confirmed paused-writer maintenance window, preserving prior valid archive.
+  Restore/count/release checks must reference that new candidate before writes.
+  Current successful logical restore and source-count evidence remain valid,
+  but deployment remains NO-GO. This turn docs/evidence only; diff check passed,
+  no tests, production write, Auth change, frontend edit, commit or push.
+
+- User-run source-count comparison at2026-10-01T13:47:47.613346Z PASSED:
+  nine public table counts and Auth user/identity/linked enabled-owner counts
+  match the restored actual archive. Source reports read_only=true, live mode,
+  history absent, production_write=false. Evidence:
+  docs/evidence/production-backup-source-counts-user-20261001.json.
+  This closes aggregate source-count comparison, superseding pending statements
+  below. Project identity remains independently unconfirmed in the report;
+  no inference of row-value equality or capture quiescence. Off-site/key custody,
+  maintenance-window evidence, migration/failure rehearsal and production
+  schema/Auth/JWT/RLS/live-scanner checks remain. NO-GO production.
+  This turn recorded evidence/docs only; git diff --check passed, no test suite
+  or remote SQL was run by agent; user local changes preserved, frontend untouched.
+
+- Latest user-run ACTUAL production backup logical restore PASSED on isolated
+  native PG17.11: ten public catalog groups match prior production observation,
+  live mode, one app_member and deployment_settings row, seven other public
+  foundation tables empty; one Auth user/identity, one linked enabled owner.
+  Source OID10 supabase_admin/SUPERUSER was verified in user's SQL Editor
+  screenshot. Matching local OID10 and preserved grantor clauses passed; target
+  removed. This supersedes restore failures below. Evidence:
+  docs/evidence/production-backup-logical-restore-user-20261001.json.
+  No production write/connection occurred during restore. CLI history remains
+  absent. restore_verified/deployment_gate_passed remain false: source count
+  comparison, off-site copy, capture quiescence, RLS and migration rehearsal
+  still open. Added read-only verify_backup_source_counts.sql for next source
+  comparison; it has NOT been run remotely. No test suite rerun this doc/SQL
+  preparation turn; git diff --check passed. Production deployment stays NO-GO.
+
+- Latest user-run roles-only check now identified line116/explicit GRANTED BY,
+  SQLSTATE42501, target removed, actual database archive not decrypted. Evidence:
+  docs/evidence/production-backup-roles-line116-user-20261001.json.
+  Agent reproduced rejection of a recreated nonbootstrap SUPERUSER grantor in
+  native PG17; source-bootstrap mismatch remains a hypothesis until production
+  pg_roles OID10 identity is read-only verified. New --source-bootstrap-role
+  initializes matching OID10 and an independent local operator; exactly one
+  source bootstrap CREATE is represented by initdb, all ALTER/GRANT text and
+  grantors remain intact. Local bootstrap identity is checked. No temporary
+  ADMIN grants or ignored errors. Actual archive fix has not run.
+  Targeted tests11/11 passed, including rejection reproduction and a real
+  synthetic full dump restore across two isolated PG17 clusters preserving an
+  explicit source-bootstrap grantor. Ruff and diff check passed. Production,
+  source SQL archives, frontend and .env remain unchanged; recovery NO-GO.
+  Next action: read-only OID10 query, then hidden-passphrase full restore with
+  verified source bootstrap name per docs/BACKUP_RESTORE_RUNBOOK.md.
+
+- Latest user-run roles-only diagnostic returned SQLSTATE42501/permission_denied
+  at local_roles_restore; no statement line was captured. Target removed,
+  database archive not decrypted, production_write=false. This establishes an
+  SQL permission rejection, not its exact cause. Evidence:
+  docs/evidence/production-backup-roles-diagnostic-user-20261001.json.
+  Updated helper uses psql -f - to capture the line plus a fixed statement-kind
+  enum; no raw SQL/role names/configuration values are emitted and source SQL
+  remains unchanged. Targeted restore/diagnostic/guard tests9/9 passed, including
+  native PG17 line-number regression and full synthetic restore. Ruff and
+  git diff --check passed (existing CRLF conversion warnings only).
+  User-only hidden passphrase is needed to rerun the actual roles diagnostic;
+  restore and production deployment remain NO-GO. No production writes.
+
+- User-run production-archive local restore failed at local_roles_restore with
+  local_restore_sql_failed; temporary target removed, logical_restore_completed,
+  restore_verified and deployment_gate_passed all false. Source ciphertexts
+  remain valid candidates; no hosted writes occurred. Exact role error was not
+  captured by the previous generic report, so its cause is not yet established.
+  Added safe SQLSTATE/fixed-category diagnostics and --check-roles mode: only
+  roles.age is decrypted in memory and applied unchanged to a fresh isolated
+  container, then removed. No raw SQL, records, passphrases or driver messages
+  are printed. Do not skip unsupported grants/settings just to pass recovery.
+  Evidence: `docs/evidence/production-backup-restore-failure-user-20261001.json`.
+  Diagnostic/restore/target tests8/8 passed, including actual native PG17
+  unsupported-role-setting SQLSTATE42704 classification and cleanup, plus the
+  full synthetic dump/restore regression. This does not identify the user's
+  actual role error. Ruff and diff check passed; production was not written.
+- Agent downloaded the official CLI-pinned Supabase PostgreSQL17.11 image,
+  digest0450166354dc9c1d25f0322ac8b580774d4fb0184d2b087f6e4fe9499c66cf53.
+  A real isolated tmpfs/no-network/no-published-port preflight created all four
+  required extensions with versions matching source: pg_stat_statements1.11,
+  pgcrypto1.3, uuid-ossp1.1, supabase_vault0.3.1. Container removed; no actual
+  backup decrypted/restored in this preflight. Sanitized evidence:
+  `docs/evidence/local-restore-target-preflight-20261001.json`.
+  Added `restore_backup_prompt.py`, using a distinct local operator, immutable
+  image digest, unchanged source role SQL and exit-on-error/full single-transaction
+  pg_restore. Its checks compare ten public catalog groups to prior production
+  evidence, counts and enabled-owner/Auth linkage; it removes only its unique
+  container, including after attempted startup failures. Actual production
+  archive restore still needs user-only hidden recovery-passphrase input.
+  Three tests passed including a real full synthetic pg_dump/pg_dumpall restore
+  between two separately initialized native PG17 containers, metadata verification
+  and target cleanup. This is synthetic local evidence, not production backup
+  recovery or owner JWT/RLS. Pytest reported a cache write-permission warning;
+  tests themselves passed. Two target-command guard tests and Ruff also passed.
+  User chose a separate folder for the backup copy but supplied no path or
+  separate-machine/media evidence: off-site verification remains open.
+  Final rerun after tightening cleanup passed5/5 (native restore3 +target guards2)
+  with pytest cache disabled, no warnings. Ruff and diff check passed.
+- User-run archive inspection now passed: nine public foundation tables;
+  auth.users/identities schema and data TOC entries;15 role definitions with no
+  role password statements; history schema absent. Required extensions:
+  pg_stat_statements, pgcrypto, supabase_vault, uuid-ossp. This is TOC/integrity
+  evidence, not restored row counts or restore success. See
+  `docs/evidence/production-backup-inspection-user-20261001.json`.
+  Official pinned CLI2.119.0 catalog selects supabase/postgres:17.11.0.002;
+  preparing its local image for extension compatibility checks, not a hosted
+  deploy or a complete local stack. Source17.6 and target17.11 share major17
+  but managed extension versions/restore behavior must still be measured.
+- Successful user-run encrypted capture2026-10-01,11:40:28.577031â€“11:41:21.551357UTC
+  supersedes the failed attempt below: database.age408785 bytes and roles.age6082
+  bytes; both full-stream decrypt/hash checks passed according to the script.
+  Agent independently checked both ciphertext SHA256/size, the stored evidence
+  and pinned age executable. Sanitized capture evidence is in
+  `docs/evidence/production-backup-capture-user-20261001.json`. This is an encrypted
+  backup candidate, not a proven restore. Off-site copy, writer quiescence,
+  compatible restore and deployment gates remain false; production not written.
+  Added local-only `inspect_backup_prompt.py` to inspect the decrypted archive
+  TOC/role prerequisites in memory. Docker pg_restore is network-disabled,
+  read-only and --list only, with no database connection or SQL execution.
+  User-only recovery passphrases are still required. Fifteen targeted tests
+  (5 inspection +10 backup), Ruff and bundle/tool integrity checks passed;
+  production archive TOC inspection itself has not yet run.
+- User-run backup attempt started2026-10-01T11:30:44.949915Z: verified TLS/live
+  connection, but failed with `local_tool_or_stream_failed`, files=[], all
+  recovery/deployment gates false. Local inspection found database.age0 bytes.
+  No valid backup or restore is established. A regression reproduced Windows
+  EINVAL for an exited encryption consumer, previously hidden by the generic
+  exception. Helper now reports fixed diagnostic codes, stage, exit codes and
+  safe OS codes; raw stderr remains memory-only and is never logged.
+  Ten targeted backup tests, Ruff and diff check passed after that fix (initial
+  regression9 passed/1 failed before Windows EINVAL handling). No full suite
+  rerun is claimed for this diagnostic-only change. Added --check-encryption
+  for an interactive synthetic/passphrase console check without database access.
+  User's precise production-attempt failure remains unknown until sanitized
+  diagnosis is returned. Failed candidate is preserved and never overwritten.
+- Security incident during the initial regression: pytest's failure traceback
+  displayed a provider credential inherited from the agent process environment.
+  No value is copied here. The helper now uses an OS-variable allowlist rather
+  than forwarding unrelated environment variables, and subsequent test invocation
+  uses --tb=no. Rotate that exposed provider credential; database password/JWT
+  were not involved in this local synthetic regression.
+- Latest instruction "selesaikan 1-5" authorizes backend continuation in gate
+  order, including production actions only after recovery and schema checks
+  pass. It does not enable the scheduler or authorize frontend deployment.
+  No production write occurred in this continuation.
+- Reverified locally on2026-10-01: SQL68/68, Python163/163, Ruff and diff check
+  passed. Python includes15 DB-prompt tests and7 new backup-helper tests.
+  The latter performed a real age encryption/decryption and tamper rejection
+  with synthetic bytes only; this is not a production backup or restore.
+- Added `supabase/scripts/backup_production_prompt.py`: fixed production target,
+  verify-full CA, hidden DB password, pinned PostgreSQL image, verified age
+  distribution/executable, binary dump-to-encryption pipes, exclusive archive
+  creation and full stream decryption/hash verification. Recovery passphrases
+  are entered directly into age's local console and never passed as arguments.
+  Writes only encrypted candidates and sanitized evidence outside the workspace.
+  The local interactive production capture is pending the user's password input;
+  restore/off-site custody/compatibility gates remain open. Full native pg_dump
+  includes managed schema definitions, unlike filtered CLI exports; it must not
+  be restored blindly over a hosted Supabase project.
+- A fresh GET-only production API preflight confirms live mode, configured owner
+  enabled,0 fixture scan/signal rows, and404/PGRST205 for market-revision and
+  actual-journal tables. Deadline capability and correction embedding return404.
+  These results are schema-readiness failures, not RLS evidence. Manifest
+  checksums/001â€“007 order passed; conditional pending plan after reconciled001
+  is exactly002â€“007. No history repair or migration was executed.
+- User approved direct-encrypted manual backup and temporary local restore
+  without BitLocker/VeraCrypt, accepting residual temporary-storage risk. This
+  does not waive backup/restore proof or approve unreviewed production DDL.
+  age1.3.2 official Windows package was downloaded into ignored tooling;
+  SHA256 matched the official GitHub asset digest and `--version` passed.
+  No recovery key, encrypted dump, decryption or restore was generated/run.
+  Streaming capture helper now exists; actual production capture, restore
+  automation/verification and recovery-passphrase custody remain open.
+- Production DB prompt attempts reported by the user failed at TLS verification.
+  A passwordless probe reproduced `SSL error: certificate verify failed` against
+  the supplied session pooler; this is not evidence of an incorrect password.
+  The script now requires a Dashboard-downloaded production CA (read-only mount)
+  and provides `--check-tls` without password input/SQL. Targeted security
+  tests15/15 and Ruff passed; a default pytest-temp sandbox permission error was
+  resolved using a fresh ignored backend temp directory. The user subsequently
+  supplied successful CA-backed TLS and authenticated read-only SQL output:
+  production17.6, live mode, migration history absent. Recorded in
+  docs/evidence/production-db-connectivity-user-20261001.json; exact execution
+  time not supplied. Backup/restore and real owner-JWT/RLS remain open.
+- Hidden local DB-password prompt prepared as
+  `supabase/scripts/check_production_db_prompt.py`. It is fixed to production
+  session-pooler metadata supplied by the user, uses verified TLS and a
+  read-only transaction, and prints sanitized metadata only. Official client
+  image download and local psql17.11 tooling check succeeded. Targeted mocked
+  security tests initially6/6, later15/15, and Ruff passed. The user completed
+  password input/read-only SQL as recorded above; no backup or restore has been
+  observed. No password was sent to this agent. This adds no financial rule.
+- Manual no-upgrade recovery preparation advanced on2026-10-01: Docker server
+  `desktop-linux` was directly queried and returned Engine29.8.1; pinned
+  Supabase CLI2.119.0 completed `--version` and `db dump --help` via the npm
+  tool cache. No project linking, remote DB connection, dump or restore ran.
+  User-run DB authentication now succeeded; encrypted storage/key custody and
+  an isolated restore target remain pending. No production migration/Auth write occurred.
+- Development `vgmkpsestahkfahzdtae` remains fixture. 005 and006 were already
+  active. The checksum-verified, guarded 007 SQL Editor handoff was applied on
+  2026-10-01; success was observed at02:47 UTC with
+  `signal_conflict_http_ready=true`, `data_mode=fixture`. Hosted rollback-only
+  SQL role/claim smoke passed identical replay, changed-payload23514 and stale
+  PT412 with one receipt/audit inside the transaction. Read-only postcheck found
+  PT412 present, old40001 absent and the pre-existing one receipt/audit. This
+  is neither a real owner JWT/HTTP412 nor a two-session concurrency test.
+- This continuation opened the local development `/auth/check` page and
+  observed an active owner session with RLS-backed data access, plus an existing
+  watchlist action at revision1 with one request and one audit. The existing
+  probe did not offer a new RPC action. No JWT was read or copied and no new
+  scanner action was written; real owner-JWT/PostgREST replay/conflict/stale
+  checks remain open because this page does not expose the stored request
+  inputs or a call control. A fresh successful request would persist an
+  additional action/audit in the shared fixture; exact replay would require the
+  original request UUID and payload, which were not available from the page.
+- Production `hcjfxbynqzsaidlwvdfx` remains live with foundation001 only;002â€“007
+  and CLI migration history remain absent. A fresh GET-only preflight confirmed
+  live mode, enabled configured owner, zero fixture scan/signal rows and
+  404/PGRST205 for newer schema. This is not RLS evidence.
+- Read-only production catalog still matches9/10 foundation groups. A further
+  `pg_default_acl` check found postgres/public function defaults grant EXECUTE
+  to service_role;001 omitted service_role from this trigger-function revoke.
+  Anon/authenticated effective EXECUTE is false; the function is SECURITY
+  INVOKER and returns trigger. A guarded one-function REVOKE plan passed local
+  PGlite rehearsal and fixture rejection; it has **not** run on production.
+  Historical grant origin cannot be proved from present catalogs alone. See
+  docs/evidence/foundation001-acl-provenance-20261001.json.
+- Supabase Free permits two active projects, already occupied by development and
+  production. Offline manual-backup/local-disposable restore options are in
+  docs/BACKUP_RESTORE_RUNBOOK.md. No backup, encryption, decryption or restore
+  occurred; DB credentials and a suitable restore target remain unverified.
+  Docker and the pinned CLI are now verified as described above; PostgreSQL
+  client compatibility and encryption tooling remain to be verified.
+  Production remains **NO-GO**. Auth production, scheduler, frontend, `.env`,
+  production database, Git commits/pushes and deployments were untouched.
+- Latest full verification on2026-10-01: **68/68 SQL/PGlite** and **141/141
+  Python**; Ruff over scanner/src, scanner/tests and supabase/scripts passed;
+  `git diff --check` passed. This continuation also ran hosted development
+  rollback-only SQL smoke, targeted ACL3/3 and handoff4/4 tests. In this
+  continuation, manifest/checksum loading and the fail-closed production
+  release planner were verified; `git diff --check` passed. The production
+  GET-only preflight ran successfully with `scanner/.venv` and confirmed live
+  mode, configured owner enabled, zero fixture scan/signal rows and PGRST205
+  schema absence for migrations002â€“007. The backend-root `.venv` does not
+  exist; use `scanner/.venv`. Frontend files were read only.
+  See docs/PRODUCTION_READINESS.md for the current checklist and
+  docs/FRONTEND_DEPLOYMENT_HANDOFF.md for the frontend prompt.
+
+## Historical snapshots (superseded where newer evidence above differs)
+
+- Production readiness preparation completed to the available access boundary;
+  **deployment remains NO-GO**. Read-only GET and PostgreSQL catalog preflight on
+  `hcjfxbynqzsaidlwvdfx` confirmed live mode, configured enabled owner, zero
+  fixture scan_runs/signals and nine foundation001 tables with RLS. History
+  `supabase_migrations.schema_migrations` is absent;002â€“006, actual FK/embedding
+  and deadline capability are absent. 404/PGRST205 is not RLS proof.
+- Dashboard read-only checks: Free plan has no project backups; GitHub Auth is
+  disabled, Site URL/redirect still localhost3050. No backup/restore rehearsal,
+  complete001 schema diff/history repair, production HTTP smoke, scanner live
+  proof or Vercel smoke is claimed. No production database/Auth write occurred.
+- Prepared `docs/PRODUCTION_READINESS.md` with exact001â€“006 chain, frozen
+  SHA256 manifest, apply-once/history controls, backup/recovery requirements,
+  environment contract and one go/no-go checklist. Added GET-only production
+  preflight, READ ONLY SQL, offline release planner and unexecuted emergency
+  journal-write containment SQL. Frontend handoff prompt is in
+  `docs/FRONTEND_DEPLOYMENT_HANDOFF.md`; no chat message was sent automatically.
+- Final tests actually run2026-10-01: **60/60 SQL/PGlite**, including journal/
+  export201-cursor and four release-chain/rollback/drift tests; **137/137 Python**;
+  Ruff over scanner/src, scanner/tests and all supabase/scripts passed; diff
+  check passed. Offline planner without reconciled history fails closed as
+  intended. Initial full baseline was56 SQL/134 Python; expanded tests added
+  four SQL and three Python checks. Frontend suites were not rerun here.
+- Initial expanded Ruff found three import issues in existing development
+  scripts; import-only fixes passed. First new rollback test failed because
+  JavaScript replacement collapsed SQL dollar quoting; corrected test injection,
+  targeted4/4 and full60/60 then passed. Initial sandbox GET failed ConnectError;
+  approved read-only retry passed. No product migration was modified by these fixes.
+- M2 remains open for official runtime calendar/universe/mapping, real provider
+  and GitHub runner proof, persistent-paper scope and `set_signal_action` custom
+  40001 conflict risk (006 fixes actual journal only). M4 remains open for
+  production identity/financial smoke without committed QA data, persistent
+  paper/equity and tested recovery. No scheduler, commit, push, frontend edit,
+  .env overwrite or deployment was performed. All prior local work preserved.
+- Frontend status/audit dated 2026-10-01 now records a real owner two-tab PT412
+  retest after 006: the winning note advanced revision 11 to 12, stale revision
+  11 was rejected promptly with no extra note/revision. This supersedes the
+  pending frontend PT412 notes below. Frontend tests are reported evidence;
+  this backend chat has not rerun or changed frontend.
+
+- Frontend owner-JWT smoke reported two stale-revision RPCs ending in upstream
+  timeouts without a trade revision change. Root cause: migration 005 raised
+  SQLSTATE 40001 for an application conflict; Supabase documents an infinite
+  PostgREST retry bug for custom 40001 errors. Versioned migration 006 now
+  replaces only `apply_actual_journal` with a non-retryable `PT412` mapping,
+  preserving `revision_conflict` as the message. It was applied through a
+  guarded SQL Editor handoff to development `vgmkpsestahkfahzdtae`; SQL returned
+  `actual_conflict_http_ready=true`, `data_mode=fixture`. A hosted SQL role/claim
+  stale call returned PT412 immediately. Subsequent read found zero receipt for
+  that failed UUID and no active `authenticator` journal query. Real owner-JWT
+  PostgREST response was subsequently confirmed by frontend's2026-10-01 retest above.
+- Development rollback-only cursor smoke used backend RPC to create 201 closed
+  TEST trades inside one transaction. Hosted export returned 200 rows plus one
+  cursor continuation row, `has_more=false` after page 2; analytics closed=201,
+  net P&L=2010. A read-only postcheck found zero persisted trades and request
+  receipts for that smoke. This proves hosted SQL pagination, not frontend HTTP
+  continuation or a multi-page database snapshot. A separate local PGlite test
+  also verifies 201 unique ordered IDs and each row's backend P&L.
+- Current development M4 evidence: guarded migration 005 was applied on
+  `vgmkpsestahkfahzdtae` through its SQL Editor after the user logged in.
+  The exact generated SQL was checked against the local source before execution;
+  SQL returned `actual_journal_ready=true`, `actual_export_ready=true`,
+  `data_mode=fixture`. PostgREST returned HTTP 200 for all seven actual tables
+  and the explicit latest-correction FK embedding. Production
+  `hcjfxbynqzsaidlwvdfx` was not written to. SQL Editor execution is not a
+  Supabase CLI migration-history entry.
+- Hosted rollback-only SQL smoke passed: canonical risk 1200, fee 100, net P&L
+  1000, R 0.833333333333; partial position, estimated-fee quality, correction,
+  stale revision, oversell, request replay and exact analytics/export checks.
+  It simulated authenticated role/owner claim within PostgreSQL, not a real
+  owner Auth JWT. A separate two-session hosted replay used different backend
+  PIDs (183081 and 183435): second waited 7407 ms, one request receipt and
+  one TEST trade remained, and the first session's note advanced it to revision
+  2. A second two-session race submitted different note requests against revision
+  2: one committed revision 3; the other returned SQLSTATE 40001
+  `revision_conflict`, with no second request receipt. This deliberately retained
+  synthetic fixture audit data in development.
+- Real anonymous HTTP reads of eight tables and calls to all three journal RPCs
+  returned 42501. A disposable signed-in outsider JWT saw empty tables and
+  correction embedding despite the populated TEST trade; all three RPCs
+  returned 42501. The temporary outsider user was deleted. Disabled-owner
+  denial was tested in hosted rollback-only SQL, not a real disabled-owner JWT.
+- Frontend M4 source/status were read only. Local tests check RPC named args,
+  exact `p_exit_snapshot`, `p_status='closed'`, `p_after`, 200-row limit and
+  explicit `actual_fill_corrections_fill_id_fkey` embedding. Real owner JWT
+  PostgREST and frontend integration smoke belong to the frontend chat by user
+  choice. M4 remains open for those gates, persistent paper, equity/backup scope.
+- Prior development-rollout verification: `npm.cmd test` from `supabase` passed **54/54**;
+  Ruff passed on scanner source/tests and the three development scripts;
+  `git diff --check` passed. Development API readiness and anonymous/outsider
+  denial scripts passed after the concurrency fixture was retained. No remote
+  owner JWT, frontend browser smoke, live-provider run, production write,
+  commit, push, or deploy was performed.
+
+Historical local-audit notes below describe the state before this development
+rollout; their unapplied/untested statements are superseded by the evidence above.
+
+- M4 backend continuation completed locally; milestone **remains open** for
+  remote/integration and persistent-paper gates. The original local 005 SQL,
+  M4 tests and status changes were audited and extended, not discarded.
+  Buy fills now produce open positions with provisional risk until finalization.
+  Effective fill order uses timestamp plus sequence; corrections can amend time,
+  quantity, price and fees while retaining prior history. Risk restatement must
+  be explicit; audit now includes the prior trade projection. Nonfinite and
+  overprecision money, invalid exit config and unknown payload fields are rejected.
+  Ledger responses use the same monetary rounding as persisted projections.
+- Owner isolation was exercised with populated fills/corrections/stops/notes/tags/
+  requests/audit, enabled second owner, outsider, anon and disabled membership.
+  Replay returns the prior receipt; changed request bodies, stale revisions,
+  oversells and invalid chronology roll back. These are **local role/JWT
+  simulations**, not hosted Auth/PostgREST or multi-connection race proof.
+- Actual-only analytics disclose fee quality and support exact exit snapshot
+  filtering. Export RPC adds owner/data-mode scope, decimal strings, pagination,
+  and optional status filtering; p_status='closed' aligns with analytics.
+  Versioned CSV serializer handles escaping/formula prefixes without calculating
+  metrics. Multiple tags count once. Paper persistence/metrics and cash/equity
+  marks are unavailable; actual export is not a ledger backup or a multi-page
+  database snapshot. Frontend was not inspected, edited or tested in this turn.
+- Verification actually run in this continuation:
+  - Baseline `npm.cmd test` from supabase: **42/42 passed** before edits.
+  - First targeted M4 run: 18 passed / 1 failed; test expected immutable trigger
+    SQLSTATE 55000 but existing trigger uses 23514. Corrected the expectation.
+  - Final `npm.cmd test`: **52/52 passed** (20 actual-journal/CSV tests,
+    1 generated-handoff test, 31 existing SQL tests).
+  - First Python full suite: 133 passed / 1 setup error due to denied access to
+    Windows pytest temp directory; no application assertion failure.
+  - Rerun `.venv\Scripts\python.exe -m pytest -q -p no:cacheprovider
+    --basetemp=<new absolute backend/data/pytest-m4-UUID directory>` from scanner:
+    **134/134 passed**. The fresh workspace temp path avoids the denied folder.
+  - Ruff initially found one long line in the new helper test; fixed.
+    `scanner\.venv\Scripts\ruff.exe check scanner/src scanner/tests
+    supabase/scripts/prepare_dev_actual_setup.py`: **passed**; git diff --check
+    passed (Git reports only existing LF/CRLF conversion warnings).
+  - Runtime observed: Node 22.23.2, npm 12.0.2, Python 3.12.14; no upgrades.
+  - SOT sample verified again: risk1200, total fee100, net1000, R0.833333333333.
+- Development handoff generated locally at ignored
+  `data/dev-actual-journal-vgmkpsestahkfahzdtae.sql`. Exact dev URL is required;
+  SQL rejects live mode, wrong owner, missing prerequisites or duplicate apply.
+  Its successful application and rejection cases were tested in PGlite only.
+  **005 is NOT applied to development or production; no remote M4 smoke ran.**
+  No remote requests/writes, commit, push, deploy or .env changes in this turn.
+  Development remains fixture and production remains live per supplied state;
+  neither remote mode was re-probed during this backend-only continuation.
+- Open M2 gates: authoritative runtime calendar/universe/mappings, 5â€“10 ticker
+  live fetch-to-web proof, GitHub runner and paper persistence. Open M4 gates:
+  authorized development 005 application, real owner/outsider JWT and concurrent
+  session smoke, frontend integration/export smoke, persistent paper analytics
+  including ambiguity sensitivity, cash/EOD equity scope and backup/restore.
+  No production rollout is authorized. See docs/ACTUAL_JOURNAL.md for handoff.
+
+Files changed/added by this continuation (all inside backend):
+
+- supabase/migrations/202609290005_actual_journal.sql (existing untracked work)
+- supabase/tests/actual-journal.test.mjs (existing untracked work)
+- supabase/tests/actual-setup.test.mjs
+- supabase/scripts/prepare_dev_actual_setup.py
+- supabase/scripts/check_dev_actual_ready.py,
+  supabase/scripts/verify_dev_actual_denials.py,
+  supabase/tests/dev_actual_smoke.sql
+- scanner/tests/test_actual_handoff.py
+- contracts/actual-journal-export.mjs
+- docs/ACTUAL_JOURNAL.md
+- contracts/README.md, supabase/README.md, README.md, DEVELOPMENT.md,
+  TECHNICAL_DOC.md, CODEX_HANDOFF.md, IMPLEMENTATION_STATUS.md
+
+Earlier evidence below is historical, including frontend results reported before
+this backend-only continuation. Newer entries supersede earlier open-gate notes.
+
+- Earlier M4 local slice is implemented but not remotely deployed: migration
+  `202609290005_actual_journal.sql` adds owner-only drafts, immutable fills,
+  audited corrections, initial-risk finalization, partial exits, stop/note/tag
+  events, idempotent mutation requests, and actual-only closed-cohort analytics.
+  Eleven targeted PGlite tests passed; the full SQL suite passed **42/42**.
+  The SOT example yields risk Rp1,200, fees Rp100, net Rp1,000 and realized R
+  0.833333. Frontend journal/analytics/export source is uncommitted in its own
+  repo; local typecheck, lint, build, and CSV sanitizer tests passed. Neither
+  migration 005 nor a remote owner-session M4 smoke has been run on development;
+  production remains untouched. Paper persistence and cash/equity marks remain
+  open, so M4 is not marked complete.
 
 - M0/M1: local foundation complete; deterministic scanner, four entry strategies,
   paper lifecycle, provider adapters and demo contracts.
@@ -36,7 +666,7 @@ Updated: 2026-09-29 (Asia/Jakarta). Status uses verified evidence only.
   The migration has not been applied to development or production Supabase.
 - Remaining M2 gates: apply and verify the revision migration in development,
   integrate ingestion into the run pipeline, official calendar/universe,
-  paper persistence, 5–10 ticker live proof and GitHub runner.
+  paper persistence, 5â€“10 ticker live proof and GitHub runner.
 - EODHD key has not been supplied. No scheduled scan is active. The frontend
   Vercel production domain responds HTTP 200 with a live-connection placeholder;
   this is not a live scanner deployment.

@@ -1,6 +1,5 @@
 """Generate guarded SQL Editor handoff for market revision migrations 002 + 003."""
 
-from pathlib import Path
 from uuid import UUID
 
 from prepare_dev_setup import ROOT, local_env

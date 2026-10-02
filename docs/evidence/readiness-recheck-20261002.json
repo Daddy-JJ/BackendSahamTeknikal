@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-02",
+  "production": {
+    "project_ref": "hcjfxbynqzsaidlwvdfx",
+    "target_verified_by": "authenticated Dashboard exact project URL",
+    "checked_at_utc": "2026-10-02T06:02:53.07+00:00",
+    "access": "BEGIN READ ONLY; ROLLBACK and privileged GET-only API preflight",
+    "new_production_write": false,
+    "data_mode": "live",
+    "history_present": false,
+    "trigger_acl": "{postgres=X/postgres}",
+    "market_revision_schema_present": false,
+    "actual_schema_present": false,
+    "source_counts_match_restored_archive": true,
+    "auth_users": 1,
+    "auth_identities": 1,
+    "enabled_owners": 1,
+    "linked_owners": 1,
+    "table_counts": {"app_members":1,"audit_events":0,"deployment_settings":1,"scan_run_items":0,"scan_run_signals":0,"scan_runs":0,"signal_action_requests":0,"signal_actions":0,"signals":0},
+    "postgrest": {"market_tables": "404/PGRST205", "seven_actual_tables": "404/PGRST205", "correction_embedding_http":404, "deadline_rpc_http":404},
+    "owner_jwt_tested": false,
+    "rls_proven_by_missing_schema": false,
+    "migration_application_timestamps_002_007": null
+  },
+  "recovery": {
+    "archive": "hcjfxbynqzsaidlwvdfx-20261002T000758Z-dc7502a0",
+    "both_ciphertexts_present": true,
+    "both_sizes_and_sha256_match_capture_manifest": true,
+    "restore_repeated": false,
+    "prior_actual_native_restore_release_evidence": "actual-backup-release-passed-user-20261002.json",
+    "latest_usb_copy_waived": true,
+    "latest_offsite_copy_verified": false
+  },
+  "development": {
+    "project_ref":"vgmkpsestahkfahzdtae",
+    "data_mode":"fixture",
+    "seven_actual_tables_http":200,
+    "explicit_fk_embedding_http":200,
+    "owner_jwt_tested_this_turn":false,
+    "concurrency_tested_this_turn":false,
+    "007_application": "prior hosted SQL Editor evidence; not freshly re-applied"
+  },
+  "disposable_local": {
+    "project_id":"idx-smoke-local-20261002",
+    "cli_init_passed":true,
+    "db_major_version":17,
+    "seed_enabled":false,
+    "analytics_enabled":false,
+    "migration_files_copied":7,
+    "containers_started":false,
+    "local_auth_available":false,
+    "production_data_copied":false,
+    "smoke_run":false
+  },
+  "operator_next_step": "User reports production deployment prompt not yet run and will run it locally; sanitized result pending.",
+  "status": "NO_GO_required_production_gates_blocked"
+}

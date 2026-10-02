@@ -1,0 +1,123 @@
+{
+  "observed_on": "2026-10-01",
+  "project_ref": "hcjfxbynqzsaidlwvdfx",
+  "access": "SQL Editor BEGIN READ ONLY; ROLLBACK",
+  "query_sha256_lf": "056fa85fb8727cec53dd4f4ca498bb40f5d92614163641219de654a154cbb4be",
+  "local_engine": "PostgreSQL 18.3 PGlite 0.5.8",
+  "remote_engine": "PostgreSQL 17.6",
+  "normalization": [
+    "CRLF to LF in function definition only",
+    "NOT NULL represented by attnotnull on both versions; omit duplicate PG18 pg_constraint type n"
+  ],
+  "expected_clean001": [
+    {
+      "category": "column_grants",
+      "object_count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "category": "columns",
+      "object_count": 53,
+      "sha256": "2a10ba0717a6ffd4e57af9a2cb88fba7c9609ca2072d69d3c4820fce9658283a"
+    },
+    {
+      "category": "constraints",
+      "object_count": 43,
+      "sha256": "8a1ab2fd5818f8ee240c3eb7a886025396dd9b255532fe52a918d9dced38fa6b"
+    },
+    {
+      "category": "function_grants",
+      "object_count": 8,
+      "sha256": "86aec60e1bd573fbbfc35bce3decbfa4e6838020718c3ef4224a14fc1d459032"
+    },
+    {
+      "category": "functions",
+      "object_count": 4,
+      "sha256": "5be20fa878fa70f43fd8a3268c6362955a9cb67e14f69e4a2c49a32febc0c1ba"
+    },
+    {
+      "category": "indexes",
+      "object_count": 15,
+      "sha256": "55942a2fb75a2c9f3b0fda36e4ffce6c373cb4878d69ca6c58082336aefa2816"
+    },
+    {
+      "category": "policies",
+      "object_count": 9,
+      "sha256": "c5df115b96aac0fd4b35d96b6106ae9a62eadb178634089a70a4e0cd674442a8"
+    },
+    {
+      "category": "relations",
+      "object_count": 9,
+      "sha256": "4a776859571faa2a0f8f3dd71afd1f42e4bf94fc5b34dfcfd90a7ee7f8846738"
+    },
+    {
+      "category": "table_grants",
+      "object_count": 90,
+      "sha256": "6eba94a8091986cb69225b1e395793d961af9e197d5de6b5e93ff067d09fed0b"
+    },
+    {
+      "category": "triggers",
+      "object_count": 6,
+      "sha256": "dba205a708a93d3ebae63d46d0063ae786824af1e9b81a5d95a42a104068dd3e"
+    }
+  ],
+  "observed_production": [
+    {
+      "category": "column_grants",
+      "object_count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "category": "columns",
+      "object_count": 53,
+      "sha256": "2a10ba0717a6ffd4e57af9a2cb88fba7c9609ca2072d69d3c4820fce9658283a"
+    },
+    {
+      "category": "constraints",
+      "object_count": 43,
+      "sha256": "8a1ab2fd5818f8ee240c3eb7a886025396dd9b255532fe52a918d9dced38fa6b"
+    },
+    {
+      "category": "function_grants",
+      "object_count": 9,
+      "sha256": "25724346e5e351b285e8a6667aa387a61e5b50d2904780be5511e272d618aaae"
+    },
+    {
+      "category": "functions",
+      "object_count": 4,
+      "sha256": "5be20fa878fa70f43fd8a3268c6362955a9cb67e14f69e4a2c49a32febc0c1ba"
+    },
+    {
+      "category": "indexes",
+      "object_count": 15,
+      "sha256": "55942a2fb75a2c9f3b0fda36e4ffce6c373cb4878d69ca6c58082336aefa2816"
+    },
+    {
+      "category": "policies",
+      "object_count": 9,
+      "sha256": "c5df115b96aac0fd4b35d96b6106ae9a62eadb178634089a70a4e0cd674442a8"
+    },
+    {
+      "category": "relations",
+      "object_count": 9,
+      "sha256": "4a776859571faa2a0f8f3dd71afd1f42e4bf94fc5b34dfcfd90a7ee7f8846738"
+    },
+    {
+      "category": "table_grants",
+      "object_count": 90,
+      "sha256": "6eba94a8091986cb69225b1e395793d961af9e197d5de6b5e93ff067d09fed0b"
+    },
+    {
+      "category": "triggers",
+      "object_count": 6,
+      "sha256": "dba205a708a93d3ebae63d46d0063ae786824af1e9b81a5d95a42a104068dd3e"
+    }
+  ],
+  "schema_match": false,
+  "differences": [
+    "function_grants"
+  ],
+  "detail": "Production service_role has EXECUTE on public.reject_immutable_mutation(); clean001 has only postgres. No privilege changed.",
+  "history_repaired": false,
+  "release_allowed": false
+}

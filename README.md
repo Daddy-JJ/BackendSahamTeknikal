@@ -25,3 +25,15 @@ Engine empat strategi, exit paper, provider adapters, migrasi Supabase scan RPC,
 Rekonstruksi histori, handoff SQL development, dan batas rollout: lihat docs/MARKET_REVISIONS.md.
 
 CLI scanner manual dan gate live: docs/SCANNER_RUN.md.
+
+M4 actual ledger, analytics, dan kontrak CSV tersedia pada migration 005, yang
+sudah diterapkan dan diuji terbatas di Supabase development mode fixture.
+Migration 006 memperbaiki stale-revision RPC timeout di development. Production
+belum menerima 005/006; retest HTTP412 owner JWT dua tab telah lulus menurut
+audit frontend2026-10-01. Bukti dan
+kontrak UI: [docs/ACTUAL_JOURNAL.md](docs/ACTUAL_JOURNAL.md).
+
+Persiapan production berstatus **NO-GO**, dengan preflight read-only, daftar
+migrasi, backup/rollback, env dan smoke checklist di
+[PRODUCTION_READINESS](docs/PRODUCTION_READINESS.md). Prompt untuk chat frontend:
+[FRONTEND_DEPLOYMENT_HANDOFF](docs/FRONTEND_DEPLOYMENT_HANDOFF.md).

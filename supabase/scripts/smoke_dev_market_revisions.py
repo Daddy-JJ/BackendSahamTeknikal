@@ -5,7 +5,6 @@ from dataclasses import replace
 from datetime import UTC, datetime
 
 import httpx
-
 from idx_scanner.fixtures import sample_market
 from idx_scanner.persistence import PersistenceError, SupabaseScanStore
 from smoke_dev_fixture import dev_env

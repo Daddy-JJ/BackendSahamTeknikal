@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-02",
+  "environment": "local Windows backend; SQL PGlite and isolated native Docker",
+  "production_smoke_passed": false,
+  "backend_files_changed_this_turn": [
+    "IMPLEMENTATION_STATUS.md",
+    "CODEX_HANDOFF.md",
+    "docs/PRODUCTION_READINESS.md",
+    "docs/FRONTEND_DEPLOYMENT_HANDOFF.md",
+    "docs/BACKUP_RESTORE_RUNBOOK.md",
+    "docs/evidence/production-acl-reconciliation-20261002.json",
+    "docs/evidence/production-release-preparation-tests-20261002.json",
+    "supabase/scripts/deploy_production_prompt.py",
+    "scanner/tests/test_production_deploy_prompt.py",
+    "supabase/operations/production_actual_rollback_smoke.sql",
+    "supabase/operations/production_actual_cursor_rollback_smoke.sql",
+    "supabase/tests/production-smoke-plan.test.mjs"
+  ],
+  "commands": [
+    {"command": "npm.cmd test (backend/supabase)", "passed": 68, "failed": 0},
+    {"command": "node --test tests/production-smoke-plan.test.mjs (backend/supabase)", "passed": 3, "failed": 0},
+    {"command": "pytest scanner/tests with IDX_NATIVE_RESTORE_TEST=1, initial full run", "passed": 190, "failed": 1, "failure": "test_native_roles_error_reports_state_and_cleans_target: isolated_target_start instead of local_roles_restore"},
+    {"command": "pytest scanner/tests/test_backup_restore.py::test_native_roles_error_reports_state_and_cleans_target", "passed": 1, "failed": 0},
+    {"command": "pytest scanner/tests with IDX_NATIVE_RESTORE_TEST=1, final full run", "passed": 191, "failed": 0, "seconds": 85.91},
+    {"command": "ruff check scanner supabase/scripts", "passed": true},
+    {"command": "git diff --check from backend", "passed": true}
+  ],
+  "platform_read_only": {
+    "project_ref": "hcjfxbynqzsaidlwvdfx",
+    "path": "/auth/v1/settings",
+    "method": "GET",
+    "http": 200,
+    "github": false,
+    "email": true,
+    "anonymous_users": false,
+    "disable_signup": false,
+    "settings_changed": false
+  },
+  "limitations": "CLI help/version readiness is not applied CLI history. Production SQL rollback assets have not yet run remotely. No owner JWT, HTTP lifecycle, concurrency, scanner runner or Vercel smoke is proven."
+}

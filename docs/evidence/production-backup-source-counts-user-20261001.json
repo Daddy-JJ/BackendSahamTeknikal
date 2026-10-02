@@ -1,0 +1,33 @@
+{
+  "evidence_source": "user-run verify_backup_source_counts.sql sanitized JSON",
+  "data_mode": "live",
+  "read_only": true,
+  "table_counts": {
+    "signals": 0,
+    "scan_runs": 0,
+    "app_members": 1,
+    "audit_events": 0,
+    "scan_run_items": 0,
+    "signal_actions": 0,
+    "scan_run_signals": 0,
+    "deployment_settings": 1,
+    "signal_action_requests": 0
+  },
+  "checked_at_utc": "2026-10-01T13:47:47.613346Z",
+  "auth_user_count": 1,
+  "history_present": false,
+  "production_write": false,
+  "auth_identity_count": 1,
+  "enabled_owner_count": 1,
+  "expected_project_ref": "hcjfxbynqzsaidlwvdfx",
+  "deployment_gate_passed": false,
+  "linked_enabled_owner_count": 1,
+  "writers_quiescent_verified": false,
+  "counts_match_restored_archive": true,
+  "project_ref_independently_confirmed": false,
+  "limitations": [
+    "Expected project label is not independent project identity proof",
+    "Counts match; row-value equality and capture-time quiescence are not proved",
+    "No owner-JWT, RLS or migration deployment evidence"
+  ]
+}

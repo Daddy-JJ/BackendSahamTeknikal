@@ -1,0 +1,15 @@
+{
+  "evidence_source": "user SQL Editor screenshot of read-only source owner query",
+  "observed_date": "2026-10-02",
+  "expected_project_ref": "hcjfxbynqzsaidlwvdfx",
+  "database_owner": "postgres",
+  "public_schema_owner": "pg_database_owner",
+  "postgres_can_create_public": true,
+  "postgres_can_create_database_objects": true,
+  "production_write": false,
+  "target_initialization_owner_before_fix": "supabase_admin when source bootstrap option supplied",
+  "target_database_owner_matching_required": true,
+  "native_non_superuser_owner_permission_case_reproduced": true,
+  "actual_archive_rehearsal_after_owner_fix_tested": false,
+  "deployment_gate_passed": false
+}

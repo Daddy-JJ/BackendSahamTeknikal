@@ -1,0 +1,18 @@
+{
+  "observed_date_local": "2026-10-01",
+  "timezone": "Asia/Jakarta",
+  "evidence_source": "user_supplied_local_terminal_screenshot",
+  "exact_execution_time_available": false,
+  "project_ref": "hcjfxbynqzsaidlwvdfx",
+  "database": "postgres",
+  "server_version": "17.6",
+  "read_only": true,
+  "data_mode": "live",
+  "migration_history_present": false,
+  "tls_mode": "verify-full",
+  "client_image": "postgres@sha256:d74eeac9a635390a49bc21bd49fccd973de707e2a53a76ac49b552b8712ec46f",
+  "backup_created": false,
+  "production_write": false,
+  "owner_jwt_rls_proven": false,
+  "restore_proven": false
+}

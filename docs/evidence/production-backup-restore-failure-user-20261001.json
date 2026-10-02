@@ -1,0 +1,18 @@
+{
+  "source": "user-run restore_backup_prompt.py sanitized JSON",
+  "observed_date": "2026-10-01",
+  "exact_execution_timestamp_recorded": false,
+  "source_project_ref": "hcjfxbynqzsaidlwvdfx",
+  "production_write": false,
+  "remote_database_connected": false,
+  "logical_restore_completed": false,
+  "restore_verified": false,
+  "deployment_gate_passed": false,
+  "offsite_copy_verified": false,
+  "writers_quiescent_verified": false,
+  "status": "local_restore_failed",
+  "failure": "local_restore_sql_failed",
+  "failure_stage": "local_roles_restore",
+  "temporary_target_removed": true,
+  "precise_cause": "unknown_pending_sanitized_SQLSTATE_diagnostic"
+}

@@ -2,6 +2,11 @@
 
 Backend repository meliputi scanner Python, provider yfinance/EODHD, schema kontrak, migrasi Supabase, serta tes database. Runtime hanya hidup sesuai scheduler/runner yang kelak diatur; migration tidak otomatis mendeploy scanner.
 
+Persiapan production (bukan perintah deploy):
+[runbook/read-only preflight](docs/PRODUCTION_READINESS.md). Jalankan seluruh Git
+dari backend. Raw migrasi001–005 tidak boleh diulang; history harus direkonsiliasi.
+Planner offline tanpa history terverifikasi sengaja menolak melanjutkan.
+
 ## Python engine
 
 Di Windows PowerShell:
@@ -39,3 +44,7 @@ Probe provider tidak menerbitkan sinyal. EODHD meminta EODHD_API_TOKEN. Mapping 
 Empat entry rules, indikator, exit paper, provider adapter, Supabase scan RPC dan snapshot/reload adapter tersedia secara lokal. Owner Auth/RLS sudah dibuktikan di development. Penyimpanan dan rekonstruksi revisi market tersedia secara lokal; migrasi 002-003 dan smoke test revisi sudah berhasil di Supabase development. Scheduler scan live, kalender/universe resmi, paper persistence, actual ledger, dan integrasi live masih dalam pengembangan. Lihat IMPLEMENTATION_STATUS.md dan docs/LOCAL_PROVIDER_PROBE.md untuk bukti terkini.
 
 Panduan migrasi revisi development dan smoke test: docs/MARKET_REVISIONS.md.
+
+M4 actual ledger/analytics/export dan hasil rollout 005 di development mode
+fixture, serta koreksi konflik 006: [docs/ACTUAL_JOURNAL.md](docs/ACTUAL_JOURNAL.md).
+HTTP 412 owner JWT perlu retest frontend; production belum menerima 005/006.

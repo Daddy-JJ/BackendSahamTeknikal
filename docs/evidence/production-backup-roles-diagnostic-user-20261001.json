@@ -1,0 +1,22 @@
+{
+  "source": "user-run local roles diagnostic sanitized JSON",
+  "observed_date": "2026-10-01",
+  "exact_execution_timestamp_recorded": false,
+  "source_project_ref": "hcjfxbynqzsaidlwvdfx",
+  "production_write": false,
+  "remote_database_connected": false,
+  "restore_verified": false,
+  "deployment_gate_passed": false,
+  "logical_restore_completed": false,
+  "scope": "local roles diagnostic only; database archive not decrypted",
+  "status": "local_roles_check_failed",
+  "failure": "local_restore_sql_failed",
+  "failure_stage": "local_roles_restore",
+  "sql_diagnostic": {
+    "sqlstate": "42501",
+    "category": "permission_denied",
+    "statement_line": null
+  },
+  "temporary_target_removed": true,
+  "precise_cause": "permission_rejection_confirmed_failing_statement_not_identified"
+}

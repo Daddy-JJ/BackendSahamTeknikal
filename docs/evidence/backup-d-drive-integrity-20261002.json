@@ -1,0 +1,21 @@
+{
+  "observed_date": "2026-10-02",
+  "source_project_ref": "hcjfxbynqzsaidlwvdfx",
+  "inspected_path": "D:\\hcjfxbynqzsaidlwvdfx-20261001T114028Z-fbe8e14b",
+  "production_write": false,
+  "database_connected": false,
+  "decryption_performed": false,
+  "files": [
+    {"file":"database.age","bytes":408785,"sha256":"bd0c1f21302707ddd358ae98d11223be5d44d384e7409d101cf2930ddc4d0fd0","matches_recorded_capture":true},
+    {"file":"roles.age","bytes":6082,"sha256":"fa1f71582a4e777327dcf0becbbc7e27bfc746efa40ecbd2ff07d682b28c006e","matches_recorded_capture":true},
+    {"file":"evidence.json","bytes":1419,"sha256":"0bfb7435b120b7cfc1088bd02d2820a1201c610fba811aec3d846cec2e700d09"}
+  ],
+  "original_c_drive_database_archive_present": false,
+  "bundle_integrity_verified": true,
+  "two_complete_copies_verified": false,
+  "usb_medium_reported_by_user": true,
+  "physical_drive_type_independently_verified": false,
+  "offsite_copy_verified": false,
+  "writers_quiescent_verified": false,
+  "deployment_gate_passed": false
+}

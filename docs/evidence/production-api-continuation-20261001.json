@@ -1,0 +1,18 @@
+{
+  "observed_date": "2026-10-01",
+  "exact_execution_timestamp_recorded": false,
+  "source": "agent-executed preflight_production.py",
+  "project_ref": "hcjfxbynqzsaidlwvdfx",
+  "method": "GET only",
+  "live_mode": true,
+  "configured_owner_enabled": true,
+  "scan_runs_fixture_count": 0,
+  "signals_fixture_count": 0,
+  "revision_and_actual_journal_tables": {"http": 404, "code": "PGRST205"},
+  "deadline_capability_http": 404,
+  "correction_embedding_http": 404,
+  "owner_jwt_smoke_proven": false,
+  "rls_smoke_proven": false,
+  "production_write": false,
+  "backup_or_restore_proven": false
+}

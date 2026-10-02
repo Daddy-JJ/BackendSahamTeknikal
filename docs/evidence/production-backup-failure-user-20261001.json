@@ -1,0 +1,19 @@
+{
+  "source": "user-supplied sanitized JSON; local ciphertext size inspection",
+  "source_project_ref": "hcjfxbynqzsaidlwvdfx",
+  "capture_start_utc": "2026-10-01T11:30:44.949915+00:00",
+  "server_version": "17.6",
+  "data_mode": "live",
+  "tls_mode": "verify-full",
+  "migration_history_present": false,
+  "files": [],
+  "local_database_age_bytes": 0,
+  "status": "failed_incomplete_candidate_do_not_use",
+  "failure": "local_tool_or_stream_failed",
+  "precise_cause": "not_yet_proven",
+  "production_write": false,
+  "restore_verified": false,
+  "offsite_copy_verified": false,
+  "writers_quiescent_verified": false,
+  "deployment_gate_passed": false
+}
