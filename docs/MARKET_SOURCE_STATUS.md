@@ -56,3 +56,7 @@ Reference files:
 - config/reference/kompas100-2026-08-source.json
 
 This remains a non-runtime source reference. Local workspace execution could not open the workbook, so its binary checksum, sheet structure and exact publication date are unverified. No provider symbol mapping or live scan is implied.
+
+## Latest verified source continuation — 2026-10-02
+
+Original workbook found under data/sources: SHA51b988ab5af2953e40603eb2884883120f2b727887ad014dc496a8c9cb0f4eb5; sheet1 C10:C109 matches all100 transcribed tickers and header confirms2026-07-27 publication and2026-08-03–2027-01-29 constituents. This supersedes the earlier missing-workbook statement. 2025 PDFs downloaded/hashed; five live Yahoo issuer mappings/fetches succeeded. Complete runtime calendar/history,95 mappings and actual GitHub runner remain open. See SCANNER_LIVE_READINESS.md.

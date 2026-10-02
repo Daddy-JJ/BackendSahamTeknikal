@@ -1,6 +1,6 @@
 {
   "purpose": "official_source_reference_not_runtime_universe",
-  "status": "owner_pasted_table_transcribed_binary_checksum_and_provider_mapping_pending",
+  "status": "owner_supplied_workbook_checksum_sheet_and_roster_verified_mapping_partial",
   "announcement": "Peng-00148/BEI.POP/07-2026",
   "attachment": 4,
   "source_description": "BEI KOMPAS100 July 2026 major evaluation attachment, workbook supplied by the project owner",
@@ -8,7 +8,7 @@
   "effective_from_inclusive": "2026-08-03",
   "effective_through_inclusive": "2027-01-29",
   "effective_to_exclusive": "2027-01-30",
-  "source_checksum": null,
+  "source_checksum": "51b988ab5af2953e40603eb2884883120f2b727887ad014dc496a8c9cb0f4eb5",
   "ticker_count": 100,
   "ticker_count_unique": 100,
   "source_transcription": "ticker list copied into chat by the project owner",
@@ -127,9 +127,12 @@
     "WIRG"
   ],
   "limitations": [
-    "The original workbook could not be opened by the local workspace runner during this update, so source-file checksum and sheet-level verification remain pending.",
-    "The exact publication date was not extracted from the workbook.",
-    "IDX-to-yfinance and IDX-to-EODHD provider mappings are not included in this reference.",
-    "This source reference is not a runnable live universe configuration."
-  ]
+    "Original workbook is owner supplied; no independently downloaded official attachment URL was recovered.",
+    "Only five Yahoo mappings were independently confirmed in the live provider probe; remaining 95 and EODHD mappings pending.",
+    "No complete historical runtime calendar or full live scan is implied."
+  ],
+  "published_date": "2026-07-27",
+  "sheet": "sheet1",
+  "ticker_cells": "C10:C109",
+  "exact_order_matches_transcription": true
 }

@@ -1,0 +1,54 @@
+{
+  "checked_at_utc": "2026-10-02T12:30:10.151803+00:00",
+  "production_write_this_turn": false,
+  "scheduler_enabled": false,
+  "user_quality_policy": "Skip/hold tickers with problematic bars or unreconciled actions; preserve coverage/reasons; RS requires complete cross-section",
+  "workbook": {
+    "sha256": "51b988ab5af2953e40603eb2884883120f2b727887ad014dc496a8c9cb0f4eb5",
+    "count": 100,
+    "unique": 100,
+    "exact_order_match": true,
+    "published_date": "2026-07-27",
+    "effective_from": "2026-08-03",
+    "effective_through": "2027-01-29",
+    "weight_period_through": "2026-10-30"
+  },
+  "local_provider_probe": "live-provider-5-ticker-20261002.json",
+  "disposable_auth": "disposable-auth-smoke-20261002.json",
+  "disposable_followup": "disposable-followup-20261002.json",
+  "disposable_action007": "disposable-signal-20261002.json",
+  "disposable_startup": {
+    "initial_start_stalled": true,
+    "minimal_start_completed": true,
+    "initial_all_interface_bindings_observed": true,
+    "loopback_rebind_verified": true,
+    "local_gateway_generated_files_preserved_in_memory": true,
+    "local_cli_migration_up_exit": 0,
+    "auth_health_http": 200,
+    "local_keys_or_tokens_printed": false
+  },
+  "disposable_shutdown": {
+    "running_containers_after_smoke": 0,
+    "containers_stopped": 5,
+    "volumes_deleted": false,
+    "production_touched": false
+  },
+  "local_regression_tests": {
+    "runner_engine_providers_passed": 36
+  },
+  "migration005_source_restored": "Restored original frozen LF checksum after EOF whitespace drift in prior commit; SQL rules unmodified",
+  "github_runner": {
+    "manual_only_workflow_prepared": true,
+    "published": false,
+    "executed": false,
+    "schedule_trigger_present": false
+  },
+  "remaining": [
+    "complete authoritative runtime calendar and historical sessions",
+    "95 Yahoo mappings",
+    "full universe fetch-to-web",
+    "real GitHub runner execution",
+    "production outsider/disabled-owner and lifecycle HTTP proof",
+    "Vercel smoke"
+  ]
+}

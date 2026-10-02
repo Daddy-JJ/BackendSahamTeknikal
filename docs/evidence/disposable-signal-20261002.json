@@ -1,0 +1,13 @@
+{
+  "target": "idx-smoke-local-20261002",
+  "production_write": false,
+  "data_mode": "fixture",
+  "checked_at_utc": "2026-10-02T12:27:41.990475+00:00",
+  "checks": {
+    "replay_200_changed_400_23514_stale_412_no_extra_rows": true,
+    "outsider_action_denied": true,
+    "disabled_owner_action_denied": true,
+    "two_real_auth_sessions_200_412_one_receipt_audit_revision": true
+  },
+  "status": "PASS_local_disposable_auth_http"
+}

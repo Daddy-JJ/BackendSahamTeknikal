@@ -1,0 +1,18 @@
+{
+  "purpose": "official_session_reference_not_runtime_calendar",
+  "checked_at_utc": "2026-10-02T12:30:10.151803+00:00",
+  "source": "https://www.idx.id/en/products-services/trading-hours-and-mechanism/",
+  "rule_reference": "II-A Kep-00136/BEI/09-2026",
+  "timezone": "Asia/Jakarta",
+  "regular_session_i_open": "09:00:00",
+  "regular_session_i_close_mon_thu": "12:00:00",
+  "regular_session_i_close_friday": "11:30:00",
+  "regular_session_ii_open_mon_thu": "13:30:00",
+  "regular_session_ii_open_friday": "14:00:00",
+  "post_closing_end": "16:15:00",
+  "limitations": [
+    "Current official web table verified, not a historical effective-date schedule.",
+    "Pre-opening matching precedes regular 09:00; daily open availability/fill convention still requires explicit historical session policy.",
+    "Do not apply current rules retroactively across the warm-up interval."
+  ]
+}

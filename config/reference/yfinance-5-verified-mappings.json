@@ -1,0 +1,72 @@
+[
+  {
+    "ticker": "BBCA",
+    "yfinance": "BBCA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BBCA.JK/",
+    "verified_at_utc": "2026-10-02T11:57:39.907381+00:00",
+    "provider_identity": {
+      "symbol": "BBCA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bank Central Asia Tbk"
+    }
+  },
+  {
+    "ticker": "BBRI",
+    "yfinance": "BBRI.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BBRI.JK/",
+    "verified_at_utc": "2026-10-02T11:57:39.907381+00:00",
+    "provider_identity": {
+      "symbol": "BBRI.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bank Rakyat Indonesia (Persero) Tbk"
+    }
+  },
+  {
+    "ticker": "BMRI",
+    "yfinance": "BMRI.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BMRI.JK/",
+    "verified_at_utc": "2026-10-02T11:57:39.907381+00:00",
+    "provider_identity": {
+      "symbol": "BMRI.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bank Mandiri (Persero) Tbk"
+    }
+  },
+  {
+    "ticker": "TLKM",
+    "yfinance": "TLKM.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/TLKM.JK/",
+    "verified_at_utc": "2026-10-02T11:57:39.907381+00:00",
+    "provider_identity": {
+      "symbol": "TLKM.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "Perusahaan Perseroan (Persero) PT Telekomunikasi Indonesia Tbk"
+    }
+  },
+  {
+    "ticker": "ASII",
+    "yfinance": "ASII.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/ASII.JK/",
+    "verified_at_utc": "2026-10-02T11:57:39.907381+00:00",
+    "provider_identity": {
+      "symbol": "ASII.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Astra International Tbk"
+    }
+  }
+]

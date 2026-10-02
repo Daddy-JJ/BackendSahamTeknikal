@@ -1,5 +1,17 @@
 # Handoff Pengembangan untuk Codex
 
+Latest verified continuation — 2026-10-02: production CLI history repair001
+and migrations002–007 completed at06:57:07Z; earlier pending statements below
+are historical. Frontend reports production GitHub owner/anon read smoke;
+backend has not reproduced production lifecycle/outsider/disabled-owner HTTP.
+Local disposable real Auth/HTTP smoke passed19 assertion groups including
+independent sessions, canonical journal and export201 rows200+1. Five live Yahoo
+provider probes and36 scanner regression tests passed. Full calendar/historical
+sessions,95 ticker mappings/full universe and actual GitHub runner execution
+remain gates. Quality skips must expose reasons/coverage; incomplete RS remains
+held. Scheduler stays disabled. See docs/SCANNER_LIVE_READINESS.md and latest
+IMPLEMENTATION_STATUS. These results do not authorize Vercel deployment.
+
 Versi: 0.2.0 • 2026-09-28
 
 Production continuation (2026-10-02): user explicitly authorized backend

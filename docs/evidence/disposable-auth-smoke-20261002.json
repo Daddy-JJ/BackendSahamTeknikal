@@ -1,0 +1,19 @@
+{
+  "target": "idx-smoke-local-20261002",
+  "checked_at_utc": "2026-10-02T12:21:08.024662+00:00",
+  "production_write": false,
+  "real_auth_jwt": true,
+  "checks": {
+    "schema_history_loopback": true,
+    "owner_a_rls": true,
+    "owner_b_rls": true,
+    "outsider_rls": true,
+    "disabled_owner_rls": true,
+    "anon_rls": true,
+    "replay_conflict_stale_no_extra_rows": true,
+    "canonical_partial_correction_oversell": true,
+    "independent_auth_sessions_concurrent_revision": true,
+    "analytics_export_closed_snapshot": true
+  },
+  "status": "PASS_local_disposable_auth_http_only"
+}

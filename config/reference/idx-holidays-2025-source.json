@@ -7,13 +7,17 @@
       "announcement": "Peng-00213/BEI.POP/10-2024",
       "published_date": "2024-10-16",
       "source": "https://www.idxcarbon.co.id/document/share/109/e11c312a-95d6-4525-b71a-f70377cc7777",
-      "baseline_trading_days": 237
+      "baseline_trading_days": 237,
+      "source_checksum": "84cfc174e5eab9257e9f93ce36bb41c76e67a3d8cb99cc9b4a80c76c26638b43"
     },
     {
       "announcement": "Peng-00149/BEI.POP/08-2025",
       "published_date": "2025-08-08",
       "source": "https://www.idxcarbon.co.id/document/share/143/cf878b0d-87c1-45e2-98a5-4c54d6efc8c2",
-      "amendments": ["2025-08-18"]
+      "amendments": [
+        "2025-08-18"
+      ],
+      "source_checksum": "c0f59975d73c136e954b0c10508d483832f15029b91d91d056bfaf5e3e31192c"
     }
   ],
   "holidays": [
@@ -62,6 +66,6 @@
     "Calendar amendments after Peng-00149/BEI.POP/08-2025 have not been reconciled",
     "Historical regular-equity open/close times are not defined here",
     "This reference has not been accepted by the runtime calendar loader",
-    "The original PDF files have not yet been downloaded, hashed, and visually reviewed locally"
+    "Original PDFs downloaded and hashed on 2026-10-02; baseline primary-source text table reviewed; local visual review and later-amendment completeness pending."
   ]
 }

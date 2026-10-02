@@ -5,7 +5,8 @@ Versi: 0.2.0 • 2026-09-28 • Status: rancangan, belum di-deploy
 Aturan finansial ada di [SOT.md](SOT.md). Dokumen ini menentukan cara membangun dan mengoperasikan sistem. Jangan mengulang rumus berbeda dalam frontend.
 
 Kontrak backend M4 pada migration 005 yang sudah diterapkan di development mode
-fixture (belum production), termasuk
+fixture dan telah diterapkan ke production lewat CLI2026-10-02; smoke mutasi
+production belum lulus. Kontrak termasuk
 RPC, lifecycle open/provisional, koreksi, decimal policy, CSV dan gate development:
 [docs/ACTUAL_JOURNAL.md](docs/ACTUAL_JOURNAL.md). Tabel/API di bawah tetap rancangan
 untuk scope yang belum diimplementasikan; bukan bukti deployment.

@@ -616,3 +616,4 @@ grant execute on function public.export_actual_journal(date,date,text,text,jsonb
   to authenticated;
 
 commit;
+

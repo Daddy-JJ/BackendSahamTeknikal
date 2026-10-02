@@ -1,0 +1,80 @@
+{
+  "target": "idx-smoke-local-20261002",
+  "production_write": false,
+  "checked_at_utc": "2026-10-02T12:24:04.226060+00:00",
+  "checks": {
+    "seven_tables_and_analytics_export_rls": true,
+    "direct_table_mutation_denied": true,
+    "estimated_actual_fee_and_latest_correction_fk": true,
+    "two_auth_sessions_identical_replay_one_mutation": true,
+    "http_cursor_200_1_no_duplicates_analytics_ledger": true
+  },
+  "http_statuses": {
+    "owner_a": {
+      "actual_trades": 200,
+      "actual_fills": 200,
+      "actual_fill_corrections": 200,
+      "actual_stop_events": 200,
+      "actual_notes": 200,
+      "actual_trade_tags": 200,
+      "actual_journal_requests": 200,
+      "actual_journal_analytics": 200,
+      "export_actual_journal": 200
+    },
+    "owner_b": {
+      "actual_trades": 200,
+      "actual_fills": 200,
+      "actual_fill_corrections": 200,
+      "actual_stop_events": 200,
+      "actual_notes": 200,
+      "actual_trade_tags": 200,
+      "actual_journal_requests": 200,
+      "actual_journal_analytics": 200,
+      "export_actual_journal": 200
+    },
+    "outsider": {
+      "actual_trades": 200,
+      "actual_fills": 200,
+      "actual_fill_corrections": 200,
+      "actual_stop_events": 200,
+      "actual_notes": 200,
+      "actual_trade_tags": 200,
+      "actual_journal_requests": 200,
+      "actual_journal_analytics": 403,
+      "export_actual_journal": 403
+    },
+    "disabled_owner": {
+      "actual_trades": 200,
+      "actual_fills": 200,
+      "actual_fill_corrections": 200,
+      "actual_stop_events": 200,
+      "actual_notes": 200,
+      "actual_trade_tags": 200,
+      "actual_journal_requests": 200,
+      "actual_journal_analytics": 403,
+      "export_actual_journal": 403
+    },
+    "anon": {
+      "actual_trades": 401,
+      "actual_fills": 401,
+      "actual_fill_corrections": 401,
+      "actual_stop_events": 401,
+      "actual_notes": 401,
+      "actual_trade_tags": 401,
+      "actual_journal_requests": 401,
+      "actual_journal_analytics": 401,
+      "export_actual_journal": 401
+    }
+  },
+  "cursor": {
+    "pages": [
+      200,
+      1
+    ],
+    "unique_trades": 201,
+    "terminal_has_more": false,
+    "fixture_creation": "local SQL claims + backend RPC",
+    "reads": "real Auth JWT HTTP"
+  },
+  "status": "PASS_local_disposable_only"
+}

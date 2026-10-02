@@ -1,5 +1,21 @@
 # Owner login and disposable smoke target — 2026-10-02
 
+## Latest execution evidence
+
+Production CLI history001–007 is complete; frontend reports production owner
+GitHub login and owner/anon read checks. Backend local disposable real Auth/HTTP
+smoke passed19 assertion groups on2026-10-02, including outsider/disabled-owner,
+journal lifecycle, replay/conflict/PT412, independent sessions and cursor200+1.
+This is not hosted production mutation/RLS proof. See
+SCANNER_LIVE_READINESS.md and docs/evidence/disposable-*.json.
+
+The local CLI initially published ports on all interfaces despite the requested
+network default. Actual Docker bindings were corrected and verified as127.0.0.1
+before creating test accounts. All five running disposable containers were
+stopped after smoke; volumes and stopped original containers were retained.
+Before any restart, inspect actual bindings again; do not assume the older
+startup recipe below enforces loopback. No production QA trades were created.
+
 No frontend edits or Vercel deployment were performed by this backend chat.
 Production rollout is authorized; credential entry remains an operator action.
 Do not paste credentials, OAuth callback codes or JWT into chat/logs/files.
