@@ -1,11 +1,14 @@
 """Operator doubles prove rejection boundaries; never hosted/market evidence."""
 
+import hashlib
 import importlib
+import json
 from dataclasses import replace
 from datetime import UTC, datetime, timedelta
 from decimal import Decimal
 from pathlib import Path
 from types import SimpleNamespace
+from zipfile import ZipFile
 
 import pytest
 
@@ -103,3 +106,51 @@ def test_expired_forward_window_blocks_publication_before_secrets(scripts, monke
     monkeypatch.setattr(scripts.publisher, "local_env", lambda _: pytest.fail("secret read"))
     with pytest.raises(ValueError, match="window_elapsed"):
         scripts.publisher.reviewed_preflight(now)
+
+
+def reviewed_package(tmp_path, entries):
+    archive = tmp_path / "public-sources.zip"
+    with ZipFile(archive, "w") as package:
+        for name, content in entries:
+            package.writestr(name, content)
+    archive.with_suffix(".json").write_text(
+        json.dumps({"sha256": hashlib.sha256(archive.read_bytes()).hexdigest()})
+    )
+    return archive
+
+
+def test_archive_restores_original_hash_and_refuses_changed_local_source(scripts, tmp_path):
+    name = "data/sources/reviewed.pdf"
+    content = b"reviewed public source"
+    archive = reviewed_package(tmp_path, [(name, content)])
+    manifest = {
+        "events": [{"source_file": name, "source_sha256": hashlib.sha256(content).hexdigest()}]
+    }
+    assert scripts.hydrate.hydrate_archive(archive, manifest, tmp_path) == 1
+    assert scripts.hydrate.hydrate_archive(archive, manifest, tmp_path) == 0
+    file = tmp_path / name
+    file.write_bytes(b"changed")
+    with pytest.raises(ValueError, match="local_reviewed_source_changed"):
+        scripts.hydrate.hydrate_archive(archive, manifest, tmp_path)
+    assert file.read_bytes() == b"changed"
+
+
+def test_wrong_archive_member_bytes_fail_before_any_restore(scripts, tmp_path):
+    entries = [("data/sources/a.pdf", b"valid"), ("data/sources/b.pdf", b"changed")]
+    archive = reviewed_package(tmp_path, entries)
+    manifest = {"events": [
+        {"source_file": name, "source_sha256": hashlib.sha256(b"valid").hexdigest()}
+        for name, _ in entries
+    ]}
+    with pytest.raises(ValueError, match="archive_source_checksum_mismatch"):
+        scripts.hydrate.hydrate_archive(archive, manifest, tmp_path)
+    assert not (tmp_path / "data").exists()
+
+
+def test_archive_traversal_and_unexpected_members_are_rejected(scripts, tmp_path):
+    archive = reviewed_package(tmp_path, [("../outside.pdf", b"public")])
+    row = {"source_file": "../outside.pdf", "source_sha256": hashlib.sha256(b"public").hexdigest()}
+    with pytest.raises(ValueError, match="source_path_outside"):
+        scripts.hydrate.hydrate_archive(archive, {"events": [row]}, tmp_path)
+    with pytest.raises(ValueError, match="archive_members_mismatch"):
+        scripts.hydrate.hydrate_archive(archive, {"events": []}, tmp_path)

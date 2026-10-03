@@ -1,0 +1,12 @@
+{
+  "sources_restored_into_empty_local_target": 129,
+  "original_source_hashes_verified": 129,
+  "archive_sha256": "8b343445132cef6ab4363cd5cf67a67bc0a6937688598c8487601283fab36fd0",
+  "credential_pattern_files": 0,
+  "production_write": false,
+  "full_python_passed": 235,
+  "python_skipped": 5,
+  "archive_guard_focused_passed": 14,
+  "ruff": "PASS",
+  "scope": "local archive restore and tests; not hosted runner evidence"
+}

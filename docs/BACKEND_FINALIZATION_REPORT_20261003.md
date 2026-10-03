@@ -1,4 +1,4 @@
-# Backend finalization — 3 October 2026
+# Backend finalization â€” 3 October 2026
 
 Decision: **NO-GO for mandatory backend/full-stack release**. Partial live reads
 are working. Remaining hosted mutation/access and full runner/publisher gates
@@ -8,11 +8,11 @@ Scheduler stays off; frontend and Vercel are outside this authorization.
 
 | Gate | Result | Evidence |
 | --- | --- | --- |
-| Production migrations/FK/RPC | Prior PASS, unchanged | 001–007 through 202610010007, deployed 2026-10-02T06:57:07Z; not reopened |
+| Production migrations/FK/RPC | Prior PASS, unchanged | 001â€“007 through 202610010007, deployed 2026-10-02T06:57:07Z; not reopened |
 | Owner latest snapshot read | PASS | Frontend genuine owner session observed 2026-10-02T22:50:09.953Z, HTTP200 run/items/signals; 4 pages, 100 unique tickers; source evidence hash accepted, not rerun |
 | Anonymous hosted reads | PASS | 2026-10-03T09:41:19Z: 12 private tables and analytics/export GET RPC denied HTTP401/42501 |
-| Calendar/universe/mapping | PASS within configured dates | 100 mappings/identities, effective 2026-08-03 inclusive–2027-01-30 exclusive; 651 known history sessions and 72 explicit closures |
-| New target candles | PASS for this fetch only | Yahoo 100/100 complete target 2026-10-02, fetched 2026-10-03T09:34:33Z–09:35:01Z; old failed fetch remains FAIL |
+| Calendar/universe/mapping | PASS within configured dates | 100 mappings/identities, effective 2026-08-03 inclusiveâ€“2027-01-30 exclusive; 651 known history sessions and 72 explicit closures |
+| New target candles | PASS for this fetch only | Yahoo 100/100 complete target 2026-10-02, fetched 2026-10-03T09:34:33Zâ€“09:35:01Z; old failed fetch remains FAIL |
 | Warm-up | PARTIAL | AADI430, CBDK407, COIN299, EMAS247, RATU410 bars; do not grant 600-bar strategies eligibility |
 | Action/anomaly quality | PARTIAL / held | 45 evaluated, 25 action holds, 30 quality holds; unresolved dates/actions not removed; RS incomplete |
 | Hosted full-universe runner | Pending authorized dispatch | Result/URL/artifact added below only when observed |
@@ -107,6 +107,15 @@ Evidence: `docs/evidence/backend-finalization-audit-20261003.json`,
 
 ## Authorized GitHub dispatch result
 
-Pending: record actual commit SHA, run URL/status, artifact checksum/evidence and
-publication receipt (not attempted for this read-only workflow). Do not mark
-PASS from workflow preparation alone.
+First dispatch: https://github.com/Daddy-JJ/BackendSahamTeknikal/actions/runs/37114212953
+on c22c7d41b8b9b71c9431c086c9f61acc18d3b235, FAILED at09:47:29Z before fetching.
+Source hydration rejected changed bytes; artifacts empty, publication not attempted,
+receipt null. Local diagnosis confirmed changed BBCA interim HTML bytes; hosted
+logs do not identify the specific failing source, so exact hosted source attribution
+is not asserted. A reviewed-public-source ZIP (4,033,293 bytes) preserves all129
+original hashes. Archive hash/member/path/tamper and existing-file checks reject
+changes before any restore. This restores historical evidence reproducibly; it is
+not approval of current amendments. User explicitly approved the fix plus one retry.
+A checksum audit command initially used a nonexistent manifest field (sha256);
+corrected sha256_lf audit passed7/7. No migration change.
+Retry result will be recorded only when observed.

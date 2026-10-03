@@ -1,0 +1,98 @@
+{
+  "checked_at_utc": "2026-10-03T09:50:27.956439+00:00",
+  "scope": "local GET prefix diagnosis; not exact hosted failure attribution",
+  "production_write": false,
+  "reviewed_files_overwritten": false,
+  "checks": [
+    {
+      "source_file": "data/sources/ksei-research-20261003/ACES_DIV_20240621_ID.pdf",
+      "source": "https://web.ksei.co.id/Announcement/Files/ACES_DIV_20240621_ID.pdf",
+      "http": 200,
+      "content_type": "application/pdf",
+      "expected_sha256": "f83457cb23b9cb2ab642b8901a3dc07839e672573ea778809976fbb34ea10286",
+      "observed_sha256": "f83457cb23b9cb2ab642b8901a3dc07839e672573ea778809976fbb34ea10286",
+      "match": true
+    },
+    {
+      "source_file": "data/sources/ksei-research-20261003/ACES_DIV_20250630_ID.pdf",
+      "source": "https://web.ksei.co.id/Announcement/Files/ACES_DIV_20250630_ID.pdf",
+      "http": 200,
+      "content_type": "application/pdf",
+      "expected_sha256": "55798e5a33d860bea28e2b4f07e4654bdfc482e11fb312b42be26f3e11af6c21",
+      "observed_sha256": "55798e5a33d860bea28e2b4f07e4654bdfc482e11fb312b42be26f3e11af6c21",
+      "match": true
+    },
+    {
+      "source_file": "data/sources/ksei-research-20261003/ACES_DIV_20260623_ID.pdf",
+      "source": "https://web.ksei.co.id/Announcement/Files/ACES_DIV_20260623_ID.pdf",
+      "http": 200,
+      "content_type": "application/pdf",
+      "expected_sha256": "0e6a1946ac70719fa0525d222d8f088ea3c8e7260aa03a98049d8212d7fe97cd",
+      "observed_sha256": "0e6a1946ac70719fa0525d222d8f088ea3c8e7260aa03a98049d8212d7fe97cd",
+      "match": true
+    },
+    {
+      "source_file": "data/sources/ksei-research-20261003/AMRT_DIV_20240530_ID.pdf",
+      "source": "https://web.ksei.co.id/Announcement/Files/AMRT_DIV_20240530_ID.pdf",
+      "http": 200,
+      "content_type": "application/pdf",
+      "expected_sha256": "5675edbaae2f61d2ab3bba0e7737d9ae92bc3b19865180203990b73014371c7d",
+      "observed_sha256": "5675edbaae2f61d2ab3bba0e7737d9ae92bc3b19865180203990b73014371c7d",
+      "match": true
+    },
+    {
+      "source_file": "data/sources/ksei-research-20261003/180831_ksei_12270_jku_0525_202505271519.pdf",
+      "source": "https://web.ksei.co.id/Announcement/Files/180831_ksei_12270_jku_0525_202505271519.pdf",
+      "http": 200,
+      "content_type": "application/pdf",
+      "expected_sha256": "15d69126c1c6e427dd534c801beaa3add8558e32a688ff54e6f2466ce82a1e68",
+      "observed_sha256": "15d69126c1c6e427dd534c801beaa3add8558e32a688ff54e6f2466ce82a1e68",
+      "match": true
+    },
+    {
+      "source_file": "data/sources/ksei-research-20261003/AMRT_DIV_20260617_ID.pdf",
+      "source": "https://web.ksei.co.id/Announcement/Files/AMRT_DIV_20260617_ID.pdf",
+      "http": 200,
+      "content_type": "application/pdf",
+      "expected_sha256": "e27eac0751e78688c7da44cfe296ba44cb98a581452050a1e55c19b0edb44686",
+      "observed_sha256": "e27eac0751e78688c7da44cfe296ba44cb98a581452050a1e55c19b0edb44686",
+      "match": true
+    },
+    {
+      "source_file": "data/sources/ksei-research-20261003/ARCI_DIV_20251212_ID.pdf",
+      "source": "https://web.ksei.co.id/Announcement/Files/ARCI_DIV_20251212_ID.pdf",
+      "http": 200,
+      "content_type": "application/pdf",
+      "expected_sha256": "9cf357501fc7fd0f3d172b8a428730ddf24b60470ac0c1efb1b12e7b441cdd90",
+      "observed_sha256": "9cf357501fc7fd0f3d172b8a428730ddf24b60470ac0c1efb1b12e7b441cdd90",
+      "match": true
+    },
+    {
+      "source_file": "data/sources/ksei-research-20261003/ARCI_DIV_20260521_ID.pdf",
+      "source": "https://web.ksei.co.id/Announcement/Files/ARCI_DIV_20260521_ID.pdf",
+      "http": 200,
+      "content_type": "application/pdf",
+      "expected_sha256": "f626396ae493b621e7e4daa54b557ac10d56ea850b00e200cc4863a06f841a18",
+      "observed_sha256": "f626396ae493b621e7e4daa54b557ac10d56ea850b00e200cc4863a06f841a18",
+      "match": true
+    },
+    {
+      "source_file": "data/sources/bbca-2024-final.pdf",
+      "source": "https://www.bca.co.id/-/media/Feature/Report/File/S8/RUPS/2024/20240318-bca-deviden-bi-181x390-18-mar-2024-ID.pdf",
+      "http": 200,
+      "content_type": "application/pdf",
+      "expected_sha256": "336df309ef29582142b923651dbedef2a333e88bbc58760609a844647685ba8b",
+      "observed_sha256": "336df309ef29582142b923651dbedef2a333e88bbc58760609a844647685ba8b",
+      "match": true
+    },
+    {
+      "source_file": "data/sources/bbca-2024-interim.html",
+      "source": "https://www.bca.co.id/id/tentang-bca/media-riset/pressroom/siaran-pers/2024/11/12/08/30/BCA-Bagikan-Dividen-Interim-Tunai-Rp50-per-Saham",
+      "http": 200,
+      "content_type": "text/html; charset=utf-8",
+      "expected_sha256": "957b827847641343d2faf5d2b00f62f16f8c33cc373a1d5ed9cf8e04f908680d",
+      "observed_sha256": "775501d9b3d6f502a8b7b4169ab1dae74c7171d528cb26d28542905d8af14640",
+      "match": false
+    }
+  ]
+}

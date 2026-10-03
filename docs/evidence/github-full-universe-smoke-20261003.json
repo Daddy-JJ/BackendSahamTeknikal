@@ -1,0 +1,18 @@
+{
+  "run_url": "https://github.com/Daddy-JJ/BackendSahamTeknikal/actions/runs/37114212953",
+  "run_id": 37114212953,
+  "job_id": 111177749395,
+  "commit_sha": "c22c7d41b8b9b71c9431c086c9f61acc18d3b235",
+  "status": "completed",
+  "conclusion": "failure",
+  "failure_stage": "Verify previously reviewed public-source bytes",
+  "failure": "primary_source_changed_requires_review",
+  "failed_at_utc": "2026-10-03T09:47:29Z",
+  "full_universe_fetch_executed": false,
+  "artifacts": [],
+  "production_publication_attempted": false,
+  "publication_receipt": null,
+  "scheduler_enabled": false,
+  "retry_authorized": true,
+  "fix": "restore frozen 129 reviewed public source bytes; original source hashes unchanged; no current-amendment certification"
+}
