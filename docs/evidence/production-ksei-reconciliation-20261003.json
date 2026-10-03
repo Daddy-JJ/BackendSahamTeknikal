@@ -1,0 +1,33 @@
+{
+  "project_ref": "hcjfxbynqzsaidlwvdfx",
+  "target": "2026-10-02",
+  "started_at_utc": "2026-10-02T17:45:31.814196+00:00",
+  "production_write_attempted": true,
+  "scheduler_enabled": false,
+  "actual_trades_created": false,
+  "scope": "same-target immutable actual Yahoo capture plus reviewed KSEI dividends",
+  "stage": "production_postflight",
+  "hosted_github_runner_tested": false,
+  "status": "production_partial_reconciliation_verified",
+  "proof_count": 129,
+  "coverage_valid": 45,
+  "coverage_total": 100,
+  "signals": 0,
+  "ranking_status": "cross_section_incomplete",
+  "run_digest": "0aefe872fe3aa9ead45f1f98f9980ff96cd819142ddcc0f9f64a0a83c1c4c121",
+  "run_id": "8f634f6c-efae-4837-b1eb-1db04de6ffd2",
+  "replayed": false,
+  "revisions_digest_readback_verified": 200,
+  "stored_at": "2026-10-02T17:50:07.347251+00:00",
+  "old_runs_unchanged": true,
+  "actual_ledger_unchanged": true,
+  "fixture_rows_absent": true,
+  "counts": {
+    "corporate_action_hold": 25,
+    "data_quality_hold": 30,
+    "evaluated": 45
+  },
+  "production_owner_jwt_tested": false,
+  "scanner_full_quality_go": false,
+  "finished_at_utc": "2026-10-02T17:50:09.511139+00:00"
+}

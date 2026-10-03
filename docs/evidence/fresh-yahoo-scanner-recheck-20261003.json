@@ -1,0 +1,1677 @@
+{
+  "checked_at_utc": "2026-10-03T09:34:19.641819+00:00",
+  "target": "2026-10-02",
+  "production_write": false,
+  "database_connected": false,
+  "scheduler_enabled": false,
+  "provider_changed": false,
+  "environment": "fresh_provider_local_engine",
+  "fresh_provider_fetch_executed": true,
+  "provider_errors": [],
+  "finished_at_utc": "2026-10-03T09:35:03.703317+00:00",
+  "fetched": 100,
+  "proof_count": 129,
+  "evidence_mismatch_tickers": [],
+  "status": "partial",
+  "coverage_valid": 45,
+  "coverage_total": 100,
+  "ranking_status": "cross_section_incomplete",
+  "signals": 0,
+  "run_digest": "653f9f9168b20dabfc14dc9fa18090e6ed48f5d63546c897107cc44258dd4110",
+  "counts": {
+    "corporate_action_hold": 25,
+    "evaluated": 45,
+    "data_quality_hold": 30
+  },
+  "strategy_signal_counts": {},
+  "next_open": "2026-10-05T08:58:00+07:00",
+  "items": [
+    {
+      "ticker": "AADI",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "ACES",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "ADMR",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "ADRO",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "AKRA",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "AMMN",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "AMRT",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "ANTM",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "ARCI",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "ARTO",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "ASII",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "BBCA",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "BBNI",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "BBRI",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "BBTN",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "BBYB",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "BFIN",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "BIPI",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "BKSL",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "BMRI",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "BNBR",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "BRIS",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "BRMS",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "BRPT",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "BSDE",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "BUKA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "BULL",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "BUMI",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "BUVA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "CBDK",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "insufficient_history",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "insufficient_history",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "insufficient_history",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "CMRY",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "COIN",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "CPIN",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "CTRA",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "CUAN",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "DEWA",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "DSNG",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "ELSA",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "EMAS",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "insufficient_history",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "insufficient_history",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "insufficient_history",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "EMTK",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "ENRG",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "ERAA",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "ESSA",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "EXCL",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "GGRM",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "GOTO",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "HEAL",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "HRTA",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "HRUM",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "ICBP",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "IMPC",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "INCO",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "INDF",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "INDY",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "INET",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "INKP",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "ISAT",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "ITMG",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "JPFA",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "JSMR",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "KIJA",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "KLBF",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "KPIG",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "LSIP",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "MAPA",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "MAPI",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "MBMA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "MDKA",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "MEDC",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "MIKA",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "MINA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "MYOR",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "NCKL",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "PANI",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "PGAS",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "PGEO",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "PNLF",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "PSAB",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "PTBA",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "PTRO",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "PWON",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "RAJA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "RATU",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "RMKE",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "SCMA",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "SGER",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "SMGR",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "SMIL",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "SMRA",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "SSIA",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "TAPG",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "TINS",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "TLKM",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "TOBA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "TOWR",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "TPIA",
+      "status": "evaluated",
+      "quality": "valid",
+      "last_complete_session": "2026-10-02",
+      "candidates": [
+        {
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "MACD_EMA200_V1",
+          "reason": "no_signal",
+          "triggered": false
+        },
+        {
+          "strategy": "RS_BREAKOUT_V1",
+          "reason": "cross_section_incomplete",
+          "triggered": false
+        },
+        {
+          "strategy": "PULLBACK_RECLAIM_V1",
+          "reason": "no_signal",
+          "triggered": false
+        }
+      ]
+    },
+    {
+      "ticker": "UNTR",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "UNVR",
+      "status": "corporate_action_hold",
+      "quality": "corporate_action_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "WIFI",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    },
+    {
+      "ticker": "WIRG",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-02",
+      "candidates": []
+    }
+  ],
+  "scanner_quality_go": false,
+  "hosted_github_runner_tested": false
+}

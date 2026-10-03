@@ -1,0 +1,208 @@
+{
+  "purpose": "read_only_collector_OHLCV_comparison",
+  "checked_at_utc": "2026-10-02T17:05:56.432252+00:00",
+  "completed_at_utc": "2026-10-02T17:07:01.815992+00:00",
+  "source_collector_modified": false,
+  "source_sync_or_database_executed": false,
+  "fundamentals_requested": false,
+  "production_write": false,
+  "scanner_provider_changed": false,
+  "target": "2026-10-02",
+  "http_requests": 8,
+  "source_file_sha256s": {
+    "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "daily_sync.py": "77f116aea87ad095f4344d39fb8a97b95bf5fb5bf080f6d3a1351dd85bd996df",
+    "intraday.py": "5fb0dc5cdae94890fd49f80207cfe176746b872f7e26cdad130418daf2fe4556",
+    "news.py": "e98e1e1bc5dc127b6274dfbc9c859a2300176970530d0f9bfb3e760ee7233b63",
+    "yahoo.py": "37416befb25d1f9b911820eaa7168c2703cb4cf36c0d7367df73198b8292cc44"
+  },
+  "source_checksums_unchanged": true,
+  "results": [
+    {
+      "ticker": "AMMN",
+      "http": 200,
+      "response_sha256": "b5672c8058251c59a3951bb3e37a8887d1bacf7f956617d7eab9c18e223ac271",
+      "status": "chart_fetched_comparison_only",
+      "identity": {
+        "symbol": "AMMN.JK",
+        "exchangeName": "JKT",
+        "currency": "IDR",
+        "instrumentType": "EQUITY",
+        "exchangeTimezoneName": "Asia/Jakarta"
+      },
+      "converted_rows": 775,
+      "first_bar": "2023-07-07",
+      "latest_bar": "2026-10-01",
+      "history_at_least_600": true,
+      "matched_baseline_sessions": 654,
+      "missing_baseline_sessions": [
+        "2026-10-02"
+      ],
+      "ohlcv_differing_sessions": 0,
+      "zero_volume_explicit_closed_rows": 4,
+      "null_close_rows_skipped": 6,
+      "null_volume_rows_coerced_zero": 0,
+      "source_events_keys": [],
+      "source_event_count": 0,
+      "timestamp_day_utc_wib_differences": 0,
+      "unresolved_zero_volume_known_open_dates": [
+        "2024-01-15",
+        "2024-03-25",
+        "2024-03-26"
+      ]
+    },
+    {
+      "ticker": "BBCA",
+      "http": 200,
+      "response_sha256": "d83121fd601375750458efaee5f4ec25dace53f3784871a13b6443fb7cbd2939",
+      "status": "chart_fetched_comparison_only",
+      "identity": {
+        "symbol": "BBCA.JK",
+        "exchangeName": "JKT",
+        "currency": "IDR",
+        "instrumentType": "EQUITY",
+        "exchangeTimezoneName": "Asia/Jakarta"
+      },
+      "converted_rows": 1202,
+      "first_bar": "2021-10-04",
+      "latest_bar": "2026-10-01",
+      "history_at_least_600": true,
+      "matched_baseline_sessions": 654,
+      "missing_baseline_sessions": [
+        "2026-10-02"
+      ],
+      "ohlcv_differing_sessions": 0,
+      "zero_volume_explicit_closed_rows": 4,
+      "null_close_rows_skipped": 6,
+      "null_volume_rows_coerced_zero": 0,
+      "source_events_keys": [],
+      "source_event_count": 0,
+      "timestamp_day_utc_wib_differences": 0,
+      "unresolved_zero_volume_known_open_dates": []
+    },
+    {
+      "ticker": "BRPT",
+      "http": 200,
+      "response_sha256": "8dcb796ab3d3834343ce19e2c90f75f1f86ce1e7fbb49008c5de068bb65c1a68",
+      "status": "chart_fetched_comparison_only",
+      "identity": {
+        "symbol": "BRPT.JK",
+        "exchangeName": "JKT",
+        "currency": "IDR",
+        "instrumentType": "EQUITY",
+        "exchangeTimezoneName": "Asia/Jakarta"
+      },
+      "converted_rows": 1203,
+      "first_bar": "2021-10-04",
+      "latest_bar": "2026-10-01",
+      "history_at_least_600": true,
+      "matched_baseline_sessions": 655,
+      "missing_baseline_sessions": [
+        "2026-10-02"
+      ],
+      "ohlcv_differing_sessions": 0,
+      "zero_volume_explicit_closed_rows": 5,
+      "null_close_rows_skipped": 5,
+      "null_volume_rows_coerced_zero": 0,
+      "source_events_keys": [],
+      "source_event_count": 0,
+      "timestamp_day_utc_wib_differences": 0,
+      "unresolved_zero_volume_known_open_dates": []
+    },
+    {
+      "ticker": "BUMI",
+      "http": 200,
+      "response_sha256": "1597189f690147371d571b4a3ab1ff802b3745e5b4bf727f2afdd9be1b5308d6",
+      "status": "chart_fetched_comparison_only",
+      "identity": {
+        "symbol": "BUMI.JK",
+        "exchangeName": "JKT",
+        "currency": "IDR",
+        "instrumentType": "EQUITY",
+        "exchangeTimezoneName": "Asia/Jakarta"
+      },
+      "converted_rows": 1203,
+      "first_bar": "2021-10-04",
+      "latest_bar": "2026-10-01",
+      "history_at_least_600": true,
+      "matched_baseline_sessions": 655,
+      "missing_baseline_sessions": [
+        "2026-10-02"
+      ],
+      "ohlcv_differing_sessions": 0,
+      "zero_volume_explicit_closed_rows": 5,
+      "null_close_rows_skipped": 5,
+      "null_volume_rows_coerced_zero": 0,
+      "source_events_keys": [],
+      "source_event_count": 0,
+      "timestamp_day_utc_wib_differences": 0,
+      "unresolved_zero_volume_known_open_dates": []
+    },
+    {
+      "ticker": "COIN",
+      "http": 200,
+      "response_sha256": "4da1f342898c6f22d38b756a1c5b00014e0c8f56062b87b002ae532e75830843",
+      "status": "chart_fetched_comparison_only",
+      "identity": {
+        "symbol": "COIN.JK",
+        "exchangeName": "JKT",
+        "currency": "IDR",
+        "instrumentType": "EQUITY",
+        "exchangeTimezoneName": "Asia/Jakarta"
+      },
+      "converted_rows": 302,
+      "first_bar": "2025-07-09",
+      "latest_bar": "2026-10-01",
+      "history_at_least_600": false,
+      "matched_baseline_sessions": 302,
+      "missing_baseline_sessions": [
+        "2026-10-02"
+      ],
+      "ohlcv_differing_sessions": 0,
+      "zero_volume_explicit_closed_rows": 4,
+      "null_close_rows_skipped": 6,
+      "null_volume_rows_coerced_zero": 0,
+      "source_events_keys": [],
+      "source_event_count": 0,
+      "timestamp_day_utc_wib_differences": 0,
+      "unresolved_zero_volume_known_open_dates": [
+        "2025-07-17",
+        "2025-07-22",
+        "2025-07-23",
+        "2025-08-26",
+        "2025-08-27",
+        "2025-08-28",
+        "2025-08-29"
+      ]
+    }
+  ],
+  "fixed_window_diagnostic": {
+    "ticker": "AMMN",
+    "http": 200,
+    "latest_complete": "2026-10-01",
+    "target_close_is_null": true,
+    "response_sha256": "b5ff8177ed990082e3037f69443082c8148874189c27aa2ad57e611b8b8fa6fd"
+  },
+  "event_metadata_diagnostic": [
+    {
+      "ticker": "AMMN",
+      "http": 200,
+      "target_close_is_null": true,
+      "events_count": {},
+      "response_sha256": "e17a27c1f9cfc3f4c1f778659bca406225feccd024c01efae6a2d2ac54b4c0f0"
+    },
+    {
+      "ticker": "BBCA",
+      "http": 200,
+      "target_close_is_null": true,
+      "events_count": {
+        "dividends": 7
+      },
+      "response_sha256": "4a7652275d9217073764e74ff5d56764331c5afa9a6a107d1cce1a860c65a6df"
+    }
+  ],
+  "collector_useful_as_transport_reference": true,
+  "quality_holds_resolved": false,
+  "corporate_action_holds_resolved": false,
+  "scanner_go": false
+}

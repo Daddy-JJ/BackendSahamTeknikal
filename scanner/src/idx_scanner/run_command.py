@@ -8,6 +8,7 @@ from pathlib import Path
 import httpx
 
 from .config_io import load_calendar, load_requests, load_universe
+from .corporate_actions import load_dividend_evidence
 from .persistence import SupabaseScanStore
 from .pipeline import require_scan_context
 from .providers import make_provider
@@ -29,6 +30,12 @@ def execute_run(args) -> dict:
         raise ValueError("live_context_required")
     requests = load_requests(args.mapping, args.provider, args.start, args.target)
     require_scan_context(requests, args.target, calendar, universe, utc_now())
+    evidence_path = getattr(args, "dividend_evidence", None)
+    evidence = (
+        load_dividend_evidence(evidence_path, Path(__file__).resolve().parents[3])
+        if evidence_path
+        else ()
+    )
     summary = {
         "data_mode": "live",
         "provider": args.provider,
@@ -58,6 +65,7 @@ def execute_run(args) -> dict:
             utc_now(),
             namespace=args.namespace,
             clock=utc_now,
+            dividend_evidence=evidence,
         )
     return {
         **summary,
@@ -78,6 +86,9 @@ def add_run_parser(commands) -> None:
         "run", help="Validate live configuration; --execute fetches and publishes"
     )
     parser.add_argument("--provider", choices=("yfinance", "eodhd"), required=True)
+    parser.add_argument(
+        "--dividend-evidence", type=Path, help="Reviewed manifest; sources must exist locally"
+    )
     parser.add_argument("--calendar", type=Path, required=True)
     parser.add_argument("--universe-metadata", type=Path, required=True)
     parser.add_argument("--universe-csv", type=Path, required=True)

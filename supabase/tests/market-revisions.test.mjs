@@ -236,3 +236,36 @@ test("Python to PostgreSQL to Python preserves exact engine digest including num
   const result = await read(receipt.revision_id);
   assert.equal(execFileSync(python, [helper, "verify"], {input: JSON.stringify(result), encoding: "utf8"}).trim(), "digest_verified");
 });
+
+test("derived calendar revision retains excluded-bar audit and replays without changing raw history", async () => {
+  await db.exec("update public.deployment_settings set data_mode='fixture'");
+  await role("service_role");
+  const original = JSON.parse(execFileSync(python, [helper, "encode_normalized_raw"], {encoding: "utf8"}));
+  const exactIngest = async (value) => (await sql("select public.ingest_market_series($1::jsonb) as result", [JSON.stringify(value)])).rows[0].result;
+  const rawReceipt = await exactIngest(original);
+  const source = JSON.parse(execFileSync(python, [helper, "encode_normalized"], {encoding: "utf8"}));
+  const first = await exactIngest(source);
+  assert.notEqual(first.revision_id, rawReceipt.revision_id);
+  const old = await read(rawReceipt.revision_id);
+  assert.equal(execFileSync(python, [helper, "verify_normalized_raw"], {
+    input: JSON.stringify(old), encoding: "utf8"
+  }).trim(), "digest_verified");
+  assert.equal(JSON.parse(old.bar_sources[4]).volume, 0);
+  assert.equal(old.input_digest, original.input_digest);
+  const result = await read(first.revision_id);
+  assert.equal(execFileSync(python, [helper, "verify_normalized"], {
+    input: JSON.stringify(result), encoding: "utf8"
+  }).trim(), "digest_verified");
+  const audit = JSON.parse(JSON.parse(result.metadata_source).provenance[0]);
+  assert.equal(audit.excluded_bars.length, 1);
+  assert.equal(audit.excluded_bars[0].volume, 0);
+  assert.equal(audit.excluded_bars[0].session, "2024-01-06");
+  const replay = await exactIngest(source);
+  assert.equal(replay.revision_id, first.revision_id);
+  assert.equal(replay.replayed, true);
+  const changed = structuredClone(source);
+  changed.snapshot.provenance[0] = "tampered";
+  changed.metadata_source = JSON.stringify({...changed.snapshot, bars: undefined});
+  await denied(() => exactIngest(changed), "23514");
+  assert.equal((await sql("select count(*)::int as n from public.market_series_revisions")).rows[0].n, 2);
+});

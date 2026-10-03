@@ -1,5 +1,12 @@
 # Dokumentasi Teknis — IDX Night Scanner
 
+Calendar loader extension2026-10-02: ordered `historical_days` are known trading
+dates preceding all timed `sessions`. They support daily history continuity;
+`get`/execution still require an explicit timed session and do not invent
+historical opens/closes. Target/next-session timing remains authoritative and
+timezone-aware. New tests preserve identical deterministic scan results and
+reject unknown/overlapping execution dates. SOT financial rules remain unchanged.
+
 Versi: 0.2.0 • 2026-09-28 • Status: rancangan, belum di-deploy
 
 Aturan finansial ada di [SOT.md](SOT.md). Dokumen ini menentukan cara membangun dan mengoperasikan sistem. Jangan mengulang rumus berbeda dalam frontend.

@@ -1,0 +1,141 @@
+{
+  "repository": "Daddy-JJ/BackendSahamTeknikal",
+  "run_id": 37019450372,
+  "run_url": "https://github.com/Daddy-JJ/BackendSahamTeknikal/actions/runs/37019450372",
+  "head_sha": "8617e5617e303d6f4906b2b5332cb8898bab8e3c",
+  "status": "completed",
+  "conclusion": "success",
+  "artifact_id": 11231498571,
+  "artifact_sha256_verified": "bec83d6fa650e1e46fdc827cd1d93bdaee2732a1bf245b291a0bfc97381c26dd",
+  "runner_scope": "five-symbol historical read-only provider smoke; no database write or full scan",
+  "production_write": false,
+  "scheduler_enabled": false,
+  "provider_evidence": {
+    "purpose": "provider_probe_not_published_signal",
+    "checked_at_utc": "2026-10-02T14:23:15.481339+00:00",
+    "provider": "yfinance",
+    "provider_version": "1.7.0",
+    "requested_end": "2026-10-01",
+    "calendar_freshness_verified": false,
+    "cross_section_complete": false,
+    "production_write": false,
+    "scheduler_enabled": false,
+    "results": [
+      {
+        "ticker": "BBCA",
+        "candidate_symbol": "BBCA.JK",
+        "mapping_verified": true,
+        "identity": {
+          "symbol": "BBCA.JK",
+          "exchange": "JKT",
+          "currency": "IDR",
+          "quoteType": "EQUITY",
+          "longName": "PT Bank Central Asia Tbk"
+        },
+        "source": "https://finance.yahoo.com/quote/BBCA.JK/",
+        "status": "adapter_fetch_passed_quality_not_certified",
+        "valid_bars": 737,
+        "first_bar": "2023-09-01",
+        "latest_complete_bar": "2026-10-01",
+        "missing_rows": 5,
+        "row_issues": 5,
+        "corporate_actions": 8,
+        "corporate_actions_reconciled": false,
+        "input_digest": "70177eab1bcf360582725b3d53b302645b2764e695630d8d06634d59efab6ba4",
+        "raw_sha256": "e91a57ab850abb62def499a625238a5de1f960923372c836f00670833103c55f"
+      },
+      {
+        "ticker": "BBRI",
+        "candidate_symbol": "BBRI.JK",
+        "mapping_verified": true,
+        "identity": {
+          "symbol": "BBRI.JK",
+          "exchange": "JKT",
+          "currency": "IDR",
+          "quoteType": "EQUITY",
+          "longName": "PT Bank Rakyat Indonesia (Persero) Tbk"
+        },
+        "source": "https://finance.yahoo.com/quote/BBRI.JK/",
+        "status": "adapter_fetch_passed_quality_not_certified",
+        "valid_bars": 738,
+        "first_bar": "2023-09-01",
+        "latest_complete_bar": "2026-10-01",
+        "missing_rows": 4,
+        "row_issues": 4,
+        "corporate_actions": 6,
+        "corporate_actions_reconciled": false,
+        "input_digest": "40c404f01ffd2bb153c3ea1a6854d225450e9f41a02e659c6edc7eb579c289bf",
+        "raw_sha256": "77ba1145fed63c101ad85c4854b278811776c54122f150d39ff6d3b458760bee"
+      },
+      {
+        "ticker": "BMRI",
+        "candidate_symbol": "BMRI.JK",
+        "mapping_verified": true,
+        "identity": {
+          "symbol": "BMRI.JK",
+          "exchange": "JKT",
+          "currency": "IDR",
+          "quoteType": "EQUITY",
+          "longName": "PT Bank Mandiri (Persero) Tbk"
+        },
+        "source": "https://finance.yahoo.com/quote/BMRI.JK/",
+        "status": "adapter_fetch_passed_quality_not_certified",
+        "valid_bars": 738,
+        "first_bar": "2023-09-01",
+        "latest_complete_bar": "2026-10-01",
+        "missing_rows": 4,
+        "row_issues": 4,
+        "corporate_actions": 5,
+        "corporate_actions_reconciled": false,
+        "input_digest": "88f8fcdecfab542458b657f366918df94cf94b8475d4a0da98ffe7bb8d0661ac",
+        "raw_sha256": "c8df47305b5d5a8b9f8af892edfbc1f5fde15d2c560af08e1e9bada699f223d1"
+      },
+      {
+        "ticker": "TLKM",
+        "candidate_symbol": "TLKM.JK",
+        "mapping_verified": true,
+        "identity": {
+          "symbol": "TLKM.JK",
+          "exchange": "JKT",
+          "currency": "IDR",
+          "quoteType": "EQUITY",
+          "longName": "Perusahaan Perseroan (Persero) PT Telekomunikasi Indonesia Tbk"
+        },
+        "source": "https://finance.yahoo.com/quote/TLKM.JK/",
+        "status": "adapter_fetch_passed_quality_not_certified",
+        "valid_bars": 738,
+        "first_bar": "2023-09-01",
+        "latest_complete_bar": "2026-10-01",
+        "missing_rows": 4,
+        "row_issues": 4,
+        "corporate_actions": 3,
+        "corporate_actions_reconciled": false,
+        "input_digest": "f9a70fedf73e183bf7b26f4f51b1f9048de8d9f269abf40521e4670bf81cd10b",
+        "raw_sha256": "b70ef3be98658fd1bbef85bd4b1bf34501cc1af2f15536d2e663214c58c86ef7"
+      },
+      {
+        "ticker": "ASII",
+        "candidate_symbol": "ASII.JK",
+        "mapping_verified": true,
+        "identity": {
+          "symbol": "ASII.JK",
+          "exchange": "JKT",
+          "currency": "IDR",
+          "quoteType": "EQUITY",
+          "longName": "PT Astra International Tbk"
+        },
+        "source": "https://finance.yahoo.com/quote/ASII.JK/",
+        "status": "adapter_fetch_passed_quality_not_certified",
+        "valid_bars": 738,
+        "first_bar": "2023-09-01",
+        "latest_complete_bar": "2026-10-01",
+        "missing_rows": 4,
+        "row_issues": 4,
+        "corporate_actions": 6,
+        "corporate_actions_reconciled": false,
+        "input_digest": "948a6672642dc5827517a7c5377d0a730280e22f4abecc68db2d106327ee44f9",
+        "raw_sha256": "c2342e13bf8e742479b5229ad97baf5003cd3011c7c71665b9a2cfccf9d284a3"
+      }
+    ]
+  }
+}

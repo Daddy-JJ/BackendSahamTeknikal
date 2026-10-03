@@ -1,5 +1,72 @@
 # Handoff Pengembangan untuk Codex
 
+## Finalization audit — 2026-10-03, owner read PASS; full-stack NO-GO
+
+Accepted frontend hosted owner read evidence observed 2026-10-02T22:50:09.953Z:
+run 8f634f6c-efae-4837-b1eb-1db04de6ffd2/digest 0aefe872...c121 matches backend;
+GET run/items/signals HTTP200, four pages/100 unique tickers, coverage45/100.
+Owner read latest-snapshot gate is closed; not rerun. Imported evidence and source
+SHA256 are in docs/evidence/frontend-owner-read-accepted-20261003.json.
+
+Fresh Yahoo recheck 2026-10-03T09:34:19–09:35:03Z (16:34–16:35 WIB) obtained complete
+target2026-10-02 candles for100/100, zero provider errors: partial45 evaluated,
+25 action hold,30 quality hold,0 signals,RS incomplete. New engine digest
+653f9f9168b20dabfc14dc9fa18090e6ed48f5d63546c897107cc44258dd4110.
+It is LOCAL/provider evidence, not published; previous fresh failed capture stays
+FAIL and unchanged. Config checksums/mapping100 verified; universe effective
+2026-08-03 inclusive–2027-01-30 exclusive, calendar651 known warm-up open sessions,
+72 explicit closures, next entry2026-10-05T08:58:00+07:00. Five IPO histories have
+less than600 bars; valid quality does not grant MACD/RS/pullback warm-up eligibility.
+
+Hosted anonymous GET check on2026-10-03T09:41:19Z passed14 denials:12 private tables
+and2 stable read RPCs returned HTTP401/42501. No JWT used or printed. This closes
+only anonymous read authorization, not authenticated outsider/disabled owner.
+KSEI November2024 archive nowHTTP200 (five relevant notices); February2026 remains
+HTTP500. New November notices do not auto-approve actions or change129 proofs;
+ADRO/UNVR/SCMA remain held. Action/anomaly skips remain visibly held; RS not opened.
+
+User authorized backend commit/push plus one manual full-universe workflow
+ dispatch; scheduler stays off. User declined disposable hosted target. No genuine
+owner-approved production trade is supplied, so hosted mutation/lifecycle,
+outsider/disabled-owner and independent-session gates remain BLOCKED. Direct
+rollout authorization does not supply those test identities or ledger activity.
+No Auth/migration/frontend changes and no QA production trade. Runner result is
+recorded in docs/BACKEND_FINALIZATION_REPORT_20261003.md when actually observed.
+
+## Latest verified recovery — 2026-10-03: scanner/full-stack NO-GO
+
+Production run `8f634f6c-efae-4837-b1eb-1db04de6ffd2` for 2026-10-02 was stored
+2026-10-02T17:50:07.347251Z. Original actual Yahoo receipts plus 129 reviewed
+cash-dividend proofs yielded 45/100 evaluated, 25 corporate-action holds,
+30 data-quality holds, zero signals and incomplete RS. 200 raw/derived revision
+digests were verified; previous runs and actual ledger are unchanged; fixture
+rows absent. This is partial production publication, not fresh-provider health.
+
+A separate fresh Yahoo fetch at 17:37–17:39Z obtained all 100 tickers but all target
+closes were null: zero evaluable, latest complete session October 1. It was not
+published. EODHD free account allows 20 requests/day and AMMN returned 254 bars,
+below 600. No provider switch or paid plan. 308 zero-volume open-session rows
+remain held; archive gaps, amendments and other actions remain unresolved.
+Manual full-universe workflow is local only, unpushed/unexecuted; scheduler off.
+
+Local Python passed 232 tests with five explicit Docker skips; local SQL 72/72.
+These do not prove hosted production JWT/RLS or GitHub publisher gates. Schema
+release 001–007 is unchanged. No frontend, Auth or journal mutation in this step.
+See `docs/SCANNER_RECOVERY_REPORT_20261003.md` and companion evidence for commands,
+source-review limitations, production/local distinctions and remaining gates.
+Earlier sections below are historical; 45/100 supersedes the 11/100 snapshot.
+
+Newest scanner evidence2026-10-02: production forward/live diagnostic for target
+2026-10-02 published at14:39:34Z, run08fb1080-5889-45e6-903d-3d2400bbf375.
+100 actual Yahoo revisions/digest read-backs passed; failed coverage0/100,
+100 data_quality_hold,0 signals and incomplete RS. Journal/fixture counts0.
+Full100 mappings/fetch passed; known calendars and current timing preflight passed
+using date-only warm-up. Manual GitHub five-symbol provider run37019450372 passed,
+not full scanner publication. Scheduler stays disabled. Quality/full-stack NO-GO;
+frontend may now implement/test the real read adapter. Never normalize holiday
+bars silently or reconcile actions without proof. Latest docs/evidence supersede
+older95-mapping/calendar/publication pending statements below. New changes local.
+
 Latest verified continuation — 2026-10-02: production CLI history repair001
 and migrations002–007 completed at06:57:07Z; earlier pending statements below
 are historical. Frontend reports production GitHub owner/anon read smoke;

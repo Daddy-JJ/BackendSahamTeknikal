@@ -83,24 +83,27 @@ class Series:
     fetched_at: datetime | None = None
     provider_missing_sessions: tuple[date, ...] = ()
     provider_row_issues: tuple[ProviderRowIssue, ...] = ()
+    # Canonical JSON audit records; empty preserves legacy input/replay identities.
+    provenance: tuple[str, ...] = ()
 
     @property
     def input_digest(self) -> str:
         # A retry at a different time must not change identity. Content and basis do.
-        return digest(
-            {
-                "ticker": self.ticker,
-                "provider": self.provider,
-                "symbol": self.provider_symbol,
-                "basis": self.price_basis,
-                "bars": self.bars,
-                "actions": self.actions,
-                "reconciled": self.reconciled_actions,
-                "actions_complete": self.actions_complete,
-                "provider_missing_sessions": self.provider_missing_sessions,
-                "provider_row_issues": self.provider_row_issues,
-            }
-        )
+        content = {
+            "ticker": self.ticker,
+            "provider": self.provider,
+            "symbol": self.provider_symbol,
+            "basis": self.price_basis,
+            "bars": self.bars,
+            "actions": self.actions,
+            "reconciled": self.reconciled_actions,
+            "actions_complete": self.actions_complete,
+            "provider_missing_sessions": self.provider_missing_sessions,
+            "provider_row_issues": self.provider_row_issues,
+        }
+        if self.provenance:
+            content["provenance"] = self.provenance
+        return digest(content)
 
 
 @dataclass(frozen=True)

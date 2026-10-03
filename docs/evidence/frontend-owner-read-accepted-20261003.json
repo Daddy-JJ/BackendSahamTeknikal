@@ -1,0 +1,30 @@
+{
+  "source": "frontend/docs/evidence/scanner-owner-production-20261003.json",
+  "source_sha256": "6ca74f0160c364837605332a53b3f1693dfa35bdf954ebb635e69e6e917e1ff6",
+  "source_observed_at_utc": "2026-10-02T22:50:09.953Z",
+  "evidence_imported_not_rerun": true,
+  "production_owner_read_latest_snapshot": "PASS",
+  "run_id": "8f634f6c-efae-4837-b1eb-1db04de6ffd2",
+  "run_digest": "0aefe872fe3aa9ead45f1f98f9980ff96cd819142ddcc0f9f64a0a83c1c4c121",
+  "http": {
+    "scan_runs": 200,
+    "scan_run_items": 200,
+    "scan_run_signals": 200
+  },
+  "unique_tickers": 100,
+  "quality_pages": [
+    25,
+    25,
+    25,
+    25
+  ],
+  "counts": {
+    "evaluated": 45,
+    "corporate_action_hold": 25,
+    "data_quality_hold": 30
+  },
+  "production_write": false,
+  "owner_jwt_copied_or_printed": false,
+  "hosted_mutation_rls_proven": false,
+  "vercel_smoke_proven": false
+}

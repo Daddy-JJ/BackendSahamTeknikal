@@ -1,6 +1,6 @@
 {
   "purpose": "official_source_reference_not_runtime_universe",
-  "status": "owner_supplied_workbook_checksum_sheet_and_roster_verified_mapping_partial",
+  "status": "owner_supplied_workbook_and_roster_verified_all_yahoo_mappings_verified",
   "announcement": "Peng-00148/BEI.POP/07-2026",
   "attachment": 4,
   "source_description": "BEI KOMPAS100 July 2026 major evaluation attachment, workbook supplied by the project owner",
@@ -128,7 +128,7 @@
   ],
   "limitations": [
     "Original workbook is owner supplied; no independently downloaded official attachment URL was recovered.",
-    "Only five Yahoo mappings were independently confirmed in the live provider probe; remaining 95 and EODHD mappings pending.",
+    "All 100 Yahoo identities/mappings were confirmed by actual provider responses on 2026-10-02; alternative EODHD mappings were not tested.",
     "No complete historical runtime calendar or full live scan is implied."
   ],
   "published_date": "2026-07-27",

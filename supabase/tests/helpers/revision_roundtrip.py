@@ -9,6 +9,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scanner/src"))
 from idx_scanner.fixtures import sample_market
 from idx_scanner.models import CorporateAction, ProviderRowIssue, canonical_json
+from idx_scanner.normalization import normalize_closed_sessions
 from idx_scanner.persistence import market_series_envelope, series_from_revision
 
 if sys.argv[1] == "setup":
@@ -37,7 +38,41 @@ source = replace(
         ),
     ),
 )
-if sys.argv[1] == "encode":
+if "normalized" in sys.argv[1]:
+    values, calendar, _ = sample_market(5)
+    original = values["DEMO-A"]
+    from datetime import timedelta
+
+    closed = original.bars[3].session + timedelta(days=1)
+    raw = replace(
+        original,
+        bars=tuple(
+            sorted(
+                original.bars
+                + (
+                    replace(
+                        original.bars[0],
+                        session=closed,
+                        open=100,
+                        high=100,
+                        low=100,
+                        close=100,
+                        volume=0,
+                    ),
+                ),
+                key=lambda b: b.session,
+            )
+        ),
+        fetched_at=datetime(2030, 1, 2, tzinfo=UTC),
+    )
+    source = (
+        raw
+        if sys.argv[1].endswith("_raw")
+        else normalize_closed_sessions(
+            raw, replace(calendar, closed_days=(closed,)), original.bars[-1].session
+        )
+    )
+if sys.argv[1].startswith("encode"):
     print(
         canonical_json(
             market_series_envelope(source, namespace="roundtrip", data_mode="fixture")[

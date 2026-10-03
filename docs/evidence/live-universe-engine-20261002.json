@@ -1,0 +1,18 @@
+{
+  "target": "2026-10-02",
+  "scope": "actual local provider bytes plus backend engine; not persisted production",
+  "status": "failed",
+  "coverage_valid": 0,
+  "coverage_total": 100,
+  "signals": 0,
+  "ranking_status": "cross_section_incomplete",
+  "item_status_counts": {
+    "data_quality_hold": 100
+  },
+  "calendar_version": "idx-calendar-known-sources-20261002-v1",
+  "next_session": "2026-10-05",
+  "publication_deadline": "2026-10-05T08:58:00+07:00",
+  "production_write": false,
+  "raw_bars_modified": false,
+  "actions_marked_reconciled": false
+}

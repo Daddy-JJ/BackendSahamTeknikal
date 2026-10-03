@@ -1,10 +1,135 @@
 # Scanner live and disposable evidence — 2026-10-02
 
+## Finalization audit — 2026-10-03, owner read PASS; full-stack NO-GO
+
+Accepted frontend hosted owner read evidence observed 2026-10-02T22:50:09.953Z:
+run 8f634f6c-efae-4837-b1eb-1db04de6ffd2/digest 0aefe872...c121 matches backend;
+GET run/items/signals HTTP200, four pages/100 unique tickers, coverage45/100.
+Owner read latest-snapshot gate is closed; not rerun. Imported evidence and source
+SHA256 are in docs/evidence/frontend-owner-read-accepted-20261003.json.
+
+Fresh Yahoo recheck 2026-10-03T09:34:19–09:35:03Z (16:34–16:35 WIB) obtained complete
+target2026-10-02 candles for100/100, zero provider errors: partial45 evaluated,
+25 action hold,30 quality hold,0 signals,RS incomplete. New engine digest
+653f9f9168b20dabfc14dc9fa18090e6ed48f5d63546c897107cc44258dd4110.
+It is LOCAL/provider evidence, not published; previous fresh failed capture stays
+FAIL and unchanged. Config checksums/mapping100 verified; universe effective
+2026-08-03 inclusive–2027-01-30 exclusive, calendar651 known warm-up open sessions,
+72 explicit closures, next entry2026-10-05T08:58:00+07:00. Five IPO histories have
+less than600 bars; valid quality does not grant MACD/RS/pullback warm-up eligibility.
+
+Hosted anonymous GET check on2026-10-03T09:41:19Z passed14 denials:12 private tables
+and2 stable read RPCs returned HTTP401/42501. No JWT used or printed. This closes
+only anonymous read authorization, not authenticated outsider/disabled owner.
+KSEI November2024 archive nowHTTP200 (five relevant notices); February2026 remains
+HTTP500. New November notices do not auto-approve actions or change129 proofs;
+ADRO/UNVR/SCMA remain held. Action/anomaly skips remain visibly held; RS not opened.
+
+User authorized backend commit/push plus one manual full-universe workflow
+ dispatch; scheduler stays off. User declined disposable hosted target. No genuine
+owner-approved production trade is supplied, so hosted mutation/lifecycle,
+outsider/disabled-owner and independent-session gates remain BLOCKED. Direct
+rollout authorization does not supply those test identities or ledger activity.
+No Auth/migration/frontend changes and no QA production trade. Runner result is
+recorded in docs/BACKEND_FINALIZATION_REPORT_20261003.md when actually observed.
+
+## Latest verified recovery — 2026-10-03: scanner/full-stack NO-GO
+
+Production run `8f634f6c-efae-4837-b1eb-1db04de6ffd2` for 2026-10-02 was stored
+2026-10-02T17:50:07.347251Z. Original actual Yahoo receipts plus 129 reviewed
+cash-dividend proofs yielded 45/100 evaluated, 25 corporate-action holds,
+30 data-quality holds, zero signals and incomplete RS. 200 raw/derived revision
+digests were verified; previous runs and actual ledger are unchanged; fixture
+rows absent. This is partial production publication, not fresh-provider health.
+
+A separate fresh Yahoo fetch at 17:37–17:39Z obtained all 100 tickers but all target
+closes were null: zero evaluable, latest complete session October 1. It was not
+published. EODHD free account allows 20 requests/day and AMMN returned 254 bars,
+below 600. No provider switch or paid plan. 308 zero-volume open-session rows
+remain held; archive gaps, amendments and other actions remain unresolved.
+Manual full-universe workflow is local only, unpushed/unexecuted; scheduler off.
+
+Local Python passed 232 tests with five explicit Docker skips; local SQL 72/72.
+These do not prove hosted production JWT/RLS or GitHub publisher gates. Schema
+release 001–007 is unchanged. No frontend, Auth or journal mutation in this step.
+See `docs/SCANNER_RECOVERY_REPORT_20261003.md` and companion evidence for commands,
+source-review limitations, production/local distinctions and remaining gates.
+Earlier sections below are historical; 45/100 supersedes the 11/100 snapshot.
+
+## Latest quality repair — production partial, still NO-GO
+
+Run `b2bba460-abe3-4f68-9946-b13554a7c712` is the second forward/live
+diagnostic for 2026-10-02. Stored 15:57:34Z after 100 exact raw receipt replays
+and 100 derived-revision digest read-backs. Postflight confirmed the previous
+failed run is unchanged, live mode, 100 items: 11 evaluated, 59
+`corporate_action_hold`, 30 `data_quality_hold`, zero signals and incomplete RS.
+Fixture checks returned no rows and the actual journal remains untouched. See
+`docs/evidence/scanner-quality-remediation-20261002.json`.
+
+Calendar A excludes only flat/empty rows on 72 explicit published 2024–2026
+exchange closures, preserving each raw receipt and storing immutable revisions
+with exclusion provenance. It removed 451 bars and 449 empty-row issues. No
+real-session zero-volume data, malformed OHLCV, inferred weekend, unknown
+closure or price was removed. The quality continuity check includes known
+historical open sessions without inventing execution times.
+
+Corporate-action B verifies only seven BBCA cash dividends from issuer pages/PDFs
+whose local source-file checksums are checked when the manifest loads. Six dates
+are explicit regular ex-dates; 2025-03-21 follows the source's 2025-03-20 cum-date
+and the next known exchange session. Other actions remain held. Approval changes
+only event status and provenance; it does not change price bars. The ignored
+`data/sources/` files are required to execute this manifest on another machine.
+
+EODHD exchange discovery returned Jakarta Exchange, code JK, MIC XIDX and IDR.
+Issuer identities matched BBCA, BRPT, AMMN, BUMI and EMAS. In the bounded
+15-request comparison, each returned only 240 daily bars (2025-10-02 to
+2026-10-02), below the 600-bar warm-up requirement. Close matched Yahoo on those
+common sessions; BBCA and BRPT each differed in open on 2026-09-02. EODHD did
+not cover AMMN's three older problematic Yahoo dates. BRPT split/dividend values
+differ across providers and remain unresolved. The comparison did not clear any
+broader data hold or justify provider replacement. Captures are ignored in
+`data/eodhd-comparison-20261002/`.
+
+Scheduler remains off. Thirty data-quality holds, 59 action holds, incomplete
+RS, missing full GitHub scanner publishing and the 600-bar shortfall keep scanner
+quality and full-stack deployment NO-GO.
+
 ## Decision
 
-Scanner publication remains **BLOCKED**. The five-symbol live provider probe and
-the disposable real Auth/HTTP gates passed. Scheduler remains disabled. No
-production signal or QA trade was written in this continuation.
+Production live diagnostic publication is now **PASS**, scanner quality remains
+**NO-GO**. Run08fb1080-5889-45e6-903d-3d2400bbf375 for2026-10-02 was stored
+at21:39:34 WIB after100 actual Yahoo revision ingests and100 digest read-backs.
+Result: failed, coverage0/100,100 data_quality_hold,0 signals,
+RS cross_section_incomplete. Read-only postflight confirms one run,100 items,
+100 live revisions, journal0 and fixture0. Scheduler remains disabled; no QA trade.
+
+Full-universe identity/fetch probe passed100/100. Manual GitHub provider run
+[37019450372](https://github.com/Daddy-JJ/BackendSahamTeknikal/actions/runs/37019450372)
+completed successfully on8617e56; downloaded artifact checksum matched. Its scope
+is five-symbol historical provider IO, not complete GitHub scanner publication.
+
+Known2024–2026 source calendars are assembled in config/live, monthly counts
+237/236/239 reconciled.2024 comes from primary KPEI referring to BEI, PDF checksum
+157aa5dffc1711bdb1627aaa4cf096999cf4948b94259a37423880bc7560c851.
+Historical dates support warm-up only, with no invented historical times;
+execution dates start2026-10-02 using current official earliest matching08:58
+and post-close16:15 WIB.651 known sessions through target; next is2026-10-05.
+The new loader's three tests prove preserved deterministic output and refusal
+to execute a date-only target.2027/historical timed backtesting remain blocked.
+Source/checksum scopes explicitly distinguish PDF bytes, owner workbook bytes,
+and composite audited source-manifest transcription. Review later amendments.
+
+All100 captured series contain volume-zero bars;78 contain unreconciled actions.
+Four dates shared by all100 are official2026 holidays. These raw provider bars
+are retained and held under SOT, not silently discarded. Source-aware holiday-row
+normalization would need preserved audit/provenance and a new data revision;
+never drop zero-volume bars on actual trading days or mark actions reconciled
+without evidence. The user accepts skips, not fabricated eligibility.
+
+Full local pytest189 passed/5 native Docker tests skipped; two additional
+publication guard tests passed, SQL71 passed, Ruff and diff passed. No frontend
+edits. Local source changes are recorded separately from committed GitHub8617e56.
+Actual execution/postflight/runner artifacts are in docs/evidence.
 
 User instruction: skip tickers with problematic bars or unreconciled corporate
 actions, with visible reasons and coverage, and defer reconciliation. This is
@@ -13,7 +138,7 @@ do not turn exclusions into “no signal”. Incomplete cross-section holds RS f
 everyone; eligible tickers may still run the other entry strategies. No browser
 financial engine or canonical formula was changed.
 
-## Exact source audit
+## Earlier source audit before full-universe continuation
 
 | Input | Actual source/evidence | Status |
 |---|---|---|
@@ -104,12 +229,14 @@ read the report without rerunning those sessions.
 
 ## Remaining GO requirements
 
-1. Complete official historical calendar/amendments and session-rule periods,
-   including next-session timing. Keep available-at and next-open SOT behavior.
-2. Verify remaining95 Yahoo mappings, fetch the full effective universe and report
-   every skip/missing/stale/partial case. RS waits for a complete valid cross-section.
-3. Publish/dispatch the prepared manual runner under authorized GitHub access and
-   retain actual run URL/artifact/status. No schedule is present or enabled.
+1. Keep known authoritative calendar sources current; add2027 and historical
+   execution times only when those periods are required. Current date-only warm-up
+   and target/next-session preflight passed; no retroactive timing claims.
+2. Restore eligible data through audited source-aware normalization/reconciliation.
+   Mapping/fetch100 passed, but current quality0/100 fails. Preserve every skip and
+   hold RS until its full eligible cross-section is valid.
+3. Full scan publication from GitHub remains untested. Manual provider IO passed;
+   one-off local production ingestion/publication passed. No schedule is enabled.
 4. Prove hosted production access/mutation requirements using genuine authorized
    journal activity or a separately approved safe isolation strategy. Disposable
    QA success does not create production lifecycle evidence.

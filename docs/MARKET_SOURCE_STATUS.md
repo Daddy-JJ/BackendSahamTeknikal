@@ -1,5 +1,18 @@
 # Authoritative market source review - 2026-09-29
 
+## Latest full-universe result — 2026-10-02
+
+100 Yahoo identity mappings and100 actual fetches passed through2026-10-02.
+Known2024–2026 calendar source dates and current execution timing are assembled
+in config/live; historical dates do not claim execution hours. Monthly counts
+match237/236/239. KPEI2024 primary attachment cites BEI and was visually reviewed;
+owner original KOMPAS100 workbook provenance remains explicit. Current captured
+data holds all100 tickers for zero-volume rows;78 also have unreconciled actions.
+No raw audit bars were removed or corporate actions marked reconciled.
+One production forward/live diagnostic exists with quality failed0/100,100 holds
+and0 signals. Manual GitHub five-symbol IO passed; full GitHub publication and
+quality readiness remain open. See SCANNER_LIVE_READINESS.md and evidence files.
+
 ## Verified baseline document
 
 IDX announcement Peng-00171/BEI.POP/09-2025, dated 23 September 2025,

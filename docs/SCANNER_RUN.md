@@ -1,5 +1,56 @@
 # Manual scanner command (M2)
 
+
+## Reviewed quality-repair path
+
+The ordinary CLI accepts --dividend-evidence <manifest>. It retains the raw
+provider receipt, ingests derived provenance as a separate immutable revision,
+verifies its read-back digest, then evaluates that derived input. The guarded
+one-off quality repair is supabase/scripts/publish_repaired_live_run.py; its
+--execute path checks source/capture digests, production project, live schema,
+previous run and next-session deadline. It produced zero signals.
+publish_first_live_hold_run.py remains hold-only and must not publish repaired
+inputs. The BBCA manifest requires source files under ignored data/sources/ and
+checks their SHA256. A clean runner must reacquire those exact sources before use.
+Provider actions alone never prove a source review.
+
+## Latest configuration and execution scope — 2026-10-02
+
+Runtime candidates are now under config/live: KOMPAS100 original owner-supplied
+workbook provenance,100 actual Yahoo identity mappings, and official known
+2024–2026 trading dates. The 2024 source is a primary KPEI attachment referencing
+BEI;2025 baseline plus known amendment and2026 BEI baseline are reconciled.
+Monthly day totals match237/236/239. Review any new exchange amendments before
+new runs. Source URL identifies the index landing page where appropriate; it
+does not claim an independently downloaded constituent attachment.
+
+Calendar `historical_days` contains dates only, before the first timed session.
+They support daily warm-up continuity but cannot be used as execution targets,
+paper fill timestamps or historical backtest timing. `get`/`next` still require
+timed sessions. The current official BEI table supplies earliest regular price
+matching08:58 and post-close16:15 WIB only from2026-10-02 onward. A publication
+deadline is not a guaranteed individual-security fill time.2027 remains blocked
+until its official calendar is supplied. No financial formula or entry rule changed.
+
+Offline100-ticker preflight and evaluation used actual captured Yahoo bars through
+2026-10-02, with digest/byte checksums preserved. All100 are data_quality_hold,
+coverage0/100, no entry signal and RS cross_section_incomplete. Zero-volume bars
+on known holidays are retained in audit data; no normalization/reconciliation has
+been silently performed. Corporate actions remain unreconciled. User accepts
+skips with reasons but this result is not a healthy/no-signal scan.
+
+`publish_first_live_hold_run.py` is a fixed-target, guarded, local one-off helper.
+Default evaluates offline. Authorized `--execute` stores actual same-day captured
+revisions, verifies every read-back digest and publishes only a zero-signal hold
+run to hcjfxbynqzsaidlwvdfx. It cannot publish entry signals or schedule jobs.
+Its actual production outcome is reported in latest status/evidence; the helper
+code alone is not deployment proof. It does not create journal QA trades.
+
+The published manual GitHub provider workflow completed successfully in run
+37019450372 on8617e56; artifact checksum verified. Scope: five symbols, historical
+provider connectivity only. Full scanner publication on GitHub and scheduling
+remain separate gates. Earlier pending statements below are historical.
+
 The run subcommand connects existing adapters and the tested run orchestrator.
 It does not install a schedule or load .env files implicitly.
 

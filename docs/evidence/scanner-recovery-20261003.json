@@ -1,0 +1,73 @@
+{
+  "scope": "approved scanner recovery 1-5; local/provider checks and actual partial production publication",
+  "production_project_ref": "hcjfxbynqzsaidlwvdfx",
+  "production_write": true,
+  "actual_qa_trades_created": false,
+  "frontend_edited": false,
+  "scheduler_enabled": false,
+  "provider_changed": false,
+  "paid_plan_activated": false,
+  "production_run_id": "8f634f6c-efae-4837-b1eb-1db04de6ffd2",
+  "production_coverage": {
+    "evaluated": 45,
+    "total": 100,
+    "corporate_action_hold": 25,
+    "data_quality_hold": 30,
+    "signals": 0,
+    "rs": "cross_section_incomplete"
+  },
+  "fresh_provider": {
+    "fetched": 100,
+    "evaluable": 0,
+    "target_close_missing": 100,
+    "status": "failed",
+    "production_published": false
+  },
+  "source_review": {
+    "downloaded_pdfs": 291,
+    "archive_months_successful": 33,
+    "archive_months_failed": [
+      "2024-11",
+      "2026-02"
+    ],
+    "proofs": 129,
+    "proof_tickers": 42,
+    "visually_reviewed_samples": 4,
+    "complete_amendment_history_certified": false
+  },
+  "local_tests": {
+    "python_passed": 232,
+    "python_skipped": 5,
+    "python_final_seconds": 33.3,
+    "sql_passed": 72,
+    "sql_failed": 0,
+    "environment": "local Python and PGlite; not hosted production proof",
+    "ruff": "passed",
+    "git_diff_check": "passed",
+    "migration_checksums": "7 frozen checksums passed"
+  },
+  "migration_versions_unchanged": [
+    "202609290001",
+    "202609290002",
+    "202609290003",
+    "202609290004",
+    "202609290005",
+    "202609300006",
+    "202610010007"
+  ],
+  "hosted_full_runner_tested": false,
+  "production_owner_jwt_tested_this_step": false,
+  "production_outsider_disabled_owner_tested_this_step": false,
+  "scanner_go": false,
+  "full_stack_live": false,
+  "blockers": [
+    "fresh target candles incomplete",
+    "unresolved source/action and open-session anomalies",
+    "RS cross-section incomplete",
+    "hosted full runner/publisher unproven",
+    "remaining hosted access smoke",
+    "frontend Vercel smoke and separate deployment authorization"
+  ],
+  "production_verified_at_utc": "2026-10-02T17:50:09.511139Z",
+  "report_finalized_at_utc": "2026-10-02T18:00:19Z"
+}

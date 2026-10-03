@@ -59,6 +59,8 @@ def market_series_envelope(series: Series, *, namespace: str, data_mode: str) ->
     content = asdict(series)
     content.pop("fetched_at")
     content.pop("provider_version")
+    if not series.provenance:
+        content.pop("provenance")
     snapshot = json.loads(canonical_json(content))
     return {
         "p_record": {
@@ -92,6 +94,7 @@ def series_from_revision(value: dict) -> Series:
         for action in data["actions"]
     )
     data["reconciled_actions"] = tuple(data["reconciled_actions"])
+    data["provenance"] = tuple(data.get("provenance", ()))
     data["provider_missing_sessions"] = tuple(
         date.fromisoformat(day) for day in data["provider_missing_sessions"]
     )

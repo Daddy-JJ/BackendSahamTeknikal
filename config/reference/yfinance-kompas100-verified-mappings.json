@@ -1,0 +1,1402 @@
+[
+  {
+    "ticker": "AADI",
+    "yfinance": "AADI.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/AADI.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "AADI.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Adaro Andalan Indonesia Tbk"
+    }
+  },
+  {
+    "ticker": "ACES",
+    "yfinance": "ACES.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/ACES.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "ACES.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Aspirasi Hidup Indonesia Tbk"
+    }
+  },
+  {
+    "ticker": "ADMR",
+    "yfinance": "ADMR.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/ADMR.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "ADMR.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Alamtri Minerals Indonesia Tbk"
+    }
+  },
+  {
+    "ticker": "ADRO",
+    "yfinance": "ADRO.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/ADRO.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "ADRO.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Alamtri Resources Indonesia Tbk"
+    }
+  },
+  {
+    "ticker": "AKRA",
+    "yfinance": "AKRA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/AKRA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "AKRA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT AKR Corporindo Tbk"
+    }
+  },
+  {
+    "ticker": "AMMN",
+    "yfinance": "AMMN.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/AMMN.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "AMMN.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Amman Mineral Internasional Tbk"
+    }
+  },
+  {
+    "ticker": "AMRT",
+    "yfinance": "AMRT.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/AMRT.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "AMRT.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Sumber Alfaria Trijaya Tbk"
+    }
+  },
+  {
+    "ticker": "ANTM",
+    "yfinance": "ANTM.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/ANTM.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "ANTM.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Antam (Persero) Tbk"
+    }
+  },
+  {
+    "ticker": "ARCI",
+    "yfinance": "ARCI.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/ARCI.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "ARCI.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Archi Indonesia Tbk"
+    }
+  },
+  {
+    "ticker": "ARTO",
+    "yfinance": "ARTO.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/ARTO.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "ARTO.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bank Jago Tbk"
+    }
+  },
+  {
+    "ticker": "ASII",
+    "yfinance": "ASII.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/ASII.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "ASII.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Astra International Tbk"
+    }
+  },
+  {
+    "ticker": "BBCA",
+    "yfinance": "BBCA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BBCA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BBCA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bank Central Asia Tbk"
+    }
+  },
+  {
+    "ticker": "BBNI",
+    "yfinance": "BBNI.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BBNI.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BBNI.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bank Negara Indonesia (Persero) Tbk"
+    }
+  },
+  {
+    "ticker": "BBRI",
+    "yfinance": "BBRI.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BBRI.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BBRI.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bank Rakyat Indonesia (Persero) Tbk"
+    }
+  },
+  {
+    "ticker": "BBTN",
+    "yfinance": "BBTN.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BBTN.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BBTN.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bank Tabungan Negara (Persero) Tbk"
+    }
+  },
+  {
+    "ticker": "BBYB",
+    "yfinance": "BBYB.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BBYB.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BBYB.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bank Neo Commerce Tbk"
+    }
+  },
+  {
+    "ticker": "BFIN",
+    "yfinance": "BFIN.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BFIN.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BFIN.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT BFI Finance Indonesia Tbk"
+    }
+  },
+  {
+    "ticker": "BIPI",
+    "yfinance": "BIPI.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BIPI.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BIPI.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Astrindo Nusantara Infrastruktur Tbk"
+    }
+  },
+  {
+    "ticker": "BKSL",
+    "yfinance": "BKSL.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BKSL.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BKSL.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Sentul City Tbk"
+    }
+  },
+  {
+    "ticker": "BMRI",
+    "yfinance": "BMRI.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BMRI.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BMRI.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bank Mandiri (Persero) Tbk"
+    }
+  },
+  {
+    "ticker": "BNBR",
+    "yfinance": "BNBR.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BNBR.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BNBR.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bakrie & Brothers Tbk"
+    }
+  },
+  {
+    "ticker": "BRIS",
+    "yfinance": "BRIS.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BRIS.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BRIS.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bank Syariah Indonesia Tbk"
+    }
+  },
+  {
+    "ticker": "BRMS",
+    "yfinance": "BRMS.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BRMS.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BRMS.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bumi Resources Minerals Tbk"
+    }
+  },
+  {
+    "ticker": "BRPT",
+    "yfinance": "BRPT.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BRPT.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BRPT.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Barito Pacific Tbk"
+    }
+  },
+  {
+    "ticker": "BSDE",
+    "yfinance": "BSDE.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BSDE.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BSDE.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bumi Serpong Damai Tbk"
+    }
+  },
+  {
+    "ticker": "BUKA",
+    "yfinance": "BUKA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BUKA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BUKA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bukalapak.com Tbk."
+    }
+  },
+  {
+    "ticker": "BULL",
+    "yfinance": "BULL.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BULL.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BULL.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Buana Lintas Lautan Tbk"
+    }
+  },
+  {
+    "ticker": "BUMI",
+    "yfinance": "BUMI.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BUMI.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BUMI.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bumi Resources Tbk"
+    }
+  },
+  {
+    "ticker": "BUVA",
+    "yfinance": "BUVA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/BUVA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "BUVA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bukit Uluwatu Villa Tbk"
+    }
+  },
+  {
+    "ticker": "CBDK",
+    "yfinance": "CBDK.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/CBDK.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "CBDK.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bangun Kosambi Sukses Tbk"
+    }
+  },
+  {
+    "ticker": "CMRY",
+    "yfinance": "CMRY.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/CMRY.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "CMRY.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Cisarua Mountain Dairy Tbk"
+    }
+  },
+  {
+    "ticker": "COIN",
+    "yfinance": "COIN.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/COIN.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "COIN.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Indokripto Koin Semesta Tbk"
+    }
+  },
+  {
+    "ticker": "CPIN",
+    "yfinance": "CPIN.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/CPIN.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "CPIN.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Charoen Pokphand Indonesia Tbk"
+    }
+  },
+  {
+    "ticker": "CTRA",
+    "yfinance": "CTRA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/CTRA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "CTRA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Ciputra Development Tbk"
+    }
+  },
+  {
+    "ticker": "CUAN",
+    "yfinance": "CUAN.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/CUAN.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "CUAN.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Petrindo Jaya Kreasi Tbk"
+    }
+  },
+  {
+    "ticker": "DEWA",
+    "yfinance": "DEWA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/DEWA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "DEWA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Darma Henwa Tbk"
+    }
+  },
+  {
+    "ticker": "DSNG",
+    "yfinance": "DSNG.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/DSNG.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "DSNG.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Dharma Satya Nusantara Tbk"
+    }
+  },
+  {
+    "ticker": "ELSA",
+    "yfinance": "ELSA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/ELSA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "ELSA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Elnusa Tbk"
+    }
+  },
+  {
+    "ticker": "EMAS",
+    "yfinance": "EMAS.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/EMAS.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "EMAS.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Merdeka Gold Resources Tbk"
+    }
+  },
+  {
+    "ticker": "EMTK",
+    "yfinance": "EMTK.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/EMTK.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "EMTK.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Elang Mahkota Teknologi Tbk"
+    }
+  },
+  {
+    "ticker": "ENRG",
+    "yfinance": "ENRG.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/ENRG.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "ENRG.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Energi Mega Persada Tbk"
+    }
+  },
+  {
+    "ticker": "ERAA",
+    "yfinance": "ERAA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/ERAA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "ERAA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Erajaya Swasembada Tbk"
+    }
+  },
+  {
+    "ticker": "ESSA",
+    "yfinance": "ESSA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/ESSA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "ESSA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT ESSA Industries Indonesia Tbk."
+    }
+  },
+  {
+    "ticker": "EXCL",
+    "yfinance": "EXCL.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/EXCL.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "EXCL.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT XLSMART Telecom Sejahtera Tbk"
+    }
+  },
+  {
+    "ticker": "GGRM",
+    "yfinance": "GGRM.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/GGRM.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "GGRM.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Gudang Garam Tbk"
+    }
+  },
+  {
+    "ticker": "GOTO",
+    "yfinance": "GOTO.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/GOTO.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "GOTO.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT GoTo Gojek Tokopedia Tbk"
+    }
+  },
+  {
+    "ticker": "HEAL",
+    "yfinance": "HEAL.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/HEAL.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "HEAL.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Medikaloka Hermina Tbk"
+    }
+  },
+  {
+    "ticker": "HRTA",
+    "yfinance": "HRTA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/HRTA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "HRTA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Hartadinata Abadi Tbk"
+    }
+  },
+  {
+    "ticker": "HRUM",
+    "yfinance": "HRUM.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/HRUM.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "HRUM.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Harum Energy Tbk"
+    }
+  },
+  {
+    "ticker": "ICBP",
+    "yfinance": "ICBP.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/ICBP.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "ICBP.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Indofood CBP Sukses Makmur Tbk"
+    }
+  },
+  {
+    "ticker": "IMPC",
+    "yfinance": "IMPC.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/IMPC.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "IMPC.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Impack Pratama Industri Tbk"
+    }
+  },
+  {
+    "ticker": "INCO",
+    "yfinance": "INCO.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/INCO.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "INCO.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Vale Indonesia Tbk"
+    }
+  },
+  {
+    "ticker": "INDF",
+    "yfinance": "INDF.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/INDF.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "INDF.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Indofood Sukses Makmur Tbk"
+    }
+  },
+  {
+    "ticker": "INDY",
+    "yfinance": "INDY.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/INDY.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "INDY.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT. Indika Energy Tbk"
+    }
+  },
+  {
+    "ticker": "INET",
+    "yfinance": "INET.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/INET.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "INET.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Sinergi Inti Andalan Prima Tbk"
+    }
+  },
+  {
+    "ticker": "INKP",
+    "yfinance": "INKP.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/INKP.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "INKP.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Indah Kiat Pulp & Paper Tbk"
+    }
+  },
+  {
+    "ticker": "ISAT",
+    "yfinance": "ISAT.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/ISAT.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "ISAT.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Indosat Tbk"
+    }
+  },
+  {
+    "ticker": "ITMG",
+    "yfinance": "ITMG.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/ITMG.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "ITMG.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Indo Tambangraya Megah Tbk"
+    }
+  },
+  {
+    "ticker": "JPFA",
+    "yfinance": "JPFA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/JPFA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "JPFA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Japfa Comfeed Indonesia Tbk"
+    }
+  },
+  {
+    "ticker": "JSMR",
+    "yfinance": "JSMR.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/JSMR.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "JSMR.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Jasa Marga (Persero) Tbk"
+    }
+  },
+  {
+    "ticker": "KIJA",
+    "yfinance": "KIJA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/KIJA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "KIJA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Kawasan Industri Jababeka Tbk"
+    }
+  },
+  {
+    "ticker": "KLBF",
+    "yfinance": "KLBF.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/KLBF.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "KLBF.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Kalbe Farma Tbk."
+    }
+  },
+  {
+    "ticker": "KPIG",
+    "yfinance": "KPIG.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/KPIG.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "KPIG.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT MNC Tourism Indonesia Tbk"
+    }
+  },
+  {
+    "ticker": "LSIP",
+    "yfinance": "LSIP.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/LSIP.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "LSIP.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Perusahaan Perkebunan London Sumatra Indonesia Tbk"
+    }
+  },
+  {
+    "ticker": "MAPA",
+    "yfinance": "MAPA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/MAPA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "MAPA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Map Aktif Adiperkasa Tbk"
+    }
+  },
+  {
+    "ticker": "MAPI",
+    "yfinance": "MAPI.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/MAPI.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "MAPI.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT. Mitra Adiperkasa Tbk"
+    }
+  },
+  {
+    "ticker": "MBMA",
+    "yfinance": "MBMA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/MBMA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "MBMA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Merdeka Battery Materials Tbk."
+    }
+  },
+  {
+    "ticker": "MDKA",
+    "yfinance": "MDKA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/MDKA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "MDKA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Merdeka Copper Gold Tbk"
+    }
+  },
+  {
+    "ticker": "MEDC",
+    "yfinance": "MEDC.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/MEDC.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "MEDC.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Medco Energi Internasional Tbk"
+    }
+  },
+  {
+    "ticker": "MIKA",
+    "yfinance": "MIKA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/MIKA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "MIKA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Mitra Keluarga Karyasehat Tbk"
+    }
+  },
+  {
+    "ticker": "MINA",
+    "yfinance": "MINA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/MINA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "MINA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Sanurhasta Mitra Tbk"
+    }
+  },
+  {
+    "ticker": "MYOR",
+    "yfinance": "MYOR.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/MYOR.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "MYOR.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Mayora Indah Tbk"
+    }
+  },
+  {
+    "ticker": "NCKL",
+    "yfinance": "NCKL.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/NCKL.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "NCKL.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Trimegah Bangun Persada Tbk"
+    }
+  },
+  {
+    "ticker": "PANI",
+    "yfinance": "PANI.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/PANI.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "PANI.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Pantai Indah Kapuk Dua Tbk"
+    }
+  },
+  {
+    "ticker": "PGAS",
+    "yfinance": "PGAS.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/PGAS.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "PGAS.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Perusahaan Gas Negara (Persero) Tbk"
+    }
+  },
+  {
+    "ticker": "PGEO",
+    "yfinance": "PGEO.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/PGEO.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "PGEO.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Pertamina Geothermal Energy Tbk"
+    }
+  },
+  {
+    "ticker": "PNLF",
+    "yfinance": "PNLF.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/PNLF.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "PNLF.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Panin Financial Tbk"
+    }
+  },
+  {
+    "ticker": "PSAB",
+    "yfinance": "PSAB.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/PSAB.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "PSAB.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT J Resources Asia Pasifik Tbk"
+    }
+  },
+  {
+    "ticker": "PTBA",
+    "yfinance": "PTBA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/PTBA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "PTBA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Bukit Asam (Persero) Tbk"
+    }
+  },
+  {
+    "ticker": "PTRO",
+    "yfinance": "PTRO.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/PTRO.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "PTRO.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Petrosea Tbk"
+    }
+  },
+  {
+    "ticker": "PWON",
+    "yfinance": "PWON.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/PWON.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "PWON.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Pakuwon Jati Tbk"
+    }
+  },
+  {
+    "ticker": "RAJA",
+    "yfinance": "RAJA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/RAJA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "RAJA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Rukun Raharja Tbk"
+    }
+  },
+  {
+    "ticker": "RATU",
+    "yfinance": "RATU.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/RATU.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "RATU.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Raharja Energi Cepu Tbk"
+    }
+  },
+  {
+    "ticker": "RMKE",
+    "yfinance": "RMKE.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/RMKE.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "RMKE.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT RMK Energy Tbk"
+    }
+  },
+  {
+    "ticker": "SCMA",
+    "yfinance": "SCMA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/SCMA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "SCMA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Surya Citra Media Tbk"
+    }
+  },
+  {
+    "ticker": "SGER",
+    "yfinance": "SGER.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/SGER.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "SGER.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Sumber Global Energy Tbk"
+    }
+  },
+  {
+    "ticker": "SMGR",
+    "yfinance": "SMGR.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/SMGR.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "SMGR.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Semen Indonesia (Persero) Tbk"
+    }
+  },
+  {
+    "ticker": "SMIL",
+    "yfinance": "SMIL.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/SMIL.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "SMIL.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Sarana Mitra Luas Tbk"
+    }
+  },
+  {
+    "ticker": "SMRA",
+    "yfinance": "SMRA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/SMRA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "SMRA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Summarecon Agung Tbk"
+    }
+  },
+  {
+    "ticker": "SSIA",
+    "yfinance": "SSIA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/SSIA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "SSIA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Surya Semesta Internusa Tbk"
+    }
+  },
+  {
+    "ticker": "TAPG",
+    "yfinance": "TAPG.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/TAPG.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "TAPG.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Triputra Agro Persada Tbk"
+    }
+  },
+  {
+    "ticker": "TINS",
+    "yfinance": "TINS.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/TINS.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "TINS.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT TIMAH Tbk"
+    }
+  },
+  {
+    "ticker": "TLKM",
+    "yfinance": "TLKM.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/TLKM.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "TLKM.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "Perusahaan Perseroan (Persero) PT Telekomunikasi Indonesia Tbk"
+    }
+  },
+  {
+    "ticker": "TOBA",
+    "yfinance": "TOBA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/TOBA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "TOBA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT TBS Energi Utama Tbk"
+    }
+  },
+  {
+    "ticker": "TOWR",
+    "yfinance": "TOWR.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/TOWR.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "TOWR.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Sarana Menara Nusantara Tbk."
+    }
+  },
+  {
+    "ticker": "TPIA",
+    "yfinance": "TPIA.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/TPIA.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "TPIA.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Chandra Asri Pacific Tbk"
+    }
+  },
+  {
+    "ticker": "UNTR",
+    "yfinance": "UNTR.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/UNTR.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "UNTR.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT United Tractors Tbk"
+    }
+  },
+  {
+    "ticker": "UNVR",
+    "yfinance": "UNVR.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/UNVR.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "UNVR.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Unilever Indonesia Tbk"
+    }
+  },
+  {
+    "ticker": "WIFI",
+    "yfinance": "WIFI.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/WIFI.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "WIFI.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT Solusi Sinergi Digital Tbk"
+    }
+  },
+  {
+    "ticker": "WIRG",
+    "yfinance": "WIRG.JK",
+    "verified": true,
+    "source": "https://finance.yahoo.com/quote/WIRG.JK/",
+    "verified_at_utc": "2026-10-02T14:20:58.062405+00:00",
+    "provider_identity": {
+      "symbol": "WIRG.JK",
+      "exchange": "JKT",
+      "currency": "IDR",
+      "quoteType": "EQUITY",
+      "longName": "PT WIR ASIA Tbk"
+    }
+  }
+]

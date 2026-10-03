@@ -27,6 +27,8 @@ class Calendar:
     version: str
     source: str
     data_mode: str
+    historical_days: tuple[date, ...] = ()
+    closed_days: tuple[date, ...] = ()
 
     def __post_init__(self):
         days = [s.day for s in self.sessions]
@@ -34,6 +36,14 @@ class Calendar:
             raise ValueError("Ordered unique sessions with source required")
         if self.data_mode not in ("fixture", "live"):
             raise ValueError("Invalid calendar mode")
+        if list(self.historical_days) != sorted(set(self.historical_days)) or any(
+            day >= days[0] for day in self.historical_days
+        ):
+            raise ValueError("Historical date-only sessions must precede timed sessions")
+        if list(self.closed_days) != sorted(set(self.closed_days)) or set(
+            self.closed_days
+        ).intersection(self.historical_days + tuple(days)):
+            raise ValueError("Explicit closed days must be ordered, unique and disjoint from opens")
 
     def get(self, day: date) -> Session:
         for session in self.sessions:
@@ -49,9 +59,11 @@ class Calendar:
         raise ValueError("blocked_configuration: next session unknown")
 
     def between(self, start: date, end: date) -> tuple[date, ...]:
-        self.get(start)
         self.get(end)
-        return tuple(s.day for s in self.sessions if start <= s.day <= end)
+        days = self.historical_days + tuple(s.day for s in self.sessions)
+        if start not in days:
+            raise ValueError("blocked_configuration: history start session unknown")
+        return tuple(day for day in days if start <= day <= end)
 
 
 @dataclass(frozen=True)
@@ -100,7 +112,9 @@ def quality(series: Series, target: date, calendar: Calendar) -> str:
             return "history_gap"
     except ValueError:
         return "calendar_unknown"
-    known_open = {s.day for s in calendar.sessions if s.day <= target}
+    known_open = {d for d in calendar.historical_days if d <= target} | {
+        s.day for s in calendar.sessions if s.day <= target
+    }
     if known_open.intersection(series.provider_missing_sessions):
         return "missing_session"
     if not series.actions_complete:

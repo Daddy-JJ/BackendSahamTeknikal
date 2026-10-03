@@ -1,0 +1,35 @@
+{
+  "project_ref": "hcjfxbynqzsaidlwvdfx",
+  "checked_at_utc": "2026-10-02T14:42:21.042094+00:00",
+  "method": "GET only",
+  "production_write": false,
+  "run_id": "08fb1080-5889-45e6-903d-3d2400bbf375",
+  "counts": {
+    "scan_runs": 1,
+    "scan_run_items": 100,
+    "scan_run_signals": 0,
+    "actual_trades": 0,
+    "market_series_revisions": 100,
+    "scan_runs_fixture": 0,
+    "signals_fixture": 0,
+    "market_series_revisions_fixture": 0,
+    "actual_trades_fixture": 0
+  },
+  "count_http": {
+    "scan_runs": 206,
+    "scan_run_items": 206,
+    "scan_run_signals": 200,
+    "actual_trades": 200,
+    "market_series_revisions": 206,
+    "scan_runs_fixture": 200,
+    "signals_fixture": 200,
+    "market_series_revisions_fixture": 200,
+    "actual_trades_fixture": 200
+  },
+  "first_count_probe_rejected_http_206": true,
+  "stored_at": "2026-10-02T14:39:34.299765+00:00",
+  "ranking_status": "cross_section_incomplete",
+  "publication_deadline": "2026-10-05T08:58:00+07:00",
+  "anon_tested": false,
+  "state_readback_passed": true
+}

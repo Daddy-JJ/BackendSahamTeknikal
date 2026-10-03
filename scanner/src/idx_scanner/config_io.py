@@ -33,7 +33,14 @@ def load_calendar(path: Path) -> Calendar:
         )
         for s in data["sessions"]
     )
-    return Calendar(sessions, data["version"], data["source"], data["data_mode"])
+    return Calendar(
+        sessions,
+        data["version"],
+        data["source"],
+        data["data_mode"],
+        tuple(date.fromisoformat(day) for day in data.get("historical_days", [])),
+        tuple(date.fromisoformat(day) for day in data.get("closed_days", [])),
+    )
 
 
 def load_universe(metadata_path: Path, csv_path: Path) -> Universe:

@@ -1,0 +1,730 @@
+{
+  "checked_at_utc": "2026-10-02T17:37:07.520826+00:00",
+  "target": "2026-10-02",
+  "production_write": false,
+  "database_connected": false,
+  "scheduler_enabled": false,
+  "provider_changed": false,
+  "environment": "fresh_provider_local_engine",
+  "fresh_provider_fetch_executed": true,
+  "provider_errors": [],
+  "finished_at_utc": "2026-10-02T17:39:16.324542+00:00",
+  "fetched": 100,
+  "proof_count": 129,
+  "evidence_mismatch_tickers": [],
+  "status": "failed",
+  "coverage_valid": 0,
+  "coverage_total": 100,
+  "ranking_status": "cross_section_incomplete",
+  "signals": 0,
+  "run_digest": "a49089825beb8a923638b10e24de2f2051f2ab645fa8e2efecb43795680551c9",
+  "counts": {
+    "data_quality_hold": 100
+  },
+  "strategy_signal_counts": {},
+  "next_open": "2026-10-05T08:58:00+07:00",
+  "items": [
+    {
+      "ticker": "AADI",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "ACES",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "ADMR",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "ADRO",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "AKRA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "AMMN",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "AMRT",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "ANTM",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "ARCI",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "ARTO",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "ASII",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BBCA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BBNI",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BBRI",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BBTN",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BBYB",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BFIN",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BIPI",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BKSL",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BMRI",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BNBR",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BRIS",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BRMS",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BRPT",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BSDE",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BUKA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BULL",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BUMI",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "BUVA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "CBDK",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "CMRY",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "COIN",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "CPIN",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "CTRA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "CUAN",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "DEWA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "DSNG",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "ELSA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "EMAS",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "EMTK",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "ENRG",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "ERAA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "ESSA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "EXCL",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "GGRM",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "GOTO",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "HEAL",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "HRTA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "HRUM",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "ICBP",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "IMPC",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "INCO",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "INDF",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "INDY",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "INET",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "INKP",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "ISAT",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "ITMG",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "JPFA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "JSMR",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "KIJA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "KLBF",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "KPIG",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "LSIP",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "MAPA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "MAPI",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "MBMA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "MDKA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "MEDC",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "MIKA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "MINA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "MYOR",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "NCKL",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "PANI",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "PGAS",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "PGEO",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "PNLF",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "PSAB",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "PTBA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "PTRO",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "PWON",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "RAJA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "RATU",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "RMKE",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "SCMA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "SGER",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "SMGR",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "SMIL",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "SMRA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "SSIA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "TAPG",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "TINS",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "TLKM",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "TOBA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "TOWR",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "TPIA",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "UNTR",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "UNVR",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "WIFI",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    },
+    {
+      "ticker": "WIRG",
+      "status": "data_quality_hold",
+      "quality": "data_quality_hold",
+      "last_complete_session": "2026-10-01",
+      "candidates": []
+    }
+  ],
+  "scanner_quality_go": false,
+  "hosted_github_runner_tested": false
+}

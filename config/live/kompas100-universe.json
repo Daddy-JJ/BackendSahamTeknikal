@@ -1,0 +1,14 @@
+{
+  "data_mode": "live",
+  "version": "kompas100-20260803-20270129-workbook-v1",
+  "source": "https://www.idx.id/en/products/index/",
+  "source_kind": "official_index_landing_page; owner supplied original BEI workbook, not independently downloaded attachment",
+  "published_date": "2026-07-27",
+  "source_checksum": "51b988ab5af2953e40603eb2884883120f2b727887ad014dc496a8c9cb0f4eb5",
+  "checksum_scope": "owner-supplied original workbook bytes",
+  "effective_from": "2026-08-03",
+  "effective_to": "2027-01-30",
+  "source_file_name": "4. Lamp Peng-00148-BEI POP - KOMPAS100 - Jul 2026 Mayor.xlsx",
+  "source_announcement": "Peng-00148/BEI.POP/07-2026",
+  "ticker_cells": "C10:C109"
+}

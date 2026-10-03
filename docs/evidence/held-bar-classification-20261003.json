@@ -1,0 +1,1796 @@
+{
+  "checked_at_utc": "2026-10-02T17:46:41.969520+00:00",
+  "environment": "offline_actual_capture_plus_primary_web_source_review",
+  "production_write": false,
+  "scheduler_enabled": false,
+  "prices_modified": false,
+  "bars_removed": false,
+  "quality_rules_changed": false,
+  "held_tickers": 30,
+  "zero_volume_open_rows": 308,
+  "source_scope": "COIN 2025-07-17 only; web tool read official PDF; local archival download failed DNS, therefore no runtime approval",
+  "source": "https://assets-website.idclear.co.id/idclear/storage/43039/SIGNED_PENG-0212_HC_Suspensi_Agunan_COIN_17072025_ndi.pdf",
+  "source_reference": "KPEI PENG-0212/KOMITE HC/KPEI/0725 citing BEI Peng-SPT-00120/BEI.WAS/07-2025",
+  "items": [
+    {
+      "ticker": "ADMR",
+      "rows": [
+        {
+          "session": "2024-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 3,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 2
+    },
+    {
+      "ticker": "AMMN",
+      "rows": [
+        {
+          "session": "2024-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 3,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "ARCI",
+      "rows": [
+        {
+          "session": "2024-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-06-23",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-07-22",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-07-23",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-07-24",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-07-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 8,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "BIPI",
+      "rows": [
+        {
+          "session": "2024-03-01",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-04",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-05",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-06",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-07",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-08",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-13",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-14",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-18",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-19",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-20",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-21",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-22",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-27",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-28",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-02",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-03",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-04",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-05",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-06",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-09",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-10",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-11",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-12",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-13",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-17",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-18",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-19",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-20",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-23",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-24",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-27",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-09-30",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2026-01-08",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2026-01-12",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2026-01-13",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2026-01-14",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2026-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2026-01-19",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2026-01-20",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2026-01-21",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 46,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "BNBR",
+      "rows": [
+        {
+          "session": "2025-12-12",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-16",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-17",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-18",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-19",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-22",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-23",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-24",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-29",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 9,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "BUKA",
+      "rows": [
+        {
+          "session": "2024-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 3,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "BULL",
+      "rows": [
+        {
+          "session": "2024-03-01",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-04",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-05",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-06",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-07",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-08",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-13",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-14",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-18",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-19",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-20",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-21",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-22",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-27",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-28",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-01",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-02",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-05",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-06",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-07",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-08",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-09",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-12",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-13",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-14",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-16",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-19",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-20",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-21",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-22",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-23",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-27",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-28",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-29",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-30",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 40,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "BUVA",
+      "rows": [
+        {
+          "session": "2025-07-30",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-01",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-04",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-05",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-06",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-07",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-08",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-11",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-06",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-07",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-08",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-09",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-10",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-11-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-11-27",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-11-28",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-01",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-02",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 18,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "CMRY",
+      "rows": [
+        {
+          "session": "2024-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 3,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "COIN",
+      "rows": [
+        {
+          "session": "2025-07-17",
+          "classification": "suspension_corroborated_by_primary_kpei_notice",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-07-22",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-07-23",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-27",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-28",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-29",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 7,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "CUAN",
+      "rows": [
+        {
+          "session": "2024-01-02",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-03",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-04",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-05",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-08",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-09",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-10",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-11",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-12",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 12,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 2
+    },
+    {
+      "ticker": "GOTO",
+      "rows": [
+        {
+          "session": "2024-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 3,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "IMPC",
+      "rows": [
+        {
+          "session": "2025-08-11",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-13",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-14",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-19",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-20",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-21",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-22",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 9,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "INET",
+      "rows": [
+        {
+          "session": "2024-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-12",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-27",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-28",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-03-03",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-03-04",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-04-29",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-04-30",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-05-02",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-05-05",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-05-06",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-05-07",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-05-08",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-05-09",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-05-14",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-11-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-04",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-05",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-08",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-09",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 24,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 2
+    },
+    {
+      "ticker": "KPIG",
+      "rows": [
+        {
+          "session": "2024-07-17",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-20",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-21",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-08-22",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 4,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "MBMA",
+      "rows": [
+        {
+          "session": "2024-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 3,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "MINA",
+      "rows": [
+        {
+          "session": "2024-01-03",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-10",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-12",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-16",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-17",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-19",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-24",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-29",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-30",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-01-31",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-02-02",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-02-06",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-02-07",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-02-12",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-02-16",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-02-21",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-02-23",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-02-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-02-29",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-06",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-07",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-08",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-18",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-19",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-22",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-10-11",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-10-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-10",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-13",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-14",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-17",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-18",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-19",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-20",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-21",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-24",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-04",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-07",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-08",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-11",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-12",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-13",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-14",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-08-19",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-02",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-08",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-09",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-10",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-11",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-12",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-16",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-12-17",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 58,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "NCKL",
+      "rows": [
+        {
+          "session": "2024-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 3,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "PGEO",
+      "rows": [
+        {
+          "session": "2024-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 3,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 3
+    },
+    {
+      "ticker": "PSAB",
+      "rows": [
+        {
+          "session": "2024-03-06",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 1,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "PTRO",
+      "rows": [
+        {
+          "session": "2025-10-06",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 1,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 3
+    },
+    {
+      "ticker": "RAJA",
+      "rows": [
+        {
+          "session": "2025-10-13",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 1,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 5
+    },
+    {
+      "ticker": "RATU",
+      "rows": [
+        {
+          "session": "2025-01-16",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-01-20",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-01-21",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-11-28",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 4,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "RMKE",
+      "rows": [
+        {
+          "session": "2024-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-07",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-09",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-10",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-13",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-14",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-16",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-17",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2026-01-13",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2026-01-14",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2026-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2026-01-19",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2026-01-20",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 16,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 4
+    },
+    {
+      "ticker": "SMIL",
+      "rows": [
+        {
+          "session": "2024-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-04-21",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 4,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 2
+    },
+    {
+      "ticker": "TAPG",
+      "rows": [
+        {
+          "session": "2024-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 3,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 7
+    },
+    {
+      "ticker": "TINS",
+      "rows": [
+        {
+          "session": "2025-10-06",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-10",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-13",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-14",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-16",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-17",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-20",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-10-21",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 9,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 2
+    },
+    {
+      "ticker": "TOBA",
+      "rows": [
+        {
+          "session": "2025-06-18",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 1,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 2
+    },
+    {
+      "ticker": "WIFI",
+      "rows": [
+        {
+          "session": "2024-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-01-31",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-04",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2025-02-05",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 6,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    },
+    {
+      "ticker": "WIRG",
+      "rows": [
+        {
+          "session": "2024-01-15",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-25",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        },
+        {
+          "session": "2024-03-26",
+          "classification": "unresolved_zero_volume_open_session",
+          "engine_hold_retained": true
+        }
+      ],
+      "zero_volume_count": 3,
+      "other_incomplete_rows": [],
+      "actions_still_unreconciled": 0
+    }
+  ]
+}

@@ -1,0 +1,1791 @@
+{
+  "evidence_version": "scanner-quality-remediation-20261002-v1",
+  "captured_at_utc": "2026-10-02T16:58:18.455860+00:00",
+  "git_head": "8617e5617e303d6f4906b2b5332cb8898bab8e3c",
+  "project_ref": "hcjfxbynqzsaidlwvdfx",
+  "data_mode": "live",
+  "deployment_gate_passed": false,
+  "scheduler_enabled": false,
+  "original_run_preserved": true,
+  "latest_production_run": {
+    "project_ref": "hcjfxbynqzsaidlwvdfx",
+    "target": "2026-10-02",
+    "started_at_utc": "2026-10-02T15:50:16.514092+00:00",
+    "stage": "production_postflight",
+    "production_write_attempted": true,
+    "scheduler_enabled": false,
+    "actual_trades_created": false,
+    "provider": "yfinance",
+    "scope": "approved A normalization plus seven source-reviewed BBCA cash dividends; local one-off runner",
+    "status": "production_partial_repair_verified_scanner_quality_no_go",
+    "coverage_valid": 11,
+    "coverage_total": 100,
+    "signals": 0,
+    "ranking_status": "cross_section_incomplete",
+    "run_digest": "8ab9ad4915e3a0c74ca584838ceaf949ee64f291428018a286434a6865847595",
+    "run_id": "b2bba460-abe3-4f68-9946-b13554a7c712",
+    "replayed": false,
+    "revisions_digest_readback_verified": 200,
+    "stored_at": "2026-10-02T15:57:34.596322+00:00",
+    "original_held_run_unchanged": true,
+    "item_status_counts": {
+      "corporate_action_hold": 59,
+      "data_quality_hold": 30,
+      "evaluated": 11
+    },
+    "fixture_rows_absent": true,
+    "production_signals": 0,
+    "production_mode": "live",
+    "owner_jwt_read_tested": false,
+    "completed_at_utc": "2026-10-02T15:57:42.347095+00:00"
+  },
+  "quality_audit": {
+    "purpose": "actual_capture_offline_quality_repair_audit_not_hosted_smoke",
+    "checked_at_utc": "2026-10-02T15:46:20.789515+00:00",
+    "target": "2026-10-02",
+    "production_write": false,
+    "scheduler_enabled": false,
+    "raw_capture_count": 100,
+    "raw_capture_checksums_verified": true,
+    "calendar_version": "idx-calendar-known-sources-20261002-v2-explicit-closures",
+    "calendar_closed_days": 72,
+    "source_hashes_verified": true,
+    "reviewed_cash_dividend_events": 7,
+    "explicit_regular_ex_dates": 6,
+    "calendar_derived_regular_ex_dates": 1,
+    "stage_quality": {
+      "raw": {
+        "data_quality_hold": 100
+      },
+      "A_calendar": {
+        "corporate_action_hold": 60,
+        "data_quality_hold": 30,
+        "valid": 10
+      },
+      "A_plus_B": {
+        "corporate_action_hold": 59,
+        "data_quality_hold": 30,
+        "valid": 11
+      }
+    },
+    "excluded_closed_bars": 451,
+    "excluded_closed_row_issues": 449,
+    "derived_revisions_required": 100,
+    "details": [
+      {
+        "ticker": "AADI",
+        "quality": "corporate_action_hold",
+        "open_bars": 430,
+        "raw_input_digest": "107d15b3b2cd662294070c6deae190bd5162191529d6158b8414f8b3c57f2e87",
+        "derived_input_digest": "deee7d1fc7f44f60376550aec5bcc749268c006159ab734b2c97f5f13101f771",
+        "unreconciled_actions": 2,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "ACES",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "6a5a649ff73e6efcea91e7a0b7700119fcc225a26af8b045c776f335258305df",
+        "derived_input_digest": "ead72ffbd5b8d97ef5d1322b2377da8564e8a1a2955724b941c78b0357dad856",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "ADMR",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "03971bceab8b24a7707b658d41decf1f79ddaf97d4cfd4196c352ebc3af02015",
+        "derived_input_digest": "a091e432b9c558e94cde3aaa36e40e9ebdcfe4f204a64b98538080b6427defc6",
+        "unreconciled_actions": 2,
+        "zero_volume_open_sessions": [
+          "2024-01-15",
+          "2024-03-25",
+          "2024-03-26"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "ADRO",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "b7754ebb15ef0118b945b01c879f3c4e6f6837270b561e3aeda398f699c64592",
+        "derived_input_digest": "68f41416c6937726beddbc7f4f662fb4ae7a6a200d71d28e47e4845f7bc2144b",
+        "unreconciled_actions": 6,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "AKRA",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "760fb6135eae4bab1e8d5de04d208b66c3cbc35d2a59f6324ce3eedf08b4e5e3",
+        "derived_input_digest": "0459bf94c5bd02b762002a3bb56a264b5fe7841290e18256d9b91e4b17d9c89d",
+        "unreconciled_actions": 6,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "AMMN",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "00d7d484baf73d0d79cb4c533e5ca2ca21f0533544047709f0bbde399da0043c",
+        "derived_input_digest": "d76d000c8a332e427aaa513a178fce48c3e3eab1d80ca7041e5972a9a1a1a327",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [
+          "2024-01-15",
+          "2024-03-25",
+          "2024-03-26"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "AMRT",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "2f1d77d8b1c7bacea7d4af67256861d146844083b3198edfa16d636a584c44ee",
+        "derived_input_digest": "4187493081ad269c20a0369b8f5200461c8ba1cf945ccbf1ec80ee82365ed8c4",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "ANTM",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "26ed92ad5876b4fd861f1a42cda60bd7ecc34d13ffb594aaad67797cae35acda",
+        "derived_input_digest": "d66b59fcd64ab2f50613a9b225ca825498219ac0d9d20204103ce0ca69ffc060",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "ARCI",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "48c89e9247d2bb3e1c1814b8291e261a455e663a73e96c9d03735ed82d704551",
+        "derived_input_digest": "3d376fdf60539b48ff8e397b670ad13ffbdc18b2d94fbb788329e3f5e77deae7",
+        "unreconciled_actions": 2,
+        "zero_volume_open_sessions": [
+          "2024-01-15",
+          "2024-03-25",
+          "2024-03-26",
+          "2025-06-23",
+          "2025-07-22",
+          "2025-07-23",
+          "2025-07-24",
+          "2025-07-25"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "ARTO",
+        "quality": "valid",
+        "open_bars": 651,
+        "raw_input_digest": "ed8e3f334d49e4ceacb1fc6b42dde7bd7bc0d7d8f79a234f881f0c1517eb9755",
+        "derived_input_digest": "1c85a2e3094f06cee5edc111b8b8fff3b630499b004ced002030c7f8aec4c570",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [],
+        "candidate_results": [
+          {
+            "strategy": "FRACTAL_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "MACD_EMA200_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "RS_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "cross_section_incomplete"
+          },
+          {
+            "strategy": "PULLBACK_RECLAIM_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          }
+        ]
+      },
+      {
+        "ticker": "ASII",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "86a0fb6346329f6a9a070bd98e107a22488a31e3e2ba51506609ba7fe6b804dc",
+        "derived_input_digest": "7628df500a8d0731c47750561b6377827f3e3befcfd996183bb50edb44fc6c99",
+        "unreconciled_actions": 5,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "BBCA",
+        "quality": "valid",
+        "open_bars": 651,
+        "raw_input_digest": "305c85b972f99e245bf9fb910ad747b104437d2ced181295bfc7ded788553fba",
+        "derived_input_digest": "b01f2d7ce3628c4cda33156920d53b8fca48dc6044e48571ed8a49a3b821e6b9",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [],
+        "candidate_results": [
+          {
+            "strategy": "FRACTAL_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "MACD_EMA200_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "RS_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "cross_section_incomplete"
+          },
+          {
+            "strategy": "PULLBACK_RECLAIM_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          }
+        ]
+      },
+      {
+        "ticker": "BBNI",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "386efff7696ef1e3099090ecb7916ecad32537a8460f98225835f8938a5e4993",
+        "derived_input_digest": "0dbffb5734781ac573fbf753e3c0cc5bef9c5d6d8c5d7e3b55555408c999a184",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "BBRI",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "57c7d1e381185b87e6890a8959e64463cbf1b151186530c37af60524bb446fad",
+        "derived_input_digest": "79f88da4eccf08e19d45192223029e91bcaefc7aba9f82b132391098ef60858d",
+        "unreconciled_actions": 6,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "BBTN",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "74da111a4cecd09b5f428ef601310b952c140ea5d4270d79ffc634e0b81eb781",
+        "derived_input_digest": "2dc96abf6b9f407fcbaa52da77a6ba0262a6e57fec552d1933431727ddff3dcb",
+        "unreconciled_actions": 2,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "BBYB",
+        "quality": "valid",
+        "open_bars": 651,
+        "raw_input_digest": "ef87aa018c48f695ba219af8a58685c192c0981be3e22ea550fb4e73aaa26cc0",
+        "derived_input_digest": "800b466106c32718d007327598d634f65f7c9aee8333f938aa7be1dcc8ef1e3f",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [],
+        "candidate_results": [
+          {
+            "strategy": "FRACTAL_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "MACD_EMA200_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "RS_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "cross_section_incomplete"
+          },
+          {
+            "strategy": "PULLBACK_RECLAIM_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          }
+        ]
+      },
+      {
+        "ticker": "BFIN",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "ce9da1e8129efa995fd0320fd53129837adaa12ad98b421594b9889509f2afbc",
+        "derived_input_digest": "1f92244530842e018a70fc74e8231a9ad17951c8f5bfba54c179b0daa81ae9f6",
+        "unreconciled_actions": 5,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "BIPI",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "1b8a23c3906b963a386877171e7dd29027820bcdf952abc2b5d430b9cc06dc05",
+        "derived_input_digest": "b47de4334c52801abcdea9b7d78aa438444b242b18a5e9108eddea739b6a8a22",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [
+          "2024-03-01",
+          "2024-03-04",
+          "2024-03-05",
+          "2024-03-06",
+          "2024-03-07",
+          "2024-03-08",
+          "2024-03-13",
+          "2024-03-14",
+          "2024-03-15",
+          "2024-03-18",
+          "2024-03-19",
+          "2024-03-20",
+          "2024-03-21",
+          "2024-03-22",
+          "2024-03-25",
+          "2024-03-26",
+          "2024-03-27",
+          "2024-03-28",
+          "2024-09-02",
+          "2024-09-03",
+          "2024-09-04",
+          "2024-09-05",
+          "2024-09-06",
+          "2024-09-09",
+          "2024-09-10",
+          "2024-09-11",
+          "2024-09-12",
+          "2024-09-13",
+          "2024-09-17",
+          "2024-09-18",
+          "2024-09-19",
+          "2024-09-20",
+          "2024-09-23",
+          "2024-09-24",
+          "2024-09-25",
+          "2024-09-26",
+          "2024-09-27",
+          "2024-09-30",
+          "2026-01-08",
+          "2026-01-12",
+          "2026-01-13",
+          "2026-01-14",
+          "2026-01-15",
+          "2026-01-19",
+          "2026-01-20",
+          "2026-01-21"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "BKSL",
+        "quality": "valid",
+        "open_bars": 651,
+        "raw_input_digest": "05182394e34033326619a1df0b78478f1bb8960cc6ebb0cb62ce00d1bfb69981",
+        "derived_input_digest": "73e4ef541ea5ae73f20c5ef6d671123417d910d61578d715dd0d97e162793a38",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [],
+        "candidate_results": [
+          {
+            "strategy": "FRACTAL_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "MACD_EMA200_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "RS_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "cross_section_incomplete"
+          },
+          {
+            "strategy": "PULLBACK_RECLAIM_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          }
+        ]
+      },
+      {
+        "ticker": "BMRI",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "a957867f199c6a5e1b6848fd2f6dfe9767bf51f7e5899f9c8071e053c7ccbb85",
+        "derived_input_digest": "b5c37226ad82e531e8679794d1195b5952d27a817a01ae8c6075377fc64a9cdf",
+        "unreconciled_actions": 5,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "BNBR",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "92978e5069cb0093a6de20dcdccfa4cbdbe7d9232814052cd4b78eb6f2b7fccd",
+        "derived_input_digest": "ee6551ae5ae53570b7b73c05ef5619e35b1f155105eabaef8a1dd94c0f0f954a",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [
+          "2025-12-12",
+          "2025-12-16",
+          "2025-12-17",
+          "2025-12-18",
+          "2025-12-19",
+          "2025-12-22",
+          "2025-12-23",
+          "2025-12-24",
+          "2025-12-29"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "BRIS",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "9ab0eb22d9f1cccaaf0abdcef71c856a6dc9aeb677eeeee35506b06b65492250",
+        "derived_input_digest": "a83fcd13fd6ebb67d23880dc15028c4f39547f12a2f047903f0ac20ae5644b64",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "BRMS",
+        "quality": "valid",
+        "open_bars": 651,
+        "raw_input_digest": "b055fb974371590b221b84ef843f16743ef9b42c0432945facae16a8c6538a27",
+        "derived_input_digest": "70a591043ebf6a8d9e5b42e71cc16baba20c31cae50dc24b2e8e9c6f38a404a6",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [],
+        "candidate_results": [
+          {
+            "strategy": "FRACTAL_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "MACD_EMA200_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "RS_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "cross_section_incomplete"
+          },
+          {
+            "strategy": "PULLBACK_RECLAIM_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          }
+        ]
+      },
+      {
+        "ticker": "BRPT",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "486de1d8701e9d4d54e3279ca66bfb5d042fbe28a253fc83e78f25793dad8cc9",
+        "derived_input_digest": "330867fe66beb12bdccf3d1f3c12782e2a15ca29006035f2492c633373789b02",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "BSDE",
+        "quality": "valid",
+        "open_bars": 651,
+        "raw_input_digest": "c0345e4e2ffc675969805b3637ffced677004ec3b1ae4d0c5343743410cfc869",
+        "derived_input_digest": "65c9f77c90df2b83887ca49d34178b6c6302671f7d95243d9cecb0d74a55417d",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [],
+        "candidate_results": [
+          {
+            "strategy": "FRACTAL_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "MACD_EMA200_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "RS_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "cross_section_incomplete"
+          },
+          {
+            "strategy": "PULLBACK_RECLAIM_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          }
+        ]
+      },
+      {
+        "ticker": "BUKA",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "f5eaed9444ff5c36248081d8d677e7c1e4d435ab1baaad7372ee9f5bac331dd1",
+        "derived_input_digest": "27444f4d9cc6f06c9089df56767379316e37cc0e96823474a575ad2fc4f066eb",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [
+          "2024-01-15",
+          "2024-03-25",
+          "2024-03-26"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "BULL",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "ab369c91c9cae8d0ba3df51d5f4693c921bc8138b7fc46d2e4abd30c15d168f4",
+        "derived_input_digest": "d6cd3c35945bbbf6da8517d6958bd4db13e6806af2924e1bec1afc659e7416ce",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [
+          "2024-03-01",
+          "2024-03-04",
+          "2024-03-05",
+          "2024-03-06",
+          "2024-03-07",
+          "2024-03-08",
+          "2024-03-13",
+          "2024-03-14",
+          "2024-03-15",
+          "2024-03-18",
+          "2024-03-19",
+          "2024-03-20",
+          "2024-03-21",
+          "2024-03-22",
+          "2024-03-25",
+          "2024-03-26",
+          "2024-03-27",
+          "2024-03-28",
+          "2024-08-01",
+          "2024-08-02",
+          "2024-08-05",
+          "2024-08-06",
+          "2024-08-07",
+          "2024-08-08",
+          "2024-08-09",
+          "2024-08-12",
+          "2024-08-13",
+          "2024-08-14",
+          "2024-08-15",
+          "2024-08-16",
+          "2024-08-19",
+          "2024-08-20",
+          "2024-08-21",
+          "2024-08-22",
+          "2024-08-23",
+          "2024-08-26",
+          "2024-08-27",
+          "2024-08-28",
+          "2024-08-29",
+          "2024-08-30"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "BUMI",
+        "quality": "valid",
+        "open_bars": 651,
+        "raw_input_digest": "6d50e9a8e131e42d97aab27fbd31a51fbbc4859cf05884045e3012ce97259d46",
+        "derived_input_digest": "5c74445f803e64bfe24204357a70bf22845054505eb1256745d824908b8d6c13",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [],
+        "candidate_results": [
+          {
+            "strategy": "FRACTAL_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "MACD_EMA200_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "RS_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "cross_section_incomplete"
+          },
+          {
+            "strategy": "PULLBACK_RECLAIM_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          }
+        ]
+      },
+      {
+        "ticker": "BUVA",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "3121bfbc3a0a7ceab0ac419bf58d1cc6b1ad24233f80e15aed5e7e81cf2e44b5",
+        "derived_input_digest": "3533e7dde908686666bfcda463e3001afa9e0c334f1fabb5bc93e67586de7f68",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [
+          "2025-07-30",
+          "2025-08-01",
+          "2025-08-04",
+          "2025-08-05",
+          "2025-08-06",
+          "2025-08-07",
+          "2025-08-08",
+          "2025-08-11",
+          "2025-10-06",
+          "2025-10-07",
+          "2025-10-08",
+          "2025-10-09",
+          "2025-10-10",
+          "2025-11-26",
+          "2025-11-27",
+          "2025-11-28",
+          "2025-12-01",
+          "2025-12-02"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "CBDK",
+        "quality": "corporate_action_hold",
+        "open_bars": 407,
+        "raw_input_digest": "0c5f24dd79d309aefde03a11e5836a6d7db7eafe14cb5a016df315dd66dc2130",
+        "derived_input_digest": "5cde958b6cba4295299d4371affb4c8cfb8741842320ab171241058c8973c606",
+        "unreconciled_actions": 2,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "CMRY",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "ee27caad49be94b44af1576b6e6e83476e8b0c7d046ad5ecc5127f1c21d8f0a1",
+        "derived_input_digest": "88f7d3c0126776a92948e0dbe8d53f567c54baa40b059be8c068e97f88fd86cd",
+        "unreconciled_actions": 5,
+        "zero_volume_open_sessions": [
+          "2024-01-15",
+          "2024-03-25",
+          "2024-03-26"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "COIN",
+        "quality": "data_quality_hold",
+        "open_bars": 299,
+        "raw_input_digest": "e91649e918a798d9290033f4f94a2a05d294e7c9df42aa9581160584eaa7b629",
+        "derived_input_digest": "243e51ad294978c30537018111542bdd0bbf14e7a85ef3b94e7225c70f583621",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [
+          "2025-07-17",
+          "2025-07-22",
+          "2025-07-23",
+          "2025-08-26",
+          "2025-08-27",
+          "2025-08-28",
+          "2025-08-29"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "CPIN",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "9d6275309975ef2bdf56a932db0a3bcbce1054ecad2960ed8dbff14925e5b2c6",
+        "derived_input_digest": "e96efb4580c75b102b617c31e02edab18c56377476ac3482a28d0205c55e7d54",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "CTRA",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "7a2f90781536ef03ecf913f52681925f54709d209692cea34db4c72c4994d257",
+        "derived_input_digest": "b31b2dab38e02ba840a7698d1eccdfe0e72ad8dd7f707e212484ca379306657d",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "CUAN",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "977f2cdbe96309dd70399f231086f93e36d9e0c7414cac7a68e7ec81aada528b",
+        "derived_input_digest": "02d3a39ff45d8eb2b492cb4391379a1c32134809485d412389d0b3b07a2598f2",
+        "unreconciled_actions": 2,
+        "zero_volume_open_sessions": [
+          "2024-01-02",
+          "2024-01-03",
+          "2024-01-04",
+          "2024-01-05",
+          "2024-01-08",
+          "2024-01-09",
+          "2024-01-10",
+          "2024-01-11",
+          "2024-01-12",
+          "2024-01-15",
+          "2024-03-25",
+          "2024-03-26"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "DEWA",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "9ea67148fa1c564875f4d7092c5ca5d119ee1bb14d5afb63731542c5160b5da8",
+        "derived_input_digest": "447d16774edccf598839e3883334705e47bd7d66e915bc63f5dad813220815e2",
+        "unreconciled_actions": 1,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "DSNG",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "da3e0298563cd6bcc220eb81aa42d69236fb6b99110a5f60cb474b3dcc0e1eef",
+        "derived_input_digest": "df9ed20752285bfb5b2a4fe8e32317366118a5f1efab9a3fb0ec7d5631a61741",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "ELSA",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "02f080bfa54bf80dda97d2b17857b22da615d9e0fc4b7d47cdcea7faeaf16849",
+        "derived_input_digest": "2cfdbca2eb3fb6bdae122e856006d0cda5972b539668f4cc3aa81e10e83c8630",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "EMAS",
+        "quality": "valid",
+        "open_bars": 247,
+        "raw_input_digest": "3388354a24f11166c4b1a02a4040c693287f47ea2dd20358df378b7e3acc5e95",
+        "derived_input_digest": "8652dc81cebf072675a5c72afff44b3b6faf346a35da2f197c3bfe0bb425e05d",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [],
+        "candidate_results": [
+          {
+            "strategy": "FRACTAL_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "MACD_EMA200_V1",
+            "triggered": false,
+            "reason": "insufficient_history"
+          },
+          {
+            "strategy": "RS_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "insufficient_history"
+          },
+          {
+            "strategy": "PULLBACK_RECLAIM_V1",
+            "triggered": false,
+            "reason": "insufficient_history"
+          }
+        ]
+      },
+      {
+        "ticker": "EMTK",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "462953d2439222978da9ce453fe60f99a4d012143b81547a41f4002fd5c9af1f",
+        "derived_input_digest": "09f459a3505980d12f11476f428d5e79684c993b6e396979649eb0ac21a69979",
+        "unreconciled_actions": 4,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "ENRG",
+        "quality": "valid",
+        "open_bars": 651,
+        "raw_input_digest": "50ac1c5589e64d56607c8f553d0a20c189665e2aa11161841429ba738495d1c0",
+        "derived_input_digest": "60fbd863e100c63a7e1eb10f84ad38b9a2d22de2ec1e4bf89b9ae53ee8250fd4",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [],
+        "candidate_results": [
+          {
+            "strategy": "FRACTAL_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "MACD_EMA200_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "RS_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "cross_section_incomplete"
+          },
+          {
+            "strategy": "PULLBACK_RECLAIM_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          }
+        ]
+      },
+      {
+        "ticker": "ERAA",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "bf5a7ebbb308306a70c9b964b4b9e594f6f1d1db704b479eb1c0bb6fa272fe73",
+        "derived_input_digest": "6d4834f716a13854b1e74729015e05b359235a37d8694bf7a0021ac1cae637d3",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "ESSA",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "2433f32a2b04564fd638cf064c48ed5efb969c047331d9870633b7130b3613e6",
+        "derived_input_digest": "e6204ff8994271613a2f51b0041a0a6da7eb03413c32174677df77e54fca69bf",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "EXCL",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "d1086d5a858a3e646bd9073fd380be92096631042435c9eda7246c0b601ab7af",
+        "derived_input_digest": "19d00782067d774b2c5d4fc74826518777d3a1fd6e1796a78f28d4646538cea9",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "GGRM",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "a90bba8dcf33f5e0a4815df02e80f8ec5cf3574e6cf53b43037839a08355c89c",
+        "derived_input_digest": "bd25d529e9f98374e51e53089d502e819af09cd9bc862848a37f1459a876e85a",
+        "unreconciled_actions": 2,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "GOTO",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "2275dd99d7b860a86b6f83e1bdb8c80ba847f74596c94a3a4125b2806700fd34",
+        "derived_input_digest": "a1879523d182eec6198cf25904c9096006348cdff5497485baef04bad30c3daf",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [
+          "2024-01-15",
+          "2024-03-25",
+          "2024-03-26"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "HEAL",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "6687f026fd3d318f72347b989d361ca244dada56aa0b62fabb6d151be669700f",
+        "derived_input_digest": "7b0063eee40420bb6cf53d3703690df46c4acc682e2e61c0b041d9485423e5a0",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "HRTA",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "dcc0de6606a08020733b8c3448713378b2013dd791f2c615e1d7aecb086e960f",
+        "derived_input_digest": "cbb8b7b56cd406115f181a3028a7e59ee1fc126c14eaead293003d937d0f82a8",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "HRUM",
+        "quality": "valid",
+        "open_bars": 651,
+        "raw_input_digest": "d4998b9df23eb060ab697b028cc09c44cf05e0c9b33035d9dd472e0cc9c3f10f",
+        "derived_input_digest": "7620f3a5750ba1ee38460cc50f8f97d680d7fccee765936706fbae6c95cbff17",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [],
+        "candidate_results": [
+          {
+            "strategy": "FRACTAL_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "MACD_EMA200_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "RS_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "cross_section_incomplete"
+          },
+          {
+            "strategy": "PULLBACK_RECLAIM_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          }
+        ]
+      },
+      {
+        "ticker": "ICBP",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "313c11da3beb2adef061f14561596b1be29b20404a295ebecb3031f2a5c2d7da",
+        "derived_input_digest": "5b1763a0db6d1cdc83ac905f545767c3c1a576482054122f157f2b789ec53c5d",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "IMPC",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "6c50f25b67d2a9eb446f2d6f99a2118bebc3bbfc7b9b515f01a79aa35506869f",
+        "derived_input_digest": "f53884b1e929ccb8f16ac2225eeb3f9507b2b34999c7fd297de82a3ff2974ebb",
+        "unreconciled_actions": 1,
+        "zero_volume_open_sessions": [
+          "2025-08-11",
+          "2025-08-13",
+          "2025-08-14",
+          "2025-08-15",
+          "2025-08-19",
+          "2025-08-20",
+          "2025-08-21",
+          "2025-08-22",
+          "2025-08-25"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "INCO",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "ac43f32967c9facec780dcaf2a19957acafe8acd7956e4147b6d039faec6f972",
+        "derived_input_digest": "e145bcb75d60836d391dc97a1deb35dca2a27b7277f6221a1a03b279308c0215",
+        "unreconciled_actions": 2,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "INDF",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "5d7720ec8423ebebd5fd7aad10b10c34eb651e0c13cb367d1ebf41acc44795d3",
+        "derived_input_digest": "39e9ea2397f3dc025d4eb6235292b90b9d34ccacb68c36774b1fc3b525aae195",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "INDY",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "5963e1fe1484ce56757e62e1a4b0cc2096ad4dd06724a0fa72a41a31ad7b613d",
+        "derived_input_digest": "2c8cc005d9adfc7a68b349ff8ed732d6f0a6907bf1e2cafb1546062431486d19",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "INET",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "e5d3d7af0d04b2ecb9d3b31d01d5e92ec5c90b6368b6d2931ac96c3a62a3d00c",
+        "derived_input_digest": "99b9aae374e6b560ef27f1ad0c1f4dce3fd8927d686c72f2fc96d4fa948b1bfb",
+        "unreconciled_actions": 2,
+        "zero_volume_open_sessions": [
+          "2024-01-15",
+          "2024-03-25",
+          "2024-03-26",
+          "2025-02-12",
+          "2025-02-25",
+          "2025-02-26",
+          "2025-02-27",
+          "2025-02-28",
+          "2025-03-03",
+          "2025-03-04",
+          "2025-04-29",
+          "2025-04-30",
+          "2025-05-02",
+          "2025-05-05",
+          "2025-05-06",
+          "2025-05-07",
+          "2025-05-08",
+          "2025-05-09",
+          "2025-05-14",
+          "2025-11-25",
+          "2025-12-04",
+          "2025-12-05",
+          "2025-12-08",
+          "2025-12-09"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "INKP",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "51360bd365f5aa56fc032d78fe4032f0739d29d9207eb6ef361ff816dc920e31",
+        "derived_input_digest": "4fd3a1df86b175917e78361705a459de41e5061ffd263fadd9c3cf04c057e0f5",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "ISAT",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "2d6bea70b0eb7d4a14c68b4d6653a636a233b58b013096fa57fabed0cd81a288",
+        "derived_input_digest": "1dc6db65a1642dd78e90c865854db9a362bd66d92053f3f12ce38504641d5b06",
+        "unreconciled_actions": 4,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "ITMG",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "0bdd8a66483a79c0a61cf5e301cd4418c7107fc8f8a44c1d5a59da01a7be0f8c",
+        "derived_input_digest": "e8a11fa3a030449c851edd1e538148c998f0f44dd3798f5b22e085ba556d2572",
+        "unreconciled_actions": 5,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "JPFA",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "8d719f481de6d721152e0c802b51ace5c2d75045296c6b109ce1708c40203221",
+        "derived_input_digest": "3fce83d049c02497c15ccff00c031368876f2d720fcc39ae5d90411bf10b5baf",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "JSMR",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "df5b9281339bfbaef0d353768edda0ac969b3329657f5fb5d93ef55265772d12",
+        "derived_input_digest": "b83a0b21c6931db7a30de2e598c625f1be73353b4a855a735d29f1f8af97bef4",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "KIJA",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "6f5b282977ece1b82f30b19f612655df9a800afd010b8275857b6c4492cac914",
+        "derived_input_digest": "cf1a6dab3a4412dbdde865012867be01384e0211d25fe6c3c1d5c4a4ed49056e",
+        "unreconciled_actions": 2,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "KLBF",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "f1126eddf674f02d935645a39b9d41cf761315cee3012c7c9aeefd21785ce21c",
+        "derived_input_digest": "1e7e9aaf67a956bee7b33939381eb1a2abe362a6658dbf9f6146ff63dbbf7151",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "KPIG",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "7f9e0254621707381f9f281ceed43cb6d09f041579d8e0e265b73314041e7721",
+        "derived_input_digest": "de426210feaa7e39a65e8e925aef0ce7d1af46071a039d85b55d9a1597e77d85",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [
+          "2024-07-17",
+          "2024-08-20",
+          "2024-08-21",
+          "2024-08-22"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "LSIP",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "ce49fd95c8326bc3f903a466af7643e630d77f7314ce1dc69cdd4deee7b6762d",
+        "derived_input_digest": "fd50655479f2a66374a0b71a44bfdc289aff9ffa845bb3d5ec68465184a79ddd",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "MAPA",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "a0532729ed352b20e3ae7d9061494311411a93b3d0f4bf6fb0a6b7b879a1c4ac",
+        "derived_input_digest": "eefdb1d213a530de7fe159ee96d1f7a15131cabd2523118cba04c6217b94514e",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "MAPI",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "8011a66f8e199c4168ada4a39b7f4634d4e1e2a552e4c0eb15f5fbdbb368282b",
+        "derived_input_digest": "b2953900cf32eae10d302abb12dc0093ef6aa1214a4ddbac99a583b172776ccd",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "MBMA",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "8a900840a18229b7ea796ae6a791a53f6080deee49baa70659c4e34f89946fe8",
+        "derived_input_digest": "7ee871e5503729aa03fe53e22edf9ee0682e5e40157347a863541ffd71b7f08e",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [
+          "2024-01-15",
+          "2024-03-25",
+          "2024-03-26"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "MDKA",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "97676d9282bd488bf566f03b814a97da1ccecf154135d349e5177788347b4cfc",
+        "derived_input_digest": "b04cdf39e255823f7e7fafa9ed0563bfae87d543c8a1eb3e05b88a1d94d60c1b",
+        "unreconciled_actions": 1,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "MEDC",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "fdf1f294048073cc74b8c2c48b59bebaecc9d1a4aa4826f4aabe481c5d554ba9",
+        "derived_input_digest": "f647a12216d4230aa5d03123755c38b3d602eeb863945d5bb0f0ae5aa9df4c2e",
+        "unreconciled_actions": 5,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "MIKA",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "85d36173b48ff170fe48723eeddedf37af509ad95c5a4d03da1c431179513a2f",
+        "derived_input_digest": "d83454c4e6282fd79af115e251d2c61265aeb91d97ad58eafde3a58f288496ee",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "MINA",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "8fcacdfb86839c7ddc9925b52afa28554657e60896245dc505af8d7530f2ae23",
+        "derived_input_digest": "754d948ef96985af0c2fa596e7619f5573cd304fa20f893966272d82b12ff9ab",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [
+          "2024-01-03",
+          "2024-01-10",
+          "2024-01-12",
+          "2024-01-15",
+          "2024-01-16",
+          "2024-01-17",
+          "2024-01-19",
+          "2024-01-24",
+          "2024-01-29",
+          "2024-01-30",
+          "2024-01-31",
+          "2024-02-02",
+          "2024-02-06",
+          "2024-02-07",
+          "2024-02-12",
+          "2024-02-16",
+          "2024-02-21",
+          "2024-02-23",
+          "2024-02-26",
+          "2024-02-29",
+          "2024-03-06",
+          "2024-03-07",
+          "2024-03-08",
+          "2024-03-18",
+          "2024-03-19",
+          "2024-03-22",
+          "2024-03-25",
+          "2024-10-11",
+          "2024-10-25",
+          "2025-02-10",
+          "2025-02-13",
+          "2025-02-14",
+          "2025-02-17",
+          "2025-02-18",
+          "2025-02-19",
+          "2025-02-20",
+          "2025-02-21",
+          "2025-02-24",
+          "2025-02-25",
+          "2025-02-26",
+          "2025-08-04",
+          "2025-08-07",
+          "2025-08-08",
+          "2025-08-11",
+          "2025-08-12",
+          "2025-08-13",
+          "2025-08-14",
+          "2025-08-15",
+          "2025-08-19",
+          "2025-12-02",
+          "2025-12-08",
+          "2025-12-09",
+          "2025-12-10",
+          "2025-12-11",
+          "2025-12-12",
+          "2025-12-15",
+          "2025-12-16",
+          "2025-12-17"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "MYOR",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "57ea80627f7e757baa67e65b07e8643329417fe2b7fc96021a56e8f215f7d3aa",
+        "derived_input_digest": "3f7cfd11ebd00ce80aafc7b1a5462e5e47ccab19cfdfb4d24f072415e0dddefe",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "NCKL",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "41a6a309ce5df73753c65e8aa68e920bd238afd65953aa48dd63e4dda87e1394",
+        "derived_input_digest": "c5cd51383f7b85c80c5320f0c1c01c970173a082760bc29756285f307c9efa6b",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [
+          "2024-01-15",
+          "2024-03-25",
+          "2024-03-26"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "PANI",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "9a008916470cb3394ff378b90395a42dbcc607ccbc2796b21a26718caab19dab",
+        "derived_input_digest": "29fd1cd14f29b8bfa7c6c4de73c33f1c0f0ce27cce6f6b0cdaa4d2d59533b697",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "PGAS",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "aaa65fea08bf25bc51c9bfc35e5510fc157d171aa961299ca5bc82f04760a19e",
+        "derived_input_digest": "9cf9dae72101ad5bcd61b90fc947ea804afee7064e29ca6f1d2279fb11717c7d",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "PGEO",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "9800d04adb31c6024040fc8e9bd9311f80d6e557acb769e3ee163e1d42aeaabd",
+        "derived_input_digest": "ee42a6602d45443c591a1a4d9c217c38fad0f4252da053c0f4e3adf1e6191eec",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [
+          "2024-01-15",
+          "2024-03-25",
+          "2024-03-26"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "PNLF",
+        "quality": "valid",
+        "open_bars": 651,
+        "raw_input_digest": "4be921693f9ae8a3c14d500d83012ab81873519ee68a113cd7f51adfa87e56cb",
+        "derived_input_digest": "eee8ebcaa699d3d88847ded08690a49ad225b6b8e7e6ecd4e3539174b858a379",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [],
+        "candidate_results": [
+          {
+            "strategy": "FRACTAL_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "MACD_EMA200_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          },
+          {
+            "strategy": "RS_BREAKOUT_V1",
+            "triggered": false,
+            "reason": "cross_section_incomplete"
+          },
+          {
+            "strategy": "PULLBACK_RECLAIM_V1",
+            "triggered": false,
+            "reason": "no_signal"
+          }
+        ]
+      },
+      {
+        "ticker": "PSAB",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "75f99004e1e24705e6b31c78781750df50aea559fb725d7bb7cb91dd71573a72",
+        "derived_input_digest": "ea35f98ad0998bc92a2477ef7b33dec94af2ed1908a9f8ed6394895a7df139bc",
+        "unreconciled_actions": 2,
+        "zero_volume_open_sessions": [
+          "2024-03-06"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "PTBA",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "146684c10d4a603ac84b95a10dcb1a0e77fb78ab4adc5c5517822b4665e470e2",
+        "derived_input_digest": "472903658bc6e62dcc97bda0f72edcd04a3088851fceb775e49f0536dbaf1366",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "PTRO",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "f9ca05acc8dd987b549bcf6ea13e010d685cdfce8f58baa96e99984e37f4423d",
+        "derived_input_digest": "3154471860dc3cfa032557fa29a3ca48b8a7fbac613999e9b5f734b366de5724",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [
+          "2025-10-06"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "PWON",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "5c6cc96079d4104401599998cf77c014668f912bf49ca41caf8c42dbc1c0db1b",
+        "derived_input_digest": "d60a9911e856c6a3777dd530700bfd0d306f69711d7676e4e3e786697e69b354",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "RAJA",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "bf8e362023604bbb4d1fca9525ca201476d811758866c2aaa7a280f91747c225",
+        "derived_input_digest": "26242560944c3ea15753759094e851bb6ffdbd90154eabea83143523d57303d2",
+        "unreconciled_actions": 5,
+        "zero_volume_open_sessions": [
+          "2025-10-13"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "RATU",
+        "quality": "data_quality_hold",
+        "open_bars": 410,
+        "raw_input_digest": "1873371a45135e3f430ead783e47fd319755627c729053e12ee37b8c9c39d91e",
+        "derived_input_digest": "d612c4e06092dd7a746d4d65713b874df8d09115b814e1c4b5f67c725f3e32f4",
+        "unreconciled_actions": 2,
+        "zero_volume_open_sessions": [
+          "2025-01-16",
+          "2025-01-20",
+          "2025-01-21",
+          "2025-11-28"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "RMKE",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "2423b17eee2db99b563a18749615b30059bd12570ffadfcca1e2846ff58f7a6a",
+        "derived_input_digest": "6cb8e357d84d6bdf4492a8e2fd5090aae7104bafa71684a1900a0793d42f0d66",
+        "unreconciled_actions": 4,
+        "zero_volume_open_sessions": [
+          "2024-01-15",
+          "2024-03-25",
+          "2024-03-26",
+          "2025-10-07",
+          "2025-10-09",
+          "2025-10-10",
+          "2025-10-13",
+          "2025-10-14",
+          "2025-10-15",
+          "2025-10-16",
+          "2025-10-17",
+          "2026-01-13",
+          "2026-01-14",
+          "2026-01-15",
+          "2026-01-19",
+          "2026-01-20"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "SCMA",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "b985a868fdcd90017439a7c944ec9d1448bef8fd083d5159c94ddd7e9d070b4d",
+        "derived_input_digest": "91a0e4da875c2d3e0eb46513e9ef246ab1141deb2add8434763c6e98ddc89027",
+        "unreconciled_actions": 5,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "SGER",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "13c779097a3211ffdda92d71e2fe93f44f1c01c4affeadf204feb73d48b72f80",
+        "derived_input_digest": "54844bea9ab55156024f4700b06c7f1640d5cfa212db30c4cb830dacc4e95bea",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "SMGR",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "97534eaf49ff47827295485202ef95e60ea012004995203bc97aa51102eb5715",
+        "derived_input_digest": "24de3bfedca64f0eedf9bb903588166f9f8314be6fa5c35e5fa53b33b557d0a3",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "SMIL",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "71a08ace07380e8b9528231451b50f503b0d09bfc75c27be703cd342586e147f",
+        "derived_input_digest": "aa3213d9cdc1284277e15ff729d8651e7b5a6f8d7badbe8e53289e93382e796f",
+        "unreconciled_actions": 2,
+        "zero_volume_open_sessions": [
+          "2024-01-15",
+          "2024-03-25",
+          "2024-03-26",
+          "2025-04-21"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "SMRA",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "57a1a7d91486f6e373030758221629da48a509575d7b989d92c4dafb8e6b6f38",
+        "derived_input_digest": "95c16733817df4bce1b9f16cef53a8aac9ef849026a2d6f06ff649186a77a2d0",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "SSIA",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "2c67b89471d863cb4da7f78e3913c04604554b9b7755886250858779111ea498",
+        "derived_input_digest": "4b70f7c5be1d3263c20a67ddacab6b0f0aa10e25e22ae859d2b0e4a28d1faa0c",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "TAPG",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "203558dee3592aa07269c7915aa1a4127b483ae3a8979dd421aabdb0848b9cd6",
+        "derived_input_digest": "ab87e8637adc0985d07004b3874477cd3093606fbe069020771964205c240670",
+        "unreconciled_actions": 7,
+        "zero_volume_open_sessions": [
+          "2024-01-15",
+          "2024-03-25",
+          "2024-03-26"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "TINS",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "f3a238023f2266aa6b0359b595e4db15e12fcc8ae02f57069372d94d4e2479ec",
+        "derived_input_digest": "303715f2542d38f3c0dc5cb9d253ba4ffd1acf692e55630e6c7f06b09a0d3348",
+        "unreconciled_actions": 2,
+        "zero_volume_open_sessions": [
+          "2025-10-06",
+          "2025-10-10",
+          "2025-10-13",
+          "2025-10-14",
+          "2025-10-15",
+          "2025-10-16",
+          "2025-10-17",
+          "2025-10-20",
+          "2025-10-21"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "TLKM",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "3da1746f88586532ab4dba4a390230ceef8ef07a4506f0627e66157eff53f08b",
+        "derived_input_digest": "e1188bd95fe33f9bea9cc8791629cc1292fa194f4fced1d2931b8c8a4ec39eb7",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "TOBA",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "aab316485e7a79c2042c4bdbe55f75eb26e42d7d56813a13b93acaa66a63f871",
+        "derived_input_digest": "ebee83e2fd4a23ce8303be2f00616c748a22292b03e52c62ea98383eb069369f",
+        "unreconciled_actions": 2,
+        "zero_volume_open_sessions": [
+          "2025-06-18"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "TOWR",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "e0344c5d5dc74e9719cf67639a93f949620822a57b0b1d46a75d42d23c155a61",
+        "derived_input_digest": "2b925cb39dc718a0caaf55a4b17547e962323726a43ec68b1622ee7b0d1223d9",
+        "unreconciled_actions": 5,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "TPIA",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "02e5be3cdc7afea15e99af28e0ad1b7caffbff1fa57cb7f769b3cc2c7418c0d5",
+        "derived_input_digest": "0d93da91ec08df10691ecdea567bf69d7a05ff0346f96061e7f2da93331a72c0",
+        "unreconciled_actions": 4,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "UNTR",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "ee5bea317946b6cb87a4d989a0e192ecc087267749a2294ff4430f48249548fd",
+        "derived_input_digest": "a3aa83c9ecf815c488f8c9b2bd477e6116fff4fc2d8ab96673dfe9442c41f31b",
+        "unreconciled_actions": 5,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "UNVR",
+        "quality": "corporate_action_hold",
+        "open_bars": 651,
+        "raw_input_digest": "2c96722a744375f53b3b98f08d2f0d6d3a7fe8970d1a5f094c30118127e5e072",
+        "derived_input_digest": "ebb28677c2c0dd377a15e0812fe5cdd4db733f750f717aaf45e21f256d87ee24",
+        "unreconciled_actions": 5,
+        "zero_volume_open_sessions": [],
+        "candidate_results": []
+      },
+      {
+        "ticker": "WIFI",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "4dcae4290cca7f5a4f0c42d4576e92d09906f9b25f4e50f7d4464e12c639774e",
+        "derived_input_digest": "8ebb7bf8e96b69de2811eb4b131ffd6448535864da2ecc0533035dda57ca4d4f",
+        "unreconciled_actions": 3,
+        "zero_volume_open_sessions": [
+          "2024-01-15",
+          "2024-03-25",
+          "2024-03-26",
+          "2025-01-31",
+          "2025-02-04",
+          "2025-02-05"
+        ],
+        "candidate_results": []
+      },
+      {
+        "ticker": "WIRG",
+        "quality": "data_quality_hold",
+        "open_bars": 651,
+        "raw_input_digest": "7c7f284ef72db4589b23c6116fac7b9ed93e428ae62a72d33a1613c443f7bfdc",
+        "derived_input_digest": "a6be111b882e427354031fecdf4c1086700594566544b7b91b9e66cfdcd0e0b4",
+        "unreconciled_actions": 0,
+        "zero_volume_open_sessions": [
+          "2024-01-15",
+          "2024-03-25",
+          "2024-03-26"
+        ],
+        "candidate_results": []
+      }
+    ],
+    "scan_status": "partial",
+    "coverage_valid": 11,
+    "coverage_total": 100,
+    "rs_complete": false,
+    "rs_reason": "cross_section_incomplete",
+    "signals": 0,
+    "run_digest": "8ab9ad4915e3a0c74ca584838ceaf949ee64f291428018a286434a6865847595",
+    "namespace": "forward",
+    "publication_attempted": false
+  },
+  "bbca_dividend_manifest": {
+    "version": "reviewed_cash_dividends_no_adjust_v1",
+    "events": 7,
+    "explicit_regular_ex_dates": 6,
+    "cum_date_calendar_derived_ex_dates": 1,
+    "source_sha256s": [
+      "336df309ef29582142b923651dbedef2a333e88bbc58760609a844647685ba8b",
+      "957b827847641343d2faf5d2b00f62f16f8c33cc373a1d5ed9cf8e04f908680d",
+      "4e1ce828268eaa0b21280d6cbde6c52f7f7fbc7a053b27e41392c7ea29806035",
+      "02284de4281ad8d94d7adb61a0897046bfe6424e0516e2dd05eb4d8ab7c61569",
+      "8f932e4a97915147bff2f852372d343edcc1f3765fc8a01603773bbea6e9f5a7",
+      "cee89df53d55d45a74a8ed71a7cf99cab4316990b8a531f7faccd0aab8e1d1b2",
+      "1d8b37031c4a0c23baeb6d511e8270c3f2be160c9c40c3102c7faaffdf54b94b"
+    ],
+    "ticker_scope": [
+      "BBCA"
+    ],
+    "source_blobs_in_repository": false
+  },
+  "eodhd_discovery": {
+    "request_count": 2,
+    "http": 200,
+    "indonesia_exchange": [
+      {
+        "Code": "JK",
+        "Name": "Jakarta Exchange",
+        "CountryISO2": "ID",
+        "Currency": "IDR",
+        "OperatingMIC": "XIDX"
+      }
+    ],
+    "identity_matches": 5,
+    "source_payload_sha256": "b26278e229fb2537cd36303bc03b6d5aee121d5c22fa1c99f02223c78d0e1608"
+  },
+  "eodhd_comparison": {
+    "request_count": 15,
+    "complete_for_all_five": true,
+    "volume_basis_equivalence_verified": false,
+    "symbols": [
+      {
+        "ticker": "BBCA",
+        "first_bar": "2025-10-02",
+        "latest_bar": "2026-10-02",
+        "bars": 240,
+        "matched_sessions": 240,
+        "ohlc_differing_sessions": 1,
+        "max_close_relative_difference": 0.0,
+        "target_fresh": true,
+        "requested_history_complete": false,
+        "dividend_or_split_reconciliation_approved": false
+      },
+      {
+        "ticker": "BRPT",
+        "first_bar": "2025-10-02",
+        "latest_bar": "2026-10-02",
+        "bars": 240,
+        "matched_sessions": 240,
+        "ohlc_differing_sessions": 1,
+        "max_close_relative_difference": 0.0,
+        "target_fresh": true,
+        "requested_history_complete": false,
+        "dividend_or_split_reconciliation_approved": false
+      },
+      {
+        "ticker": "AMMN",
+        "first_bar": "2025-10-02",
+        "latest_bar": "2026-10-02",
+        "bars": 240,
+        "matched_sessions": 240,
+        "ohlc_differing_sessions": 0,
+        "max_close_relative_difference": 0.0,
+        "target_fresh": true,
+        "requested_history_complete": false,
+        "dividend_or_split_reconciliation_approved": false
+      },
+      {
+        "ticker": "BUMI",
+        "first_bar": "2025-10-02",
+        "latest_bar": "2026-10-02",
+        "bars": 240,
+        "matched_sessions": 240,
+        "ohlc_differing_sessions": 0,
+        "max_close_relative_difference": 0.0,
+        "target_fresh": true,
+        "requested_history_complete": false,
+        "dividend_or_split_reconciliation_approved": false
+      },
+      {
+        "ticker": "EMAS",
+        "first_bar": "2025-10-02",
+        "latest_bar": "2026-10-02",
+        "bars": 240,
+        "matched_sessions": 240,
+        "ohlc_differing_sessions": 0,
+        "max_close_relative_difference": 0.0,
+        "target_fresh": true,
+        "requested_history_complete": false,
+        "dividend_or_split_reconciliation_approved": false
+      }
+    ],
+    "conclusion": "240 sessions only; insufficient 600-bar warm-up; no provider switch or corporate-action approval"
+  },
+  "migration_manifest_checksums_match": 7,
+  "tests": {
+    "full_python": {
+      "passed": 214,
+      "skipped": 5,
+      "native_docker_skips": true
+    },
+    "additional_quality_guards": {
+      "passed": 7,
+      "failed": 0
+    },
+    "targeted_A_B_regression": {
+      "passed": 36
+    },
+    "sql_pglite": {
+      "passed": 72,
+      "failed": 0
+    },
+    "ruff": "passed",
+    "git_diff_check": "passed"
+  },
+  "limits": {
+    "production_owner_jwt_read": false,
+    "production_anon_outsider_disabled_owner_smoke": false,
+    "full_universe_actions_reconciled": false,
+    "data_quality_holds": 30,
+    "corporate_action_holds": 59,
+    "rs_cross_section_complete": false,
+    "full_github_scanner_publisher": false,
+    "scanner_go": false,
+    "full_stack_live": false
+  },
+  "secrets_or_tokens_recorded": false,
+  "production_write_scope": "actual live-market revisions and zero-signal run only; no Auth, DDL, journal or scheduler write"
+}

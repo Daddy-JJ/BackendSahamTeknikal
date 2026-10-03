@@ -1,0 +1,29 @@
+{
+  "version": "manual-readonly-scanner-20261003-v1",
+  "scheduler_enabled": false,
+  "production_write": false,
+  "target": "2026-10-02",
+  "files": [
+    {
+      "file": "config/live/idx-calendar-2024-2026.json",
+      "sha256_lf": "54fc8efbfc53a43bcb907a2a799ff098688fd23e9700f7d3c762214a5390895b"
+    },
+    {
+      "file": "config/live/kompas100-universe.json",
+      "sha256_lf": "fe9a3edd39c908295c4627869347b1241b2a682433bf7eb6efb50804381463c5"
+    },
+    {
+      "file": "config/live/kompas100-universe.csv",
+      "sha256_lf": "f112395050b38205b7694f194157ed25df474a44dfb99818f24bc581fdff44bc"
+    },
+    {
+      "file": "config/reference/yfinance-kompas100-verified-mappings.json",
+      "sha256_lf": "15ceee2c249dbcddaa89d8ef31361739d68f04a7024c0725a586f0b9a4e12a2b"
+    },
+    {
+      "file": "config/reference/ksei-reviewed-dividends-20261003.json",
+      "sha256_lf": "5b7c3a3c9950a8d6d1945b95c38832134652c75ee868c62c9730c9fabb3535d4"
+    }
+  ],
+  "hash_normalization": "UTF-8 without BOM, LF newlines"
+}

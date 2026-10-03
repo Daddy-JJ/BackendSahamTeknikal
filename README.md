@@ -1,5 +1,17 @@
 # BackendSahamTeknikal
 
+Latest scanner evidence (2026-10-03): production partial coverage 45/100, but fresh
+Yahoo target candles failed for 100/100. Scheduler/full-stack go-live remain NO-GO.
+See [recovery report](docs/SCANNER_RECOVERY_REPORT_20261003.md) and
+[frontend handoff](docs/FRONTEND_DEPLOYMENT_HANDOFF.md).
+
+Latest2026-10-02: first production forward/live diagnostic is published with
+100 actual market revisions, failed quality coverage0/100,100 holds and0 signals.
+Full Yahoo mappings/fetch100 passed; known runtime calendar preflight and manual
+GitHub five-symbol provider smoke passed. Scheduler stays disabled; quality and
+full-stack readiness remain NO-GO. See docs/SCANNER_LIVE_READINESS.md and latest
+IMPLEMENTATION_STATUS for evidence and frontend read-adapter handoff.
+
 Scanner dan data layer untuk IDX Night Scanner. Repository ini menjadi sumber backend: strategi, kalkulasi indikator, provider yfinance/EODHD, kontrak data, migrasi Supabase, serta tes.
 
 ## Lokal

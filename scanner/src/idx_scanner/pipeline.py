@@ -6,6 +6,7 @@ from datetime import date, datetime
 from .context import Calendar, Universe
 from .engine import ScanResult, scan
 from .models import ScanState, Series
+from .normalization import normalize_closed_sessions
 from .providers import FetchRequest, Provider, ProviderError
 
 
@@ -15,6 +16,7 @@ class PipelineResult:
     provider_errors: tuple[tuple[str, str], ...]
     fetched: tuple[str, ...]
     fetched_series: tuple[Series, ...]
+    prepared_series: tuple[Series, ...] = ()
 
 
 def require_scan_context(
@@ -51,9 +53,14 @@ def collect_and_scan(
 ) -> PipelineResult:
     require_scan_context(requests, target, calendar, universe, published_at)
     series, errors = fetch_series(provider, requests)
-    result = scan(series, target, calendar, universe, published_at, state, namespace=namespace)
+    prepared = {t: normalize_closed_sessions(s, calendar, target) for t, s in series.items()}
+    result = scan(prepared, target, calendar, universe, published_at, state, namespace=namespace)
     return PipelineResult(
-        result, tuple(errors), tuple(sorted(series)), tuple(series[t] for t in sorted(series))
+        result,
+        tuple(errors),
+        tuple(sorted(series)),
+        tuple(series[t] for t in sorted(series)),
+        tuple(prepared[t] for t in sorted(prepared)),
     )
 
 

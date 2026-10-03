@@ -1,5 +1,152 @@
 # Prompt handoff frontend â€” preparation only, 2026-10-01
 
+## Frontend alignment after accepted owner smoke — 2026-10-03
+
+Owner production read of the latest45/25/30 snapshot is PASS based on frontend
+observed2026-10-02T22:50:09.953Z evidence. Do not rerun that smoke or reopen
+migrations001–007 merely because backend is not fully GO. HTTP200 scanner reads
+and successful empty journal/analytics/export are not hosted mutation/RLS proof.
+
+Copyable next prompt:
+
+```text
+Backend finalization updated. Read backend docs/BACKEND_FINALIZATION_REPORT_20261003.md
+and docs/evidence/backend-finalization-audit-20261003.json read-only.
+Keep your existing owner snapshot read PASS and partial live adapter.
+Production latest run stays8f634f6c-efae-4837-b1eb-1db04de6ffd2 with45/25/30,
+zero published signals and RS incomplete; no new run was published this continuation.
+New LOCAL Yahoo recheck on3October16:34–16:35WIB obtained100 complete target candles
+but still partial45/100. Prior incomplete fetch remains FAIL; never attach new
+local timestamps/digest to the old production run or equate publication with freshness.
+Hosted anonymous read denial14/14 passed; outsider/disabled-owner/mutation gates
+remain blocked without genuine activity or an authorized isolation method.
+Backend commit/push plus one manual GitHub dispatch was authorized; consult final
+runner result for actual SHA/status/artifact, not a pending workflow as proof.
+Scheduler remains off. Retain PT412/idempotency/p_exit_snapshot/export200/p_after/FK.
+Do not rerun unchanged owner smoke or add a browser engine. Update frontend status
+only from new evidence; no frontend commit/push or Vercel deployment is authorized
+by this handoff. Full-stack remains NO-GO until mandatory backend and Vercel gates PASS.
+```
+
+## Finalization audit — 2026-10-03, owner read PASS; full-stack NO-GO
+
+Accepted frontend hosted owner read evidence observed 2026-10-02T22:50:09.953Z:
+run 8f634f6c-efae-4837-b1eb-1db04de6ffd2/digest 0aefe872...c121 matches backend;
+GET run/items/signals HTTP200, four pages/100 unique tickers, coverage45/100.
+Owner read latest-snapshot gate is closed; not rerun. Imported evidence and source
+SHA256 are in docs/evidence/frontend-owner-read-accepted-20261003.json.
+
+Fresh Yahoo recheck 2026-10-03T09:34:19–09:35:03Z (16:34–16:35 WIB) obtained complete
+target2026-10-02 candles for100/100, zero provider errors: partial45 evaluated,
+25 action hold,30 quality hold,0 signals,RS incomplete. New engine digest
+653f9f9168b20dabfc14dc9fa18090e6ed48f5d63546c897107cc44258dd4110.
+It is LOCAL/provider evidence, not published; previous fresh failed capture stays
+FAIL and unchanged. Config checksums/mapping100 verified; universe effective
+2026-08-03 inclusive–2027-01-30 exclusive, calendar651 known warm-up open sessions,
+72 explicit closures, next entry2026-10-05T08:58:00+07:00. Five IPO histories have
+less than600 bars; valid quality does not grant MACD/RS/pullback warm-up eligibility.
+
+Hosted anonymous GET check on2026-10-03T09:41:19Z passed14 denials:12 private tables
+and2 stable read RPCs returned HTTP401/42501. No JWT used or printed. This closes
+only anonymous read authorization, not authenticated outsider/disabled owner.
+KSEI November2024 archive nowHTTP200 (five relevant notices); February2026 remains
+HTTP500. New November notices do not auto-approve actions or change129 proofs;
+ADRO/UNVR/SCMA remain held. Action/anomaly skips remain visibly held; RS not opened.
+
+User authorized backend commit/push plus one manual full-universe workflow
+ dispatch; scheduler stays off. User declined disposable hosted target. No genuine
+owner-approved production trade is supplied, so hosted mutation/lifecycle,
+outsider/disabled-owner and independent-session gates remain BLOCKED. Direct
+rollout authorization does not supply those test identities or ledger activity.
+No Auth/migration/frontend changes and no QA production trade. Runner result is
+recorded in docs/BACKEND_FINALIZATION_REPORT_20261003.md when actually observed.
+
+## Latest handoff — 2026-10-03, adaptation authorized; deployment NO-GO
+
+Production partial scanner publication is verified, but fresh provider candles
+and hosted full-universe runner have not passed. Read the latest recovery report
+before older sections. This handoff does not authorize a Vercel deployment.
+
+Copy this prompt to the frontend chat:
+
+```text
+Lanjutkan frontend IDX Night Scanner hanya di
+C:\xampp\htdocs\SahamTeknikal\frontend. Audit git status dan pertahankan perubahan
+lokal. Baca AGENTS.md/SOT.md dan status frontend; baca backend berikut read-only:
+- docs/SCANNER_RECOVERY_REPORT_20261003.md
+- docs/FRONTEND_DEPLOYMENT_HANDOFF.md
+- docs/evidence/production-ksei-reconciliation-20261003.json
+- docs/evidence/fresh-yahoo-scanner-smoke-20261003.json
+
+Production: https://hcjfxbynqzsaidlwvdfx.supabase.co, data_mode=live.
+Migration chain 001–007 sampai 202610010007 tidak berubah; diterapkan
+2026-10-02T06:57:07Z. Kontrak jurnal tetap expected_revision/idempotensi, PT412,
+p_exit_snapshot, export p_status=closed/p_limit=200/p_after sampai has_more=false,
+dan FK actual_fill_corrections!actual_fill_corrections_fill_id_fkey.
+
+Run terbaru: 8f634f6c-efae-4837-b1eb-1db04de6ffd2; target 2026-10-02;
+stored 2026-10-02T17:50:07.347251Z (3 Oktober 00:50:07 WIB).
+Coverage 45/100 evaluated, 25 corporate_action_hold, 30 data_quality_hold,
+zero signals, RS cross_section_incomplete. Run memakai capture Yahoo asli
+plus bukti dividen KSEI yang direkonsiliasi; bukan fetch terbaru.
+Fetch Yahoo terpisah pada 17:37–17:39Z gagal kualitas: close target null
+untuk 100 ticker, nol evaluable, last complete session 2026-10-01.
+Fetch gagal itu tidak dipublikasikan. Jangan menyamakan timestamp publikasi
+snapshot dengan freshness provider. Dua run lama tetap immutable.
+
+Adaptasi adapter/UI live read dari backend: tampilkan coverage parsial,
+status/reason tiap ticker yang tersedia pada kontrak, tanggal target,
+last-complete/input provenance dan waktu publikasi bila backend menyediakannya.
+Bedakan evaluated tanpa setup, data/action hold, stale/missing, serta belum ada
+run. Nol sinyal pada subset bukan hasil no-setup untuk seluruh universe.
+RS tidak boleh diberi rank/top20% ketika cross-section belum lengkap.
+Jangan memakai fixture fallback di production atau membuat engine finansial
+kedua, mengarang metadata, atau menyelesaikan hold dengan candle sintetis.
+Ledger, fees, risk/R, exit dan analytics tetap berasal dari backend.
+
+Gunakan login owner production yang sudah diotorisasi untuk GET/RPC read-only
+snapshot terbaru, jurnal kosong, analytics dan export. Jangan membuat trade QA,
+mengubah membership/Auth, atau mencetak JWT. Catat bukti hosted read terpisah
+dari double lokal dan bukti disposable. Uji desktop/tablet/mobile untuk partial,
+empty/error/stale, filter analytics/export, cursor dan logout sesuai perubahan.
+Laporkan angka tes yang benar-benar dijalankan dan update dokumentasi frontend.
+Jika backend tidak menyediakan field yang dibutuhkan, laporkan gap kontrak;
+jangan menebak dari waktu publikasi atau mengambil provider dari browser.
+
+Backend scanner/full-stack masih NO-GO: fresh candles, unresolved holds/RS,
+hosted full runner/publisher dan gate hosted access yang wajib masih terbuka.
+Scheduler tetap off. Jangan commit/push atau deploy Vercel tanpa otorisasi baru
+khusus frontend. Handoff ini untuk adaptasi dan smoke read, bukan izin deploy.
+```
+
+Configuration names remain `NEXT_PUBLIC_SUPABASE_URL` and
+`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, with `DATA_MODE=live` and
+`ALLOW_FIXTURE_PREVIEW=false` or unset. Names were checked against frontend
+`.env.example` read-only; never copy development fixture values into production.
+Never expose service-role/provider/OAuth secrets to browser configuration.
+Preserve the existing callback and owner membership configuration; no Auth
+settings were changed in this step. Any new public deployment origin/callback
+requires explicit frontend deployment authorization and an Auth configuration
+review. Do not infer a callback URL from an undeployed Vercel hostname.
+
+## Scanner status - 2026-10-02, backend evidence
+
+There are now two production forward/live runs for 2026-10-02. Preserve original
+failed run 08fb1080-5889-45e6-903d-3d2400bbf375; latest run is
+b2bba460-abe3-4f68-9946-b13554a7c712, stored at 15:57:34Z: partial coverage
+11/100, 59 corporate_action_hold, 30 data_quality_hold, zero signals and
+incomplete RS. Its 11 evaluated tickers had no triggered entry. This is neither
+a healthy scan nor a complete-universe no-signal result. Fixture data was absent
+in backend postflight. Journal, analytics and export contracts remain backend
+owned; frontend must not calculate finance metrics.
+
+Frontend may implement a live read view if it labels partial coverage and shows
+per-ticker hold reasons, distinguishes evaluated from no setup, and suppresses
+RS ranks while cross-section is incomplete. Keep prior owner-login/journal
+evidence separate. Production outsider/disabled-owner gates, full GitHub scanner
+publishing and Vercel deployment remain open. Scheduler is disabled. This handoff
+does not authorize Vercel deployment.
+
 ## Scanner and disposable gates — 2026-10-02, latest continuation
 
 Actual live yfinance1.7.0 probe verified five issuer identities and fetched737–738
@@ -252,6 +399,30 @@ and owner-JWT/RLS evidence before requesting separate deployment authorization.
 Local crypto tests use synthetic bytes, not a production backup.
 
 ## Copyable latest frontend handoff
+
+Latest backend continuation2026-10-02: full Yahoo universe identity/fetch probe
+passed100/100 through target2026-10-02. Runtime calendar candidate preflight passed,
+using date-only historical sessions and current target/next-session times. Manual
+GitHub five-symbol provider smoke completed successfully in run37019450372 on8617e56;
+this is not a scheduled/full scanner publication. Actual full-universe evaluation
+is failed with coverage0/100,100 data_quality_hold and RS cross_section_incomplete.
+Production diagnostic publication is verified at2026-10-02T14:39:34Z:
+run08fb1080-5889-45e6-903d-3d2400bbf375, namespace=forward, data_mode=live,
+session_date=2026-10-02, status=failed, coverage0/100,100 data_quality_hold.
+All100 actual revisions were stored/read-back verified; journal stays empty and
+fixture counts0. See production-first-live-hold-run-20261002.json and
+production-live-hold-postflight-20261002.json. Do not label held coverage
+as no signal or claim healthy scanner/full-stack live.
+
+For the live read adapter, query scan_runs filtered by namespace=forward and
+data_mode=live, order session_date descending then stored_at descending, limit1.
+Fields: id, session_date, status, coverage_valid, coverage_total, stored_at, snapshot.
+Fetch scan_run_items by that run_id for ticker/status/snapshot. snapshot.ranking.status
+is backend computed. Read signal membership through scan_run_signals for that run.
+Do not select the latest historical signals independently of the selected run.
+Display preparing only when no live forward run exists; failed/partial/held data
+requires distinct coverage and reason states. Keep fixture excluded and finance
+in backend. Owner-JWT adapter smoke and Vercel smoke remain separate evidence.
 
 Frontend update received2026-10-02: the live scanner read adapter is still a
 mandatory frontend gate; homepage remains preparation-only. Frontend reports

@@ -1,0 +1,20 @@
+{
+  "checked_at_utc": "2026-10-02T17:25:00.465248+00:00",
+  "production_write": false,
+  "provider_changed": false,
+  "http_requests": 2,
+  "account_http": 200,
+  "account": {
+    "subscriptionType": "free",
+    "subscriptionMode": "free",
+    "dailyRateLimit": 20,
+    "apiRequests": 17,
+    "apiRequestsDate": "2026-10-02"
+  },
+  "price_http": 200,
+  "bars": 254,
+  "first_date": "2025-10-02",
+  "last_date": "2026-10-02",
+  "at_least_600_bars": false,
+  "problem_dates_covered": []
+}

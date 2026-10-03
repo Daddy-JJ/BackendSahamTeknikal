@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-02",
+  "local_only": true,
+  "full_pytest": {
+    "passed": 189,
+    "skipped": 5,
+    "duration_seconds": 22.12,
+    "skipped_scope": "explicit native Docker restore/rehearsal tests; not rerun"
+  },
+  "additional_hold_publication_guard_pytest": {
+    "passed": 2,
+    "duration_seconds": 0.31
+  },
+  "sql_pglite": {
+    "passed": 71,
+    "failed": 0,
+    "duration_ms": 60886.2686
+  },
+  "ruff": "passed",
+  "initial_pytest_temp_permission_error": "resolved with a fresh directory under ignored backend/data",
+  "migration_checksums": "7/7 LF-normalized match",
+  "remote_proof_from_local_tests": false
+}

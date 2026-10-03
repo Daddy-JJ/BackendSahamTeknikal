@@ -1,0 +1,46 @@
+{
+  "project_ref": "hcjfxbynqzsaidlwvdfx",
+  "target": "2026-10-02",
+  "started_at_utc": "2026-10-02T14:37:09.820085+00:00",
+  "production_write_attempted": true,
+  "scheduler_enabled": false,
+  "actual_trades_created": false,
+  "runner_scope": "local one-off using checksum-verified same-day actual Yahoo capture",
+  "status": "published_actual_live_hold_run_scanner_quality_no_go",
+  "stage": "production_readback",
+  "quality_status": "failed",
+  "coverage_valid": 0,
+  "coverage_total": 100,
+  "signals": 0,
+  "item_status_counts": {
+    "data_quality_hold": 100
+  },
+  "calendar_version": "idx-calendar-known-sources-20261002-v1",
+  "universe_version": "kompas100-20260803-20270129-workbook-v1",
+  "next_session": "2026-10-05",
+  "publication_deadline": "2026-10-05T08:58:00+07:00",
+  "run_id": "08fb1080-5889-45e6-903d-3d2400bbf375",
+  "replayed": false,
+  "stored_and_digest_readback_verified": 100,
+  "production_run_readback": {
+    "id": "08fb1080-5889-45e6-903d-3d2400bbf375",
+    "namespace": "forward",
+    "data_mode": "live",
+    "session_date": "2026-10-02",
+    "status": "failed",
+    "coverage_valid": 0,
+    "coverage_total": 100
+  },
+  "production_hold_items_verified": 100,
+  "completed_at_utc": "2026-10-02T14:39:34.565397+00:00",
+  "execution_source": {
+    "git_head": "8617e5617e303d6f4906b2b5332cb8898bab8e3c",
+    "local_calendar_loader_change_tested": true,
+    "modified_context_sha256": "d7595ed73728aff26f428b0a582094a555952c9fad5780bd1860e4f8fbf57445",
+    "config_file_sha256": {
+      "config\\live\\idx-calendar-2024-2026.json": "b5fd34fb5ec3dab3e1d77433bbe8014078572d794e4352ac2d65ba4757d4f11a",
+      "config\\live\\kompas100-universe.json": "58337286fe7bda8de26e56da151222fe95bc758e44f588b42d6aa3eb2ba1d354",
+      "config\\reference\\yfinance-kompas100-verified-mappings.json": "f9dfe7f2774f00f81653ba5fecbd44579d17aea7b03bc72f01f01931ea74c86a"
+    }
+  }
+}

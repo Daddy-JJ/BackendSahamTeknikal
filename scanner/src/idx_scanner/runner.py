@@ -6,7 +6,9 @@ from dataclasses import dataclass
 from datetime import date, datetime
 
 from .context import Calendar, Universe
+from .corporate_actions import DividendEvidence, reconcile_dividends
 from .engine import scan
+from .normalization import normalize_closed_sessions
 from .persistence import SupabaseScanStore
 from .pipeline import PipelineResult, fetch_series, require_scan_context
 from .providers import FetchRequest, Provider
@@ -30,6 +32,8 @@ def run_once(
     *,
     namespace: str = "forward",
     clock: Callable[[], datetime] | None = None,
+    normalize_calendar: bool = True,
+    dividend_evidence: tuple[DividendEvidence, ...] = (),
 ) -> RunOutcome:
     if not re.fullmatch(r"[a-z0-9_-]{1,64}", namespace):
         raise ValueError("invalid_namespace")
@@ -39,6 +43,7 @@ def run_once(
     )
     series_by_ticker, errors = fetch_series(provider, requests)
     revisions = []
+    prepared = {}
     for ticker in sorted(series_by_ticker):
         series = series_by_ticker[ticker]
         receipt = store.ingest_series(series, namespace=namespace, data_mode=universe.data_mode)
@@ -49,12 +54,24 @@ def run_once(
             expected_input_digest=series.input_digest,
         )
         revisions.append(receipt["revision_id"])
+        value = (
+            normalize_closed_sessions(series, calendar, target) if normalize_calendar else series
+        )
+        value = reconcile_dividends(value, dividend_evidence, calendar, target)
+        if value.input_digest != series.input_digest:
+            receipt = store.ingest_series(value, namespace=namespace, data_mode=universe.data_mode)
+            value = store.load_series(
+                receipt["revision_id"],
+                namespace=namespace,
+                data_mode=universe.data_mode,
+                expected_input_digest=value.input_digest,
+            )
+            revisions.append(receipt["revision_id"])
+        prepared[ticker] = value
     # Timestamp after provider/database IO, so crossing next-open cannot produce
     # a falsely actionable forward signal.
     evaluated_at = clock() if clock is not None else published_at
-    result = scan(
-        series_by_ticker, target, calendar, universe, evaluated_at, state, namespace=namespace
-    )
+    result = scan(prepared, target, calendar, universe, evaluated_at, state, namespace=namespace)
     if clock is not None and evaluated_at < calendar.next(target).opens_at <= clock():
         raise ValueError("publication_window_elapsed")
     pipeline = PipelineResult(
@@ -62,6 +79,7 @@ def run_once(
         errors,
         tuple(sorted(series_by_ticker)),
         tuple(series_by_ticker[t] for t in sorted(series_by_ticker)),
+        tuple(prepared[t] for t in sorted(prepared)),
     )
     options = {}
     if universe.data_mode == "live":
