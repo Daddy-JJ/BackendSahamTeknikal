@@ -1,5 +1,77 @@
 # Scanner live and disposable evidence — 2026-10-02
 
+## Approved local publication and recovered read-back — 2026-10-03, latest
+
+User approved exactly one local publication of plan838183f9e3fcb5bcfe6c4681be885e87a1410672137d73eeed0f1a3d2ff4ffb0.
+Production receipt returned run3c700de4-8389-400e-b862-31f2c8998a64, replayedfalse,
+0inserted signals. Stored_at2026-10-03T12:44:34.492091+00:00 (19:44WIB),targetOct2,
+digest653f9f9168b20dabfc14dc9fa18090e6ed48f5d63546c897107cc44258dd4110.
+This is the LOCAL actual capture20261003T093419Z, not GitHub37114744856 input.
+Coverage45evaluated/25actionhold/30qualityhold,0signals,RSincomplete. Scheduleroff.
+
+Initial command FAILED postflight after committed receipt: scan_run_items query
+ordered by nonexistent id; GET reproducedHTTP400/42703. Failure evidence retained.
+Fixed composite scan orders and performed ONLY fixed-ID GET read-back, no second
+publication/replay. Recovery PASS at12:49:31.511972Z:100unique items/exactstatuses,
+200expectedraw/derived revision keys,0signals/live/forward/fixtureabsent.
+Old latest run digest/stored_at/coverage match prior proof and all3old IDs remain;
+complete old snapshot before/after hashes were not retained. NCKL closed/revision5
+projection/risk6500/net1244/fee256/R0.191384615385 matches prior ownerCSV; service
+GET integrity check is not new ownerJWT/RLS proof. Current7journal table counts
+1trade/2fills/1correction/5requests,0stop/note/tag. Full journal before/after
+fingerprint equality NOT VERIFIED because original baseline was lost in memory.
+Future hash-only checkpoint tested; do not infer no write after interrupted checkpoint.
+
+Local Python254PASS/5explicit Docker skips25.26s (19publisher cases),Ruff/diffPASS;
+read-only recovery reviewer PASS with documented limits. NoSQL/migration/Auth/
+journal mutation,QAtrade,frontend,.env,commit/push/dispatch or scheduler change.
+Original failure and GET-only recovery are separate sanitized evidence files.
+HostedGitHubpublisher still untested/environmentabsent. User skipped outsider
+and two-session/concurrency NOT VERIFIED; disabled-owner/rawownerreceiptaudit/
+hostedjournalerrorpaths NOT VERIFIED. Prior001–007 and oldsnapshot ownerPASS
+retained; NEW snapshot owner read now relevant/pending. Complete backend/full-
+stack NO-GO; frontend/Vercel needs separate authorization and actual smoke.
+See docs/MANUAL_PUBLICATION_RESULT_20261003.md for exact bounds and next action.
+
+
+## Real transaction and manual publisher preparation — 2026-10-03, latest
+
+This section supersedes older statements that no genuine trade was supplied.
+Owner NCKL e6dcfcc6-fd57-4e1d-9148-ecd5a738edc4 is real, closed/revision5/
+actual-ma10-v1. Existing owner browser read confirms two fills and correction#2
+(timing); frontend MA10 analytics/closed CSV one row accepted. Downloaded CSV
+SHA256 matched; exact risk6500/net1244/fee256/R0.191384615385 and backend-local
+Decimal net/risk consistency PASS. Fee quality includes_estimates, not broker
+verification. Raw request receipts/audit unavailable through current UI; no JWT
+extraction, replay, new fill/note or QAtrade. Transient first correction page was
+unavailable; owner remained active and subsequent correction read succeeded.
+
+Outsider and independent-session/concurrency: SKIPPED AT USER REQUEST / NOT
+VERIFIED. Disabled-owner and hosted mutation/error-path replay/PT412 remain NOT
+VERIFIED. No membership/Auth mutation. One-row production CSV does not prove
+production200+cursor pagination; prior local201 proof remains historical.
+
+Prepared manual publisher and protected-environment GET guard/workflow locally.
+Offline plan SHA838183f9e3fcb5bcfe6c4681be885e87a1410672137d73eeed0f1a3d2ff4ffb0
+binds actual LOCAL capture20261003T093419Z, digest653f9f9168b20dabfc14dc9fa18090e6ed48f5d63546c897107cc44258dd4110,
+target2026-10-02,45/25/30,0signals/RS incomplete. This is not GitHub summary input
+or older production run provenance. Next-open deadline2026-10-05T08:58+07;24h
+fetch-age guard expires this candidate earlier. New candidate requires review.
+
+Python251PASS/5explicit Docker skips,23.03s (16new guard cases); Ruff/diff PASS;
+read-only reviewer corrections resolved. No SQL changes/retest;72/72 is prior
+local evidence only. No commit/push/dispatch/publication this turn. Read-only GitHub Settings inspection found no environments in this repo;
+production-scanner-publisher is ABSENT. No configuration or secret changed;
+reviewer/main restrictions and environment-only secret placement remain pending.
+Production latest snapshot remains8f634f6c-efae-4837-b1eb-1db04de6ffd2 and old
+digest0aefe872fe3aa9ead45f1f98f9980ff96cd819142ddcc0f9f64a0a83c1c4c121.
+No001–007/unchanged scanner owner smoke repeated. Scheduler off.
+
+Complete backend/full-stack NO-GO; publisher execution needs exact approval,
+frontend/Vercel separate authorization. See docs/REAL_TRADE_READINESS_20261003.md,
+docs/MANUAL_PUBLICATION_PLAN_20261003.md and sanitized companion evidence.
+
+
 ## Verified final gate status — 2026-10-03, 16:57 WIB runner result
 
 Owner latest production read PASS (accepted frontend evidence; not repeated).

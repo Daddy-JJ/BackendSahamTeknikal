@@ -121,6 +121,7 @@ def main():
         raw = {}
         folder = ROOT / "data/manual-scanner-smoke" / now.strftime("%Y%m%dT%H%M%SZ")
         folder.mkdir(parents=True, exist_ok=False)
+        report["capture_directory"] = folder.relative_to(ROOT).as_posix()
         requests = load_requests(
             ROOT / "config/reference/yfinance-kompas100-verified-mappings.json",
             "yfinance",

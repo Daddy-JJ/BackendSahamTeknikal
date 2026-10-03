@@ -1,0 +1,18 @@
+{
+  "project_ref": "hcjfxbynqzsaidlwvdfx",
+  "production_write_attempted": true,
+  "publication_receipt": {
+    "reused": 0,
+    "run_id": "3c700de4-8389-400e-b862-31f2c8998a64",
+    "inserted": 0,
+    "replayed": false,
+    "guard_skips": 0
+  },
+  "scheduler_enabled": false,
+  "stage": "readback",
+  "full_stack_live": false,
+  "approved_plan_sha256": "838183f9e3fcb5bcfe6c4681be885e87a1410672137d73eeed0f1a3d2ff4ffb0",
+  "status": "failed",
+  "failure": "database_request_failed",
+  "checked_at_utc": "2026-10-03T12:44:34.252032+00:00"
+}

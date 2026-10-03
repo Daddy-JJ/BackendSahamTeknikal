@@ -1,0 +1,104 @@
+{
+  "checked_at_utc": "2026-10-03T12:28:37.678415+00:00",
+  "production_write": false,
+  "scheduler_enabled": false,
+  "frontend_edited": false,
+  "accepted_frontend_sources": [
+    {
+      "source": "../frontend/docs/evidence/real-trade-owner-read-export-20261003.json",
+      "sha256": "9089af8438b0cd2b92935512db7bced2fabd8a94fcb299704720113a7da89c04"
+    },
+    {
+      "source": "../frontend/docs/evidence/real-trade-and-skipped-gates-20261003.json",
+      "sha256": "124c88473c6d00d67f3f57745fb35131d7a81f23c4bcab9ba5fe3035464d348f"
+    }
+  ],
+  "trade_id": "e6dcfcc6-fd57-4e1d-9148-ecd5a738edc4",
+  "scope": "Existing genuine owner browser session rendered ledger/correction; downloaded export verified locally. No raw receipt access, no JWT extraction, no mutation.",
+  "observed_owner_linkage": true,
+  "trade": {
+    "ticker": "NCKL",
+    "revision": "5",
+    "status": "closed",
+    "data_mode": "live",
+    "initial_risk_idr": "6500.0000",
+    "realized_pnl_idr": "1244.0000",
+    "realized_r": "0.191384615385",
+    "fee_total_idr": "256.0000",
+    "fee_quality": "includes_estimates",
+    "contract_version": "actual-journal-export-v1"
+  },
+  "rendered_fills": [
+    {
+      "side": "buy",
+      "quantity": 100,
+      "effective_price_idr": "845",
+      "displayed_fee_idr": "127",
+      "fee_status": "estimated",
+      "corrected": true
+    },
+    {
+      "side": "sell",
+      "quantity": 100,
+      "effective_price_idr": "860",
+      "displayed_fee_idr": "129",
+      "fee_status": "estimated"
+    }
+  ],
+  "rendered_correction": {
+    "sequence": 2,
+    "reason": "timing",
+    "filled_at_wib": "2026-10-02 10:45:00",
+    "scope": "Rendered only; original fill row/request not available"
+  },
+  "read_anomaly": "First correction navigation rendered unavailable; owner check remained active and subsequent correction read succeeded. Root cause not determined.",
+  "notes_visible": 0,
+  "csv_sha256": "9124a062e091d500313de7058150ffd7f55941848b1e4da0a589f9d4073244e7",
+  "csv_rows": 1,
+  "csv_r_ratio_check": "PASS backend-local Decimal check of exported net/risk",
+  "raw_requests_and_audit_events": "BLOCKED: existing UI does not expose these rows; no token copied or service-role substitute used",
+  "replay_payload": "NOT AVAILABLE; not guessed or sent",
+  "outsider": "SKIPPED AT USER REQUEST / NOT VERIFIED",
+  "independent_concurrency": "SKIPPED AT USER REQUEST / NOT VERIFIED",
+  "disabled_owner": "NOT VERIFIED; no Auth/membership mutation",
+  "hosted_pt412_and_replay": "NOT VERIFIED in this continuation",
+  "production_over200_cursor": "NOT VERIFIED; existing local cursor proof retained",
+  "publisher_plan": {
+    "sha256": "838183f9e3fcb5bcfe6c4681be885e87a1410672137d73eeed0f1a3d2ff4ffb0",
+    "run_digest": "653f9f9168b20dabfc14dc9fa18090e6ed48f5d63546c897107cc44258dd4110",
+    "capture_scope": "local actual capture 20261003T093419Z, NOT the GitHub runner artifact or old production run",
+    "counts": {
+      "corporate_action_hold": 25,
+      "evaluated": 45,
+      "data_quality_hold": 30
+    },
+    "target": "2026-10-02",
+    "next_open": "2026-10-05T08:58:00+07:00",
+    "publication_receipt": null,
+    "production_write_attempted": false
+  },
+  "tests": {
+    "python_passed": 251,
+    "python_explicit_skips": 5,
+    "publisher_cases_included": 16,
+    "ruff": "PASS",
+    "sql": "Not rerun; prior72/72 retained only as historical local evidence"
+  },
+  "decision": "NO-GO for complete backend/full-stack release; publisher package locally prepared only",
+  "github_environment_readonly_check": {
+    "observed_at_utc": "2026-10-03T12:33:55.277327+00:00",
+    "url": "https://github.com/Daddy-JJ/BackendSahamTeknikal/settings/environments",
+    "result": "No environments for this repository",
+    "publisher_environment_present": false,
+    "configuration_changed": false,
+    "secret_placement_verified": false
+  },
+  "reviewer": "Read-only review and re-review completed; table key ordering/scope findings fixed; no remaining preparation implementation blocker. Hosted protection/access/execution not verified.",
+  "local_credential_preflight": {
+    "source": "backend ignored .env, values retained in process only",
+    "production_url_matches": true,
+    "publisher_secret_present": true,
+    "credential_authenticated": false,
+    "env_modified": false
+  }
+}

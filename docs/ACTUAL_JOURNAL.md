@@ -1,5 +1,16 @@
 # M4 actual journal: backend contract and development handoff
 
+## Production real-trade read evidence — 2026-10-03
+
+001–007 production application remains prior PASS. Real NCKL closed revision5
+owner read/MA10 analytics/closed one-row export PASS within recorded scope; fee
+includes_estimates. This does not prove broker fees, hosted replay/error paths,
+raw receipt audit, disabled-owner or >200 production cursor. Outsider/concurrency
+SKIPPED AT USER REQUEST / NOT VERIFIED. See REAL_TRADE_READINESS_20261003.md; no
+mutations or migration edits in this audit. Earlier development notes below
+remain historical.
+
+
 Migration `202609290005_actual_journal.sql` was applied on 2026-09-30 to
 Supabase development `vgmkpsestahkfahzdtae`, with `data_mode=fixture`.
 Production `hcjfxbynqzsaidlwvdfx` stays live and received no test data. This

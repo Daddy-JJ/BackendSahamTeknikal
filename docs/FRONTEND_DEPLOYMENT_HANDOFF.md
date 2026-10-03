@@ -1,5 +1,65 @@
 # Prompt handoff frontend â€” preparation only, 2026-10-01
 
+## Copyable handoff after one approved local publication — 2026-10-03
+
+```text
+Lanjutkan frontend saja. Baca backend docs/MANUAL_PUBLICATION_RESULT_20261003.md
+dan docs/evidence/manual-production-publication-readback-20261003.json read-only.
+Satu publikasi lokal production sudah menghasilkan receipt run
+3c700de4-8389-400e-b862-31f2c8998a64, target2026-10-02, stored_at
+2026-10-03T12:44:34.492091Z, digest
+653f9f9168b20dabfc14dc9fa18090e6ed48f5d63546c897107cc44258dd4110.
+Input LOCAL actual Yahoo capture20261003T093419Z, bukan GitHub37114744856.
+Initial postflight failedHTTP400/42703 karena composite-key ordering; diperbaiki
+dan GET-only recovery PASS tanpa publikasi ulang.100unique ticker:45evaluated,
+25corporate_action_hold,30data_quality_hold,0signals,RS incomplete.
+Verifikasi owner-read NEW snapshot melalui localhost3050, pagination sampai
+100ticker, hold reasons/coverage, empty signals dan history. Old run8f634f6c-efae-4837-b1eb-1db04de6ffd2 tetap ada dengan digest/timestamp lamanya. Jangan
+memasang timestamp GitHub atau memilih latest revision sebagai input chosenrun;
+API belum punya explicit per-item revision-ID binding untuk semua held/no-signal.
+Trade NCKL e6dcfcc6-fd57-4e1d-9148-ecd5a738edc4 tetapclosed/revision5,
+actual-ma10-v1,risk6500/net1244/fee256/R0.191384615385. Prior ownerMA10CSV proof
+retained,fee includes_estimates. Jangan mutasi/replay/menambah QAdata atau engine
+finansial browser. Pertahankan PT412,idempotency,p_exit_snapshot,exportclosed
+p_limit200/seluruhp_after dan explicit correctionFK.
+Outsider/concurrency SKIPPED AT USER REQUEST / NOT VERIFIED; disabled-owner,
+rawownerreceipt/audit dan hostedjournalerrorpaths NOT VERIFIED. Full journal
+before/after fingerprint equality jugaNOT VERIFIED karena initial postflight
+error; projection matching bukan pengganti full audit. Publisher ini lokal,
+bukan hostedGitHubpublisher; scheduler tetapoff.
+Update readiness dengan PASS/PARTIAL/SKIPPED/BLOCKED berdasarkan bukti. Complete
+backend/full-stack NO-GO; handoff ini bukan izin commit/push/deploy frontend atau
+Vercel. Deploymentfrontend memerlukan otorisasi terpisah dan Vercel smoke.
+```
+
+
+## Latest handoff — real NCKL trade and publisher preparation, 2026-10-03
+
+```text
+Baca backend docs/REAL_TRADE_READINESS_20261003.md, MANUAL_PUBLICATION_PLAN_20261003.md,
+dan docs/evidence/real-trade-publisher-preparation-20261003.json read-only.
+Migrasi001–007/owner scanner-read/full100 runner37114744856 tetap PASS; jangan
+ulang unchanged smoke. Production belum mendapat publikasi baru: run8f634f6c-efae-4837-b1eb-1db04de6ffd2,45/25/30,0signals,
+RS incomplete. Jangan pasang timestamp/digest plan lokal atau runner ke run lama.
+Trade nyata NCKL e6dcfcc6-fd57-4e1d-9148-ecd5a738edc4 closed/revision5/actual-ma10-v1
+owner rendered fills/correction PASS; analyticsMA10/CSVclosed1row PASS sesuai
+bukti frontend dan SHA CSV independen backend. Risk6500/net1244/fee256/
+R0.191384615385; includes_estimates tetap terlihat, bukan fee broker terkonfirmasi.
+Raw request receipts/audit belum tersedia melalui UI saat ini. Jika jalur owner
+read-only yang aman sudah tersedia, berikan actions/revisions/receipt counts dan
+hasil audit tersanitasi; jangan kirim JWT/raw secret/payload, menebak UUID, atau
+mutasi/replay trade. Backend chat tidak mengedit frontend untuk membuka probe.
+Outsider dan concurrency SKIPPED AT USER REQUEST / NOT VERIFIED; disabled-owner
+dan hosted error-path replay/PT412 NOT VERIFIED. Jangan asumsikan PASS.
+Publisher baru locally prepared/reviewed, execution/protected env masih pending.
+Scheduler tetap off. Pertahankan PT412,idempotency,p_exit_snapshot,exportclosed
+p_limit200/seluruhp_after dan explicit correctionFK; browser bukan engine kedua.
+Update readiness berdasarkan bukti ini. Lengkap backend/full-stack NO-GO; tidak
+ada izin commit/push/deploy frontend/Vercel dari handoff. Frontend deployment
+memerlukan otorisasi tersendiri dan smoke Vercel sebelum full-stack live.
+```
+
+
 ## Copyable frontend prompt after verified runner
 
 ```text

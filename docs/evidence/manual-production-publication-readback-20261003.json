@@ -1,0 +1,1662 @@
+{
+  "project_ref": "hcjfxbynqzsaidlwvdfx",
+  "method": "GET only",
+  "production_write": false,
+  "publication_retried": false,
+  "run_id": "3c700de4-8389-400e-b862-31f2c8998a64",
+  "scheduler_enabled": false,
+  "owner_jwt_tested": false,
+  "full_stack_live": false,
+  "original_readback_get_diagnostic": {
+    "http": 400,
+    "code": "42703"
+  },
+  "status": "published_partial_run_get_readback_passed",
+  "run_digest": "653f9f9168b20dabfc14dc9fa18090e6ed48f5d63546c897107cc44258dd4110",
+  "stored_at": "2026-10-03T12:44:34.492091+00:00",
+  "target": "2026-10-02",
+  "counts": {
+    "corporate_action_hold": 25,
+    "evaluated": 45,
+    "data_quality_hold": 30
+  },
+  "unique_tickers": 100,
+  "signals": 0,
+  "ranking_status": "cross_section_incomplete",
+  "revision_manifest_keys_verified": 200,
+  "revision_manifest": [
+    {
+      "id": "b33a6e1f-18bd-49d2-a8f6-fe2ba63c44f3",
+      "ticker": "AADI",
+      "provider_version": "1.7.0",
+      "input_digest": "107d15b3b2cd662294070c6deae190bd5162191529d6158b8414f8b3c57f2e87",
+      "fetched_at": "2026-10-02T14:21:01.701496+00:00",
+      "stored_at": "2026-10-02T14:37:15.592302+00:00"
+    },
+    {
+      "id": "11bfe61a-ed4d-4612-ba99-406d7aa93e97",
+      "ticker": "AADI",
+      "provider_version": "1.7.0",
+      "input_digest": "deee7d1fc7f44f60376550aec5bcc749268c006159ab734b2c97f5f13101f771",
+      "fetched_at": "2026-10-02T14:21:01.701496+00:00",
+      "stored_at": "2026-10-02T15:50:27.79348+00:00"
+    },
+    {
+      "id": "c5573e59-f5f4-4dc1-bdd3-c89bb1526f33",
+      "ticker": "ACES",
+      "provider_version": "1.7.0",
+      "input_digest": "658e4b013a8cac15bedd9fdcba172d482f10a8eb2aa2bafe20ec9b156df4a89f",
+      "fetched_at": "2026-10-03T09:34:33.475689+00:00",
+      "stored_at": "2026-10-03T12:37:41.937085+00:00"
+    },
+    {
+      "id": "b993210a-6282-45cd-8adf-e5cf46fa4d02",
+      "ticker": "ACES",
+      "provider_version": "1.7.0",
+      "input_digest": "e892a9152df860f2407827e21324f79048028b52cb6e00b0f61bfbcc7ad93291",
+      "fetched_at": "2026-10-03T09:34:33.475689+00:00",
+      "stored_at": "2026-10-03T12:37:39.663801+00:00"
+    },
+    {
+      "id": "94024b41-d536-48c4-b791-44f474727631",
+      "ticker": "ADMR",
+      "provider_version": "1.7.0",
+      "input_digest": "580481a741b4a80d979e24d73703eb259c817b30d40fc589e7694079f6411fd9",
+      "fetched_at": "2026-10-03T09:34:33.74109+00:00",
+      "stored_at": "2026-10-03T12:37:43.965676+00:00"
+    },
+    {
+      "id": "f5990f81-9471-4a2d-9624-d7a44578b6da",
+      "ticker": "ADMR",
+      "provider_version": "1.7.0",
+      "input_digest": "8cbd70085fc44f212468b750bc9652b46f7e59f994eb83dd3aedf70b7b4b45d6",
+      "fetched_at": "2026-10-03T09:34:33.74109+00:00",
+      "stored_at": "2026-10-03T12:37:42.888647+00:00"
+    },
+    {
+      "id": "6cc59932-6379-4690-8764-419188939591",
+      "ticker": "ADRO",
+      "provider_version": "1.7.0",
+      "input_digest": "38658176efa280516a747ee9d9b06d9c51f1b7e2c7978ff3a446a7777ecc3d79",
+      "fetched_at": "2026-10-03T09:34:34.010748+00:00",
+      "stored_at": "2026-10-03T12:37:46.313874+00:00"
+    },
+    {
+      "id": "b77e9142-57c7-4f4d-ad6e-1623812d2d24",
+      "ticker": "ADRO",
+      "provider_version": "1.7.0",
+      "input_digest": "617f6ebdb850cecd15d0cd340fc5f88830e22d501a80792e6160e6196e576949",
+      "fetched_at": "2026-10-03T09:34:34.010748+00:00",
+      "stored_at": "2026-10-03T12:37:45.361719+00:00"
+    },
+    {
+      "id": "d2a7f8ab-311c-410e-9c66-33945c1f7a93",
+      "ticker": "AKRA",
+      "provider_version": "1.7.0",
+      "input_digest": "1035c6a37d481dc3e1492d3ad7c4ad2356d1250915b6e124cbda8fa66dfad828",
+      "fetched_at": "2026-10-03T09:34:34.246741+00:00",
+      "stored_at": "2026-10-03T12:37:47.082354+00:00"
+    },
+    {
+      "id": "e2522451-49e9-4c81-9437-e0950219a49f",
+      "ticker": "AKRA",
+      "provider_version": "1.7.0",
+      "input_digest": "26e1d6f53402e433ca207771c34be63b822aec6760378b5b16685e82c513599a",
+      "fetched_at": "2026-10-03T09:34:34.246741+00:00",
+      "stored_at": "2026-10-03T12:37:48.22232+00:00"
+    },
+    {
+      "id": "c6e6fe10-513d-4af4-81c1-41dec944a572",
+      "ticker": "AMMN",
+      "provider_version": "1.7.0",
+      "input_digest": "c7c86db5d14c466e2be8fb9c1032b83d605f5d396f38ba1e42681249ae8c155b",
+      "fetched_at": "2026-10-03T09:34:34.527811+00:00",
+      "stored_at": "2026-10-03T12:37:49.050835+00:00"
+    },
+    {
+      "id": "607e3b09-088f-4c09-b145-92cb3b3afd3e",
+      "ticker": "AMMN",
+      "provider_version": "1.7.0",
+      "input_digest": "f70e2a887566ec4ffb51a8f8a5e2454cc56fbd6ef10396152efd25e4bf59e8bf",
+      "fetched_at": "2026-10-03T09:34:34.527811+00:00",
+      "stored_at": "2026-10-03T12:37:51.226923+00:00"
+    },
+    {
+      "id": "4f0d0d6d-274e-4c9b-afe7-c3ed0766efd6",
+      "ticker": "AMRT",
+      "provider_version": "1.7.0",
+      "input_digest": "c73c4fb8e423eb1739799c7b49e0dfc55dc0a7743965cf8917f6915d2dc38794",
+      "fetched_at": "2026-10-03T09:34:34.87643+00:00",
+      "stored_at": "2026-10-03T12:37:52.151909+00:00"
+    },
+    {
+      "id": "cf316bd3-5ab8-4a4d-b823-a059b082d3ec",
+      "ticker": "AMRT",
+      "provider_version": "1.7.0",
+      "input_digest": "cec6e432517c3e6e10fc05416e169a779fea7f8a654daeabad3ac3d1e76b90e6",
+      "fetched_at": "2026-10-03T09:34:34.87643+00:00",
+      "stored_at": "2026-10-03T12:37:54.223571+00:00"
+    },
+    {
+      "id": "67a579df-5383-4959-80e8-41f3e42f0e06",
+      "ticker": "ANTM",
+      "provider_version": "1.7.0",
+      "input_digest": "2d9d6d6143d9194577f819f805333e86bc3e6a8371a7a4717c64cb6c6d6f3a93",
+      "fetched_at": "2026-10-03T09:34:35.141559+00:00",
+      "stored_at": "2026-10-03T12:37:55.067339+00:00"
+    },
+    {
+      "id": "8e845f04-3664-452b-bad0-4e40815b138f",
+      "ticker": "ANTM",
+      "provider_version": "1.7.0",
+      "input_digest": "f539302c276861eddcd5a06ec7bf70e0ef6a89b58497fbe91bbad6e314822f37",
+      "fetched_at": "2026-10-03T09:34:35.141559+00:00",
+      "stored_at": "2026-10-03T12:37:55.98169+00:00"
+    },
+    {
+      "id": "9cdbfddb-30a0-4a39-8735-1989b0bb884b",
+      "ticker": "ARCI",
+      "provider_version": "1.7.0",
+      "input_digest": "5114fafc8b4e24398ccdd366d63a933b8c7c433f5a1aeff4714f10c617460817",
+      "fetched_at": "2026-10-03T09:34:35.380516+00:00",
+      "stored_at": "2026-10-03T12:38:00.65988+00:00"
+    },
+    {
+      "id": "af1f941f-b7cd-4a31-a501-f55a6b137019",
+      "ticker": "ARCI",
+      "provider_version": "1.7.0",
+      "input_digest": "decd356cc4adf8b53fada39d5cee14f5fde38c6039f72e37c51b5edca2f5af1f",
+      "fetched_at": "2026-10-03T09:34:35.380516+00:00",
+      "stored_at": "2026-10-03T12:37:59.162882+00:00"
+    },
+    {
+      "id": "9f443014-985a-4939-9e3d-c4e38cb3f3ba",
+      "ticker": "ARTO",
+      "provider_version": "1.7.0",
+      "input_digest": "1c85a2e3094f06cee5edc111b8b8fff3b630499b004ced002030c7f8aec4c570",
+      "fetched_at": "2026-10-02T14:21:08.641794+00:00",
+      "stored_at": "2026-10-02T15:50:55.335702+00:00"
+    },
+    {
+      "id": "3e3b08b3-ef8a-45b3-8e05-37c8c0d8860f",
+      "ticker": "ARTO",
+      "provider_version": "1.7.0",
+      "input_digest": "ed8e3f334d49e4ceacb1fc6b42dde7bd7bc0d7d8f79a234f881f0c1517eb9755",
+      "fetched_at": "2026-10-02T14:21:08.641794+00:00",
+      "stored_at": "2026-10-02T14:37:40.95949+00:00"
+    },
+    {
+      "id": "2fad55cc-434b-4f39-9456-2cd193f8e5e0",
+      "ticker": "ASII",
+      "provider_version": "1.7.0",
+      "input_digest": "1e0a52e96a2241275d6c335c7929ceeaba5ff82fb4e769545d62010e66bd67f0",
+      "fetched_at": "2026-10-03T09:34:35.858688+00:00",
+      "stored_at": "2026-10-03T12:38:05.360866+00:00"
+    },
+    {
+      "id": "b22555e1-1690-4121-9c53-4d1b0d066873",
+      "ticker": "ASII",
+      "provider_version": "1.7.0",
+      "input_digest": "bf559897f443ba85f45643b119ab0d9f6b0c5202d0131868b72235a27d7f805d",
+      "fetched_at": "2026-10-03T09:34:35.858688+00:00",
+      "stored_at": "2026-10-03T12:38:04.374094+00:00"
+    },
+    {
+      "id": "7f35c696-5964-4bcc-ab29-4ce272f1599f",
+      "ticker": "BBCA",
+      "provider_version": "1.7.0",
+      "input_digest": "325332697bf4bf5c4a84038cb400d41f4c7737ab63fda0d2d83fef399352deb9",
+      "fetched_at": "2026-10-03T09:34:36.119655+00:00",
+      "stored_at": "2026-10-03T12:38:06.258928+00:00"
+    },
+    {
+      "id": "924ead46-689d-435f-b1f2-7762efcdcb01",
+      "ticker": "BBCA",
+      "provider_version": "1.7.0",
+      "input_digest": "b8b27a7ef6034526e7d255b886aabfeb932fb907d5775e27dd94de279d1298fa",
+      "fetched_at": "2026-10-03T09:34:36.119655+00:00",
+      "stored_at": "2026-10-03T12:38:07.051303+00:00"
+    },
+    {
+      "id": "300a05e6-15a8-46dd-a6c3-d55986499a4d",
+      "ticker": "BBNI",
+      "provider_version": "1.7.0",
+      "input_digest": "91cd6fa4b3a04b0c9cd00696aeaf8764cfc3463b5c92ecb1ff537dcd538465eb",
+      "fetched_at": "2026-10-03T09:34:36.379034+00:00",
+      "stored_at": "2026-10-03T12:38:07.853543+00:00"
+    },
+    {
+      "id": "02732b29-eb6d-4535-a83a-04a70831d694",
+      "ticker": "BBNI",
+      "provider_version": "1.7.0",
+      "input_digest": "f95729f4e7183d287cc3019d173acb9a454831d8074806ed7013b2889d734a39",
+      "fetched_at": "2026-10-03T09:34:36.379034+00:00",
+      "stored_at": "2026-10-03T12:38:11.100987+00:00"
+    },
+    {
+      "id": "a727da9d-e1d3-46c0-a6a0-d73200f704a1",
+      "ticker": "BBRI",
+      "provider_version": "1.7.0",
+      "input_digest": "c6c47a9d853557c39fb4802109361870432e9222fba45320c4b2039b7f67039b",
+      "fetched_at": "2026-10-03T09:34:36.667022+00:00",
+      "stored_at": "2026-10-03T12:38:22.71049+00:00"
+    },
+    {
+      "id": "b73a6677-1613-4e3f-920f-1a24cca51ac1",
+      "ticker": "BBRI",
+      "provider_version": "1.7.0",
+      "input_digest": "fb012770c13a66f19b0dcd7a7b1752c85154c285e144dd816c4f36ae1bcc00bf",
+      "fetched_at": "2026-10-03T09:34:36.667022+00:00",
+      "stored_at": "2026-10-03T12:38:15.450416+00:00"
+    },
+    {
+      "id": "0c409ce1-17eb-450e-8c8c-126d3bd6b2ed",
+      "ticker": "BBTN",
+      "provider_version": "1.7.0",
+      "input_digest": "2db67f22e828b0ea4d6ce35ff76111d3aea27cdc6008a82a09ed07afcf6d72d7",
+      "fetched_at": "2026-10-02T14:21:11.783171+00:00",
+      "stored_at": "2026-10-02T17:47:06.739668+00:00"
+    },
+    {
+      "id": "cbd156af-0465-4346-a2dc-4855709e8fab",
+      "ticker": "BBTN",
+      "provider_version": "1.7.0",
+      "input_digest": "74da111a4cecd09b5f428ef601310b952c140ea5d4270d79ffc634e0b81eb781",
+      "fetched_at": "2026-10-02T14:21:11.783171+00:00",
+      "stored_at": "2026-10-02T14:37:52.002146+00:00"
+    },
+    {
+      "id": "e977ee59-8add-4fcb-a97e-0667eda4f8d4",
+      "ticker": "BBYB",
+      "provider_version": "1.7.0",
+      "input_digest": "800b466106c32718d007327598d634f65f7c9aee8333f938aa7be1dcc8ef1e3f",
+      "fetched_at": "2026-10-02T14:21:12.324374+00:00",
+      "stored_at": "2026-10-02T15:51:08.151092+00:00"
+    },
+    {
+      "id": "46482702-54a9-4c96-b9cb-5f4719e69e12",
+      "ticker": "BBYB",
+      "provider_version": "1.7.0",
+      "input_digest": "ef87aa018c48f695ba219af8a58685c192c0981be3e22ea550fb4e73aaa26cc0",
+      "fetched_at": "2026-10-02T14:21:12.324374+00:00",
+      "stored_at": "2026-10-02T14:37:52.955964+00:00"
+    },
+    {
+      "id": "c76d087f-2102-49eb-828a-71705d1b60aa",
+      "ticker": "BFIN",
+      "provider_version": "1.7.0",
+      "input_digest": "17eb9e0d50e708ac8801cd40b2a968517872f2db75f93cde1daa25dcfe7b10c4",
+      "fetched_at": "2026-10-03T09:34:37.395691+00:00",
+      "stored_at": "2026-10-03T12:38:43.135156+00:00"
+    },
+    {
+      "id": "045785c2-42b2-43a1-aa7a-b0c1bf0a4994",
+      "ticker": "BFIN",
+      "provider_version": "1.7.0",
+      "input_digest": "a25ed4f84186204e962552b41fa6b15fd1d4e6179fdd950dc70eb4de46823409",
+      "fetched_at": "2026-10-03T09:34:37.395691+00:00",
+      "stored_at": "2026-10-03T12:38:44.350164+00:00"
+    },
+    {
+      "id": "a8e13b90-4cdc-4a6b-8098-e9f428ef9398",
+      "ticker": "BIPI",
+      "provider_version": "1.7.0",
+      "input_digest": "2161a6562e185bb6016d24bd4710f0b32c00b6b78350636933b658f5822e2d72",
+      "fetched_at": "2026-10-03T09:34:37.742858+00:00",
+      "stored_at": "2026-10-03T12:38:45.118591+00:00"
+    },
+    {
+      "id": "467bdaf4-fc8a-42d5-a177-cb53ac39ef1a",
+      "ticker": "BIPI",
+      "provider_version": "1.7.0",
+      "input_digest": "3c68a211e8d074133cff7c6685208f3905a7e9655a510be787ab3101601714a1",
+      "fetched_at": "2026-10-03T09:34:37.742858+00:00",
+      "stored_at": "2026-10-03T12:38:46.590124+00:00"
+    },
+    {
+      "id": "1592d5f2-e575-4731-9797-99bd72dec43b",
+      "ticker": "BKSL",
+      "provider_version": "1.7.0",
+      "input_digest": "05182394e34033326619a1df0b78478f1bb8960cc6ebb0cb62ce00d1bfb69981",
+      "fetched_at": "2026-10-02T14:21:15.4056+00:00",
+      "stored_at": "2026-10-02T14:38:03.220121+00:00"
+    },
+    {
+      "id": "5fcef7d0-7ae3-4f65-9784-44b977181729",
+      "ticker": "BKSL",
+      "provider_version": "1.7.0",
+      "input_digest": "73e4ef541ea5ae73f20c5ef6d671123417d910d61578d715dd0d97e162793a38",
+      "fetched_at": "2026-10-02T14:21:15.4056+00:00",
+      "stored_at": "2026-10-02T15:51:20.1717+00:00"
+    },
+    {
+      "id": "5bf3eaa5-94f6-4f45-a697-0926881677f0",
+      "ticker": "BMRI",
+      "provider_version": "1.7.0",
+      "input_digest": "2ac9fcd18670b55e366e16e845fb6be23fc2544255b6a09a5da7c4ebe1bc619b",
+      "fetched_at": "2026-10-03T09:34:38.221055+00:00",
+      "stored_at": "2026-10-03T12:38:50.582786+00:00"
+    },
+    {
+      "id": "82394134-480b-4248-b3f9-b6385d3240cd",
+      "ticker": "BMRI",
+      "provider_version": "1.7.0",
+      "input_digest": "f2697b8ad06bd585c3a941878c3a3f5d15ba9ff8a51356cd3a88f9c629213759",
+      "fetched_at": "2026-10-03T09:34:38.221055+00:00",
+      "stored_at": "2026-10-03T12:38:49.700205+00:00"
+    },
+    {
+      "id": "d7b6df71-abc5-496c-90e6-58f4f399e284",
+      "ticker": "BNBR",
+      "provider_version": "1.7.0",
+      "input_digest": "92978e5069cb0093a6de20dcdccfa4cbdbe7d9232814052cd4b78eb6f2b7fccd",
+      "fetched_at": "2026-10-02T14:21:16.354315+00:00",
+      "stored_at": "2026-10-02T14:38:06.646992+00:00"
+    },
+    {
+      "id": "2371cd2e-759f-492a-a62c-d2797e7fec34",
+      "ticker": "BNBR",
+      "provider_version": "1.7.0",
+      "input_digest": "ee6551ae5ae53570b7b73c05ef5619e35b1f155105eabaef8a1dd94c0f0f954a",
+      "fetched_at": "2026-10-02T14:21:16.354315+00:00",
+      "stored_at": "2026-10-02T15:51:25.305702+00:00"
+    },
+    {
+      "id": "cc74df81-2baf-4826-928f-6b7efdff2cee",
+      "ticker": "BRIS",
+      "provider_version": "1.7.0",
+      "input_digest": "3ff82a37da570d46d971f11d79c5c8bd4198dc5064482779dfa9996890c66b03",
+      "fetched_at": "2026-10-03T09:34:38.62874+00:00",
+      "stored_at": "2026-10-03T12:38:53.286689+00:00"
+    },
+    {
+      "id": "11f09ee1-2eed-4869-8cf4-c084c992f9b2",
+      "ticker": "BRIS",
+      "provider_version": "1.7.0",
+      "input_digest": "f945e265780c32c3c0bc97523842a9024bbfdab0e3d9e9509c8d3ff4b816fece",
+      "fetched_at": "2026-10-03T09:34:38.62874+00:00",
+      "stored_at": "2026-10-03T12:38:54.998302+00:00"
+    },
+    {
+      "id": "ba556187-4e98-4e70-a32c-ae01cba24464",
+      "ticker": "BRMS",
+      "provider_version": "1.7.0",
+      "input_digest": "525e6db2a6c93e8fa4f2a241af27d463cdfc7c300881cd2ddec958976c06543d",
+      "fetched_at": "2026-10-03T09:34:38.804984+00:00",
+      "stored_at": "2026-10-03T12:38:56.565371+00:00"
+    },
+    {
+      "id": "1be75c9e-a88c-44e0-b631-58372aa58e44",
+      "ticker": "BRMS",
+      "provider_version": "1.7.0",
+      "input_digest": "9804ea6ad549debc698d30d75e62c8364b353d69d782bbde0d7374f9fd35f690",
+      "fetched_at": "2026-10-03T09:34:38.804984+00:00",
+      "stored_at": "2026-10-03T12:38:55.745657+00:00"
+    },
+    {
+      "id": "45b9681c-cd90-4cd4-afe1-e30ef31890ad",
+      "ticker": "BRPT",
+      "provider_version": "1.7.0",
+      "input_digest": "330867fe66beb12bdccf3d1f3c12782e2a15ca29006035f2492c633373789b02",
+      "fetched_at": "2026-10-02T14:21:18.003586+00:00",
+      "stored_at": "2026-10-02T15:51:41.781096+00:00"
+    },
+    {
+      "id": "1144ee31-3ad5-4052-a2f3-8c303c1bc614",
+      "ticker": "BRPT",
+      "provider_version": "1.7.0",
+      "input_digest": "486de1d8701e9d4d54e3279ca66bfb5d042fbe28a253fc83e78f25793dad8cc9",
+      "fetched_at": "2026-10-02T14:21:18.003586+00:00",
+      "stored_at": "2026-10-02T14:38:09.227289+00:00"
+    },
+    {
+      "id": "15494b1d-3623-4c37-9669-bc092b725e20",
+      "ticker": "BSDE",
+      "provider_version": "1.7.0",
+      "input_digest": "0fed3926cec59c8769789005f42dff74f4147f3b4a24d6ef45d89f8e16214d6c",
+      "fetched_at": "2026-10-03T09:34:39.316281+00:00",
+      "stored_at": "2026-10-03T12:39:00.669095+00:00"
+    },
+    {
+      "id": "6b6126f1-99f9-4ac2-b044-7bffdeb166e6",
+      "ticker": "BSDE",
+      "provider_version": "1.7.0",
+      "input_digest": "9c17dd9301557f8f8b3204ba623212d9e927376555360cb002de9bf09343ca6f",
+      "fetched_at": "2026-10-03T09:34:39.316281+00:00",
+      "stored_at": "2026-10-03T12:39:01.428783+00:00"
+    },
+    {
+      "id": "3d9ecfc0-36fb-4fbe-909e-1870fb898767",
+      "ticker": "BUKA",
+      "provider_version": "1.7.0",
+      "input_digest": "27444f4d9cc6f06c9089df56767379316e37cc0e96823474a575ad2fc4f066eb",
+      "fetched_at": "2026-10-02T14:21:19.379241+00:00",
+      "stored_at": "2026-10-02T15:51:51.239687+00:00"
+    },
+    {
+      "id": "6c99a7d8-fc24-4ff9-9686-dbfd7811bde9",
+      "ticker": "BUKA",
+      "provider_version": "1.7.0",
+      "input_digest": "f5eaed9444ff5c36248081d8d677e7c1e4d435ab1baaad7372ee9f5bac331dd1",
+      "fetched_at": "2026-10-02T14:21:19.379241+00:00",
+      "stored_at": "2026-10-02T14:38:12.223458+00:00"
+    },
+    {
+      "id": "c8a06862-8db4-46df-afc6-7eeeabda756b",
+      "ticker": "BULL",
+      "provider_version": "1.7.0",
+      "input_digest": "50d64443dd2c4d1672540c7f65f90a96ad7176d02a790406b1eb1ca021afbdf6",
+      "fetched_at": "2026-10-03T09:34:39.852753+00:00",
+      "stored_at": "2026-10-03T12:39:03.495223+00:00"
+    },
+    {
+      "id": "e991ce09-4622-4717-abbd-a1e845459a52",
+      "ticker": "BULL",
+      "provider_version": "1.7.0",
+      "input_digest": "de49e85ce934b5731b72c526f36fa2f48b9a0dd40bc857f6fd867f629564fd1b",
+      "fetched_at": "2026-10-03T09:34:39.852753+00:00",
+      "stored_at": "2026-10-03T12:39:04.375579+00:00"
+    },
+    {
+      "id": "e8577fa9-a97a-4f68-9626-da41f86736b6",
+      "ticker": "BUMI",
+      "provider_version": "1.7.0",
+      "input_digest": "827f854213614537d6f6aa6ab794c88ccd76b3b5972843ae120cf6052140070b",
+      "fetched_at": "2026-10-03T09:34:40.171758+00:00",
+      "stored_at": "2026-10-03T12:39:05.735539+00:00"
+    },
+    {
+      "id": "9142eaee-6dc6-4eda-a672-183ab9d231f7",
+      "ticker": "BUMI",
+      "provider_version": "1.7.0",
+      "input_digest": "c4ba1138fe6dae6dd9f894eb7ace3be730d777aa01fe44d8889ffb6e8d4ee79d",
+      "fetched_at": "2026-10-03T09:34:40.171758+00:00",
+      "stored_at": "2026-10-03T12:39:05.042968+00:00"
+    },
+    {
+      "id": "e0f8c587-fc02-4d40-ac45-1e4ede857aa1",
+      "ticker": "BUVA",
+      "provider_version": "1.7.0",
+      "input_digest": "3121bfbc3a0a7ceab0ac419bf58d1cc6b1ad24233f80e15aed5e7e81cf2e44b5",
+      "fetched_at": "2026-10-02T14:21:21.77389+00:00",
+      "stored_at": "2026-10-02T14:38:14.422679+00:00"
+    },
+    {
+      "id": "b2299030-23d3-4b5d-b30d-cd28d2ce5574",
+      "ticker": "BUVA",
+      "provider_version": "1.7.0",
+      "input_digest": "3533e7dde908686666bfcda463e3001afa9e0c334f1fabb5bc93e67586de7f68",
+      "fetched_at": "2026-10-02T14:21:21.77389+00:00",
+      "stored_at": "2026-10-02T15:52:02.614884+00:00"
+    },
+    {
+      "id": "1f441b95-2de9-48a1-8794-91dda69f28b6",
+      "ticker": "CBDK",
+      "provider_version": "1.7.0",
+      "input_digest": "aa0be5c3b8106c677b6bd7ba6eaa3948da74f8f99edc2c6e139559db000459bd",
+      "fetched_at": "2026-10-03T09:34:40.787547+00:00",
+      "stored_at": "2026-10-03T12:39:11.102017+00:00"
+    },
+    {
+      "id": "69009d3b-861d-424a-b07e-63503ff71308",
+      "ticker": "CBDK",
+      "provider_version": "1.7.0",
+      "input_digest": "e4eda34a026e014da84e75b9c3732d0464a32d91026196d62983b9cb428416e6",
+      "fetched_at": "2026-10-03T09:34:40.787547+00:00",
+      "stored_at": "2026-10-03T12:39:10.441531+00:00"
+    },
+    {
+      "id": "4b55af1a-3779-409d-82e4-e8dc963e97b4",
+      "ticker": "CMRY",
+      "provider_version": "1.7.0",
+      "input_digest": "61d233c2e4b22d0796f9964316c74eba6dd9df5b67ca21d51d51c9d467adbd6f",
+      "fetched_at": "2026-10-03T09:34:41.044274+00:00",
+      "stored_at": "2026-10-03T12:39:13.914886+00:00"
+    },
+    {
+      "id": "dff012e5-95d3-4f23-858d-d9c000648076",
+      "ticker": "CMRY",
+      "provider_version": "1.7.0",
+      "input_digest": "8d155bedc2157f63f236f85978fe75b7ad19bcdf1a6087dff7072633afe17e3d",
+      "fetched_at": "2026-10-03T09:34:41.044274+00:00",
+      "stored_at": "2026-10-03T12:39:12.166644+00:00"
+    },
+    {
+      "id": "63973367-99a5-447d-9890-1ecda1cee0cd",
+      "ticker": "COIN",
+      "provider_version": "1.7.0",
+      "input_digest": "243e51ad294978c30537018111542bdd0bbf14e7a85ef3b94e7225c70f583621",
+      "fetched_at": "2026-10-02T14:21:23.555195+00:00",
+      "stored_at": "2026-10-02T15:52:46.696633+00:00"
+    },
+    {
+      "id": "c5827396-7c60-405c-8a3a-0d4d5c05c49f",
+      "ticker": "COIN",
+      "provider_version": "1.7.0",
+      "input_digest": "e91649e918a798d9290033f4f94a2a05d294e7c9df42aa9581160584eaa7b629",
+      "fetched_at": "2026-10-02T14:21:23.555195+00:00",
+      "stored_at": "2026-10-02T14:38:16.897394+00:00"
+    },
+    {
+      "id": "ec3e6c8b-4b6f-4992-95f8-cb6e2b8dc2b0",
+      "ticker": "CPIN",
+      "provider_version": "1.7.0",
+      "input_digest": "d08e8abc751e7d8b3eb4680f19c7ef0ff3fd52f8004006411725920909571263",
+      "fetched_at": "2026-10-03T09:34:41.548784+00:00",
+      "stored_at": "2026-10-03T12:39:17.356088+00:00"
+    },
+    {
+      "id": "033a4bde-e0a2-40b3-b472-1db6ffdc2833",
+      "ticker": "CPIN",
+      "provider_version": "1.7.0",
+      "input_digest": "d696018fc402f5c52c63a444a25907ca381223b31d85a6d4a36c253f8f024da4",
+      "fetched_at": "2026-10-03T09:34:41.548784+00:00",
+      "stored_at": "2026-10-03T12:39:16.484419+00:00"
+    },
+    {
+      "id": "b2786391-1536-4a9d-b6c6-32642cc15100",
+      "ticker": "CTRA",
+      "provider_version": "1.7.0",
+      "input_digest": "24942880acf01d738c7bfc37c280e478c34223247172e5c1da4c234a50cf2dd6",
+      "fetched_at": "2026-10-03T09:34:41.807409+00:00",
+      "stored_at": "2026-10-03T12:39:19.21338+00:00"
+    },
+    {
+      "id": "a5284d43-5174-4cf2-a513-a0189d546c73",
+      "ticker": "CTRA",
+      "provider_version": "1.7.0",
+      "input_digest": "5b08ec70bdd4b4afbf883bf6d7d96d1492255a7e984394b9bd688878ec1ec464",
+      "fetched_at": "2026-10-03T09:34:41.807409+00:00",
+      "stored_at": "2026-10-03T12:39:18.30011+00:00"
+    },
+    {
+      "id": "eddeb1af-e05f-4cee-81a5-e0a72256fbb3",
+      "ticker": "CUAN",
+      "provider_version": "1.7.0",
+      "input_digest": "4a1d0a3f56e67e5295a8c4622d461eb46e55b96f4d1fd6c8c868f730f8c2eff9",
+      "fetched_at": "2026-10-03T09:34:42.135085+00:00",
+      "stored_at": "2026-10-03T12:39:22.732304+00:00"
+    },
+    {
+      "id": "7f97c3f3-1e8a-42b0-adff-053933d9b0ca",
+      "ticker": "CUAN",
+      "provider_version": "1.7.0",
+      "input_digest": "e5d9c5649ac00302427026613860c8ba83984dc9da29c2ce7484991468f37f93",
+      "fetched_at": "2026-10-03T09:34:42.135085+00:00",
+      "stored_at": "2026-10-03T12:39:19.922813+00:00"
+    },
+    {
+      "id": "59e68e71-58f2-4ea2-a4c4-b631133821b7",
+      "ticker": "DEWA",
+      "provider_version": "1.7.0",
+      "input_digest": "4a4ca75bd4ae4b66c01469b9eff07aeafa0a6f35a2e77d1564d64cfdc252bc44",
+      "fetched_at": "2026-10-03T09:34:42.564707+00:00",
+      "stored_at": "2026-10-03T12:39:23.625938+00:00"
+    },
+    {
+      "id": "87bc4d57-d062-41ee-89d2-d07dc3cdaf41",
+      "ticker": "DEWA",
+      "provider_version": "1.7.0",
+      "input_digest": "c6aca0fe8c9cd24e477f07458d913dfe2dc7dcc725bb689d82f9623ce055fc0f",
+      "fetched_at": "2026-10-03T09:34:42.564707+00:00",
+      "stored_at": "2026-10-03T12:39:24.529104+00:00"
+    },
+    {
+      "id": "7e818708-30ff-4735-a73d-01e73baa0631",
+      "ticker": "DSNG",
+      "provider_version": "1.7.0",
+      "input_digest": "6e54ca17a368cdba814347690e2b28c7510ce9426b37fa533ad4bc5e1648101e",
+      "fetched_at": "2026-10-03T09:34:42.890345+00:00",
+      "stored_at": "2026-10-03T12:39:26.068706+00:00"
+    },
+    {
+      "id": "50ab3eb4-f87a-44d7-a641-e74e49a3f166",
+      "ticker": "DSNG",
+      "provider_version": "1.7.0",
+      "input_digest": "fbe514089b5449f5b2e7dbb49410ca99f9baafffab9fb6fbfdd873989811427a",
+      "fetched_at": "2026-10-03T09:34:42.890345+00:00",
+      "stored_at": "2026-10-03T12:39:25.27669+00:00"
+    },
+    {
+      "id": "718919c8-a535-4d78-a9aa-14f11704ff64",
+      "ticker": "ELSA",
+      "provider_version": "1.7.0",
+      "input_digest": "02f080bfa54bf80dda97d2b17857b22da615d9e0fc4b7d47cdcea7faeaf16849",
+      "fetched_at": "2026-10-02T14:21:26.695171+00:00",
+      "stored_at": "2026-10-02T14:38:22.833869+00:00"
+    },
+    {
+      "id": "5453183d-e260-4db8-b574-29ad92d7b04b",
+      "ticker": "ELSA",
+      "provider_version": "1.7.0",
+      "input_digest": "93e1056510dc7fb87588acfcdc71d49049423704b12d5e15eeabcffafde1f682",
+      "fetched_at": "2026-10-02T14:21:26.695171+00:00",
+      "stored_at": "2026-10-02T17:47:50.738217+00:00"
+    },
+    {
+      "id": "c2a7b918-5cf8-4ae2-8b16-9a75ff68bd77",
+      "ticker": "EMAS",
+      "provider_version": "1.7.0",
+      "input_digest": "3388354a24f11166c4b1a02a4040c693287f47ea2dd20358df378b7e3acc5e95",
+      "fetched_at": "2026-10-02T14:21:27.160146+00:00",
+      "stored_at": "2026-10-02T14:38:23.440804+00:00"
+    },
+    {
+      "id": "5a8fe9c4-812f-4be6-8ca9-d8032254697d",
+      "ticker": "EMAS",
+      "provider_version": "1.7.0",
+      "input_digest": "8652dc81cebf072675a5c72afff44b3b6faf346a35da2f197c3bfe0bb425e05d",
+      "fetched_at": "2026-10-02T14:21:27.160146+00:00",
+      "stored_at": "2026-10-02T15:53:36.814409+00:00"
+    },
+    {
+      "id": "228bf0ef-3752-49be-a0c4-168ef2b92245",
+      "ticker": "EMTK",
+      "provider_version": "1.7.0",
+      "input_digest": "1d2e45768c3ec36b97638a8d5ff70d75b06c20515c4c9cc44cec09123372157d",
+      "fetched_at": "2026-10-03T09:34:43.71487+00:00",
+      "stored_at": "2026-10-03T12:39:30.743721+00:00"
+    },
+    {
+      "id": "1ed97b40-a225-42ac-a723-d1666a84fd50",
+      "ticker": "EMTK",
+      "provider_version": "1.7.0",
+      "input_digest": "316d1a3112e2cc018a45c760b688b53e1daee9022d51b5c05b9d2a8537ff8970",
+      "fetched_at": "2026-10-03T09:34:43.71487+00:00",
+      "stored_at": "2026-10-03T12:39:31.581748+00:00"
+    },
+    {
+      "id": "9cb16d40-1dd6-4c4d-8546-37f971fb5d54",
+      "ticker": "ENRG",
+      "provider_version": "1.7.0",
+      "input_digest": "50ac1c5589e64d56607c8f553d0a20c189665e2aa11161841429ba738495d1c0",
+      "fetched_at": "2026-10-02T14:21:29.552021+00:00",
+      "stored_at": "2026-10-02T14:38:24.841985+00:00"
+    },
+    {
+      "id": "08565f71-f642-4702-a9fd-a7f96f88fdee",
+      "ticker": "ENRG",
+      "provider_version": "1.7.0",
+      "input_digest": "60fbd863e100c63a7e1eb10f84ad38b9a2d22de2ec1e4bf89b9ae53ee8250fd4",
+      "fetched_at": "2026-10-02T14:21:29.552021+00:00",
+      "stored_at": "2026-10-02T15:53:44.425406+00:00"
+    },
+    {
+      "id": "6bdabc4f-9195-4d1d-86db-6c1f100d8d32",
+      "ticker": "ERAA",
+      "provider_version": "1.7.0",
+      "input_digest": "8c22ba1fc86fd35125b9cfa07af7bd6085b9dad729b9bb0a84f3f5cb2c6a56a7",
+      "fetched_at": "2026-10-03T09:34:44.43314+00:00",
+      "stored_at": "2026-10-03T12:39:34.78026+00:00"
+    },
+    {
+      "id": "0f7fab79-da96-49d9-89f9-34a0553c0014",
+      "ticker": "ERAA",
+      "provider_version": "1.7.0",
+      "input_digest": "ccc7e478bf75bace2706e4ecccee4cde3877d920aa635e566576fb0fa2234e5d",
+      "fetched_at": "2026-10-03T09:34:44.43314+00:00",
+      "stored_at": "2026-10-03T12:39:33.68291+00:00"
+    },
+    {
+      "id": "c4e93523-d23f-4963-9c20-62eb340ec293",
+      "ticker": "ESSA",
+      "provider_version": "1.7.0",
+      "input_digest": "10b353ea95384e075fe0f95e869f8305d00cb6556adca5a4a27e4cba6ebc6efe",
+      "fetched_at": "2026-10-03T09:34:44.823149+00:00",
+      "stored_at": "2026-10-03T12:39:36.587858+00:00"
+    },
+    {
+      "id": "7aac5527-203b-4537-8315-eae3e488e0d5",
+      "ticker": "ESSA",
+      "provider_version": "1.7.0",
+      "input_digest": "fa8552e4b11e48fbce14d3f6e8845770fc759a83c335c32680656fb7c328efeb",
+      "fetched_at": "2026-10-03T09:34:44.823149+00:00",
+      "stored_at": "2026-10-03T12:39:35.669743+00:00"
+    },
+    {
+      "id": "d14b59ef-b944-4c45-bceb-afbd05096232",
+      "ticker": "EXCL",
+      "provider_version": "1.7.0",
+      "input_digest": "6c3e800ff201e2087ac042b291730e0c3f6dc05b1c925a5a1a144b3561855fb9",
+      "fetched_at": "2026-10-03T09:34:45.414452+00:00",
+      "stored_at": "2026-10-03T12:39:39.883534+00:00"
+    },
+    {
+      "id": "bd969118-7e3d-4954-98d0-4d04691db9e3",
+      "ticker": "EXCL",
+      "provider_version": "1.7.0",
+      "input_digest": "97138b78449ecd0a7ac28e0691acf9bf84b3f644f0e22924a3b53a61c805afc8",
+      "fetched_at": "2026-10-03T09:34:45.414452+00:00",
+      "stored_at": "2026-10-03T12:39:37.404627+00:00"
+    },
+    {
+      "id": "684192b1-d8cb-4787-958d-bb57957c6705",
+      "ticker": "GGRM",
+      "provider_version": "1.7.0",
+      "input_digest": "546dd921b916f5182edb9ad7cbc76e2913d166794e579802670c8643ae8aef00",
+      "fetched_at": "2026-10-03T09:34:45.806608+00:00",
+      "stored_at": "2026-10-03T12:39:41.355192+00:00"
+    },
+    {
+      "id": "1a395d0e-4c42-48d0-a79a-1694c772789c",
+      "ticker": "GGRM",
+      "provider_version": "1.7.0",
+      "input_digest": "5df4edb5bcb599924731c64fed240270aac31e0307502d632fcbcba34ecb855f",
+      "fetched_at": "2026-10-03T09:34:45.806608+00:00",
+      "stored_at": "2026-10-03T12:39:43.107201+00:00"
+    },
+    {
+      "id": "a85f708f-2dba-4723-9f2c-d5ff278be355",
+      "ticker": "GOTO",
+      "provider_version": "1.7.0",
+      "input_digest": "56dabaca6a744ff806d5aa0ec3a1034c40eb193c59356cd79e57edc9610435e0",
+      "fetched_at": "2026-10-03T09:34:46.302793+00:00",
+      "stored_at": "2026-10-03T12:39:49.133244+00:00"
+    },
+    {
+      "id": "6f7ea584-cf74-41fd-8588-665320fc7912",
+      "ticker": "GOTO",
+      "provider_version": "1.7.0",
+      "input_digest": "7128d2ecdb6ab8f1643a20d2c76644088f9d7f8e59a88be13a4b106200bad0d5",
+      "fetched_at": "2026-10-03T09:34:46.302793+00:00",
+      "stored_at": "2026-10-03T12:39:45.445584+00:00"
+    },
+    {
+      "id": "3b959760-a608-46fa-996f-307f024391d5",
+      "ticker": "HEAL",
+      "provider_version": "1.7.0",
+      "input_digest": "9a86b0fc88639d8f95b24d0ade773832a08b10c1b0aac42b849b8e26d3f114e9",
+      "fetched_at": "2026-10-03T09:34:46.744474+00:00",
+      "stored_at": "2026-10-03T12:39:52.512983+00:00"
+    },
+    {
+      "id": "5445c72b-c5f9-401d-87bc-bf440b04c532",
+      "ticker": "HEAL",
+      "provider_version": "1.7.0",
+      "input_digest": "be4a69661e0666582cd70d1b5667f4bda064a648a61d7fabfa6e1bb256ba8f29",
+      "fetched_at": "2026-10-03T09:34:46.744474+00:00",
+      "stored_at": "2026-10-03T12:39:51.553605+00:00"
+    },
+    {
+      "id": "b0afb186-b308-42c8-889f-0e94ba99953c",
+      "ticker": "HRTA",
+      "provider_version": "1.7.0",
+      "input_digest": "95e2a893cc60406622aadaff501375eec34fad38401d65f45997522a0f91611a",
+      "fetched_at": "2026-10-03T09:34:47.488296+00:00",
+      "stored_at": "2026-10-03T12:40:00.551249+00:00"
+    },
+    {
+      "id": "f400f7f9-8029-4025-bb93-e727082e1add",
+      "ticker": "HRTA",
+      "provider_version": "1.7.0",
+      "input_digest": "b5155312da4a9523f4c782f0067c0003126771aca347ef6ec341c3a376cea28f",
+      "fetched_at": "2026-10-03T09:34:47.488296+00:00",
+      "stored_at": "2026-10-03T12:39:57.661603+00:00"
+    },
+    {
+      "id": "b76ba615-a02c-4cfe-a3ec-f136828edfcb",
+      "ticker": "HRUM",
+      "provider_version": "1.7.0",
+      "input_digest": "7620f3a5750ba1ee38460cc50f8f97d680d7fccee765936706fbae6c95cbff17",
+      "fetched_at": "2026-10-02T14:21:35.983365+00:00",
+      "stored_at": "2026-10-02T15:54:34.190538+00:00"
+    },
+    {
+      "id": "d4ae8aa3-cb67-402a-9e1a-f4482b89988f",
+      "ticker": "HRUM",
+      "provider_version": "1.7.0",
+      "input_digest": "d4998b9df23eb060ab697b028cc09c44cf05e0c9b33035d9dd472e0cc9c3f10f",
+      "fetched_at": "2026-10-02T14:21:35.983365+00:00",
+      "stored_at": "2026-10-02T14:38:33.897701+00:00"
+    },
+    {
+      "id": "d0fd6a8f-ff4e-4cd4-a819-e3e4d12bdfb1",
+      "ticker": "ICBP",
+      "provider_version": "1.7.0",
+      "input_digest": "89aea0397f521204596a32452cbcc4b737829ba54a5a3b8270a44f24e97b1d43",
+      "fetched_at": "2026-10-03T09:34:47.970637+00:00",
+      "stored_at": "2026-10-03T12:40:19.085685+00:00"
+    },
+    {
+      "id": "8488f245-3a6b-4a48-a5e5-5263bca1088c",
+      "ticker": "ICBP",
+      "provider_version": "1.7.0",
+      "input_digest": "9c812bf48c1a1c7d14c3d5fcf0731078bfcb08a87b1eaa31e1b4490402963077",
+      "fetched_at": "2026-10-03T09:34:47.970637+00:00",
+      "stored_at": "2026-10-03T12:40:17.632939+00:00"
+    },
+    {
+      "id": "dd47ceb3-3cd2-4cb1-a03b-7b4d778aa351",
+      "ticker": "IMPC",
+      "provider_version": "1.7.0",
+      "input_digest": "496908f6673840f5395e4d0b3d2d5f9f3e924d9e54ea4d9acb5f23e6ee99284a",
+      "fetched_at": "2026-10-02T14:21:38.315359+00:00",
+      "stored_at": "2026-10-02T17:48:17.947077+00:00"
+    },
+    {
+      "id": "8436e83f-e0af-44f9-bae4-b8306d630426",
+      "ticker": "IMPC",
+      "provider_version": "1.7.0",
+      "input_digest": "6c50f25b67d2a9eb446f2d6f99a2118bebc3bbfc7b9b515f01a79aa35506869f",
+      "fetched_at": "2026-10-02T14:21:38.315359+00:00",
+      "stored_at": "2026-10-02T14:38:35.734672+00:00"
+    },
+    {
+      "id": "478e2c2e-c0e1-4103-bae7-7d6085f30a8d",
+      "ticker": "INCO",
+      "provider_version": "1.7.0",
+      "input_digest": "b413ac88b742505c5b78b4cf5e8b44d7b9fa8582fb138fab437cb153fcbc2939",
+      "fetched_at": "2026-10-03T09:34:48.418425+00:00",
+      "stored_at": "2026-10-03T12:40:23.641967+00:00"
+    },
+    {
+      "id": "a42a2648-5fff-4745-8381-66a27ffd2f8e",
+      "ticker": "INCO",
+      "provider_version": "1.7.0",
+      "input_digest": "c12106488405db3c5faf34d6f232d5000d51d04f08dc9e640d68c280c2a3c641",
+      "fetched_at": "2026-10-03T09:34:48.418425+00:00",
+      "stored_at": "2026-10-03T12:40:24.744755+00:00"
+    },
+    {
+      "id": "49848307-190a-455c-b0ab-23367cd50cf0",
+      "ticker": "INDF",
+      "provider_version": "1.7.0",
+      "input_digest": "058bac0c4ab56032abe09c5076e5ce3ed92a8b3bfed08b44a50afba7d85b6899",
+      "fetched_at": "2026-10-03T09:34:48.684179+00:00",
+      "stored_at": "2026-10-03T12:40:26.484841+00:00"
+    },
+    {
+      "id": "f14480e3-c3af-422e-b567-cc5802e297d6",
+      "ticker": "INDF",
+      "provider_version": "1.7.0",
+      "input_digest": "15c6b47a1f5dd89627ca8b5d355c8e742b0f881a3f2cb224717c9ba28d46ba46",
+      "fetched_at": "2026-10-03T09:34:48.684179+00:00",
+      "stored_at": "2026-10-03T12:40:25.574294+00:00"
+    },
+    {
+      "id": "1a2e94a9-7ae6-4f75-a11e-6497bcb9cdd5",
+      "ticker": "INDY",
+      "provider_version": "1.7.0",
+      "input_digest": "8c5c9eddd8d4ed8ab0ecf28bad5f43ac604bcc4668d8579d8f251ab094c1537f",
+      "fetched_at": "2026-10-03T09:34:49.033755+00:00",
+      "stored_at": "2026-10-03T12:40:29.332996+00:00"
+    },
+    {
+      "id": "dd643d33-049e-4edc-8553-e61b053acb4b",
+      "ticker": "INDY",
+      "provider_version": "1.7.0",
+      "input_digest": "c25f876930104a045bce08f021a46f3286d3529be02a8c2046a8446690f5b907",
+      "fetched_at": "2026-10-03T09:34:49.033755+00:00",
+      "stored_at": "2026-10-03T12:40:28.364025+00:00"
+    },
+    {
+      "id": "6068c0af-2985-4e39-b91c-92470ab6fb63",
+      "ticker": "INET",
+      "provider_version": "1.7.0",
+      "input_digest": "99b9aae374e6b560ef27f1ad0c1f4dce3fd8927d686c72f2fc96d4fa948b1bfb",
+      "fetched_at": "2026-10-02T14:21:40.763765+00:00",
+      "stored_at": "2026-10-02T15:54:56.862621+00:00"
+    },
+    {
+      "id": "2a947afb-8c27-4b0f-af73-2aadc6451405",
+      "ticker": "INET",
+      "provider_version": "1.7.0",
+      "input_digest": "e5d3d7af0d04b2ecb9d3b31d01d5e92ec5c90b6368b6d2931ac96c3a62a3d00c",
+      "fetched_at": "2026-10-02T14:21:40.763765+00:00",
+      "stored_at": "2026-10-02T14:38:42.405263+00:00"
+    },
+    {
+      "id": "c9bcf4d0-1196-458b-a7f6-b7db468f95b3",
+      "ticker": "INKP",
+      "provider_version": "1.7.0",
+      "input_digest": "4ee3d9f64cc6f2bed21e8abdd4f24dae45afb689ecd05e56ef27c9d28b653fc3",
+      "fetched_at": "2026-10-03T09:34:49.47139+00:00",
+      "stored_at": "2026-10-03T12:41:26.670883+00:00"
+    },
+    {
+      "id": "4e9e37ac-c83a-4510-be6d-917b8979c328",
+      "ticker": "INKP",
+      "provider_version": "1.7.0",
+      "input_digest": "55eb46955a0befc3d805eef6bcdb99f69994a3b11e204688576fcd9d583b4a47",
+      "fetched_at": "2026-10-03T09:34:49.47139+00:00",
+      "stored_at": "2026-10-03T12:41:25.531121+00:00"
+    },
+    {
+      "id": "9386692b-dbd9-4707-a696-b1fb4500b858",
+      "ticker": "ISAT",
+      "provider_version": "1.7.0",
+      "input_digest": "978a8b6d29584d0b1d4f1a28e230f943b9cb4c5e8d6bbfb5bf7c5c16e90998eb",
+      "fetched_at": "2026-10-03T09:34:49.700755+00:00",
+      "stored_at": "2026-10-03T12:41:28.641778+00:00"
+    },
+    {
+      "id": "e1db1593-ef22-460f-a3d6-d2953873989b",
+      "ticker": "ISAT",
+      "provider_version": "1.7.0",
+      "input_digest": "fe209e1996e7d97671d232fde628b00c175652c8836d1961260925b47637f9d2",
+      "fetched_at": "2026-10-03T09:34:49.700755+00:00",
+      "stored_at": "2026-10-03T12:41:27.718369+00:00"
+    },
+    {
+      "id": "79f2f9d3-562a-4025-a866-1fc4fe38b50e",
+      "ticker": "ITMG",
+      "provider_version": "1.7.0",
+      "input_digest": "a4667db6d58336e130fe54c67c63d826ce91dfc7082b9dd940016d5047646f5d",
+      "fetched_at": "2026-10-03T09:34:49.977461+00:00",
+      "stored_at": "2026-10-03T12:41:30.565163+00:00"
+    },
+    {
+      "id": "9f187843-cc7d-4829-a558-ed551bbbae0e",
+      "ticker": "ITMG",
+      "provider_version": "1.7.0",
+      "input_digest": "ceabbfafec9a8d5400728b1332e4b4e538baab6c4684b801b53b1f99f4bbe149",
+      "fetched_at": "2026-10-03T09:34:49.977461+00:00",
+      "stored_at": "2026-10-03T12:41:29.550668+00:00"
+    },
+    {
+      "id": "25005bb8-238f-4eb6-aee1-8d4ffbb418dd",
+      "ticker": "JPFA",
+      "provider_version": "1.7.0",
+      "input_digest": "54a95ef82a52e92c4cba79b40dc4af26382ed712a21680d9d59dcb5ca3d12a5c",
+      "fetched_at": "2026-10-03T09:34:50.283594+00:00",
+      "stored_at": "2026-10-03T12:41:32.674773+00:00"
+    },
+    {
+      "id": "4b02aae9-b2a8-4385-8bc0-72f35eec54d1",
+      "ticker": "JPFA",
+      "provider_version": "1.7.0",
+      "input_digest": "9cf602092ffed0ef2a995c9d370a7566ee0107d53bc5dda995a206fb63fd1d5a",
+      "fetched_at": "2026-10-03T09:34:50.283594+00:00",
+      "stored_at": "2026-10-03T12:41:31.739394+00:00"
+    },
+    {
+      "id": "e1a2c6d0-5ba4-4fc6-820a-62849a316bc2",
+      "ticker": "JSMR",
+      "provider_version": "1.7.0",
+      "input_digest": "934f9c4388dcecb2031e7c468d87b987a3934f3277108069381664ec60525b60",
+      "fetched_at": "2026-10-03T09:34:50.663117+00:00",
+      "stored_at": "2026-10-03T12:41:34.574178+00:00"
+    },
+    {
+      "id": "bd41e783-76e1-4bfe-84d8-0ea805763177",
+      "ticker": "JSMR",
+      "provider_version": "1.7.0",
+      "input_digest": "e46c2e69400d6a6b9c3bc70e5b426c7a292abf6cc6318717725d2190eff559a3",
+      "fetched_at": "2026-10-03T09:34:50.663117+00:00",
+      "stored_at": "2026-10-03T12:41:33.630563+00:00"
+    },
+    {
+      "id": "ed077305-0bb9-434a-bd55-a7176cfa37ef",
+      "ticker": "KIJA",
+      "provider_version": "1.7.0",
+      "input_digest": "6f5b282977ece1b82f30b19f612655df9a800afd010b8275857b6c4492cac914",
+      "fetched_at": "2026-10-02T14:21:45.944132+00:00",
+      "stored_at": "2026-10-02T14:38:50.441886+00:00"
+    },
+    {
+      "id": "d606c171-e485-4764-8b22-931e711f1289",
+      "ticker": "KIJA",
+      "provider_version": "1.7.0",
+      "input_digest": "cf1a6dab3a4412dbdde865012867be01384e0211d25fe6c3c1d5c4a4ed49056e",
+      "fetched_at": "2026-10-02T14:21:45.944132+00:00",
+      "stored_at": "2026-10-02T15:55:10.177222+00:00"
+    },
+    {
+      "id": "058d0840-ae34-49ff-a7a9-3d600cc7a68a",
+      "ticker": "KLBF",
+      "provider_version": "1.7.0",
+      "input_digest": "62ac44b21803cdf2b06df83b1006e7c48373181f08e4c19f36480c3ed91f64c0",
+      "fetched_at": "2026-10-03T09:34:51.150728+00:00",
+      "stored_at": "2026-10-03T12:41:38.161406+00:00"
+    },
+    {
+      "id": "029ec6ec-4ed9-4699-a793-274af7fe390f",
+      "ticker": "KLBF",
+      "provider_version": "1.7.0",
+      "input_digest": "daa685c2bc9476aa198fb2c9439c2fd38508a6c6c5ce6a33024f5849e8817f7d",
+      "fetched_at": "2026-10-03T09:34:51.150728+00:00",
+      "stored_at": "2026-10-03T12:41:40.312009+00:00"
+    },
+    {
+      "id": "e44171e4-3988-4405-a975-8f7bc13b58a8",
+      "ticker": "KPIG",
+      "provider_version": "1.7.0",
+      "input_digest": "7f9e0254621707381f9f281ceed43cb6d09f041579d8e0e265b73314041e7721",
+      "fetched_at": "2026-10-02T14:21:47.068972+00:00",
+      "stored_at": "2026-10-02T14:38:52.623766+00:00"
+    },
+    {
+      "id": "a0aee256-01bd-4105-99ee-3b1a0bb50bea",
+      "ticker": "KPIG",
+      "provider_version": "1.7.0",
+      "input_digest": "de426210feaa7e39a65e8e925aef0ce7d1af46071a039d85b55d9a1597e77d85",
+      "fetched_at": "2026-10-02T14:21:47.068972+00:00",
+      "stored_at": "2026-10-02T15:55:15.250858+00:00"
+    },
+    {
+      "id": "5a08b9d3-c0e9-4a4b-a1cb-13d6dcecba1e",
+      "ticker": "LSIP",
+      "provider_version": "1.7.0",
+      "input_digest": "36c7735905cd14f808f14038ed6b9ea67bc8af7b170b9053d0bbcf9ff4a35c49",
+      "fetched_at": "2026-10-02T14:21:47.566549+00:00",
+      "stored_at": "2026-10-02T17:48:45.797008+00:00"
+    },
+    {
+      "id": "a51c566c-03ae-4f2c-a865-e54b1fba40c6",
+      "ticker": "LSIP",
+      "provider_version": "1.7.0",
+      "input_digest": "ce49fd95c8326bc3f903a466af7643e630d77f7314ce1dc69cdd4deee7b6762d",
+      "fetched_at": "2026-10-02T14:21:47.566549+00:00",
+      "stored_at": "2026-10-02T14:38:53.43069+00:00"
+    },
+    {
+      "id": "0f00bf23-9b56-4584-bc0d-db54f20da79e",
+      "ticker": "MAPA",
+      "provider_version": "1.7.0",
+      "input_digest": "a083ebcf33b9339d8d755ae45c27c23d297f006b72558dd052ae4f841ade4af6",
+      "fetched_at": "2026-10-03T09:34:51.891603+00:00",
+      "stored_at": "2026-10-03T12:41:57.79833+00:00"
+    },
+    {
+      "id": "134ee2f2-d57c-4c87-a7ff-0a4fabdd9596",
+      "ticker": "MAPA",
+      "provider_version": "1.7.0",
+      "input_digest": "e6ed250a2e007e29a9d2954cf6c0b47d261d91218c16382b311220c70f7b5a0a",
+      "fetched_at": "2026-10-03T09:34:51.891603+00:00",
+      "stored_at": "2026-10-03T12:41:59.349206+00:00"
+    },
+    {
+      "id": "71175f50-d9d3-4bbb-bc3f-94d8b1d82540",
+      "ticker": "MAPI",
+      "provider_version": "1.7.0",
+      "input_digest": "357f7822610fa7fc221e44d89a00298d2856a24f0937c6d47d3ab923eac2cfbf",
+      "fetched_at": "2026-10-03T09:34:52.144105+00:00",
+      "stored_at": "2026-10-03T12:42:01.279326+00:00"
+    },
+    {
+      "id": "f4065d64-d147-4b0a-a266-d60b2a013bf6",
+      "ticker": "MAPI",
+      "provider_version": "1.7.0",
+      "input_digest": "5826a75462f00f245e73b4f3feb11be172dbcebdc9f594e627e79ba82d7b9ef6",
+      "fetched_at": "2026-10-03T09:34:52.144105+00:00",
+      "stored_at": "2026-10-03T12:42:03.094292+00:00"
+    },
+    {
+      "id": "2392da4f-b061-48b1-ab1e-62df53d79bdb",
+      "ticker": "MBMA",
+      "provider_version": "1.7.0",
+      "input_digest": "0f29db5b67b1231efcf67ca644d5fd51584a2f76d536d079330c4bb4594bd9d2",
+      "fetched_at": "2026-10-03T09:34:52.369273+00:00",
+      "stored_at": "2026-10-03T12:42:04.648565+00:00"
+    },
+    {
+      "id": "c6904b03-4a12-4460-b953-848fa5ca6cc8",
+      "ticker": "MBMA",
+      "provider_version": "1.7.0",
+      "input_digest": "33ed3be66c54b05940e1453e0e8326ffcb02d279dc0ca26d1f6e33585934be48",
+      "fetched_at": "2026-10-03T09:34:52.369273+00:00",
+      "stored_at": "2026-10-03T12:42:06.655689+00:00"
+    },
+    {
+      "id": "8c5150ef-5383-4926-ad54-b238a29cab1c",
+      "ticker": "MDKA",
+      "provider_version": "1.7.0",
+      "input_digest": "97676d9282bd488bf566f03b814a97da1ccecf154135d349e5177788347b4cfc",
+      "fetched_at": "2026-10-02T14:21:50.533514+00:00",
+      "stored_at": "2026-10-02T14:38:57.584992+00:00"
+    },
+    {
+      "id": "9f55144d-9382-490a-b08a-8e5baf5e37b1",
+      "ticker": "MDKA",
+      "provider_version": "1.7.0",
+      "input_digest": "c9b9c94e08d6ba8087c6481ee6152ff2e524edffafa2f6f5f1076450b5064fde",
+      "fetched_at": "2026-10-02T14:21:50.533514+00:00",
+      "stored_at": "2026-10-02T17:48:53.794726+00:00"
+    },
+    {
+      "id": "2cabef63-b42a-4533-bb55-ccd4291ff067",
+      "ticker": "MEDC",
+      "provider_version": "1.7.0",
+      "input_digest": "5326edcb4c224f6b7f98d4421076418d40e4cf4e393129dd2c407cdfb3140eee",
+      "fetched_at": "2026-10-03T09:34:52.906545+00:00",
+      "stored_at": "2026-10-03T12:42:10.095605+00:00"
+    },
+    {
+      "id": "bac19465-d23e-4c9d-b0f9-1850396146f8",
+      "ticker": "MEDC",
+      "provider_version": "1.7.0",
+      "input_digest": "edc80242ab90a50f9b890c9f909129fb5e96f929a92f4d421f8c874007ce6f6f",
+      "fetched_at": "2026-10-03T09:34:52.906545+00:00",
+      "stored_at": "2026-10-03T12:42:11.403491+00:00"
+    },
+    {
+      "id": "d5811611-e84b-4752-8805-2ad872d84554",
+      "ticker": "MIKA",
+      "provider_version": "1.7.0",
+      "input_digest": "80fb106e332b9dc66d72890287b90eb25e59af052116c2e2b74ae1510abf2a03",
+      "fetched_at": "2026-10-03T09:34:53.232015+00:00",
+      "stored_at": "2026-10-03T12:42:14.730824+00:00"
+    },
+    {
+      "id": "c2f7eddf-b9e5-4496-8d02-23c449e02620",
+      "ticker": "MIKA",
+      "provider_version": "1.7.0",
+      "input_digest": "942b1cbf87b254dbb7507acb9184d8e30bff3b6b69e66a3ffe412cbeb6ebc80c",
+      "fetched_at": "2026-10-03T09:34:53.232015+00:00",
+      "stored_at": "2026-10-03T12:42:13.381924+00:00"
+    },
+    {
+      "id": "33f1b1b2-4b56-4b96-a258-c23541ac389a",
+      "ticker": "MINA",
+      "provider_version": "1.7.0",
+      "input_digest": "754d948ef96985af0c2fa596e7619f5573cd304fa20f893966272d82b12ff9ab",
+      "fetched_at": "2026-10-02T14:21:52.147097+00:00",
+      "stored_at": "2026-10-02T15:55:45.49335+00:00"
+    },
+    {
+      "id": "7fdeb0a6-0575-44d3-85a9-7394200f0729",
+      "ticker": "MINA",
+      "provider_version": "1.7.0",
+      "input_digest": "8fcacdfb86839c7ddc9925b52afa28554657e60896245dc505af8d7530f2ae23",
+      "fetched_at": "2026-10-02T14:21:52.147097+00:00",
+      "stored_at": "2026-10-02T14:39:00.063572+00:00"
+    },
+    {
+      "id": "1387fc53-f750-4fee-bd08-038a3a77ec4b",
+      "ticker": "MYOR",
+      "provider_version": "1.7.0",
+      "input_digest": "6334e41264297b84a608f3d3a81b0e01cfbf543a7788e3acf2c5000c5bc39931",
+      "fetched_at": "2026-10-03T09:34:53.771488+00:00",
+      "stored_at": "2026-10-03T12:42:22.735229+00:00"
+    },
+    {
+      "id": "7ce0510d-2f89-4d4e-a42f-7f5f387ec227",
+      "ticker": "MYOR",
+      "provider_version": "1.7.0",
+      "input_digest": "e255ecea695c43e4b1489ba92d2dc4ecabf3385cf86bb1cb920a6d60899a3d1d",
+      "fetched_at": "2026-10-03T09:34:53.771488+00:00",
+      "stored_at": "2026-10-03T12:42:20.675999+00:00"
+    },
+    {
+      "id": "4a649843-0060-4935-af6a-fbdc34dc6faf",
+      "ticker": "NCKL",
+      "provider_version": "1.7.0",
+      "input_digest": "8ed61223f71347ed9a8ed5d11ba066344264dcf8e7b51022864ece5787acb2c4",
+      "fetched_at": "2026-10-03T09:34:54.014813+00:00",
+      "stored_at": "2026-10-03T12:42:24.571465+00:00"
+    },
+    {
+      "id": "50112830-6cf3-415a-b78a-ecc93111299b",
+      "ticker": "NCKL",
+      "provider_version": "1.7.0",
+      "input_digest": "fbfdc2be3910523ab1a2f6e37aa01cc00da1d043a11adfc5c1450cef5eff38c9",
+      "fetched_at": "2026-10-03T09:34:54.014813+00:00",
+      "stored_at": "2026-10-03T12:42:27.331659+00:00"
+    },
+    {
+      "id": "ca684d51-e420-4d9c-9021-f350012c27f4",
+      "ticker": "PANI",
+      "provider_version": "1.7.0",
+      "input_digest": "8f86106609d3a0c92e2721498d01df2b4259e8cee65fb62a3e86579db7f9c5e4",
+      "fetched_at": "2026-10-03T09:34:54.287572+00:00",
+      "stored_at": "2026-10-03T12:42:29.274796+00:00"
+    },
+    {
+      "id": "b706fd49-4c38-4bda-9fe8-790dc4b96b9b",
+      "ticker": "PANI",
+      "provider_version": "1.7.0",
+      "input_digest": "c088211db57d3c24657a78c32ddc169f99909a8d176713512c262d9f4a12ded6",
+      "fetched_at": "2026-10-03T09:34:54.287572+00:00",
+      "stored_at": "2026-10-03T12:42:28.153022+00:00"
+    },
+    {
+      "id": "c5128b86-0b99-4c4e-8980-da6a9138c175",
+      "ticker": "PGAS",
+      "provider_version": "1.7.0",
+      "input_digest": "5a37b1fd68b880c26458b77b6944b1bd399d6ef14c900ace09f0650e8f928499",
+      "fetched_at": "2026-10-03T09:34:54.579025+00:00",
+      "stored_at": "2026-10-03T12:42:31.110213+00:00"
+    },
+    {
+      "id": "444e3bc8-4bb2-4f6c-93d3-29798603a733",
+      "ticker": "PGAS",
+      "provider_version": "1.7.0",
+      "input_digest": "71c08367dca5cd633884f1baa8bdd5a332bc5420524a981507e2c4fd9aa7ce39",
+      "fetched_at": "2026-10-03T09:34:54.579025+00:00",
+      "stored_at": "2026-10-03T12:42:30.220808+00:00"
+    },
+    {
+      "id": "dd0a6bd9-c9d6-4952-b02a-79fa17dbc600",
+      "ticker": "PGEO",
+      "provider_version": "1.7.0",
+      "input_digest": "6ced9a9f7798b5688b2da9a7960faf819e7249af4bf61b25d04b1ca626ff1778",
+      "fetched_at": "2026-10-03T09:34:54.837238+00:00",
+      "stored_at": "2026-10-03T12:42:36.658417+00:00"
+    },
+    {
+      "id": "c80360ed-e69b-4fe5-abb0-12ce737ff1ed",
+      "ticker": "PGEO",
+      "provider_version": "1.7.0",
+      "input_digest": "8dbb38d661a94db69d54b4ccae1db1ebdcb0e2edc7becc3ca183850924bf127f",
+      "fetched_at": "2026-10-03T09:34:54.837238+00:00",
+      "stored_at": "2026-10-03T12:42:34.20478+00:00"
+    },
+    {
+      "id": "fef788ec-e878-4cd7-9d7c-4b8ea54aee11",
+      "ticker": "PNLF",
+      "provider_version": "1.7.0",
+      "input_digest": "4be921693f9ae8a3c14d500d83012ab81873519ee68a113cd7f51adfa87e56cb",
+      "fetched_at": "2026-10-02T14:21:55.744226+00:00",
+      "stored_at": "2026-10-02T14:39:05.793569+00:00"
+    },
+    {
+      "id": "014baacf-0ffb-4af7-be55-1eaf6b006327",
+      "ticker": "PNLF",
+      "provider_version": "1.7.0",
+      "input_digest": "eee8ebcaa699d3d88847ded08690a49ad225b6b8e7e6ecd4e3539174b858a379",
+      "fetched_at": "2026-10-02T14:21:55.744226+00:00",
+      "stored_at": "2026-10-02T15:56:02.416435+00:00"
+    },
+    {
+      "id": "cc8acb93-a4c5-4fc5-9878-0fb22637e669",
+      "ticker": "PSAB",
+      "provider_version": "1.7.0",
+      "input_digest": "75f99004e1e24705e6b31c78781750df50aea559fb725d7bb7cb91dd71573a72",
+      "fetched_at": "2026-10-02T14:21:56.298073+00:00",
+      "stored_at": "2026-10-02T14:39:07.114328+00:00"
+    },
+    {
+      "id": "734abc89-496c-4004-a198-f9e8729280b0",
+      "ticker": "PSAB",
+      "provider_version": "1.7.0",
+      "input_digest": "865d54b7b2fc24703a4f8276506919bbe9a3a879f3af5c44b67f5761c75e5278",
+      "fetched_at": "2026-10-02T14:21:56.298073+00:00",
+      "stored_at": "2026-10-02T17:49:14.838159+00:00"
+    },
+    {
+      "id": "b219879d-c90b-4db7-9103-8fecdd2aedd8",
+      "ticker": "PTBA",
+      "provider_version": "1.7.0",
+      "input_digest": "93a5dba4706d9de3a27de691418c0ef0532f98d2401bd6f637c1a74c207b9949",
+      "fetched_at": "2026-10-03T09:34:55.597874+00:00",
+      "stored_at": "2026-10-03T12:42:44.393323+00:00"
+    },
+    {
+      "id": "5e192dd7-108b-4822-b61a-72e7f7b57362",
+      "ticker": "PTBA",
+      "provider_version": "1.7.0",
+      "input_digest": "9ffe3586270a505184900aa0993cf3922a813b2de26c0c15b76c6503ed5f3b00",
+      "fetched_at": "2026-10-03T09:34:55.597874+00:00",
+      "stored_at": "2026-10-03T12:42:45.761878+00:00"
+    },
+    {
+      "id": "9d85398b-71d7-41f4-8815-8915e1d0aa4c",
+      "ticker": "PTRO",
+      "provider_version": "1.7.0",
+      "input_digest": "66e574cf712a13c79ab4143b4d187c162078b8822b2a88966d34f491c70edbd0",
+      "fetched_at": "2026-10-03T09:34:55.922372+00:00",
+      "stored_at": "2026-10-03T12:42:47.800185+00:00"
+    },
+    {
+      "id": "6b354e30-eca2-4e22-94ea-115b0093a0ab",
+      "ticker": "PTRO",
+      "provider_version": "1.7.0",
+      "input_digest": "ea2f2a35225fb92f3616254aac4802c57fb3bc695902a33fe10afddf70deb90f",
+      "fetched_at": "2026-10-03T09:34:55.922372+00:00",
+      "stored_at": "2026-10-03T12:42:51.308445+00:00"
+    },
+    {
+      "id": "f9303944-7173-40c5-8005-1ed56dd84465",
+      "ticker": "PWON",
+      "provider_version": "1.7.0",
+      "input_digest": "8a1c7802eff256d293bb78f24bdb5c9ef5ef85dc4273a7ab4ebbce7c74fa1a4a",
+      "fetched_at": "2026-10-03T09:34:56.206921+00:00",
+      "stored_at": "2026-10-03T12:42:52.804817+00:00"
+    },
+    {
+      "id": "7a5e7b59-3f5c-4a09-a02c-ce2dbcdf2ca7",
+      "ticker": "PWON",
+      "provider_version": "1.7.0",
+      "input_digest": "a57fc28e79f470da998f671275c8a0fe1b7f86a61fe5b49cac361dec45080e93",
+      "fetched_at": "2026-10-03T09:34:56.206921+00:00",
+      "stored_at": "2026-10-03T12:42:54.500797+00:00"
+    },
+    {
+      "id": "9aee58dd-7634-4a48-9dda-b4b03f1d0bf0",
+      "ticker": "RAJA",
+      "provider_version": "1.7.0",
+      "input_digest": "55995e3c1b019bc4f11fbe270b05fed4efcefc6798a5feb4c170386f3c4bfd4a",
+      "fetched_at": "2026-10-03T09:34:56.543257+00:00",
+      "stored_at": "2026-10-03T12:42:55.558067+00:00"
+    },
+    {
+      "id": "f17ad396-2e79-4a6b-b798-3ac372b93ec1",
+      "ticker": "RAJA",
+      "provider_version": "1.7.0",
+      "input_digest": "f3695103722753b3b24dfa69d4857afaf1f9afc61cf5d4f5df179e0b4f058c8b",
+      "fetched_at": "2026-10-03T09:34:56.543257+00:00",
+      "stored_at": "2026-10-03T12:42:56.70196+00:00"
+    },
+    {
+      "id": "93dbe520-796e-4c31-a438-0e5bbf7b4a0b",
+      "ticker": "RATU",
+      "provider_version": "1.7.0",
+      "input_digest": "82382de6fc6b51428f3e754cf335b00071eff7e58570a3310027ef4c4fd2efd9",
+      "fetched_at": "2026-10-03T09:34:56.728211+00:00",
+      "stored_at": "2026-10-03T12:42:57.393837+00:00"
+    },
+    {
+      "id": "454b4b76-6018-4b73-a22c-13d727aa5ade",
+      "ticker": "RATU",
+      "provider_version": "1.7.0",
+      "input_digest": "c96d19b853bb550572bb7c3e93ea588240f9ddda89ed50e8eea58ff0e50b3316",
+      "fetched_at": "2026-10-03T09:34:56.728211+00:00",
+      "stored_at": "2026-10-03T12:42:58.966428+00:00"
+    },
+    {
+      "id": "06b7c67c-f984-423b-b147-30841af3287d",
+      "ticker": "RMKE",
+      "provider_version": "1.7.0",
+      "input_digest": "2423b17eee2db99b563a18749615b30059bd12570ffadfcca1e2846ff58f7a6a",
+      "fetched_at": "2026-10-02T14:21:59.226781+00:00",
+      "stored_at": "2026-10-02T14:39:12.85442+00:00"
+    },
+    {
+      "id": "f22cbb90-243c-49d1-88c7-5ba2faff09a0",
+      "ticker": "RMKE",
+      "provider_version": "1.7.0",
+      "input_digest": "6cb8e357d84d6bdf4492a8e2fd5090aae7104bafa71684a1900a0793d42f0d66",
+      "fetched_at": "2026-10-02T14:21:59.226781+00:00",
+      "stored_at": "2026-10-02T15:56:17.261266+00:00"
+    },
+    {
+      "id": "111302a8-1881-4a13-836d-9c6640d8c5b9",
+      "ticker": "SCMA",
+      "provider_version": "1.7.0",
+      "input_digest": "0da50974e69385b75739ba9f717479ff24f4bb0ddcd5ebe57da188eef1c96558",
+      "fetched_at": "2026-10-03T09:34:57.278246+00:00",
+      "stored_at": "2026-10-03T12:43:02.896656+00:00"
+    },
+    {
+      "id": "1b07327c-0264-45cc-aab0-e929e984f0e4",
+      "ticker": "SCMA",
+      "provider_version": "1.7.0",
+      "input_digest": "22ef51e86bd0e75f5e99578ee7aa7656807f83df622a1e5fd65fdef6c82b314d",
+      "fetched_at": "2026-10-03T09:34:57.278246+00:00",
+      "stored_at": "2026-10-03T12:43:01.801718+00:00"
+    },
+    {
+      "id": "85ff5704-9530-4858-9352-d390a5b5c800",
+      "ticker": "SGER",
+      "provider_version": "1.7.0",
+      "input_digest": "13c779097a3211ffdda92d71e2fe93f44f1c01c4affeadf204feb73d48b72f80",
+      "fetched_at": "2026-10-02T14:22:00.260812+00:00",
+      "stored_at": "2026-10-02T14:39:14.678165+00:00"
+    },
+    {
+      "id": "fc8a03a8-5815-40ec-9e83-3aee951c69ed",
+      "ticker": "SGER",
+      "provider_version": "1.7.0",
+      "input_digest": "54844bea9ab55156024f4700b06c7f1640d5cfa212db30c4cb830dacc4e95bea",
+      "fetched_at": "2026-10-02T14:22:00.260812+00:00",
+      "stored_at": "2026-10-02T15:56:22.283906+00:00"
+    },
+    {
+      "id": "8d9750e5-c626-4caa-bda6-b5079b141fba",
+      "ticker": "SMGR",
+      "provider_version": "1.7.0",
+      "input_digest": "2e8a351ec38c50e9aa57087885f63581391a92071afa546dccc5552b4bdc56f1",
+      "fetched_at": "2026-10-03T09:34:57.934188+00:00",
+      "stored_at": "2026-10-03T12:43:07.334895+00:00"
+    },
+    {
+      "id": "d2f1ac0b-98a3-4dff-a538-efeff41e0903",
+      "ticker": "SMGR",
+      "provider_version": "1.7.0",
+      "input_digest": "3444ca07f64b1f060972584b22037aa4d81399cdcddc7525f18679edb67992dd",
+      "fetched_at": "2026-10-03T09:34:57.934188+00:00",
+      "stored_at": "2026-10-03T12:43:08.694395+00:00"
+    },
+    {
+      "id": "f99b927e-3e09-44e0-a2d7-edfc66c49029",
+      "ticker": "SMIL",
+      "provider_version": "1.7.0",
+      "input_digest": "164de668c5692b0306ca873a6d2bd39a0b45db585d9a80c44405ffd094e9d125",
+      "fetched_at": "2026-10-03T09:34:58.328684+00:00",
+      "stored_at": "2026-10-03T12:43:12.860455+00:00"
+    },
+    {
+      "id": "781127d9-b910-4d18-b328-76c0f7dd3689",
+      "ticker": "SMIL",
+      "provider_version": "1.7.0",
+      "input_digest": "73fe4d064607cf2cb0a6902e4c303f256f719934b11a92e7b095bc7e5ce84382",
+      "fetched_at": "2026-10-03T09:34:58.328684+00:00",
+      "stored_at": "2026-10-03T12:43:09.72034+00:00"
+    },
+    {
+      "id": "3646bb41-da37-400a-bbfd-8c8cd0bc445d",
+      "ticker": "SMRA",
+      "provider_version": "1.7.0",
+      "input_digest": "57a1a7d91486f6e373030758221629da48a509575d7b989d92c4dafb8e6b6f38",
+      "fetched_at": "2026-10-02T14:22:02.58463+00:00",
+      "stored_at": "2026-10-02T14:39:16.967667+00:00"
+    },
+    {
+      "id": "464bb87a-0cc7-4627-81cd-a8e0584b5cd3",
+      "ticker": "SMRA",
+      "provider_version": "1.7.0",
+      "input_digest": "d0aab1213c8073be28572224f2550be209ff6abe8b8e91f7625313fa5b8ef0e7",
+      "fetched_at": "2026-10-02T14:22:02.58463+00:00",
+      "stored_at": "2026-10-02T17:49:42.095192+00:00"
+    },
+    {
+      "id": "de17c07c-7fb0-4f72-aa36-433af4f452f8",
+      "ticker": "SSIA",
+      "provider_version": "1.7.0",
+      "input_digest": "accef91d473ef1530449418aa2700930bfcc99be68017f167c9380ae7844560b",
+      "fetched_at": "2026-10-03T09:34:58.821885+00:00",
+      "stored_at": "2026-10-03T12:43:16.464734+00:00"
+    },
+    {
+      "id": "296634ce-1f30-4582-91f2-dad2d4593e0d",
+      "ticker": "SSIA",
+      "provider_version": "1.7.0",
+      "input_digest": "e162a4cbf8e27d33ac5a9e1d56313b60aa8367db6a3320e542a8361c6fd57b7d",
+      "fetched_at": "2026-10-03T09:34:58.821885+00:00",
+      "stored_at": "2026-10-03T12:43:17.942899+00:00"
+    },
+    {
+      "id": "f1190799-7956-4ac0-88d2-1fd6a13e5df6",
+      "ticker": "TAPG",
+      "provider_version": "1.7.0",
+      "input_digest": "3b0ff230361f4e9933322e96d882b2ca1f511d45d6a07bb2ff5441ba1b6c584d",
+      "fetched_at": "2026-10-03T09:34:59.054949+00:00",
+      "stored_at": "2026-10-03T12:43:18.761818+00:00"
+    },
+    {
+      "id": "1bc03d94-4d52-407b-a32f-da95ced49af3",
+      "ticker": "TAPG",
+      "provider_version": "1.7.0",
+      "input_digest": "82be1241dbd98ecc3d684b6003ea356870d7d613972395ed15742eb7f3612ca1",
+      "fetched_at": "2026-10-03T09:34:59.054949+00:00",
+      "stored_at": "2026-10-03T12:43:20.062972+00:00"
+    },
+    {
+      "id": "67203ed8-9403-4d27-ac0d-66518e7abec9",
+      "ticker": "TINS",
+      "provider_version": "1.7.0",
+      "input_digest": "c8383c0d13e7669b156afca29d15256bf29674ec8e831c775c6f5931b2fc53f4",
+      "fetched_at": "2026-10-03T09:34:59.310219+00:00",
+      "stored_at": "2026-10-03T12:43:26.141384+00:00"
+    },
+    {
+      "id": "10ba1e21-7731-408b-82a8-34c169e510f0",
+      "ticker": "TINS",
+      "provider_version": "1.7.0",
+      "input_digest": "ceccf10fe5a2b8bfaacac002bef3dd3dce42c7b71c6e7c8d96a5fa18d3994dfe",
+      "fetched_at": "2026-10-03T09:34:59.310219+00:00",
+      "stored_at": "2026-10-03T12:43:24.766142+00:00"
+    },
+    {
+      "id": "ebee8316-ec68-4a80-84c0-e4422f2c9985",
+      "ticker": "TLKM",
+      "provider_version": "1.7.0",
+      "input_digest": "a091a923904807b73bf4748ac04fd4c6d908002d204c98772c58311f0a5f0b34",
+      "fetched_at": "2026-10-03T09:34:59.517817+00:00",
+      "stored_at": "2026-10-03T12:43:48.281096+00:00"
+    },
+    {
+      "id": "fe32d9b5-06d3-4af0-b61e-ac4ff05c6e68",
+      "ticker": "TLKM",
+      "provider_version": "1.7.0",
+      "input_digest": "bb798f309381d7fffb1a895303f6788e80a5ae46007c9ddf635818981c464d99",
+      "fetched_at": "2026-10-03T09:34:59.517817+00:00",
+      "stored_at": "2026-10-03T12:43:33.432317+00:00"
+    },
+    {
+      "id": "3da61331-5aae-41e5-b0b0-67b534bf0778",
+      "ticker": "TOBA",
+      "provider_version": "1.7.0",
+      "input_digest": "3919d2fe8a0fcac0e589841cdfd6bb60aec0195a3a57bb055ffccb89a9d02716",
+      "fetched_at": "2026-10-03T09:34:59.736156+00:00",
+      "stored_at": "2026-10-03T12:43:52.550682+00:00"
+    },
+    {
+      "id": "b75a7972-0e3b-4118-8f93-74cb924e24b8",
+      "ticker": "TOBA",
+      "provider_version": "1.7.0",
+      "input_digest": "bcb175ed6516408d300cab707d1c7761a5e74dfb33fd16e42f45889fce706e5a",
+      "fetched_at": "2026-10-03T09:34:59.736156+00:00",
+      "stored_at": "2026-10-03T12:43:51.498091+00:00"
+    },
+    {
+      "id": "d279a1cc-3f3c-4b1d-814b-60c08a74b2ee",
+      "ticker": "TOWR",
+      "provider_version": "1.7.0",
+      "input_digest": "87ab32cb65ec5e16abef7b3666c131c786aed5347d7701b07023f1c159bd4901",
+      "fetched_at": "2026-10-03T09:34:59.979259+00:00",
+      "stored_at": "2026-10-03T12:43:53.388539+00:00"
+    },
+    {
+      "id": "785b08ed-551c-441d-94e8-8ac3f1c319d5",
+      "ticker": "TOWR",
+      "provider_version": "1.7.0",
+      "input_digest": "9ebd91e73aa580641b6f7ff16c44574de725099c48ffeacf40d7e7704da34a24",
+      "fetched_at": "2026-10-03T09:34:59.979259+00:00",
+      "stored_at": "2026-10-03T12:43:56.191414+00:00"
+    },
+    {
+      "id": "101f32f5-c93f-4c16-a629-37f97cd5b827",
+      "ticker": "TPIA",
+      "provider_version": "1.7.0",
+      "input_digest": "10a1a23de7c1a27233ec2916f01ff70bc117b650b20a1987d4de8071cddf83b2",
+      "fetched_at": "2026-10-03T09:35:00.29278+00:00",
+      "stored_at": "2026-10-03T12:44:14.249278+00:00"
+    },
+    {
+      "id": "955cefab-6659-4c56-a9a9-9ccc4326670d",
+      "ticker": "TPIA",
+      "provider_version": "1.7.0",
+      "input_digest": "b8e39fedfd50159ef19b3889cad7e4248b830e090eb8ccc2aabe3e3682620b58",
+      "fetched_at": "2026-10-03T09:35:00.29278+00:00",
+      "stored_at": "2026-10-03T12:44:11.619774+00:00"
+    },
+    {
+      "id": "6e96a6ae-d2bd-4f30-9e8a-12fb337788f8",
+      "ticker": "UNTR",
+      "provider_version": "1.7.0",
+      "input_digest": "75c5631d9786278cb5da58a2be3e6b488dcf207d96a185758dfea44e80026ba3",
+      "fetched_at": "2026-10-03T09:35:00.555432+00:00",
+      "stored_at": "2026-10-03T12:44:16.785752+00:00"
+    },
+    {
+      "id": "93f75218-78e5-4059-bd33-88cf3c39788c",
+      "ticker": "UNTR",
+      "provider_version": "1.7.0",
+      "input_digest": "9305887f9f42b7e0a7cb9899d4d998187af440950a033d540c1904f337e4ea1e",
+      "fetched_at": "2026-10-03T09:35:00.555432+00:00",
+      "stored_at": "2026-10-03T12:44:15.33472+00:00"
+    },
+    {
+      "id": "ddf44c6b-fdd5-41b2-a1de-636911c1ecf8",
+      "ticker": "UNVR",
+      "provider_version": "1.7.0",
+      "input_digest": "ae2c8ec8c73fe57e606d0e62deab3ef2b5bb2b44c218eb7f92d01a436dbbdbd3",
+      "fetched_at": "2026-10-03T09:35:00.799024+00:00",
+      "stored_at": "2026-10-03T12:44:20.167079+00:00"
+    },
+    {
+      "id": "2065f425-2117-465b-873d-480e61542ace",
+      "ticker": "UNVR",
+      "provider_version": "1.7.0",
+      "input_digest": "e4787da7e50c31edac2f42d1859bb61f0246bc8aa71664c9af0ae6e51043d5e7",
+      "fetched_at": "2026-10-03T09:35:00.799024+00:00",
+      "stored_at": "2026-10-03T12:44:21.230225+00:00"
+    },
+    {
+      "id": "1851e4cd-fca0-4008-ac13-19075ea5acea",
+      "ticker": "WIFI",
+      "provider_version": "1.7.0",
+      "input_digest": "f7c29ce7ca417a358d29435d33061b34fa4272db16b16b102cc17d612c282258",
+      "fetched_at": "2026-10-03T09:35:01.030035+00:00",
+      "stored_at": "2026-10-03T12:44:22.271256+00:00"
+    },
+    {
+      "id": "86169d95-358a-4ce1-aead-03362ab9c4f2",
+      "ticker": "WIFI",
+      "provider_version": "1.7.0",
+      "input_digest": "f96d598dbf3ce42f3055c04a1cef27ef735062350b0532bb1121f429ef464f4a",
+      "fetched_at": "2026-10-03T09:35:01.030035+00:00",
+      "stored_at": "2026-10-03T12:44:23.575008+00:00"
+    },
+    {
+      "id": "3bf61822-3639-4bf8-94b8-4e4451e5a6a4",
+      "ticker": "WIRG",
+      "provider_version": "1.7.0",
+      "input_digest": "7c7f284ef72db4589b23c6116fac7b9ed93e428ae62a72d33a1613c443f7bfdc",
+      "fetched_at": "2026-10-02T14:22:09.763063+00:00",
+      "stored_at": "2026-10-02T14:39:32.862563+00:00"
+    },
+    {
+      "id": "2d78557b-49cb-4001-a582-77384224ece5",
+      "ticker": "WIRG",
+      "provider_version": "1.7.0",
+      "input_digest": "a6be111b882e427354031fecdf4c1086700594566544b7b91b9e66cfdcd0e0b4",
+      "fetched_at": "2026-10-02T14:22:09.763063+00:00",
+      "stored_at": "2026-10-02T15:57:30.911371+00:00"
+    }
+  ],
+  "full_bar_rpc_readbacks_this_check": 0,
+  "old_run_metadata_matches_prior": true,
+  "prior_run_ids_present": [
+    "08fb1080-5889-45e6-903d-3d2400bbf375",
+    "8f634f6c-efae-4837-b1eb-1db04de6ffd2",
+    "b2bba460-abe3-4f68-9946-b13554a7c712"
+  ],
+  "real_trade_projection_matches_prior": true,
+  "journal_table_counts": {
+    "actual_trades": 1,
+    "actual_fills": 2,
+    "actual_fill_corrections": 1,
+    "actual_stop_events": 0,
+    "actual_notes": 0,
+    "actual_trade_tags": 0,
+    "actual_journal_requests": 5
+  },
+  "postpublication_journal_fingerprints": {
+    "actual_trades": "aff4dc9de1374c4cca1913e4f9b1ce01a7c93fe5e109a282be5bdfa8d6c13783",
+    "actual_fills": "7cb242ce7adc9ae6a9361a4d6e29443bf8889d2c500dba7219b276de65cf0277",
+    "actual_fill_corrections": "88d331f02219675f08cae288ccd7f0e6ce14aed5442e163b145b64263812ab45",
+    "actual_stop_events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "actual_notes": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "actual_trade_tags": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "actual_journal_requests": "5365a32d94663463b4013240e0b3d7a73a2bf8a584e0ca639a1495107128370a"
+  },
+  "prepublication_journal_fingerprints_recovered": false,
+  "full_journal_before_after_equality": "NOT VERIFIED: original in-memory baseline lost after postflight error",
+  "fixture_rows_absent": true,
+  "auth_mutation_executed": false,
+  "scanner_full_quality_go": false,
+  "hosted_github_publisher_tested": false,
+  "checked_at_utc": "2026-10-03T12:49:31.511972+00:00"
+}
