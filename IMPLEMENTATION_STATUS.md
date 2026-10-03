@@ -1,6 +1,31 @@
 # Implementation status — IDX Night Scanner backend
 
-## Coverage Expanded to 90/100, Automated Paper Journal & Scheduled Scanner — 2026-10-03, latest
+## Universe 100/100 Evaluated, Corporate Actions Reconciled & RS_BREAKOUT_V1 Unlocked — 2026-10-03, latest
+
+User approved formal reconciliation of all 10 held stocks (7 stock splits/bonus shares + 3 unconfirmed dividends) to fulfill SOT Invariant #16 and fully unlock the `RS_BREAKOUT_V1` (Relative Strength Breakout, Top 20% Return 60 Sessions) strategy:
+1. Stock Split Reconciliation & Continuity Verification:
+   - Verified that Yahoo Finance `auto_adjust=False` already adjusts historical OHLC for stock splits and bonus shares at source (SOT line 56). Prices across split ex-dates are continuous (e.g. ISAT 2,600 -> 2,650; PTRO 2,745 -> 2,820). No secondary division applied (`price_changes=False`, `ledger_changes=False`) to prevent double-adjustment distortion.
+   - Reconciled 7 stock split/bonus share events with primary KSEI PDF announcements: ISAT (1:4 split), PTRO (1:10 split), CUAN (1:10 split), RAJA (1:5 split), RMKE (1:5 split), SGER (7:18 bonus share), BRPT (625:1 bonus share).
+   - Reconciled 3 remaining dividends: SCMA (Rp 5.0), UNVR (Rp 41.0), INET (Rp 0.04).
+   - Reconciled post-split dividend values for ISAT, RAJA, RMKE, and PTRO.
+   - Total verified corporate action events expanded from 228 to 256 events across all 100 KOMPAS100 tickers.
+2. Engine & Manifest Upgrades:
+   - Extended `corporate_actions.py` to support `kind="split"`, `trading_start_date_new_nominal`, and composite keys `(ticker, session, kind)` to handle multi-action sessions (e.g. BRPT dividend + bonus share on same day).
+   - Repackaged `reviewed-action-source-archive-20261003.zip` containing all 251 verified source PDF/TXT files (7.90 MB, SHA256 `fca09719c9f044d13881785633fd5724f9f1c0af0d27842384427a325fc19179`).
+   - Verified hydration via `hydrate_reviewed_sources.py` (251 hashes verified, status 0).
+3. Strategy & Universe Outcome:
+   - Coverage: **100 / 100 evaluated** (100% evaluated, 0 corporate_action_hold, 0 data_quality_hold).
+   - SOT Invariant #16 fulfilled: `ranking_status = "complete"`.
+   - `RS_BREAKOUT_V1` fully unlocked: evaluates all 100 constituents, selects top 20% return60 leaders (top 20 tickers: SGER +82.27%, ERAA +75.44%, SMIL +52.74%, AADI +42.59%, CUAN +40.83%, TINS +40.30%, EMAS +38.74%, DSNG +37.55%, INET +36.46%, PTBA +35.32%, PTRO +33.46%, ARCI +33.33%, INDY +31.95%, BUMI +28.68%, PSAB +27.48%, HRTA +26.59%, AMMN +26.57%, TAPG +25.65%, ENRG +22.55%, ISAT +21.62%). Zero stocks held for cross-section incomplete.
+   - `scanner_quality_go: true`.
+
+Verification evidence:
+- Python full test suite: 260 passed, 5 skipped (Docker native), 0 failures.
+- SQL PGlite test suite: 72 passed, 0 failures.
+- Ruff linter: 100% clean across all files.
+- Manual smoke runner (`manual_scanner_smoke.py`): coverage_valid 100/100, ranking_status "complete", 0 hold.
+
+## Coverage Expanded to 90/100, Automated Paper Journal & Scheduled Scanner — 2026-10-03
 
 User approved execution of 3-phase plan:
 1. Phase A: Corporate action reconciliation & data quality refinement.

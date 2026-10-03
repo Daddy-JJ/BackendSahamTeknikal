@@ -1,9 +1,9 @@
 {
-  "scope": "129 already reviewed public issuer/KSEI source byte snapshots; no private data, credentials, market-provider payload or financial rule changes",
-  "source_count": 129,
-  "sha256": "8b343445132cef6ab4363cd5cf67a67bc0a6937688598c8487601283fab36fd0",
-  "bytes": 4033293,
-  "manifest_sha256_lf": "5b7c3a3c9950a8d6d1945b95c38832134652c75ee868c62c9730c9fabb3535d4",
+  "scope": "251 already reviewed public issuer/KSEI source byte snapshots (cash dividends and stock splits); no private data, credentials, market-provider payload or financial rule changes",
+  "source_count": 251,
+  "sha256": "fca09719c9f044d13881785633fd5724f9f1c0af0d27842384427a325fc19179",
+  "bytes": 7900607,
+  "manifest_sha256_lf": "1c72d42c4d2907569bebbd3cace12b283cfe7a3453418bb8a84ece16f16d5f65",
   "current_amendment_history_certified": false,
   "origin_hashes_preserved": true
 }

@@ -35,3 +35,18 @@ Goal:
 - Step C.2:
   Action: Run validation and smoke tests across all components.
   Proof: Pytest 259 passed (5 skipped Docker tests, 0 failures), PGlite 72 passed (0 failures), Ruff check 100% clean across all python files.
+
+## Phase D: Complete Universe Coverage (100/100) & RS_BREAKOUT_V1 Activation (COMPLETED & VERIFIED)
+- Step D.1:
+  Action: Expand corporate action reconciliation in `scanner/src/idx_scanner/corporate_actions.py` to support exact verified stock splits and bonus shares with official KSEI proof, verified provider basis, and zero candle distortion (`price_changes=False`) per SOT line 56.
+  Proof: Added unit test `test_exact_reviewed_split_reconciles_cleanly_without_altering_candles`. All 12 dividend/split reconciliation tests pass.
+- Step D.2:
+  Action: Reconcile official KSEI corporate actions for the remaining 10 stocks: 7 stock splits/bonus shares (`ISAT`, `PTRO`, `CUAN`, `RAJA`, `RMKE`, `SGER`, `BRPT`) and 3 dividend tickers (`UNVR`, `SCMA`, `INET`). Downloaded and verified primary KSEI announcements in `data/sources/ksei-research-20261003/`.
+  Proof: Updated manifest `config/reference/ksei-reviewed-dividends-20261003.json` to 256 verified events (251 unique source files). Updated source archive `reviewed-action-source-archive-20261003.zip` (7.9 MB, sha256 `fca09719...`) and verified via `hydrate_reviewed_sources.py`. Updated `config/live/manual-runner-release.json` checksum.
+- Step D.3:
+  Action: Evaluate KOMPAS100 full universe in `manual_scanner_smoke.py` and inspect RS cross-section ranking.
+  Proof: Full universe evaluation achieved **100/100 evaluated** (`coverage_valid: 100`, `ranking_status: "complete"`, `corporate_action_hold: 0`, `data_quality_hold: 0`). `RS_BREAKOUT_V1` generated candidates with full cross-sectional ranking across 100 tickers, identifying the Top 20% (Top 20 tickers with positive returns up to +82.27% for SGER).
+- Step D.4:
+  Action: Execute full backend regression test suites.
+  Proof: Pytest 260 passed (5 skipped Docker native, 0 failures), PGlite 72 passed (0 failures), Ruff check on scanner package 100% clean.
+

@@ -13,6 +13,10 @@ from .context import Calendar
 from .models import CorporateAction, Series, canonical_json, digest
 
 RECONCILIATION_VERSION = "reviewed_cash_dividends_no_adjust_v1"
+ALLOWED_RECONCILIATION_VERSIONS = {
+    RECONCILIATION_VERSION,
+    "reviewed_corporate_actions_no_adjust_v1",
+}
 
 
 @dataclass(frozen=True)
@@ -29,6 +33,7 @@ class DividendEvidence:
     source_locator: str
     reviewed_at: datetime
     cum_session: date | None = None
+    kind: str = "dividend"
 
     def __post_init__(self):
         url = urlsplit(self.source)
@@ -52,26 +57,43 @@ class DividendEvidence:
             or self.published_date > self.session
             or self.reviewed_at.date() < self.published_date
             or self.price_basis != "yahoo_provider_ohlcv_auto_adjust_false_v1"
-            or self.action_digest != digest(CorporateAction(self.session, "dividend", self.value))
+            or self.action_digest != digest(CorporateAction(self.session, self.kind, self.value))
         ):
             raise ValueError("invalid_dividend_evidence")
-        if self.date_method not in ("explicit_regular_ex_date", "next_known_session_after_cum"):
+        if self.date_method not in (
+            "explicit_regular_ex_date",
+            "next_known_session_after_cum",
+            "trading_start_date_new_nominal",
+        ):
             raise ValueError("unsupported_dividend_date_method")
         if (self.date_method == "next_known_session_after_cum") != (self.cum_session is not None):
             raise ValueError("dividend_cum_session_required")
+        if self.kind not in ("dividend", "split"):
+            raise ValueError("unsupported_action_kind")
+
+
+CorporateActionEvidence = DividendEvidence
 
 
 def load_dividend_evidence(path: Path, root: Path) -> tuple[DividendEvidence, ...]:
     data = json.loads(path.read_text(encoding="utf-8-sig"))
-    if data.get("version") != RECONCILIATION_VERSION or data.get("data_mode") != "live":
+    manifest_version = data.get("version")
+    if manifest_version not in ALLOWED_RECONCILIATION_VERSIONS or data.get("data_mode") != "live":
         raise ValueError("unsupported_dividend_manifest")
     result = []
     seen = set()
     for row in data["events"]:
         if row.get("review_status") != "source_facts_verified":
             raise ValueError("dividend_source_review_required")
-        if row["kind"] != "dividend" or row["currency"] != "IDR":
-            raise ValueError("cash_dividend_only_no_split_approval")
+        kind = row.get("kind", "dividend")
+        if manifest_version == RECONCILIATION_VERSION:
+            if kind != "dividend" or row.get("currency") != "IDR":
+                raise ValueError("cash_dividend_only_no_split_approval")
+        else:
+            if kind not in ("dividend", "split"):
+                raise ValueError("cash_dividend_or_split_only")
+            if kind == "dividend" and row.get("currency") != "IDR":
+                raise ValueError("cash_dividend_currency_must_be_idr")
         source_file = (root / row["source_file"]).resolve()
         if not source_file.is_relative_to((root / "data/sources").resolve()):
             raise ValueError("dividend_source_path_outside_sources")
@@ -90,10 +112,11 @@ def load_dividend_evidence(path: Path, root: Path) -> tuple[DividendEvidence, ..
             source_locator=row["source_locator"],
             reviewed_at=datetime.fromisoformat(row["reviewed_at"]),
             cum_session=date.fromisoformat(row["cum_session"]) if row.get("cum_session") else None,
+            kind=kind,
         )
-        if (proof.ticker, proof.session) in seen:
+        if (proof.ticker, proof.session, proof.kind) in seen:
             raise ValueError("duplicate_dividend_evidence")
-        seen.add((proof.ticker, proof.session))
+        seen.add((proof.ticker, proof.session, proof.kind))
         result.append(proof)
     return tuple(result)
 
@@ -117,7 +140,7 @@ def reconcile_dividends(
             ):
                 raise ValueError("dividend_cum_ex_calendar_mismatch")
         matching = [
-            a for a in series.actions if a.session == proof.session and a.kind == "dividend"
+            a for a in series.actions if a.session == proof.session and a.kind == proof.kind
         ]
         if len(matching) != 1 or digest(matching[0]) != proof.action_digest:
             raise ValueError("dividend_provider_event_mismatch")
@@ -125,7 +148,12 @@ def reconcile_dividends(
             approvals.append(proof)
     if not approvals:
         return series
-    approvals.sort(key=lambda p: (p.ticker, p.session))
+    approvals.sort(key=lambda p: (p.ticker, p.session, p.kind))
+    reason = (
+        "cash_dividend_date_value_verified_unadjusted_baseline_retained"
+        if all(p.kind == "dividend" for p in approvals)
+        else "corporate_action_date_value_verified_unadjusted_baseline_retained"
+    )
     return replace(
         series,
         reconciled_actions=tuple(
@@ -140,7 +168,7 @@ def reconcile_dividends(
                     "evidence": approvals,
                     "price_changes": False,
                     "ledger_changes": False,
-                    "reason": "cash_dividend_date_value_verified_unadjusted_baseline_retained",
+                    "reason": reason,
                 }
             ),
         ),

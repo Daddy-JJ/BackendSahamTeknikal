@@ -153,3 +153,35 @@ def test_manifest_source_hash_pending_review_and_split_are_rejected(tmp_path):
     source.write_bytes(b"changed")
     with pytest.raises(ValueError, match="checksum_mismatch"):
         load()
+
+
+def test_exact_reviewed_split_reconciles_cleanly_without_altering_candles(tmp_path):
+    raw, proof, calendar, target = example()
+    split_action = CorporateAction(raw.bars[11].session, "split", "4.0")
+    raw_with_both = replace(raw, actions=raw.actions + (split_action,))
+    
+    folder = tmp_path / "data/sources"
+    folder.mkdir(parents=True)
+    source = folder / "split.txt"
+    source.write_bytes(b"ksei split announcement text")
+    
+    split_proof = replace(
+        proof,
+        session=split_action.session,
+        value="4.0",
+        action_digest=digest(split_action),
+        kind="split",
+        date_method="trading_start_date_new_nominal",
+        source_sha256=hashlib.sha256(b"ksei split announcement text").hexdigest(),
+    )
+    
+    # Reconciling both dividend and split:
+    result = reconcile_dividends(raw_with_both, (proof, split_proof), calendar, target)
+    assert quality(result, target, calendar) == "valid"
+    assert digest(split_action) in result.reconciled_actions
+    assert digest(raw.actions[0]) in result.reconciled_actions
+    assert result.bars == raw.bars
+    prov = json.loads(result.provenance[-1])
+    assert not prov["price_changes"]
+    assert not prov["ledger_changes"]
+
