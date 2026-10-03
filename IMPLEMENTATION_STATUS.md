@@ -1,6 +1,30 @@
-# Implementation status â€” IDX Night Scanner backend
+# Implementation status — IDX Night Scanner backend
 
-## Approved local publication and recovered read-back — 2026-10-03, latest
+## Coverage Expanded to 90/100, Automated Paper Journal & Scheduled Scanner — 2026-10-03, latest
+
+User approved execution of 3-phase plan:
+1. Phase A: Corporate action reconciliation & data quality refinement.
+   - Volume & suspension rule in context.py refined: active tickers trading on target session t are not permanently held by ancient suspensions (> 60 days ago). data_quality_hold count dropped from 30 to 0.
+   - Reconciled 99 new verified dividend proofs from official KSEI PDF announcements. Reference config ksei-reviewed-dividends-20261003.json expanded to 228 events across 85+ tickers.
+   - Evaluated coverage increased from 45/100 to 90/100. The remaining 10 held tickers are: 7 stock splits (BRPT, CUAN, ISAT, PTRO, RAJA, RMKE, SGER) held to preserve Invariant #1 & #16 until split adjustment factors are formally modeled; 3 unconfirmed dividends (INET, SCMA, UNVR).
+2. Phase B: Automated Paper Journal Engine.
+   - Domain paper trading simulation enabled: added PaperBook/PaperTrade serialization, multi-session stepping, and R-basis metrics summarization (win-rate, expectancy R, profit factor, payoff ratio, cumulative R).
+   - Created standalone orchestrator in supabase/scripts/paper_journal_runner.py with baseline experiments (fixed 2R and MA SMA10) across all 4 strategies.
+   - Strict logical separation from Actual Journal (actual_trades) preserved (Invariant #7).
+3. Phase C: Automated GitHub Actions Scheduler.
+   - Added .github/workflows/scheduled-scanner.yml with dual-schedule cron: 17 13 * * 1-5 (20:17 WIB primary) and 17 15 * * 1-5 (22:17 WIB recovery) plus workflow_dispatch.
+   - Created scheduled_scanner_runner.py with Asia/Jakarta calendar guard (auto-skips weekends and exchange holidays with zero error), session closure checks, corporate action reconciliation, paper journal simulation, and idempotent Supabase publication.
+
+Verification evidence:
+- Python full test suite: 259 passed, 5 skipped (Docker native), 0 failures.
+- SQL PGlite test suite: 72 passed, 0 failures.
+- Ruff linter: 100% clean across all python files.
+- Weekend calendar guard test: returned clean skip (status: skipped, reason: weekend, exit code 0).
+- Frontend production build: compiled and type-checked cleanly in 111s with 0 errors.
+
+Commit: 6a2c1c1 pushed to origin/main.
+
+## Approved local publication and recovered read-back — 2026-10-03
 
 User approved exactly one local publication of plan838183f9e3fcb5bcfe6c4681be885e87a1410672137d73eeed0f1a3d2ff4ffb0.
 Production receipt returned run3c700de4-8389-400e-b862-31f2c8998a64, replayedfalse,
