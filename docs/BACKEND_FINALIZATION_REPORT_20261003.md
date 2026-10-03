@@ -15,7 +15,7 @@ Scheduler stays off; frontend and Vercel are outside this authorization.
 | New target candles | PASS for this fetch only | Yahoo 100/100 complete target 2026-10-02, fetched 2026-10-03T09:34:33Zâ€“09:35:01Z; old failed fetch remains FAIL |
 | Warm-up | PARTIAL | AADI430, CBDK407, COIN299, EMAS247, RATU410 bars; do not grant 600-bar strategies eligibility |
 | Action/anomaly quality | PARTIAL / held | 45 evaluated, 25 action holds, 30 quality holds; unresolved dates/actions not removed; RS incomplete |
-| Hosted full-universe runner | Pending authorized dispatch | Result/URL/artifact added below only when observed |
+| Hosted full-universe fetch/evaluation | PASS, partial-quality scope | Successful retry37114744856,100 fetched,45 evaluated; artifact downloaded/hash verified |
 | Hosted production publisher | BLOCKED | Manual workflow is fetch/evaluation only, no database publication or receipt |
 | Hosted outsider/disabled-owner/lifecycle/concurrency | BLOCKED | No safe target or genuine approved ledger activity/identities; no permanent QA trades permitted |
 | Frontend Vercel smoke | BLOCKED | Separate deployment authorization and actual Vercel smoke still required |
@@ -118,4 +118,34 @@ changes before any restore. This restores historical evidence reproducibly; it i
 not approval of current amendments. User explicitly approved the fix plus one retry.
 A checksum audit command initially used a nonexistent manifest field (sha256);
 corrected sha256_lf audit passed7/7. No migration change.
-Retry result will be recorded only when observed.
+Per-fix final Python regression:235 passed,5 explicit skips in29.41s;14 focused
+archive guards passed. Ruff/diff checks passed. Clean local archive hydration
+restored129 files into an empty ignored directory with unchanged source hashes;
+archive credential-pattern scan found0 files. SQL72/72 result remains unchanged.
+An operator documentation update encountered Windows cp1252 decoding; rerun used
+explicit UTF-8. Archive validation had already passed; no evidence was fabricated.
+Retry dispatch https://github.com/Daddy-JJ/BackendSahamTeknikal/actions/runs/37114744856
+on b4762fd063f45df6a9b29fb3d0a75b1fbdc8d371 PASSED: hydration129 and fetch100,
+finished2026-10-03T09:57:22.242630Z (16:57:22 WIB), partial45/25/30,0 signals,
+RS incomplete. Hosted engine digest2ed30d1968c2aa8b6491541d712fc37aca8a475d8d7de9f8e84d247aab512241.
+Artifact11270993302 (1875 bytes) was downloaded, ZIP SHA256 independently matches
+8f51cb6c35a0b6ce7d3312bb9bb7e679ce2a6e052822bd432c08c3778b781726.
+No publication attempt, receipt null; hosted publisher remains unproven.
+Original failed run is preserved. Final backend Git status checked after evidence
+commit/push; no workflow auto-triggers, new cron, frontend or production writes.
+
+## Persisted provenance contract limitation
+
+Market revision provenance is canonical in `market_series_revisions.fetched_at`,
+`input_digest`, `provider_version`, `metadata.provenance` and `metadata_source`.
+RPC `read_market_series(p_revision_id)` returns exact source text plus timestamps
+under owner RLS. These timestamps describe the original immutable revision:
+identical ingest replay does not refresh its fetch time. They are not stored_at.
+
+Current scan_runs.snapshot/scan_run_items.snapshot do not persist an explicit
+per-ticker revision-ID/fetch-time binding for every held/no-signal item. Signals
+carry input_digest, but this zero-signal run cannot supply that linkage from
+signals. Frontend must not pick the latest ticker revision and label it as the
+chosen run's input. Operator publication evidence contains revision verification,
+but is not a new owner API field. A future versioned run-input metadata extension
+would need its own review and smoke; no schema/001–007 was edited here.

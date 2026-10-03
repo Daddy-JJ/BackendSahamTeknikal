@@ -1,5 +1,33 @@
 # Scanner live and disposable evidence — 2026-10-02
 
+## Verified final gate status — 2026-10-03, 16:57 WIB runner result
+
+Owner latest production read PASS (accepted frontend evidence; not repeated).
+Hosted anonymous read14/14 denials PASS. Calendar/runtime100mapping and current
+universe PASS within configured dates; five short histories remain ineligible for
+600-bar rules. Fresh LOCAL target candle recheck recovered100/100; earlier failed
+fetch stays FAIL. Action/anomaly coverage is PARTIAL45/100;55 holds remain and RS
+cross-section stays incomplete. Skips are disclosed, not silently removed.
+
+Full-universe GitHub fetch/evaluation PASS after approved hydration fix:
+https://github.com/Daddy-JJ/BackendSahamTeknikal/actions/runs/37114744856
+commit b4762fd063f45df6a9b29fb3d0a75b1fbdc8d371,129 frozen public source hashes,
+100 fetched,45 evaluated/25 action hold/30 quality hold,0 signals; artifact1875
+bytes SHA2568f51cb6c35a0b6ce7d3312bb9bb7e679ce2a6e052822bd432c08c3778b781726
+was downloaded and independently matched. No database publication attempted;
+receipt null. Initial run37114212953 remains FAIL, preserved in evidence.
+Backend release commit c22c7d4 and hydration fix b4762fd were pushed as authorized.
+Final local regression235 passed/5 native Docker skips; SQL72/72;14 focused archive
+guards; Ruff and diff check PASS. No migration/Auth/frontend/QAledger changes.
+
+Backend/full-stack remains NO-GO: hosted production publisher and mandatory
+outsider/disabled-owner/mutation/lifecycle/concurrency proofs still BLOCKED.
+User declined disposable target and supplied no genuine ledger activity or test
+identities; no unsafe substitute was used. Scheduler stays off. Read adapter may
+remain active; no Vercel deployment authorization follows from runner PASS.
+See docs/BACKEND_FINALIZATION_REPORT_20261003.md and github-full-universe evidence.
+This dated section supersedes earlier pending statements below.
+
 ## Finalization audit — 2026-10-03, owner read PASS; full-stack NO-GO
 
 Accepted frontend hosted owner read evidence observed 2026-10-02T22:50:09.953Z:

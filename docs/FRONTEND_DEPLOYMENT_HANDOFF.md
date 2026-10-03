@@ -1,5 +1,56 @@
 # Prompt handoff frontend â€” preparation only, 2026-10-01
 
+## Copyable frontend prompt after verified runner
+
+```text
+Baca backend docs/BACKEND_FINALIZATION_REPORT_20261003.md dan evidence
+ github-full-universe-smoke-20261003.json read-only.
+Owner read run8f634f6c-efae-4837-b1eb-1db04de6ffd2 sudah PASS; jangan ulangi
+smoke unchanged itu atau buka ulang001–007. Production snapshot tetap45/25/30,
+0signals,RS incomplete; tidak ada publikasi database baru.
+Full100 GitHub fetch/evaluation kini PASS pada run37114744856/commitb4762fd,
+artifact diunduh dan SHA256 cocok. Runner success hanya partial45/100; bukan
+production publisher PASS atau RS complete. Fetch gagal sebelumnya tetapFAIL.
+Hosted anonim14denials PASS; outsider/disabled-owner/mutation/lifecycle/concurrency
+masihBLOCKED tanpa aktivitas nyata atau metode isolasi yang disetujui.
+Pertahankan adapter parsial, alasan hold, PT412/idempotency,p_exit_snapshot,
+exportclosed limit200/cursorp_after dan explicitFK. Jangan memasang timestamp
+fetch lokal/runner ke snapshot production lama. Metadata fetched_at/provenance
+ada pada market revisions, tetapi current run belum memiliki binding per-item
+revision-ID untuk semua no-signal/held items; jangan ambil latest revision sebagai
+input run yang dipilih. Tidak perlu engine finansial/browser provider.
+Update readiness berdasarkan bukti baru; backend/full-stack tetapNO-GO,
+scheduleroff. Tidak ada izin commit/push/deploy frontend/Vercel dari handoff ini.
+```
+
+## Verified final gate status — 2026-10-03, 16:57 WIB runner result
+
+Owner latest production read PASS (accepted frontend evidence; not repeated).
+Hosted anonymous read14/14 denials PASS. Calendar/runtime100mapping and current
+universe PASS within configured dates; five short histories remain ineligible for
+600-bar rules. Fresh LOCAL target candle recheck recovered100/100; earlier failed
+fetch stays FAIL. Action/anomaly coverage is PARTIAL45/100;55 holds remain and RS
+cross-section stays incomplete. Skips are disclosed, not silently removed.
+
+Full-universe GitHub fetch/evaluation PASS after approved hydration fix:
+https://github.com/Daddy-JJ/BackendSahamTeknikal/actions/runs/37114744856
+commit b4762fd063f45df6a9b29fb3d0a75b1fbdc8d371,129 frozen public source hashes,
+100 fetched,45 evaluated/25 action hold/30 quality hold,0 signals; artifact1875
+bytes SHA2568f51cb6c35a0b6ce7d3312bb9bb7e679ce2a6e052822bd432c08c3778b781726
+was downloaded and independently matched. No database publication attempted;
+receipt null. Initial run37114212953 remains FAIL, preserved in evidence.
+Backend release commit c22c7d4 and hydration fix b4762fd were pushed as authorized.
+Final local regression235 passed/5 native Docker skips; SQL72/72;14 focused archive
+guards; Ruff and diff check PASS. No migration/Auth/frontend/QAledger changes.
+
+Backend/full-stack remains NO-GO: hosted production publisher and mandatory
+outsider/disabled-owner/mutation/lifecycle/concurrency proofs still BLOCKED.
+User declined disposable target and supplied no genuine ledger activity or test
+identities; no unsafe substitute was used. Scheduler stays off. Read adapter may
+remain active; no Vercel deployment authorization follows from runner PASS.
+See docs/BACKEND_FINALIZATION_REPORT_20261003.md and github-full-universe evidence.
+This dated section supersedes earlier pending statements below.
+
 ## Frontend alignment after accepted owner smoke — 2026-10-03
 
 Owner production read of the latest45/25/30 snapshot is PASS based on frontend
