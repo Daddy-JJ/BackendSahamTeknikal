@@ -6,8 +6,17 @@ from conftest import bar
 
 from idx_scanner.exits import evaluate_exit
 from idx_scanner.metrics import summarize
-from idx_scanner.models import Costs, ExitConfig
-from idx_scanner.paper import Experiment, PaperBook, create_plan, step
+from idx_scanner.models import Costs, ExitConfig, Series
+from idx_scanner.paper import (
+    Experiment,
+    PaperBook,
+    create_plan,
+    paper_book_from_dict,
+    paper_book_to_dict,
+    step,
+    step_paper_book,
+    summarize_book,
+)
 
 
 @pytest.fixture
@@ -178,3 +187,59 @@ def test_metrics_manual_reference_and_empty_semantics():
     assert summarize([])["win_rate"] is None
     assert summarize([D(2)])["profit_factor"] is None
     assert summarize([D(-1)])["profit_factor"] == 0
+
+
+def test_paper_book_serialization_roundtrip(signal, experiment, calendar):
+    book = PaperBook()
+    plan = book.add(signal, experiment, calendar)
+    day = calendar.sessions[1].day
+    closed = step(
+        plan, day, bar(day, 100, 111, 96, 104), calendar, calendar.sessions[1].closes_at
+    )
+    book.trades[closed.id] = closed
+
+    serialized = paper_book_to_dict(book)
+    restored = paper_book_from_dict(serialized)
+
+    assert restored.experiments == book.experiments
+    assert len(restored.trades) == len(book.trades)
+    trade = restored.trades[closed.id]
+    assert trade.id == closed.id
+    assert trade.state == "closed"
+    assert trade.entry == D("100")
+    assert trade.realized_r == closed.realized_r
+    assert len(trade.events) == len(closed.events)
+    assert trade.events[0].kind == "entry"
+    assert trade.events[1].kind == "exit"
+
+
+def test_step_paper_book_and_summarize(signal, experiment, calendar):
+    book = PaperBook()
+    plan = book.add(signal, experiment, calendar)
+
+    day = calendar.sessions[1].day
+    bars = (bar(day, 100, 111, 96, 104),)
+    series_map = {
+        signal.ticker: Series(
+            signal.ticker,
+            signal.ticker,
+            "fixture",
+            "test",
+            bars,
+            actions_complete=True,
+        )
+    }
+
+    updated = step_paper_book(
+        book, day, series_map, calendar, calendar.sessions[1].closes_at
+    )
+    assert plan.id in updated
+    assert updated[plan.id].state == "closed"
+
+    summary = summarize_book(book)
+    assert summary["trades_count"] == 1
+    assert summary["closed_count"] == 1
+    assert summary["open_count"] == 0
+    assert summary["metrics"]["closed"] == 1
+    assert summary["metrics"]["win_rate"] == D("1")
+

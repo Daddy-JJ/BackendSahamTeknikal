@@ -205,3 +205,20 @@ def test_runner_verifies_raw_then_derived_before_publication(fail_derived):
         ]
         assert result.pipeline.fetched_series == (raw,)
         assert result.pipeline.prepared_series[0].provenance
+
+
+def test_historical_zero_volume_suspension_does_not_hold_active_current_session():
+    raw, calendar, _, target = market()
+    # Normalize closed days so only historical open day zero-volume remains
+    derived = normalize_closed_sessions(raw, calendar, target.day)
+    assert quality(derived, target.day, calendar) == "valid"
+    # Inject a zero-volume suspension bar 100 days in the past on an open day
+    historical_idx = max(0, len(derived.bars) - 100)
+    past_session = derived.bars[historical_idx].session
+    bars_with_past_suspension = tuple(
+        replace(b, volume=0) if b.session == past_session else b for b in derived.bars
+    )
+    series_with_past_suspension = replace(derived, bars=bars_with_past_suspension)
+    # The active current session has volume > 0, so it remains valid
+    assert series_with_past_suspension.bars[-1].volume > 0
+    assert quality(series_with_past_suspension, target.day, calendar) == "valid"

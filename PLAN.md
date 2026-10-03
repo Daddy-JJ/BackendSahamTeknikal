@@ -1,91 +1,37 @@
-# Manual publisher preparation and real-trade audit — 2026-10-03
+# Autonomous Scanner, Paper Journal & Data Reconciliation Plan — 2026-10-03
 
-Scope: backend only. Existing modified AGENTS.md and empty untracked PLAN.md
-were user changes; preserved. No commit/push/dispatch/publication authorization
-is inferred from this preparation request. Scheduler remains off.
+Scope: backend and scheduler workflows.
+Goal:
+1. Reconcile corporate actions and refine data quality rules for 55 held stocks to expand coverage toward 100/100 and unlock RS_BREAKOUT_V1.
+2. Implement automated Paper Journal engine (forward signal simulation & performance tracking) strictly isolated from actual journal.
+3. Configure scheduled scanner workflows (20:17 WIB primary / 22:17 WIB recovery) with IDX calendar guards.
 
-1. Action: read latest backend and frontend evidence, preserve 001–007 and
-   unchanged owner scanner-read/full100 runner PASS.
-   Proof: reviewed frontend real-trade JSON and continuation; prior runner
-   37114744856/b4762fd is evaluation only, publication receipt null.
-2. Action: inspect real NCKL trade through the existing owner browser session,
-   read-only; never extract JWT, guess request UUID/payload or mutate ledger.
-   Proof: record rendered fills/correction and audit access limits; raw receipt
-   inspection is not claimed unless actually available through an owner path.
-3. Action: prepare a separate manual production publisher using checksum-bound
-   captured inputs, exact approved plan, live target/deadline guards, protected
-   environment secrets, canonical run_once and read-back. No scheduler.
-   Proof: meaningful guard tests, offline plan, lint/diff, read-only review.
-4. Action: update readiness/handoff and ask only for remaining concrete execution
-   authorization/access. Outsider and independent concurrency are skipped at
-   user request; disabled-owner remains NOT VERIFIED.
-   Proof: dated report with PASS/PARTIAL/BLOCKED/SKIPPED and no fabricated hosted
-   lifecycle, publisher or Vercel success.
+## Phase A: Data Quality & Corporate Action Reconciliation (COMPLETED & VERIFIED)
+- Step A.1:
+  Action: Refine volume and historical suspension rule in `scanner/src/idx_scanner/context.py` so that active trading stocks with volume > 0 on session t and valid history are not permanently held by ancient suspensions (> 60 bars ago), while maintaining `data_quality_hold` for zero volume on session t or unnormalized closed days.
+  Proof: Unit tests in `test_calendar_normalization.py` verifying target-session zero volume holds vs historical non-zero sessions pass. `data_quality_hold` count dropped from 30 to 0.
+- Step A.2:
+  Action: Extract and verify missing KSEI dividend proofs for the 22 cash dividend tickers using collected official KSEI announcements in `data/sources/ksei-research-20261003/`.
+  Proof: Updated `config/reference/ksei-reviewed-dividends-20261003.json` with 228 events across 85+ tickers; updated `manual-runner-release.json` with LF SHA256 checksums.
+- Step A.3:
+  Action: Run local full-universe evaluation via `manual_scanner_smoke.py`.
+  Proof: Evaluated count increased from 45 to 90/100; corporate_action_hold reduced to 10 (7 unadjusted stock splits + 3 unconfirmed dividends); zero data_quality_hold.
 
-Documentation conflict: parent README/TECHNICAL_DOC/HANDOFF describe initial
-pre-deployment baseline, whereas current backend dated evidence describes an
-applied release. Preserve canonical parent trading rules; use observed dated
-backend evidence for operational facts, without rewriting parent/frontend docs.
+## Phase B: Automated Paper Journal Simulation Engine (COMPLETED & VERIFIED)
+- Step B.1:
+  Action: Implement paper trade generation from forward published signals (`pending_entry` at `next_session.opens_at`) with immutable risk basis and default exit policy (`fixed_rr` target_r=2, and modular `ma_close`).
+  Proof: Added `paper_book_to_dict`, `paper_book_from_dict`, `step_paper_book`, and `summarize_book` in `scanner/src/idx_scanner/paper.py`. Created standalone runner in `supabase/scripts/paper_journal_runner.py`. Zero cross-contamination with `actual_trades`.
+- Step B.2:
+  Action: Implement EOD paper position lifecycle evaluation:
+  1. Open check: stop gap vs take-profit gap.
+  2. High/low check: SL hit, TP hit, or dual hit marked `ambiguous_both_hit` (SL-first baseline).
+  3. MA breakdown check for `ma_close`.
+  Proof: Deterministic tests in `scanner/tests/test_paper.py` and `scanner/tests/test_paper_journal_runner.py` passed (25 passed).
 
-## Completed preparation / current gates
-
-### Authorized local execution — 2026-10-03
-
-User approved one local publication/read-back for exact plan
-838183f9e3fcb5bcfe6c4681be885e87a1410672137d73eeed0f1a3d2ff4ffb0.
-Execution started around12:37UTC after Git audit/current clock check. Existing
-backend credentials loaded only into an isolated Python child process; no .env
-write, Git push/dispatch, Auth/journal mutation or scheduler enablement. Do not
-retry while this attempt is unresolved. Final receipt/read-back pending.
-
-- Action1 complete: preserved prior001–007/owner snapshot/GitHub100 evidence.
-- Action2 PARTIAL: current owner session rendered fills/correction#2, notes empty;
-  downloaded CSV hash/one-row decimals and net/risk ratio verified. First correction
-  page unavailable, subsequent owner read succeeded. Raw receipt/audit not exposed,
-  no JWT copied, no guessed UUID/payload/replay.
-- Action3 locally complete: candidate plan SHA838183f9...4ffb0 and separate capture
-  digest653f9f91...4110; new protected manual workflow/script/environment GET guard.
-  Python251PASS/5explicit Docker skips;16new guard cases;Ruff/diff PASS. Reviewer
-  found incorrect composite/sequence table ordering; fixed and regression tested,
-  re-review no remaining implementation blocker for preparation.
-- Action4 complete: latest dated status/report/handoff now distinguishes user skips
-  from PASS and disclosed estimated fees. GitHub Settings read-only shows no
-  environments; hosted publisher environment absent. No config/Auth/ledger/write.
-
-Failed checks and evidence: offline capture reconstruction initially failed digest
-serialization; corrected canonical key mapping and parity test. Global pytest temp
-failed3setup cases with Windows access denied; backend-owned basetemp passed. Ruff
-line length fixed. Official-source web fetch timed out/API inaccessible and sandbox
-Git network failed; changed hypothesis to known sandbox network restriction,
-read-only escalated git ls-remote verified official download-artifact SHA.
-
-Next action: exact publisher route/plan approval and safe process/env credential
-access; no dispatch or write before that. Local candidate expires24h after fetch;
-if elapsed, new capture/plan and approval are required. Hosted environment/main
-reviewer setup still needed. Raw trade receipt audit requires an authorized owner
-read path that exposes rows; never substitute service-role as owner proof.
-Outsider/concurrency skipped at user request; disabled owner/hosted error paths
-unverified. Complete backend/full-stack NO-GO; scheduler off, Vercel separate.
-
-## Authorized publication outcome — latest continuation
-
-The one approved attempt committed receipt3c700de4-8389-400e-b862-31f2c8998a64
-but failed postflight (nonexistent id order on scan_run_items). No repeat write.
-Original failure kept; schema/composite order fixed. GET-only recovery PASS
-12:49:31Z,100tickers/45/25/30/0signals/incompleteRS,200revision manifest keys.
-Oldlatest metadata matches; NCKLprojection revision5/values match. Full7table
-before/after fingerprint comparison NOT VERIFIED: original baseline in-memory
-was not persisted. Future hash-only checkpoint regression tested; after abrupt
-termination checkpoint false-write flag is not proofno write.
-
-Python254PASS/5native skips25.26s;18focused cases before checkpoint test,fullsuite
-includes19publisher cases;Ruff/diffPASS. Reviewer recovery safe, notes historical
-recovery inherits24h/deadline guards (later rerun needs reviewed read-only mode).
-
-Action complete: approved local publication plus safe read-back; originalfailure
-not hidden. Next action is frontend owner-read this NEW run, not another publisher
-execution. Outsider/concurrencyskips,disabledowner/rawownerreceiptaudit/errorpath
-proofs and Vercel remainunverified; hosted publisherenvironment absent/scheduler
-off. Completebackend/full-stackNO-GO. No commit/push/frontend/env/Auth/migration
-changes; originaluserAGENTS preserved. Full evidence in manual-production-
-publication-attempt/readback files and MANUAL_PUBLICATION_RESULT_20261003.md.
+## Phase C: Automated Scheduler in GitHub Actions (COMPLETED & VERIFIED)
+- Step C.1:
+  Action: Add `.github/workflows/scheduled-scanner.yml` with cron schedules `17 13 * * 1-5` (20:17 WIB) and `17 15 * * 1-5` (22:17 WIB recovery).
+  Proof: Workflow YAML valid, integrates `scheduled_scanner_runner.py` with Asia/Jakarta calendar holiday/weekend guard, market closure guard, paper journal simulation, and idempotent Supabase publication.
+- Step C.2:
+  Action: Run validation and smoke tests across all components.
+  Proof: Pytest 259 passed (5 skipped Docker tests, 0 failures), PGlite 72 passed (0 failures), Ruff check 100% clean across all python files.

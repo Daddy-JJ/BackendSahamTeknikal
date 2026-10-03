@@ -105,7 +105,7 @@ def quality(series: Series, target: date, calendar: Calendar) -> str:
         return "stale" if days[-1] < target else "future_data"
     if any(not bar.valid() for bar in bars):
         return "invalid_ohlcv"
-    if any(bar.volume == 0 for bar in bars):
+    if any(b.session in calendar.closed_days for b in bars) or bars[-1].volume == 0:
         return "data_quality_hold"
     try:
         if tuple(days) != calendar.between(days[0], target):

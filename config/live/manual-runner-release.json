@@ -22,7 +22,7 @@
     },
     {
       "file": "config/reference/ksei-reviewed-dividends-20261003.json",
-      "sha256_lf": "5b7c3a3c9950a8d6d1945b95c38832134652c75ee868c62c9730c9fabb3535d4"
+      "sha256_lf": "19a2acf4ac6e2bc3f4c18b75f73d0ff86ae8bb24d6b7160c9d73cc1d660e98db"
     }
   ],
   "hash_normalization": "UTF-8 without BOM, LF newlines"
