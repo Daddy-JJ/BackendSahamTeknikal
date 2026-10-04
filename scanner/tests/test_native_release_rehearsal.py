@@ -20,7 +20,7 @@ def modules(monkeypatch):
 
 def test_release_checksums_and_remote_name_fail_closed(modules, tmp_path):
     restore, rehearsal = modules
-    assert len(rehearsal.checked_release(restore.ROOT)) == 7
+    assert len(rehearsal.checked_release(restore.ROOT)) == 8
     shutil.copytree(restore.ROOT / "supabase/migrations", tmp_path / "supabase/migrations")
     shutil.copy2(
         restore.ROOT / "supabase/release-manifest.json", tmp_path / "supabase/release-manifest.json"

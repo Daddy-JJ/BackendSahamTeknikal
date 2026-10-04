@@ -1,6 +1,19 @@
 # Implementation status — IDX Night Scanner backend
 
-## Phase E: Post-Audit Hardening & Verification — 2026-10-04, latest
+## Phase F: Canonical Analytics Contracts & Live Paper Persistence (Paket 1) — 2026-10-04, latest
+
+User approved Paket 1 addressing frontend audit findings R-01 (Paper live persistence) and R-02 (Canonical R-curve & strategy attribution):
+1. Migration `202610040008_canonical_analytics_and_paper.sql`:
+   - `actual_journal_r_curve`: computes chronological trade points, cumulative R, and max drawdown with strict parameter parity (`p_from`, `p_to`, `p_strategy`, `p_exit_version`, `p_exit_snapshot`). Returns zeroed summary on empty cohort.
+   - `actual_journal_attribution`: breaks down performance metrics by strategy (`wins`, `losses`, `breakeven`, `net_pnl_idr`, `win_rate`, `expectancy_r`, `profit_factor`). Exact mathematical parity with aggregate `actual_journal_analytics` and CSV export.
+   - `paper_trades` table: dedicated persistence store for simulated forward positions, enforcing owner-only RLS and strict logical decoupling from `actual_trades` (Invariant #7).
+   - `read_paper_journal`: owner-only RPC returning structured paper trade history and metrics.
+2. Automated Database Verification:
+   - Created `supabase/tests/canonical-analytics-paper.test.mjs` verifying empty cohort, multi-trade R-curve with drawdown, strategy attribution parity, and paper RLS isolation.
+   - Updated release manifest (`55ac81dd10d9eabbec1adf9dbd8cb6a493ec0fab8db4286fea95121a67f7963a`) and rehearsal guards.
+   - All 76 SQL tests passed (0 failures). Pytest full suite: 262 passed (5 skipped Docker native, 0 failures). Ruff: 0 errors.
+
+## Phase E: Post-Audit Hardening & Verification — 2026-10-04
 
 User approved comprehensive remediation of backend auditor findings (ChatGPT 6.1 sol audit report):
 1. Historical Zero-Volume Validation Hardening (B-01):

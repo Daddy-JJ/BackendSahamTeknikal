@@ -37,6 +37,11 @@
       "version": "202610010007",
       "file": "202610010007_signal_action_conflict_http.sql",
       "sha256_lf": "f86bff5666a89521c391b0063a0bb015de8764fcb0a9cdf9b49c62d70c70dded"
+    },
+    {
+      "version": "202610040008",
+      "file": "202610040008_canonical_analytics_and_paper.sql",
+      "sha256_lf": "55ac81dd10d9eabbec1adf9dbd8cb6a493ec0fab8db4286fea95121a67f7963a"
     }
   ]
 }

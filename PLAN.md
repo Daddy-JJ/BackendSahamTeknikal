@@ -72,4 +72,17 @@ Addresses independent audit findings B-01, B-02, B-03, B-05, B-06, B-07, B-09, D
   Action: Resolve all 10 ruff violations in `supabase/scripts/`, update `IMPLEMENTATION_STATUS.md` with explicit distinction between offline verification and hosted execution.
   Proof: `ruff check supabase/scripts` passes with 0 errors; full pytest 262 passed (5 skipped Docker native, 0 failures), PGlite 72 passed (0 failures). Phase E verified and complete.
 
+## Phase F: Canonical Analytics Contracts & Live Paper Persistence (Paket 1 — 2026-10-04)
+Addresses frontend audit gaps R-01 (Paper live persistence) and R-02 (Canonical R-curve & strategy attribution):
+- Step F.1: Migration 008 Canonical Analytics & Live Paper Schema
+  Action: Create `migrations/202610040008_canonical_analytics_and_paper.sql` providing:
+  1. `actual_journal_r_curve`: chronological points, cumulative R, max drawdown, and exact parity with `actual_journal_analytics`.
+  2. `actual_journal_attribution`: strategy breakdown, win/loss counts, net P&L IDR, and profit factor status matching aggregate analytics.
+  3. `paper_trades` table with owner-only RLS and `read_paper_journal` RPC, preserving total logical isolation from `actual_trades` (Invariant #7).
+  Proof: Migration checksum registered in `release-manifest.json` (`55ac81dd10d9eabbec1adf9dbd8cb6a493ec0fab8db4286fea95121a67f7963a`).
+- Step F.2: Automated PGlite & Pytest Verification
+  Action: Add dedicated test suite `tests/canonical-analytics-paper.test.mjs`, update `release-plan.test.mjs` and rehearsal guards.
+  Proof: SQL test suite expanded from 72 to 76 tests (all 76 PASSED, 0 failures). Pytest full suite: 262 PASSED, 5 skipped, 0 failures. Ruff: 0 errors.
+
+
 

@@ -26,14 +26,14 @@ test("complete 001-007 release applies in order, preserves live mode, and planne
       // Simulated apply-once history; this is NOT a hosted CLI migration test.
       history.push(m.version);
     }
-    assert.equal(history.length, 7);
+    assert.equal(history.length, release.migrations.length);
     assert.deepEqual(pendingMigrations(release, history), []);
     assert.deepEqual((await db.query("select data_mode from public.deployment_settings")).rows,
       [{data_mode:"live"}]);
     assert.equal((await db.query("select count(*)::int n from public.actual_trades")).rows[0].n, 0);
     assert.equal((await db.query("select count(*)::int n from public.app_members")).rows[0].n, 0);
-    await db.exec(migrationSql(release.migrations.at(-2))); // 006 is replace-only.
-    await db.exec(migrationSql(release.migrations.at(-1))); // 007 is replace-only.
+    await db.exec(migrationSql(release.migrations.find(m => m.version === "202609300006"))); // 006 is replace-only.
+    await db.exec(migrationSql(release.migrations.find(m => m.version === "202610010007"))); // 007 is replace-only.
     assert.match((await db.query(`select pg_get_functiondef(
       'public.apply_actual_journal(text,uuid,jsonb,uuid)'::regprocedure) def`)).rows[0].def, /PT412/);
     const preflight = await db.exec(readFileSync(new URL("../operations/production_preflight.sql", import.meta.url), "utf8"));
@@ -50,13 +50,13 @@ test("complete 001-007 release applies in order, preserves live mode, and planne
   } finally { await db.close(); }
 });
 
-test("existing 001 upgrades with 002-007; a failed 005 rolls back DDL and can resume", async () => {
+test("existing 001 upgrades with 002-008; a failed 005 rolls back DDL and can resume", async () => {
   const db = new PGlite();
   try {
     await bootstrap(db);
     await db.exec(migrationSql(release.migrations[0]));
     const pending = pendingMigrations(release, [release.migrations[0].version]);
-    assert.equal(pending.length, 6);
+    assert.equal(pending.length, release.migrations.length - 1);
     for (const m of pending.slice(0, 3)) await db.exec(migrationSql(m));
     const actual = migrationSql(pending[3]);
     await assert.rejects(() => db.exec(actual.replace(/commit;\s*$/, () =>
