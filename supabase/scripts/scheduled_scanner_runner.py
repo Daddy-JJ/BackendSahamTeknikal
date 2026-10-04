@@ -12,12 +12,13 @@ import contextlib
 import io
 import json
 import os
+import sys
 from collections import Counter
 from datetime import UTC, date, datetime
 from zoneinfo import ZoneInfo
 
 from idx_scanner.config_io import load_requests
-from idx_scanner.engine import scan
+from idx_scanner.engine import current_source_revision, scan
 from idx_scanner.models import ScanState, canonical_json
 from idx_scanner.persistence import PersistenceError, SupabaseScanStore
 from idx_scanner.providers import ProviderError, YFinanceProvider
@@ -43,10 +44,12 @@ def get_current_target_session(calendar, now_utc: datetime) -> tuple[date, bool,
     if today_wib.weekday() in (5, 6):
         return today_wib, False, "weekend"
 
-    # Check if today is in calendar sessions
+    # Check if today is known in calendar
     session_days = {s.day for s in calendar.sessions}
-    if today_wib not in session_days or today_wib in calendar.closed_days:
+    if today_wib in calendar.closed_days:
         return today_wib, False, "exchange_holiday_or_closed"
+    if today_wib not in session_days:
+        return today_wib, False, "blocked_configuration: calendar_unknown"
 
     session_info = calendar.get(today_wib)
     if now_utc < session_info.closes_at:
@@ -80,7 +83,7 @@ def run_scheduled_scanner(
             print(json.dumps(report, indent=2))
             SCHEDULED_DIR.mkdir(parents=True, exist_ok=True)
             EVIDENCE_PATH.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-            return 0 if reason != "publication_window_elapsed" else 1
+            return 0 if reason in ("weekend", "exchange_holiday_or_closed") else 1
     else:
         target_date = target
         if target_date not in {s.day for s in calendar.sessions}:
@@ -89,9 +92,31 @@ def run_scheduled_scanner(
             raise ValueError("target_session_not_closed")
 
     universe.require(target_date)
-    print(f"Executing scheduled scan for target session: {target_date.isoformat()} (now UTC: {now.isoformat()})")
+    print(
+        f"Executing scheduled scan for target session: {target_date.isoformat()} (now UTC: {now.isoformat()})"
+    )
 
-    # Step 1: Fetch fresh public Yahoo data
+    # Step 1: Preflight publication credentials if requested (Fail-closed)
+    supabase_url = os.environ.get("SUPABASE_URL")
+    supabase_key = os.environ.get("SUPABASE_SECRET_KEY")
+    if execute_publication and (not supabase_url or not supabase_key):
+        print(
+            "ERROR: --execute requested but SUPABASE_URL or SUPABASE_SECRET_KEY is missing!",
+            file=sys.stderr,
+        )
+        report = {
+            "checked_at_utc": now.isoformat(),
+            "target": target_date.isoformat(),
+            "status": "failed",
+            "failure": "missing_credentials",
+            "production_write": False,
+        }
+        SCHEDULED_DIR.mkdir(parents=True, exist_ok=True)
+        EVIDENCE_PATH.write_text(
+            json.dumps(report, indent=2, default=str) + "\n", encoding="utf-8"
+        )
+        return 1
+
     requests = load_requests(
         ROOT / "config/reference/yfinance-kompas100-verified-mappings.json",
         "yfinance",
@@ -100,32 +125,102 @@ def run_scheduled_scanner(
     )
     folder = SCHEDULED_DIR / now.strftime("%Y%m%dT%H%M%SZ")
     folder.mkdir(parents=True, exist_ok=True)
-
     provider = YFinanceProvider()
-    raw = {}
-    provider_errors = []
-    for index, ticker in enumerate(sorted(requests), 1):
+
+    # Step 2: Single-fetch execution (Unified snapshot for scan and paper)
+    if execute_publication:
+        print("Connecting to Supabase for atomic publication and single-fetch scan...")
         try:
-            with (
-                contextlib.redirect_stdout(io.StringIO()),
-                contextlib.redirect_stderr(io.StringIO()),
-            ):
-                series = provider.fetch(requests[ticker])
-            (folder / f"{ticker}.json").write_text(canonical_json(series), encoding="utf-8")
-            raw[ticker] = series
-        except ProviderError as exc:
-            provider_errors.append({"ticker": ticker, "code": exc.code})
-        if index % 20 == 0:
-            print(f"Fetched {index}/{len(requests)} tickers...", flush=True)
+            with SupabaseScanStore(supabase_url, supabase_key) as store:
+                store.require_live_schema()
+                evaluated_at = datetime.now(UTC)
+                outcome = run_once(
+                    provider,
+                    store,
+                    requests,
+                    target_date,
+                    calendar,
+                    universe,
+                    evaluated_at,
+                    dividend_evidence=proofs,
+                    source_revision=current_source_revision(),
+                )
+                result = outcome.pipeline.scan
+                prepared = {s.ticker: s for s in outcome.pipeline.prepared_series}
+                production_write = True
+                publication_receipt = outcome.publication
+                mismatches = []
+                provider_errors = outcome.pipeline.errors
+                print(f"Publication complete! Run ID: {outcome.publication.get('run_id')}")
+        except PersistenceError as exc:
+            print(f"Persistence error during publication: {exc.code}", file=sys.stderr)
+            report = {
+                "checked_at_utc": now.isoformat(),
+                "target": target_date.isoformat(),
+                "status": "failed",
+                "failure": f"publication_error: {exc.code}",
+                "production_write": False,
+            }
+            SCHEDULED_DIR.mkdir(parents=True, exist_ok=True)
+            EVIDENCE_PATH.write_text(
+                json.dumps(report, indent=2, default=str) + "\n", encoding="utf-8"
+            )
+            return 1
+    else:
+        # Dry-run / offline check: Single fetch without database write
+        raw = {}
+        provider_errors = []
+        for index, ticker in enumerate(sorted(requests), 1):
+            try:
+                with (
+                    contextlib.redirect_stdout(io.StringIO()),
+                    contextlib.redirect_stderr(io.StringIO()),
+                ):
+                    series = provider.fetch(requests[ticker])
+                (folder / f"{ticker}.json").write_text(
+                    canonical_json(series), encoding="utf-8"
+                )
+                raw[ticker] = series
+            except ProviderError as exc:
+                provider_errors.append({"ticker": ticker, "code": exc.code})
+            if index % 20 == 0:
+                print(f"Fetched {index}/{len(requests)} tickers...", flush=True)
 
-    # Step 2: Prepare series (normalizations & KSEI dividend proofs)
-    prepared, mismatches = prepare_series(raw, proofs, calendar, target_date)
+        prepared, mismatches = prepare_series(raw, proofs, calendar, target_date)
+        evaluated_at = datetime.now(UTC)
+        result = scan(
+            prepared,
+            target_date,
+            calendar,
+            universe,
+            evaluated_at,
+            ScanState(),
+            source_revision=current_source_revision(),
+        )
+        production_write = False
+        publication_receipt = None
 
-    # Step 3: Run scan engine
-    evaluated_at = datetime.now(UTC)
-    result = scan(prepared, target_date, calendar, universe, evaluated_at, ScanState())
+    # Step 3: Require usable coverage (Fail-closed)
+    if result.coverage_valid == 0:
+        print(
+            "ERROR: Usable coverage is 0! No valid signals can be verified.",
+            file=sys.stderr,
+        )
+        report = {
+            "checked_at_utc": now.isoformat(),
+            "target": target_date.isoformat(),
+            "status": "failed",
+            "failure": "zero_usable_coverage",
+            "production_write": production_write,
+            "publication_receipt": publication_receipt,
+        }
+        SCHEDULED_DIR.mkdir(parents=True, exist_ok=True)
+        EVIDENCE_PATH.write_text(
+            json.dumps(report, indent=2, default=str) + "\n", encoding="utf-8"
+        )
+        return 1
 
-    # Step 4: Run automated Paper Journal simulation
+    # Step 4: Run automated Paper Journal simulation on committed snapshot
     _paper_book, paper_summary = process_paper_session(
         target_date,
         prepared,
@@ -151,61 +246,18 @@ def run_scheduled_scanner(
         "paper_metrics": paper_summary.get("metrics", {}),
         "provider_errors": provider_errors,
         "evidence_mismatch_tickers": mismatches,
-        "production_write": False,
-        "publication_receipt": None,
+        "production_write": production_write,
+        "publication_receipt": publication_receipt,
     }
 
-    # Step 5: Publish if requested and configured
-    supabase_url = os.environ.get("SUPABASE_URL")
-    supabase_key = os.environ.get("SUPABASE_SECRET_KEY")
-
-    if execute_publication and supabase_url and supabase_key:
-        print("Connecting to Supabase for atomic publication...")
-        try:
-            with SupabaseScanStore(supabase_url, supabase_key) as store:
-                store.require_live_schema()
-
-                # Check if session is already published
-                existing_runs = store._request(
-                    "GET",
-                    "scan_runs",
-                    params={
-                        "select": "id,status,coverage_valid,run_digest",
-                        "namespace": "eq.forward",
-                        "data_mode": "eq.live",
-                        "session_date": f"eq.{target_date.isoformat()}",
-                    },
-                )
-                if existing_runs and existing_runs[0].get("run_digest") == result.run_digest:
-                    print("Scan run already published with identical digest. Recovery no-op.")
-                    report["status"] = "recovery_clean_noop"
-                    report["production_write"] = False
-                    report["publication_receipt"] = {"run_id": existing_runs[0]["id"], "replayed": True}
-                else:
-                    outcome = run_once(
-                        provider,
-                        store,
-                        requests,
-                        target_date,
-                        calendar,
-                        universe,
-                        evaluated_at,
-                        dividend_evidence=proofs,
-                    )
-                    report["production_write"] = True
-                    report["publication_receipt"] = outcome.publication
-                    print(f"Publication complete! Run ID: {outcome.publication.get('run_id')}")
-        except PersistenceError as exc:
-            print(f"Persistence error during publication: {exc.code}")
-            report["publication_error"] = exc.code
-            return 1
-
     SCHEDULED_DIR.mkdir(parents=True, exist_ok=True)
-    EVIDENCE_PATH.write_text(json.dumps(report, indent=2, default=str) + "\n", encoding="utf-8")
-    print(json.dumps({k: v for k, v in report.items() if k != "items"}, indent=2, default=str))
+    EVIDENCE_PATH.write_text(
+        json.dumps(report, indent=2, default=str) + "\n", encoding="utf-8"
+    )
+    print(
+        json.dumps({k: v for k, v in report.items() if k != "items"}, indent=2, default=str)
+    )
 
-    if require_usable and result.coverage_valid == 0:
-        return 1
     return 0
 
 

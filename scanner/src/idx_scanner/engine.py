@@ -1,7 +1,11 @@
 """Deterministic cross-section scan; provider IO is outside this module."""
 
+import os
+import re
+import subprocess
 from dataclasses import dataclass, replace
 from datetime import date, datetime
+from functools import lru_cache
 
 from .context import Calendar, Universe, quality
 from .indicators import calculate
@@ -28,6 +32,24 @@ class ScanResult:
     run_digest: str
 
 
+@lru_cache(maxsize=1)
+def current_source_revision() -> str:
+    sha = os.environ.get("GITHUB_SHA")
+    if sha and re.fullmatch(r"[a-f0-9]{40}", sha):
+        return sha
+    try:
+        res = subprocess.run(
+            ["git", "rev-parse", "HEAD"], capture_output=True, text=True, timeout=2
+        )
+        if res.returncode == 0 and res.stdout.strip():
+            rev = res.stdout.strip()
+            if re.fullmatch(r"[a-f0-9]{40}", rev):
+                return rev
+    except Exception:
+        pass
+    return "local-uncommitted"
+
+
 def scan(
     series: dict[str, Series],
     target: date,
@@ -38,8 +60,15 @@ def scan(
     config: EntryConfig = DEFAULT_ENTRY_CONFIG,
     *,
     namespace: str = "forward",
+    source_revision: str | None = None,
 ) -> ScanResult:
     universe.require(target)
+    if source_revision is not None:
+        active_revision = source_revision
+    elif universe.data_mode == "fixture":
+        active_revision = "local-uncommitted"
+    else:
+        active_revision = current_source_revision()
     current, next_session = calendar.get(target), calendar.next(target)
     if published_at.tzinfo is None or published_at < current.closes_at:
         raise ValueError("target_session_not_closed")
@@ -133,6 +162,7 @@ def scan(
                 features.snapshot(),
                 provider_version=s.provider_version,
                 calendar_version=calendar.version,
+                source_revision=active_revision,
             )
             state.signals[identity] = signal
             if candidate.fractal_id:

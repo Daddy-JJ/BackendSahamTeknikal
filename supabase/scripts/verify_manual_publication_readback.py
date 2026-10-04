@@ -5,12 +5,17 @@ from collections import Counter
 from datetime import UTC, date, datetime
 from decimal import Decimal
 
+from idx_scanner.persistence import SupabaseScanStore
 from manual_scanner_smoke import prepare_series
 from prepare_dev_setup import ROOT, local_env
-from prepare_manual_publication import LEDGER_ORDER, fingerprint, prepare, read_rows, verify_plan
+from prepare_manual_publication import (
+    LEDGER_ORDER,
+    fingerprint,
+    prepare,
+    read_rows,
+    verify_plan,
+)
 from publish_first_live_hold_run import REF
-
-from idx_scanner.persistence import SupabaseScanStore
 
 RUN_ID = "3c700de4-8389-400e-b862-31f2c8998a64"
 PLAN_SHA = "838183f9e3fcb5bcfe6c4681be885e87a1410672137d73eeed0f1a3d2ff4ffb0"
@@ -109,7 +114,7 @@ def main():
                           ),
                           fixture_rows_absent=True, auth_mutation_executed=False,
                           scanner_full_quality_go=False, hosted_github_publisher_tested=False)
-    except Exception:
+    except Exception:  # noqa: BLE001
         failed = True
         report.update(status="readback_failed", failure="readback_failure_redacted")
     report["checked_at_utc"] = datetime.now(UTC).isoformat()

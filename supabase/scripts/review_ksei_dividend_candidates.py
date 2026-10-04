@@ -12,10 +12,9 @@ from datetime import date
 from decimal import Decimal
 from pathlib import Path
 
+from idx_scanner.models import digest
 from prepare_dev_setup import ROOT
 from publish_first_live_hold_run import captured_series
-
-from idx_scanner.models import digest
 
 MONTHS = dict(
     zip(

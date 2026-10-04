@@ -34,6 +34,7 @@ def run_once(
     clock: Callable[[], datetime] | None = None,
     normalize_calendar: bool = True,
     dividend_evidence: tuple[DividendEvidence, ...] = (),
+    source_revision: str | None = None,
 ) -> RunOutcome:
     if not re.fullmatch(r"[a-z0-9_-]{1,64}", namespace):
         raise ValueError("invalid_namespace")
@@ -71,7 +72,16 @@ def run_once(
     # Timestamp after provider/database IO, so crossing next-open cannot produce
     # a falsely actionable forward signal.
     evaluated_at = clock() if clock is not None else published_at
-    result = scan(prepared, target, calendar, universe, evaluated_at, state, namespace=namespace)
+    result = scan(
+        prepared,
+        target,
+        calendar,
+        universe,
+        evaluated_at,
+        state,
+        namespace=namespace,
+        source_revision=source_revision,
+    )
     if clock is not None and evaluated_at < calendar.next(target).opens_at <= clock():
         raise ValueError("publication_window_elapsed")
     pipeline = PipelineResult(

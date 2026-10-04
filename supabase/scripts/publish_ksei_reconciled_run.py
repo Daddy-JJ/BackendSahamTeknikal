@@ -11,15 +11,14 @@ from collections import Counter
 from datetime import UTC, date, datetime
 
 from audit_scanner_quality_repairs import prepare
-from prepare_dev_setup import ROOT, local_env
-from publish_first_live_hold_run import REF, TARGET, CapturedProvider, ObservedStore
-
 from idx_scanner.config_io import load_requests
 from idx_scanner.context import quality
 from idx_scanner.engine import scan
 from idx_scanner.models import ScanState
 from idx_scanner.persistence import PersistenceError
 from idx_scanner.runner import run_once
+from prepare_dev_setup import ROOT, local_env
+from publish_first_live_hold_run import REF, TARGET, CapturedProvider, ObservedStore
 
 MANIFEST = ROOT / "config/reference/ksei-reviewed-dividends-20261003.json"
 OLD_RUNS = (
@@ -206,7 +205,7 @@ def main():
     except (ValueError, PersistenceError) as exc:
         failed = True
         report.update(status="failed", failure=str(exc))
-    except Exception:
+    except Exception:  # noqa: BLE001
         failed = True
         report.update(status="failed", failure="operator_or_transport_failure_redacted")
     report["finished_at_utc"] = datetime.now(UTC).isoformat()

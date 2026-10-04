@@ -8,15 +8,14 @@ import json
 from collections import Counter
 from datetime import UTC, datetime
 
-from prepare_dev_setup import ROOT
-from publish_first_live_hold_run import TARGET, captured_series
-
 from idx_scanner.config_io import load_calendar, load_universe
 from idx_scanner.context import quality
 from idx_scanner.corporate_actions import load_dividend_evidence, reconcile_dividends
 from idx_scanner.engine import scan
 from idx_scanner.models import ScanState, digest
 from idx_scanner.normalization import normalize_closed_sessions
+from prepare_dev_setup import ROOT
+from publish_first_live_hold_run import TARGET, captured_series
 
 
 def prepare(evidence_path=None):

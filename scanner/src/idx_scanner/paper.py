@@ -5,7 +5,7 @@ from dataclasses import dataclass, field, replace
 from datetime import date, datetime
 from decimal import Decimal
 
-from .context import Calendar
+from .context import Calendar, quality
 from .exits import evaluate_exit, money
 from .indicators import ema, sma
 from .metrics import summarize
@@ -444,6 +444,10 @@ def step_paper_book(
                 )
                 updated[key] = book.trades[key]
                 continue
+            is_valid = (
+                series.actions_complete
+                and quality(series, session, calendar) == "valid"
+            )
             book.trades[key] = step(
                 trade,
                 session,
@@ -451,7 +455,7 @@ def step_paper_book(
                 calendar,
                 observed_at,
                 history=tuple(matching_bars),
-                data_valid=series.actions_complete,
+                data_valid=is_valid,
             )
             updated[key] = book.trades[key]
     return updated
@@ -490,10 +494,31 @@ def summarize_book(book: PaperBook) -> dict:
         )
         for strategy in STRATEGIES
     }
+    experiment_metrics = {
+        exp_id: summarize(
+            [
+                t.realized_r
+                for t in closed
+                if t.experiment.id == exp_id and t.realized_r is not None
+            ],
+            open_count=sum(
+                t.state in ("open", "pending_entry", "data_hold")
+                and t.experiment.id == exp_id
+                for t in book.trades.values()
+            ),
+            ambiguous_count=sum(
+                t.alternate_r is not None and t.experiment.id == exp_id
+                for t in closed
+            ),
+        )
+        for exp_id in sorted({t.experiment.id for t in book.trades.values()})
+    }
     return {
         "metrics": metrics,
         "strategy_metrics": strategy_metrics,
+        "experiment_metrics": experiment_metrics,
         "trades_count": len(book.trades),
         "closed_count": len(closed),
         "open_count": open_count,
+        "ambiguous_count": ambiguous,
     }

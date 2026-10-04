@@ -242,4 +242,44 @@ def test_step_paper_book_and_summarize(signal, experiment, calendar):
     assert summary["open_count"] == 0
     assert summary["metrics"]["closed"] == 1
     assert summary["metrics"]["win_rate"] == D("1")
+    assert "experiment_metrics" in summary
+    assert experiment.id in summary["experiment_metrics"]
+
+
+def test_step_paper_book_holds_when_corporate_actions_unreconciled(signal, experiment, calendar):
+    from idx_scanner.models import CorporateAction
+
+    book = PaperBook()
+    plan = book.add(signal, experiment, calendar)
+
+    day = calendar.sessions[1].day
+    bars = (bar(day, 100, 111, 96, 104),)
+    # Add an unreconciled corporate action on the day
+    action = CorporateAction(day, "dividend", "5.0")
+    series_map = {
+        signal.ticker: Series(
+            signal.ticker,
+            signal.ticker,
+            "fixture",
+            "test",
+            bars,
+            actions=(action,),
+            actions_complete=True,
+            reconciled_actions=(),  # Empty reconciled actions -> corporate_action_hold
+        )
+    }
+
+    updated = step_paper_book(
+        book, day, series_map, calendar, calendar.sessions[1].closes_at
+    )
+    assert plan.id in updated
+    assert updated[plan.id].state == "data_hold"
+    assert updated[plan.id].entry is None
+
+    summary = summarize_book(book)
+    assert summary["closed_count"] == 0
+    assert summary["open_count"] == 1
+    assert "experiment_metrics" in summary
+    assert experiment.id in summary["experiment_metrics"]
+
 

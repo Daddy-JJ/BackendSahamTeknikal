@@ -14,15 +14,18 @@ from collections import Counter
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 
-from manual_scanner_smoke import load_manual_context, prepare_series
-from prepare_dev_setup import ROOT
-from publish_first_live_hold_run import REF
-
 from idx_scanner.config_io import load_requests
 from idx_scanner.engine import scan
 from idx_scanner.models import ScanState, canonical_json
-from idx_scanner.persistence import PersistenceError, SupabaseScanStore, series_from_revision
+from idx_scanner.persistence import (
+    PersistenceError,
+    SupabaseScanStore,
+    series_from_revision,
+)
 from idx_scanner.runner import run_once
+from manual_scanner_smoke import load_manual_context, prepare_series
+from prepare_dev_setup import ROOT
+from publish_first_live_hold_run import REF
 
 EXPECTED_COUNTS = {"evaluated": 45, "corporate_action_hold": 25, "data_quality_hold": 30}
 CONTRACT = "manual-zero-signal-publication-v1"
@@ -276,7 +279,7 @@ def main():
         if not re.fullmatch("[a-z_]{1,100}", code):
             code = "operator_failure_redacted"
         report.update(status="failed", failure=code)
-    except Exception:
+    except Exception:  # noqa: BLE001
         failed = True
         report.update(status="failed", failure="operator_failure_redacted")
     report["checked_at_utc"] = datetime.now(UTC).isoformat()

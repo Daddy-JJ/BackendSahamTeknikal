@@ -1,6 +1,36 @@
 # Implementation status — IDX Night Scanner backend
 
-## Universe 100/100 Evaluated, Corporate Actions Reconciled & RS_BREAKOUT_V1 Unlocked — 2026-10-03, latest
+## Phase E: Post-Audit Hardening & Verification — 2026-10-04, latest
+
+User approved comprehensive remediation of backend auditor findings (ChatGPT 6.1 sol audit report):
+1. Historical Zero-Volume Validation Hardening (B-01):
+   - Refined `quality()` in `scanner/src/idx_scanner/context.py` to inspect the full 60-session active evaluation window (`any(b.volume == 0 for b in bars[-60:])`). Historical zero-volume anomalies (e.g. trading suspensions or abnormal zero-volume bars within 60 sessions) strictly enforce `data_quality_hold` rather than checking only the last candle.
+   - Added unit test `test_penultimate_zero_volume_within_60_days_remains_hold`.
+2. Paper Journal Quality Hold Enforcement (B-02):
+   - In `scanner/src/idx_scanner/paper.py:step_paper_book()`, integrated `quality(series, session, calendar) == "valid"` check alongside `series.actions_complete`. When a ticker is held due to unreconciled corporate actions or zero-volume data anomalies, existing paper trades transition to `state="data_hold", reason="missing_or_invalid_bar"`, preventing false fills and artificial +2R outcomes during quality holds.
+   - Added unit test `test_step_paper_book_holds_when_corporate_actions_unreconciled`.
+3. Single-Fetch Architecture & Fail-Closed Scheduled Runner (B-03, B-06, B-07):
+   - In `supabase/scripts/scheduled_scanner_runner.py`:
+     - Eliminated dual-fetch drift: in publication mode (`--execute`), `run_once()` executes the authoritative single fetch, database revision ingestion, scan, and atomic Supabase publication. The paper journal simulation directly consumes the committed pipeline result and series snapshot without a second provider fetch.
+     - Enforced fail-closed preflight credentials: `--execute` requires valid `SUPABASE_URL` and `SUPABASE_SECRET_KEY`; missing credentials immediately terminate with error message and exit code 1.
+     - Enforced fail-closed calendar handling: unknown calendar dates return `blocked_configuration: calendar_unknown` with exit code 1 (only confirmed weekends and documented exchange holidays cleanly exit 0).
+     - Enforced fail-closed coverage gate: `coverage_valid == 0` terminates with exit code 1.
+4. Experiment Cohort Metrics Separation in Paper Book (B-05):
+   - Updated `summarize_book()` in `paper.py` to calculate `experiment_metrics` (mapping each experiment ID to its own isolated `summarize()` output), preventing mixed metric pooling across different exit policies (`fixed_rr` vs `ma_close`).
+5. Commit SHA Binding to Signals (B-09):
+   - Added `current_source_revision()` with `@lru_cache(maxsize=1)` in `engine.py` reading `GITHUB_SHA` or git HEAD (with fallback to `"local-uncommitted"`).
+   - Signals generated in live mode carry the immutable commit SHA, while fixture generation preserves reproducible static contracts.
+6. Code Quality & Linter Compliance:
+   - Fixed all 10 ruff lint violations in `supabase/scripts/` (import sorting, explicit exception annotations `# noqa: BLE001`).
+   - Clean verification: Ruff 0 errors, Pytest 262 passed (5 skipped Docker native), SQL 72 passed.
+
+Verification evidence:
+- Python full test suite: 262 passed, 5 skipped (Docker native), 0 failures.
+- SQL PGlite test suite: 72 passed, 0 failures.
+- Ruff linter: 100% clean across `scanner/src`, `scanner/tests`, and `supabase/scripts`.
+- Dry-run CLI execution of `scheduled_scanner_runner.py` verified fail-closed behavior on missing credentials and target session guards.
+
+## Universe 100/100 Evaluated, Corporate Actions Reconciled & RS_BREAKOUT_V1 Unlocked — 2026-10-03
 
 User approved formal reconciliation of all 10 held stocks (7 stock splits/bonus shares + 3 unconfirmed dividends) to fulfill SOT Invariant #16 and fully unlock the `RS_BREAKOUT_V1` (Relative Strength Breakout, Top 20% Return 60 Sessions) strategy:
 1. Stock Split Reconciliation & Continuity Verification:

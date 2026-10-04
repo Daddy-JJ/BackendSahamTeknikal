@@ -50,3 +50,26 @@ Goal:
   Action: Execute full backend regression test suites.
   Proof: Pytest 260 passed (5 skipped Docker native, 0 failures), PGlite 72 passed (0 failures), Ruff check on scanner package 100% clean.
 
+## Phase E: Post-Audit Hardening & Remediation (Backend Only — 2026-10-04)
+Addresses independent audit findings B-01, B-02, B-03, B-05, B-06, B-07, B-09, D-01:
+- Step E.1: Fail-Closed Runner & Unknown Calendar Handling (B-06, B-07)
+  Action: Update `scheduled_scanner_runner.py` so that unknown calendar dates return `blocked_configuration: calendar_unknown` with exit 1; require Supabase credentials when `--execute` is passed (exit 1 if missing); require `coverage_valid > 0` (exit 1 if 0).
+  Proof: CLI tests verify non-zero exit code on missing credentials, zero coverage, and unknown calendar dates.
+- Step E.2: Historical Zero-Volume Validation & Paper Quality Hold (B-01, B-02)
+  Action:
+  1. In `scanner/src/idx_scanner/context.py`, enforce `data_quality_hold` if any bar in the 60-session active evaluation window has `volume == 0`.
+  2. In `scanner/src/idx_scanner/paper.py`, enforce `data_valid = (quality(series, session, calendar) == "valid")` so corporate-action / quality holds transition paper trades to `data_hold` without generating false fills or +2R.
+  Proof: Unit tests verify penultimate zero-volume yields `data_quality_hold`, and unreconciled corporate actions hold paper trades in `data_hold`.
+- Step E.3: Single-Fetch Unified Snapshot & Commit SHA Binding (B-03, B-09)
+  Action:
+  1. Refactor `scheduled_scanner_runner.py` to eliminate duplicate provider fetches: execute a single authoritative fetch & publication via `run_once`, then pass the committed signals and series to the paper journal simulation.
+  2. Bind `GITHUB_SHA` or git HEAD to `source_revision` in `Signal` creation.
+  Proof: Run evidence demonstrates identical input digests between scanner publication and paper journal simulation; signal records contain valid commit SHA.
+- Step E.4: Cohort Experiment Separation in Paper Book (B-05)
+  Action: In `scanner/src/idx_scanner/paper.py:summarize_book()`, add `by_experiment` metrics breakdown to prevent cross-contamination between `fixed_rr` and `ma_close` policies.
+  Proof: Summary dictionary outputs distinct metrics per experiment ID.
+- Step E.5: Scripts Lint Clean-up & Documentation Reconciliation (D-01)
+  Action: Resolve all 10 ruff violations in `supabase/scripts/`, update `IMPLEMENTATION_STATUS.md` with explicit distinction between offline verification and hosted execution.
+  Proof: `ruff check supabase/scripts` passes with 0 errors; full pytest 262 passed (5 skipped Docker native, 0 failures), PGlite 72 passed (0 failures). Phase E verified and complete.
+
+

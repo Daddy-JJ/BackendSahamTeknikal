@@ -222,3 +222,17 @@ def test_historical_zero_volume_suspension_does_not_hold_active_current_session(
     # The active current session has volume > 0, so it remains valid
     assert series_with_past_suspension.bars[-1].volume > 0
     assert quality(series_with_past_suspension, target.day, calendar) == "valid"
+
+
+def test_penultimate_zero_volume_within_60_days_remains_hold():
+    raw, calendar, _, target = market()
+    derived = normalize_closed_sessions(raw, calendar, target.day)
+    assert quality(derived, target.day, calendar) == "valid"
+    # Inject a zero-volume bar at penultimate session (within 60 sessions)
+    penultimate_session = derived.bars[-2].session
+    bars_with_recent_zero = tuple(
+        replace(b, volume=0) if b.session == penultimate_session else b for b in derived.bars
+    )
+    series_with_recent_zero = replace(derived, bars=bars_with_recent_zero)
+    assert quality(series_with_recent_zero, target.day, calendar) == "data_quality_hold"
+

@@ -40,7 +40,7 @@ def main():
             verify(env.json(), policy_data["branch_policies"])
         print('{"publisher_environment_protection_verified":true,"method":"GET only"}')
         return 0
-    except Exception:
+    except Exception:  # noqa: BLE001
         print('{"publisher_environment_protection_verified":false,"production_write":false}')
         return 1
 
