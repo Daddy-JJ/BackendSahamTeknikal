@@ -900,3 +900,9 @@ Do not modify operating sections above `Lessons` unless explicitly requested.
 ## Lessons
 
 <!-- Newest durable backend lessons go first. -->
+
+> When troubleshooting consumer/runner failures against pipeline outputs, inspect the canonical dataclass definition directly (e.g. `PipelineResult.provider_errors` vs `.errors`) and write a contract regression test, because guessing attribute names or silently falling back with `getattr(..., [])` can mask provider errors and cause dangerous false-green scanner runs.
+
+> When investigating GitHub Actions failures, check the exact commit SHA in the run metadata and distinguish "Re-run jobs" (which executes the historical commit of that specific run) from a fresh `workflow_dispatch` trigger (which pulls `main`), because re-running an old run will repeat already-fixed bugs.
+
+> When evaluating target session eligibility in scheduled runners across midnight boundaries (e.g., pre-market 00:00 - 08:59 WIB), target the previous closed exchange session whose publication window remains open, rather than rejecting the unclosed current day's session.
