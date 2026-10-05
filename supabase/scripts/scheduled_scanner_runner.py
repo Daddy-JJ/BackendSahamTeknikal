@@ -53,6 +53,14 @@ def get_current_target_session(calendar, now_utc: datetime) -> tuple[date, bool,
 
     session_info = calendar.get(today_wib)
     if now_utc < session_info.closes_at:
+        # If running in the early morning before exchange opens (e.g. 00:00 to 08:59 WIB),
+        # the previous closed session remains in its valid publication window.
+        if now_utc < session_info.opens_at:
+            prev_sessions = [s for s in calendar.sessions if s.day < today_wib]
+            if prev_sessions:
+                prev = prev_sessions[-1]
+                if prev.closes_at <= now_utc < session_info.opens_at:
+                    return prev.day, True, "eligible"
         return today_wib, False, "target_session_not_closed"
 
     next_session = calendar.next(today_wib)
