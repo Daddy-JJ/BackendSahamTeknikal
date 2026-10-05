@@ -1,6 +1,13 @@
 # Implementation status — IDX Night Scanner backend
 
-## Phase F: Canonical Analytics Contracts & Live Paper Persistence (Paket 1) — 2026-10-04, latest
+## Phase G: Runner Resiliency on Provider Corporate Action Mismatch — 2026-10-05, latest
+
+Fixed runner crash on unreconciled or modified provider corporate actions:
+1. `runner.py:run_once`: wrapped `reconcile_dividends` in a try/except for `ValueError("dividend_provider_event_mismatch")`. Rather than failing the entire runner when Yahoo updates or publishes an unverified corporate action event (e.g. CUAN, INDY, PTRO, TOBA), the ticker gracefully remains un-reconciled (`actions_complete = False`) and is placed on `corporate_action_hold` (SOT Invariant #6), allowing all other valid tickers to be evaluated, scanned, and published to Supabase atomically.
+2. `supabase/scripts/scheduled_scanner_runner.py`: populated `mismatches` from `outcome.pipeline.prepared_series` where actions exist but are incomplete.
+3. Unit tests: added `test_runner_holds_unreconciled_dividend_mismatch_without_crashing` in `scanner/tests/test_runner.py`. 263 passed, 5 skipped (Docker native), 0 failures. Ruff clean (0 errors).
+
+## Phase F: Canonical Analytics Contracts & Live Paper Persistence (Paket 1) — 2026-10-04
 
 User approved Paket 1 addressing frontend audit findings R-01 (Paper live persistence) and R-02 (Canonical R-curve & strategy attribution):
 1. Migration `202610040008_canonical_analytics_and_paper.sql`:
