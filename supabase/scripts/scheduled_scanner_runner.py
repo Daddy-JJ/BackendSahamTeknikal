@@ -161,7 +161,10 @@ def run_scheduled_scanner(
                     for s in outcome.pipeline.prepared_series
                     if not s.actions_complete and s.actions
                 ]
-                provider_errors = outcome.pipeline.errors
+                provider_errors = [
+                    {"ticker": ticker, "code": code}
+                    for ticker, code in outcome.pipeline.provider_errors
+                ]
                 print(f"Publication complete! Run ID: {outcome.publication.get('run_id')}")
         except PersistenceError as exc:
             print(f"Persistence error during publication: {exc.code}", file=sys.stderr)
