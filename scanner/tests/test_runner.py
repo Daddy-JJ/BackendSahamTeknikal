@@ -230,3 +230,59 @@ def test_live_runner_sends_calendar_deadline_to_atomic_publisher():
         target.closes_at + timedelta(hours=3),
     )
     assert outcome.publication["run_id"] == "test-run"
+
+
+def test_runner_holds_unreconciled_dividend_mismatch_without_crashing():
+    from datetime import UTC, datetime
+    from decimal import Decimal
+
+    from idx_scanner.corporate_actions import DividendEvidence
+    from idx_scanner.models import CorporateAction
+
+    series, calendar, universe, target, requests = setup_market()
+    calendar = replace(calendar, data_mode="live")
+    universe = replace(universe, data_mode="live")
+    first_ticker = sorted(requests)[0]
+    bad_action = CorporateAction(session=target.day, kind="dividend", value=Decimal("100.0"))
+    series_dict = {
+        ticker: replace(
+            s,
+            provider="yfinance",
+            actions=(bad_action,) if ticker == first_ticker else (),
+            price_basis="yahoo_provider_ohlcv_auto_adjust_false_v1",
+            fetched_at=datetime(2026, 1, 1, tzinfo=UTC),
+        )
+        for ticker, s in series.items()
+    }
+    from idx_scanner.models import digest
+    proof_action = CorporateAction(session=target.day, kind="dividend", value=Decimal("50.0"))
+    mismatch_proof = DividendEvidence(
+        ticker=first_ticker,
+        session=target.day,
+        kind="dividend",
+        value="50.0",
+        price_basis="yahoo_provider_ohlcv_auto_adjust_false_v1",
+        action_digest=digest(proof_action),
+        source="https://www.bca.co.id/test-evidence",
+        source_sha256="1" * 64,
+        source_locator="notice.pdf",
+        published_date=target.day,
+        date_method="explicit_regular_ex_date",
+        reviewed_at=datetime(2026, 12, 1, tzinfo=UTC),
+    )
+
+    store = FakeStore()
+    provider = FakeProvider(series_dict)
+    outcome = run_once(
+        provider,
+        store,
+        requests,
+        target.day,
+        calendar,
+        universe,
+        target.closes_at + timedelta(hours=3),
+        dividend_evidence=(mismatch_proof,),
+    )
+    first_item = next(i for i in outcome.pipeline.scan.items if i.ticker == first_ticker)
+    assert first_item.status == "corporate_action_hold"
+
