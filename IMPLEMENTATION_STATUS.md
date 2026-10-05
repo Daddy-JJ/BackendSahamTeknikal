@@ -1,6 +1,13 @@
 # Implementation status — IDX Night Scanner backend
 
-## Phase G: Runner Resiliency on Provider Corporate Action Mismatch — 2026-10-05, latest
+## Phase H: Canonical PipelineResult Contract Resolution — 2026-10-06, latest
+
+Fixed attribute contract mismatch in scheduled runner:
+1. `supabase/scripts/scheduled_scanner_runner.py`: corrected attribute access from `outcome.pipeline.errors` to canonical `outcome.pipeline.provider_errors` (`tuple[tuple[str, str], ...]`), mapping to `[{"ticker": t, "code": c} for t, c in outcome.pipeline.provider_errors]`.
+2. `supabase/scripts/scheduled_scanner_runner.py`: supported pre-market window (00:00 - 08:59 WIB) in `get_current_target_session` so running before market open automatically targets the previous closed trading session within its valid publication window.
+3. Unit tests: added `scanner/tests/test_scheduled_scanner_runner.py` with 4 tests verifying `PipelineResult` attribute contract, pre-market window selection, night window selection, and intraday open-market rejection. 267 passed, 5 skipped (Docker native), 0 failures. Ruff clean (0 errors).
+
+## Phase G: Runner Resiliency on Provider Corporate Action Mismatch — 2026-10-05
 
 Fixed runner crash on unreconciled or modified provider corporate actions:
 1. `runner.py:run_once`: wrapped `reconcile_dividends` in a try/except for `ValueError("dividend_provider_event_mismatch")`. Rather than failing the entire runner when Yahoo updates or publishes an unverified corporate action event (e.g. CUAN, INDY, PTRO, TOBA), the ticker gracefully remains un-reconciled (`actions_complete = False`) and is placed on `corporate_action_hold` (SOT Invariant #6), allowing all other valid tickers to be evaluated, scanned, and published to Supabase atomically.
