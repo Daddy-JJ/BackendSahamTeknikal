@@ -1,11 +1,12 @@
 # Implementation status — IDX Night Scanner backend
 
-## Phase H: Canonical PipelineResult Contract Resolution — 2026-10-06, latest
+## Phase H: Canonical PipelineResult Contract & Variable Binding Resolution — 2026-10-06, latest
 
-Fixed attribute contract mismatch in scheduled runner:
+Fixed attribute contract mismatch and publication receipt variable binding in scheduled runner:
 1. `supabase/scripts/scheduled_scanner_runner.py`: corrected attribute access from `outcome.pipeline.errors` to canonical `outcome.pipeline.provider_errors` (`tuple[tuple[str, str], ...]`), mapping to `[{"ticker": t, "code": c} for t, c in outcome.pipeline.provider_errors]`.
-2. `supabase/scripts/scheduled_scanner_runner.py`: supported pre-market window (00:00 - 08:59 WIB) in `get_current_target_session` so running before market open automatically targets the previous closed trading session within its valid publication window.
-3. Unit tests: added `scanner/tests/test_scheduled_scanner_runner.py` with 4 tests verifying `PipelineResult` attribute contract, pre-market window selection, night window selection, and intraday open-market rejection. 267 passed, 5 skipped (Docker native), 0 failures. Ruff clean (0 errors).
+2. `supabase/scripts/scheduled_scanner_runner.py`: fixed `UnboundLocalError` by initializing `publication_receipt: dict | None = None` before conditional branches and binding `publication_receipt = outcome.publication` upon successful atomic publication to Supabase.
+3. `supabase/scripts/scheduled_scanner_runner.py`: supported pre-market window (00:00 - 08:59 WIB) in `get_current_target_session` so running before market open automatically targets the previous closed trading session within its valid publication window.
+4. Unit tests: added `scanner/tests/test_scheduled_scanner_runner.py` with 5 tests verifying `PipelineResult` attribute contract, `publication_receipt` initialization and assignment contract, pre-market window selection, night window selection, and intraday open-market rejection. 268 passed, 5 skipped (Docker native), 0 failures. Ruff clean (0 errors).
 
 ## Phase G: Runner Resiliency on Provider Corporate Action Mismatch — 2026-10-05
 

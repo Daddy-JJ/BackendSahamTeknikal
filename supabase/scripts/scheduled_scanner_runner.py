@@ -136,6 +136,7 @@ def run_scheduled_scanner(
     provider = YFinanceProvider()
 
     # Step 2: Single-fetch execution (Unified snapshot for scan and paper)
+    publication_receipt: dict | None = None
     if execute_publication:
         print("Connecting to Supabase for atomic publication and single-fetch scan...")
         try:
@@ -156,6 +157,7 @@ def run_scheduled_scanner(
                 result = outcome.pipeline.scan
                 prepared = {s.ticker: s for s in outcome.pipeline.prepared_series}
                 production_write = True
+                publication_receipt = outcome.publication
                 mismatches = [
                     s.ticker
                     for s in outcome.pipeline.prepared_series

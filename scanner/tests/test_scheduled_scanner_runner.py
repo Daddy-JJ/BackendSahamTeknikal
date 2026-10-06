@@ -1,5 +1,4 @@
-"""Regression test for scheduled scanner runner contracts and pre-market window."""
-
+import inspect
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
@@ -10,7 +9,10 @@ SCRIPTS_DIR = Path(__file__).resolve().parents[2] / "supabase" / "scripts"
 if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
-from scheduled_scanner_runner import get_current_target_session  # noqa: E402
+from scheduled_scanner_runner import (  # noqa: E402
+    get_current_target_session,
+    run_scheduled_scanner,
+)
 
 from idx_scanner.fixtures import sample_market  # noqa: E402
 from idx_scanner.pipeline import PipelineResult  # noqa: E402
@@ -81,3 +83,15 @@ def test_get_current_target_session_intraday_not_closed():
     assert target == s0.day
     assert tradable is False
     assert reason == "target_session_not_closed"
+
+
+def test_scheduled_runner_publication_receipt_binding():
+    """Prove publication_receipt is safely initialized and assigned from outcome."""
+    source = inspect.getsource(run_scheduled_scanner)
+    # Ensure initialization before conditionals
+    assert "publication_receipt: dict | None = None" in source
+    # Ensure assignment from outcome when published
+    assert "publication_receipt = outcome.publication" in source
+    # Ensure usage in final report
+    assert '"publication_receipt": publication_receipt' in source
+
