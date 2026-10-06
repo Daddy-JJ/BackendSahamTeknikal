@@ -1,14 +1,27 @@
 name: Scheduled Nightly Scanner & Paper Journal
+
 on:
   schedule:
+    # GitHub Actions cron menggunakan UTC.
+    # WIB = UTC+7.
+    #
+    # Primary:
+    # 11:18 UTC = 18:18 WIB
+    #
+    # Recovery:
+    # 12:19 UTC = 19:19 WIB
+    #
+    # 1-5 = Monday-Friday
     - cron: '18 11 * * 1-5'  # 18:18 WIB (11:18 UTC) Primary
     - cron: '19 12 * * 1-5'  # 19:19 WIB (12:19 UTC) Recovery
+
   workflow_dispatch:
     inputs:
       target_date:
         description: 'Explicit closed exchange session YYYY-MM-DD (leave empty for today WIB)'
         required: false
         default: ''
+
       execute_publication:
         description: 'Publish results to live Supabase database'
         type: boolean
@@ -26,12 +39,15 @@ jobs:
   scan-and-simulate:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
+
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Checkout repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           persist-credentials: false
 
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+      - name: Setup Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.12.14'
 
@@ -41,7 +57,10 @@ jobs:
           uv sync --locked --project scanner
 
       - name: Hydrate verified corporate action proofs
-        run: scanner/.venv/bin/python supabase/scripts/hydrate_reviewed_sources.py --archive config/reference/reviewed-action-source-archive-20261003.zip
+        run: |
+          scanner/.venv/bin/python \
+            supabase/scripts/hydrate_reviewed_sources.py \
+            --archive config/reference/reviewed-action-source-archive-20261003.zip
 
       - name: Run scheduled scanner & paper journal simulation
         env:
@@ -49,15 +68,21 @@ jobs:
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           TARGET_ARG: ${{ inputs.target_date }}
           EXECUTE_FLAG: ${{ (github.event_name == 'schedule' || inputs.execute_publication) && '--execute' || '' }}
+
         run: |
           ARGS=""
+
           if [ -n "$TARGET_ARG" ]; then
             ARGS="--target $TARGET_ARG"
           fi
+
           if [ -n "$EXECUTE_FLAG" ]; then
             ARGS="$ARGS $EXECUTE_FLAG"
           fi
-          scanner/.venv/bin/python supabase/scripts/scheduled_scanner_runner.py $ARGS
+
+          scanner/.venv/bin/python \
+            supabase/scripts/scheduled_scanner_runner.py \
+            $ARGS
 
       - name: Retain scanner evidence & paper journal summary
         if: always()
