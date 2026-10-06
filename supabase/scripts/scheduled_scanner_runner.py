@@ -1,6 +1,6 @@
 """Automated nightly scheduled scanner and paper journal runner.
 
-Executed by GitHub Actions on trading nights (20:17 WIB primary / 22:17 WIB recovery)
+Executed by GitHub Actions on trading nights (18:18 WIB primary / 19:19 WIB recovery)
 or manually via workflow_dispatch.
 Includes exchange calendar/holiday guards, corporate action reconciliation,
 pure strategy engine evaluation, automated paper journal simulation,

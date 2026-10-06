@@ -1,8 +1,8 @@
 name: Scheduled Nightly Scanner & Paper Journal
 on:
   schedule:
-    - cron: '17 13 * * 1-5'  # 20:17 WIB (13:17 UTC) Primary
-    - cron: '17 15 * * 1-5'  # 22:17 WIB (15:17 UTC) Recovery
+    - cron: '18 11 * * 1-5'  # 18:18 WIB (11:18 UTC) Primary
+    - cron: '19 12 * * 1-5'  # 19:19 WIB (12:19 UTC) Recovery
   workflow_dispatch:
     inputs:
       target_date:

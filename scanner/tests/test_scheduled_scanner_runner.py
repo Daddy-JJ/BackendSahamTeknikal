@@ -56,12 +56,12 @@ def test_get_current_target_session_pre_market_window():
 
 
 def test_get_current_target_session_night_window():
-    """Prove night execution (e.g. 20:17 WIB) selects today's closed session."""
+    """Prove night execution (e.g. 18:18 WIB) selects today's closed session."""
     series, calendar, universe = sample_market(20)
     s0 = calendar.sessions[0]
 
-    # Time at 20:17 WIB on session 0 day (after s0.closes_at)
-    night_wib = datetime(s0.day.year, s0.day.month, s0.day.day, 20, 17, tzinfo=WIB)
+    # Time at 18:18 WIB on session 0 day (after s0.closes_at)
+    night_wib = datetime(s0.day.year, s0.day.month, s0.day.day, 18, 18, tzinfo=WIB)
     night_utc = night_wib.astimezone(UTC)
 
     target, tradable, reason = get_current_target_session(calendar, night_utc)

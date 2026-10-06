@@ -4,7 +4,7 @@ Scope: backend and scheduler workflows.
 Goal:
 1. Reconcile corporate actions and refine data quality rules for 55 held stocks to expand coverage toward 100/100 and unlock RS_BREAKOUT_V1.
 2. Implement automated Paper Journal engine (forward signal simulation & performance tracking) strictly isolated from actual journal.
-3. Configure scheduled scanner workflows (20:17 WIB primary / 22:17 WIB recovery) with IDX calendar guards.
+3. Configure scheduled scanner workflows (18:18 WIB primary / 19:19 WIB recovery) with IDX calendar guards.
 
 ## Phase A: Data Quality & Corporate Action Reconciliation (COMPLETED & VERIFIED)
 - Step A.1:
@@ -30,7 +30,7 @@ Goal:
 
 ## Phase C: Automated Scheduler in GitHub Actions (COMPLETED & VERIFIED)
 - Step C.1:
-  Action: Add `.github/workflows/scheduled-scanner.yml` with cron schedules `17 13 * * 1-5` (20:17 WIB) and `17 15 * * 1-5` (22:17 WIB recovery).
+  Action: Add `.github/workflows/scheduled-scanner.yml` with cron schedules `18 11 * * 1-5` (18:18 WIB) and `19 12 * * 1-5` (19:19 WIB recovery).
   Proof: Workflow YAML valid, integrates `scheduled_scanner_runner.py` with Asia/Jakarta calendar holiday/weekend guard, market closure guard, paper journal simulation, and idempotent Supabase publication.
 - Step C.2:
   Action: Run validation and smoke tests across all components.
