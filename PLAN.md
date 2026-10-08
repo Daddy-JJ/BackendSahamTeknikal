@@ -1,9 +1,16 @@
 # Close-signal paper and reporting (2026-10-08)
 
+## Production rollout authorization - 2026-10-08
+
+Progress (2026-10-08 18:08 WIB): SQL administrator access is verified via TLS. Legacy scheduled writer is temporarily paused. Fresh encrypted database/roles backup was fully restored into a no-network local target; catalog, actual ledger and owner/Auth linkage match. SQL009 rehearsal passed. A second local encrypted copy is verified; DPAPI recovery requires this Windows profile/machine, and off-site recovery is NOT VERIFIED. SQL008 catalog matches all ten categories exactly, so history008 was reconciled via pinned CLI; dry-run listed only009 and production migration history now contains001-009. Hosted rollback-only smoke passes init/config immutability, CAS/retry/reload, owner/outsider/anon SQL RLS claims, no direct service DML, real frontend parsers and unchanged actual-ledger hashes. No persistent QA trade/account was created. GitHub owner variable is verified. Next: release source to main/Vercel, initialize immutable model and verify fresh released-SHA jobs. Authenticated browser acceptance remains NOT VERIFIED.
+
+Action: user authorized backend migration/production activation, frontend release/full deployment and verification. Inspect remote history and compatible backups first; apply only pending forward migrations, verify RPC/RLS, release frontend before enabling the new scheduled runtime. Existing source candidate is backend e4ed019 / frontend d94f243. Production mutations remain limited to this project and approved model; preserve real actual trades and legacy history.
+Proof: record remote migration history/catalog, integrity fingerprints, source SHA/deployment IDs, activation configuration/time, owner/anonymous access and real scheduler receipts. Report unexecuted checks explicitly. No artificial production trade or test account is needed for smoke.
+
 Source publication authorization (2026-10-08): commit and push to `feat/persistent-paper-reporting-v1`. Production main rollout, remote migrations, activation and deployment remain separate gates. A branch push can start existing CI/preview automation; it does not establish hosted acceptance.
 
 Action: Extend existing engine with immutable close-reference entry, fee-inclusive Rp1m lot sizing, separate Fixed2R/SMA10 experiments, persistent Supabase runtime and signal research checkpoints (not time exits).
-Proof: full Python 324 PASS / 5 native-Docker SKIPPED; Ruff PASS; full SQL/PGlite 93 PASS including upgrade/RLS/retry/ledger and sibling frontend parsers. Frontend unit 28 PASS; browser desktop/mobile scanner 36, journal 40, reporting 12 PASS; lint/typecheck/production build PASS. Local implementation is complete against available checks. Hosted/native Docker acceptance remains NOT VERIFIED; no remote release authorized.
+Proof: full Python 324 PASS / 5 native-Docker SKIPPED; Ruff PASS; full SQL/PGlite 93 PASS including upgrade/RLS/retry/ledger and sibling frontend parsers. Frontend unit 28 PASS; browser desktop/mobile scanner 36, journal 40, reporting 12 PASS; lint/typecheck/production build PASS. Local implementation is complete against available checks. Native Docker follow-up is recorded above; hosted acceptance remains NOT VERIFIED. Production rollout is authorized; verified migration/preflight progress is recorded above.
 
 # Autonomous Scanner, Paper Journal & Data Reconciliation Plan — 2026-10-03
 
