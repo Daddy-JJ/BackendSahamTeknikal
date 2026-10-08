@@ -1,5 +1,17 @@
 # Handoff Pengembangan untuk Codex
 
+## Continuation - persistent paper/reporting v1, 2026-10-08
+
+Approved objective: automatic durable paper journal and frontend/backend reporting. New model `close-signal-risk-v1` is isolated from legacy history; signal-close reference entry on next session, Rp1m fee-inclusive budget, independent Fixed2R/SMA10, research checkpoints never time exits.
+
+Local source changes extend the existing Python paper engine; add persisted recovery/RPC adapter, additive SQL009 state/events/observations/report readers, and frontend reporting/detail routes. Scheduler initializes the model before publication, loads Supabase state, recovers committed signals, and fails the job if paper persistence/validation fails. An outside-universe ticker uses its original verified mapping without altering RS. No production fallback to JSON.
+
+Current tests/evidence and limitations are recorded in IMPLEMENTATION_STATUS.md and repository PLAN.md. Financial tests include the approved E1000/S925 case:126 lots, planned loss993037.50,127 lots rejected. Additional tests cover gap first-hit, immutable initial risk, confirmed SMA close, ambiguity, horizon independence, restart without JSON, held-data recovery, post-publication failure and original mapping recovery. Native Docker tests and authenticated hosted checks must not be inferred from fixture/PGlite proof.
+
+Local verification is complete against available checks: Python 324 PASS / 5 Docker SKIPPED, SQL/PGlite 93 PASS, frontend unit 28 PASS, browser scanner 36 / journal 40 / reporting 12 PASS, lint/typecheck/build PASS. The frontend also reads membership/mode concurrently after verified auth; authenticated hosted speed remains unmeasured.
+
+Next release action: review both repository diffs; commit/push authorization is now granted for source branch `feat/persistent-paper-reporting-v1`; obtain separate authorization for production main rollout/remote mutation; verify applied migration history against the checksum-verified nine-migration manifest and apply only pending forward migrations; verify RPC/RLS remotely; publish frontend after capability exists; then authorize activation and enable the new workflow. The first new live execution initializes activation, so keep it disabled until that rollout gate. Do not backfill old signals as forward, reprice legacy trades, or combine experiment P&L. Do not replace environment files or expose privileged keys.
+
 ## Approved local publication and recovered read-back — 2026-10-03, latest
 
 User approved exactly one local publication of plan838183f9e3fcb5bcfe6c4681be885e87a1410672137d73eeed0f1a3d2ff4ffb0.

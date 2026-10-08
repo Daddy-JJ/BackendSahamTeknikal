@@ -17,6 +17,7 @@ def checked_release(root):
         "202609300006",
         "202610010007",
         "202610040008",
+        "202610080009",
     ]
     if (
         release["project_ref"] != "hcjfxbynqzsaidlwvdfx"

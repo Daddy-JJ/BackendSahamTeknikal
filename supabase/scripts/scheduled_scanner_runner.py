@@ -17,15 +17,18 @@ from collections import Counter
 from datetime import UTC, date, datetime
 from zoneinfo import ZoneInfo
 
+from manual_scanner_smoke import load_manual_context, prepare_series
+from paper_journal_runner import process_paper_session
+from paper_runtime_runner import complete_persisted_paper
+from prepare_dev_setup import ROOT
+
 from idx_scanner.config_io import load_requests
 from idx_scanner.engine import current_source_revision, scan
 from idx_scanner.models import ScanState, canonical_json
+from idx_scanner.paper_persistence import PaperRuntimeStore
 from idx_scanner.persistence import PersistenceError, SupabaseScanStore
 from idx_scanner.providers import ProviderError, YFinanceProvider
 from idx_scanner.runner import run_once
-from manual_scanner_smoke import load_manual_context, prepare_series
-from paper_journal_runner import process_paper_session
-from prepare_dev_setup import ROOT
 
 WIB = ZoneInfo("Asia/Jakarta")
 SCHEDULED_DIR = ROOT / "data" / "scheduled-scanner"
@@ -101,7 +104,8 @@ def run_scheduled_scanner(
 
     universe.require(target_date)
     print(
-        f"Executing scheduled scan for target session: {target_date.isoformat()} (now UTC: {now.isoformat()})"
+        f"Executing scheduled scan for target session: {target_date.isoformat()} "
+        f"(now UTC: {now.isoformat()})"
     )
 
     # Step 1: Preflight publication credentials if requested (Fail-closed)
@@ -135,13 +139,25 @@ def run_scheduled_scanner(
     folder.mkdir(parents=True, exist_ok=True)
     provider = YFinanceProvider()
 
+    paper_summary = None
+
     # Step 2: Single-fetch execution (Unified snapshot for scan and paper)
+    phase = "preflight"
     publication_receipt: dict | None = None
     if execute_publication:
         print("Connecting to Supabase for atomic publication and single-fetch scan...")
         try:
             with SupabaseScanStore(supabase_url, supabase_key) as store:
                 store.require_live_schema()
+                owner = os.environ.get("APP_OWNER_USER_ID")
+                if not owner:
+                    raise PersistenceError("missing_paper_owner")
+                try:
+                    paper_store = PaperRuntimeStore(store, owner)
+                except ValueError:
+                    raise PersistenceError("invalid_paper_owner") from None
+                paper_store.initialize()
+                phase = "publication"
                 evaluated_at = datetime.now(UTC)
                 outcome = run_once(
                     provider,
@@ -168,14 +184,24 @@ def run_scheduled_scanner(
                     for ticker, code in outcome.pipeline.provider_errors
                 ]
                 print(f"Publication complete! Run ID: {outcome.publication.get('run_id')}")
-        except PersistenceError as exc:
-            print(f"Persistence error during publication: {exc.code}", file=sys.stderr)
+                phase = "paper_commit"
+                # Advance existing positions even if this scanner run has zero coverage.
+                _paper_book, paper_summary = complete_persisted_paper(
+                    store, paper_store, prepared, requests, target_date, calendar, proofs,
+                    datetime.now(UTC), provider, publication_receipt["run_id"],
+                )
+        except (PersistenceError, ValueError) as exc:
+            code = exc.code if isinstance(exc, PersistenceError) else "validation_failed"
+            print(f"Failure during {phase}: {code}", file=sys.stderr)
             report = {
                 "checked_at_utc": now.isoformat(),
                 "target": target_date.isoformat(),
                 "status": "failed",
-                "failure": f"publication_error: {exc.code}",
-                "production_write": False,
+                "failure": f"{phase}_error: {code}",
+                "production_write": publication_receipt is not None,
+                "publication_receipt": publication_receipt,
+                "scanner_status": "published" if publication_receipt is not None else "failed",
+                "paper_status": "failed" if phase == "paper_commit" else "not_run",
             }
             SCHEDULED_DIR.mkdir(parents=True, exist_ok=True)
             EVIDENCE_PATH.write_text(
@@ -229,6 +255,8 @@ def run_scheduled_scanner(
             "failure": "zero_usable_coverage",
             "production_write": production_write,
             "publication_receipt": publication_receipt,
+            "paper_status": "complete" if paper_summary is not None else "not_run",
+            "paper_summary": paper_summary,
         }
         SCHEDULED_DIR.mkdir(parents=True, exist_ok=True)
         EVIDENCE_PATH.write_text(
@@ -237,13 +265,12 @@ def run_scheduled_scanner(
         return 1
 
     # Step 4: Run automated Paper Journal simulation on committed snapshot
-    _paper_book, paper_summary = process_paper_session(
-        target_date,
-        prepared,
-        result.signals,
-        calendar,
-        evaluated_at,
-    )
+    if paper_summary is None:
+        # Explicit offline diagnostic path, never a fallback for a live write failure.
+        _paper_book, paper_summary = process_paper_session(
+            target_date, prepared, result.signals, calendar, evaluated_at,
+        )
+        paper_summary["persistence"] = "local_legacy_dry_run"
 
     counts = dict(Counter(i.status for i in result.items))
     report = {
@@ -260,6 +287,11 @@ def run_scheduled_scanner(
         "paper_trades_total": paper_summary.get("trades_count", 0),
         "paper_closed_total": paper_summary.get("closed_count", 0),
         "paper_metrics": paper_summary.get("metrics", {}),
+        "paper_experiment_metrics": paper_summary.get("experiment_metrics", {}),
+        "paper_persistence": paper_summary.get("persistence"),
+        "paper_status": "complete",
+        "paper_runtime_revision": paper_summary.get("runtime_revision"),
+        "paper_provider_errors": paper_summary.get("provider_errors", []),
         "provider_errors": provider_errors,
         "evidence_mismatch_tickers": mismatches,
         "production_write": production_write,
@@ -279,7 +311,9 @@ def run_scheduled_scanner(
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--target", type=date.fromisoformat, help="Explicit target session YYYY-MM-DD")
+    parser.add_argument(
+        "--target", type=date.fromisoformat, help="Explicit target session YYYY-MM-DD"
+    )
     parser.add_argument("--execute", action="store_true", help="Publish to Supabase if configured")
     parser.add_argument("--require-usable", action="store_true", help="Fail if coverage_valid == 0")
     args = parser.parse_args()

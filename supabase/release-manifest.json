@@ -1,5 +1,5 @@
 {
-  "release": "backend-m4-production-candidate-2026-10-01",
+  "release": "backend-paper-reporting-candidate-2026-10-08",
   "project_ref": "hcjfxbynqzsaidlwvdfx",
   "hash_normalization": "UTF-8 with LF newlines; original migration files unchanged",
   "migrations": [
@@ -42,6 +42,11 @@
       "version": "202610040008",
       "file": "202610040008_canonical_analytics_and_paper.sql",
       "sha256_lf": "55ac81dd10d9eabbec1adf9dbd8cb6a493ec0fab8db4286fea95121a67f7963a"
+    },
+    {
+      "version": "202610080009",
+      "file": "202610080009_persistent_paper_reporting.sql",
+      "sha256_lf": "342375ba3a9f85f49eb0fa82aedc22ecfee1c6c0ead4ae5cf70263687c0c5f32"
     }
   ]
 }

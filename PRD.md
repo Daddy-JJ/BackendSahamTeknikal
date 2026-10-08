@@ -1,5 +1,15 @@
 # Product Requirements Document — IDX Night Scanner
 
+## Approved journal/dashboard update ? 2026-10-08
+
+The current paper model is `close-signal-risk-v1`: create a persistent next-session plan as soon as a valid forward signal is published, with fill price fixed at the signal close. Freeze initial SL, configuration and quantity at planning. Risk is capped at Rp1,000,000 including buy 0.15% and estimated SL-sale 0.25% fees, rounded per fill to Rp0.01 HALF_UP; lot sizing rounds down. Fixed 2R and confirmed-close SMA10 are independent experiments. Historical next-open cohorts are preserved separately.
+
+`/analytics` presents Paper, Aktual and Evaluasi Sinyal with summary ? monetary closed-P&L curve ? strategy/method matrix ? source details. Paper defaults to Fixed 2R and offers SMA10 separately. Closed net win rate includes its denominator, expectancy is IDR, drawdown starts from zero IDR, and R uses immutable initial price risk. Actual reporting reads the existing ledger and recorded actual fees. `/journal?tab=paper` shows pending/open/closed/skipped/expired/data hold/ambiguous states and links to `/journal/paper/[id]` audit details.
+
+Journal filters select exit periods for closed cohorts; unresolved positions are separately labelled, without pretending they exited inside that period. Research filters select signal dates. Its four columns are 1R before SL, 2R before SL, net-positive without SL through five sessions, and through ten sessions. Each cell exposes assessed/wins, waiting, ambiguity, held data and reasoned exclusions; zero assessed rates are null. These checkpoints never auto-close a trade. Evaluation continues independently of both paper exit policies and includes valid signals whose paper plan was skipped.
+
+All new views display data time/coverage, loading, empty, backend-not-ready and error states. RPC failure cannot become an empty-success result or fixture data. Only matrix tables use horizontal scrolling on narrow screens. Statistics drill down to their actual contributing trades/signals. Local acceptance uses synthetic fixtures explicitly; hosted authentication, RLS and rollout remain separately verified gates.
+
 Versi: 0.2.0 • 2026-09-28 • Status: initial implementation baseline
 
 ## 1. Masalah dan tujuan

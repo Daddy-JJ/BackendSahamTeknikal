@@ -55,3 +55,9 @@ Persiapan production berstatus **NO-GO**, dengan preflight read-only, daftar
 migrasi, backup/rollback, env dan smoke checklist di
 [PRODUCTION_READINESS](docs/PRODUCTION_READINESS.md). Prompt untuk chat frontend:
 [FRONTEND_DEPLOYMENT_HANDOFF](docs/FRONTEND_DEPLOYMENT_HANDOFF.md).
+
+## Jurnal otomatis v1 - 2026-10-08
+
+Implementasi lokal mencakup paper persisten Supabase, dashboard IDR paper/aktual dan evaluasi sinyal independen. Model baru memakai close sinyal sebagai fill pada sesi berikutnya, batas risiko Rp1 juta termasuk fee, Fixed 2R dan SMA10 terpisah. Evaluasi 5/10 sesi tidak menutup posisi. Lihat [SOT](SOT.md), [kontrak teknis](TECHNICAL_DOC.md) dan [status bukti](IMPLEMENTATION_STATUS.md).
+
+Rollout memerlukan migrasi forward `202610080009_persistent_paper_reporting.sql` sebelum frontend, lalu aktivasi/runner baru. Workflow membutuhkan `APP_OWNER_USER_ID` (owner aktif) dan konfigurasi server Supabase yang ada. JSON lokal hanya diagnostik dry-run legacy. Commit/push source candidate di branch `feat/persistent-paper-reporting-v1` telah diotorisasi pada 2026-10-08. Migrasi remote, aktivasi dan deploy production tetap merupakan tahap terpisah yang belum dilakukan.

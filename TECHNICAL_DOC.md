@@ -1,5 +1,30 @@
 # Dokumentasi Teknis — IDX Night Scanner
 
+## Persistent paper and reporting v1 - approved 2026-10-08
+
+This additive contract supersedes the original next-open paper default only for model `close-signal-risk-v1`. Legacy paper rows retain a null model version and remain available through the legacy reader. Actual ledger mutations, manual fills and CSV contracts are unchanged.
+
+Runtime writers use service-role RPCs and `APP_OWNER_USER_ID`; each write validates an enabled owner and deployment data mode. Readers require the owner JWT. Browser code never receives service credentials.
+
+| RPC | Inputs | Result / purpose |
+| --- | --- | --- |
+| `init_paper_model_v1` | `p_owner_id`, `p_data_mode` | Locks model configuration and activation before first publication; repeated calls retain activation. |
+| `load_paper_runtime_v1` | `p_owner_id`, `p_data_mode` | Owner, mode, model version, activation, revision, complete serialized `book`, `evaluations` and checkpoint. |
+| `commit_paper_session_v1` | owner/mode, expected revision, request ID, session, book, evaluations, optional source run ID | Atomic compare-and-swap of checkpoint, book, trade projection, immutable event prefixes and observations; returns `revision`, `replayed`. Repeated semantic payloads replay even if expected revision/source run metadata changes. A different payload with the same request ID fails. |
+| `read_trade_reporting_v1` | `p_mode` paper/actual, optional inclusive exit dates `p_from`/`p_to`, primary strategy, `p_exit_key` fixed2r/ma10 for paper (null for actual), page; actual exit version and exact snapshot | Canonical IDR summary, strategy attribution, closed-P&L curve, separate state counts, 25-row trade page, SL-first/TP-first sensitivities and their own denominators. |
+| `read_signal_evaluation_v1` | inclusive signal dates, strategy, page | Four-metric matrix and 25-row source observation page. |
+| `read_paper_trade_v1` | `p_trade_id` | Frozen signal/config, planned and filled prices, lot count, initial price risk, fee-inclusive planned loss, fees, result and ordered event history. |
+
+Read envelopes carry `contract_version: 1`, `data_mode`, `model_version`, period/cohort basis, `as_of_session`, `updated_at`, `coverage_status` and pagination. Monetary fields are PostgreSQL numeric / Decimal; frontend only validates and formats. Zero assessed samples produce null rates/expectancy. `paper_model_not_initialized` and missing RPCs are capability failures, not successful empty books. Pending entry fees are estimates; incurred total fees remain zero until a fill exists.
+
+Paper identity includes the signal ID, versioned experiment ID and owner projection. Each strategy runs independent Fixed 2R and SMA10 experiments. The canonical Python book is the existing `paper.py` engine extended with frozen signal-close plans and lot sizing; `paper_runtime.py` performs chronological persisted recovery, and `paper_persistence.py` handles the RPC boundary. Local JSON remains an explicit legacy dry-run diagnostic, never production state or a live-failure fallback.
+
+Recovery reads already-published forward signals after activation and persisted market revisions/mappings. It does not regenerate historical signals. Missing/corporate-action bars hold the original session; recovered bars replay that session before later ones. Active paper/observations outside the current universe are fetched separately using a verified stored mapping, without changing scanner requests or the RS comparison set. First observed open is checked before high/low, including the entry session; reference entry stays at signal close.
+
+Research uses one observation per signal/model shared by both exits. `target_1r` and `target_2r` resolve independently; `net_5` and `net_10` assess theoretical fee-inclusive positive close returns without SL. States are `pending`, `won`, `lost`, `ambiguous`, `data_hold`, `excluded`. Entry session is observation one. Five/ten sessions never trigger trade exits. SMA10 triggers only on confirmed close strictly below SMA10 and fills next open, while the original technical SL remains active.
+
+Rollout order: additive migration `202610080009_persistent_paper_reporting.sql` and RPC capability first; frontend second; enable the updated scheduled workflow/explicit model activation last. First live runner preflight initializes activation before scanner publication. The workflow therefore must not run the new code until activation is authorized. `APP_OWNER_USER_ID` is resolved from GitHub secret or repository variable, alongside existing server-only Supabase configuration. Manifest checks retain the exact nine-migration chain and SHA256 verification. No remote migration, activation or deployment is implied by local tests.
+
 Calendar loader extension2026-10-02: ordered `historical_days` are known trading
 dates preceding all timed `sessions`. They support daily history continuity;
 `get`/execution still require an explicit timed session and do not invent

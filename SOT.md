@@ -1,6 +1,6 @@
 # Source of Truth — IDX Night Scanner
 
-Versi dokumen: 0.2.0 • 2026-09-28 • Bahasa produk: Indonesia
+Versi dokumen: 0.3.0 • 2026-10-08 • Bahasa produk: Indonesia
 
 Dokumen ini menentukan perilaku yang akan dikodekan. Status ACCEPTED hanya untuk keputusan eksplisit pengguna; DEFAULT adalah default rancangan yang boleh diimplementasikan dan harus terlihat dalam konfigurasi. Perubahan default yang memengaruhi hasil trading wajib menaikkan versi, tidak berlaku retroaktif.
 
@@ -17,15 +17,15 @@ Dokumen ini menentukan perilaku yang akan dikodekan. Status ACCEPTED hanya untuk
 | D-07 | Empat setup: MACD + EMA200, Fractal Breakout, Relative Strength Breakout, Trend Pullback Reclaim | ACCEPTED tambahan dua setup; parameter numerik baru DEFAULT |
 | D-08 | Single owner, personal, long-only, daily | DEFAULT |
 | D-09 | Cron primary 20.17 WIB, recovery 22.17 WIB; cek hari bursa | DEFAULT |
-| D-10 | Close-confirmed breakout, next-session open untuk paper | DEFAULT |
+| D-10 | Paper close-signal-risk-v1: entry sesi berikutnya pada harga close sinyal yang dibekukan | ACCEPTED 2026-10-08 |
 | D-11 | Exit modular: fixed RR dapat diubah, atau breakdown MA5/10/20; SL awal tetap | ACCEPTED pilihan exit; default fixed 2R dan detail simulasi DEFAULT |
-| D-12 | Risk budget acuan 1%; paper risk memakai 1R; actual risk pengguna | DEFAULT, angka 1% bersumber video |
+| D-12 | Paper risiko maksimal Rp1.000.000 termasuk fee beli 0,15% dan jual di SL 0,25%; lot 100 saham dibulatkan turun; slippage nol. Actual risk tetap milik ledger pengguna | ACCEPTED 2026-10-08 |
 | D-13 | AI default off; tidak menghitung sinyal/harga/hasil transaksi | DEFAULT |
 | D-14 | MACD swing low: pivot 2-left/2-right, lookback 60 sesi | DEFAULT formalization, tidak dinyatakan numerik dalam video |
 | D-15 | Fractal SL: floor terakhir saat sinyal, tanpa buffer | DEFAULT tambahan; bukan dari script asli |
 | D-16 | Tidak ada filter EMA slope, volume, MACD pada fractal base | DEFAULT, baseline murni |
 
-| D-17 | Default exit fixed 2R; contoh alternatif 1.5R; MA default SMA, periode 10 | DEFAULT; periode 5/10/20 didukung, EMA pilihan eksplisit |
+| D-17 | Model baru mengaktifkan Fixed 2R dan SMA10 sebagai eksperimen terpisah per strategi sejak aktivasi | ACCEPTED 2026-10-08; parameter lain memerlukan eksperimen baru |
 | D-18 | Tidak ada time exit 15 sesi; tidak ada partial TP, auto-breakeven, atau pergantian exit mid-trade pada paper baseline | DEFAULT mengikuti fokus exit terbaru pengguna |
 
 ## 2. Provenance sumber strategi
@@ -202,7 +202,9 @@ SMA_n[t] = rata-rata close dari t-n+1 sampai t. EMA memakai recurrence bagian 6.
 
 ## 9. Entry dan exit paper baseline
 
-Paper forward test MVP adalah evaluasi trade-level dengan unit saham hipotetis dan normalisasi R; tidak menerapkan modal agregat atau lot minimum dan tidak boleh dilabeli portfolio return yang dapat direplikasi.
+Paper model close-signal-risk-v1 adalah evaluasi trade-level dengan quantity lot hipotetis dan batas risiko per trade, tanpa modal agregat. Model lama next-open/unit saham tetap historis dan tidak direprice atau dicampur dengan model baru. Tidak boleh dilabeli portfolio return yang dapat direplikasi.
+
+Harga E=close hari sinyal dibekukan saat pending plan dibuat; fill diasumsikan pada E di sesi entry berikutnya. Dengan S=initial SL dan fee beli/jual 15/25 bps, lots=floor(1000000 / (100*((E-S)+0.0015*E+0.0025*S))). Fee per fill dan net P&L dikuantisasi ke Rp0,01 HALF_UP; sesudah pembulatan, kurangi lot bila planned loss melebihi budget. Quantity=100*lots; lots nol menghasilkan skipped_budget. Simpan initial_price_risk_idr=Q*(E-S) dan planned_stop_loss_idr=Q*(E-S)+fee_buy(Q*E)+fee_sell(Q*S) secara terpisah. Slippage nol. Realized R tetap net P&L / initial price risk, bukan risk termasuk fee.
 
 ### Eligibility dan lifecycle
 
@@ -214,8 +216,8 @@ Plan: pending_entry → open → closed; alternatif skipped/expired/data_hold/am
 - Untuk missing data, tahan di data_hold. Jangan menyimpulkan expired atau terisi dari ketidakadaan bar. Setelah bukti tersedia, evaluasi sesi yang seharusnya; tidak memindahkan entry ke hari recovery.
 - Bila ada bukti saham tidak diperdagangkan pada sesi entry (mis. suspension resmi), plan expired_untradable.
 - Satu open paper trade per ticker per entry strategy version per experiment (exit/config yang dibekukan). Sinyal baru selama open tetap dicatat dengan skip reason. Tidak re-entry pada tanggal trade lama exit; eligibility memakai posisi pada awal sesi.
-- Paper fill pada open provider hanya asumsi EOD; tidak menjamin actual order dapat terisi, terutama batas harga, gap, atau likuiditas.
-- Entry E = next-session open; S = SL snapshot; jika E <= S atau E tidak valid, skip_invalid_entry. Tidak mengganti S untuk memaksakan trade.
+- Paper fill close-sinyal adalah asumsi referensi harga yang dipilih pengguna, tidak menyatakan transaksi broker atau harga open berikutnya. Harga open/OHLC sesi entry hanya dipakai untuk evaluasi exit.
+- Entry E = close sinyal yang dibekukan; S = SL snapshot; jika E <= S atau E tidak valid, skip_invalid_entry. Tidak mengganti S atau E untuk memaksakan trade.
 - Initial price risk R0 = E-S, selalu >0. Exit policy dipilih dan dibekukan sebelum entry: fixed_rr atau ma_close. Default fixed_rr dengan target_r=2. Tidak ada time stop; posisi akhir sampel tetap open.
 - Default chasing/gap cap disabled; tampilkan gap%. Penambahan cap harus berversi, bukan filter tersembunyi.
 
@@ -234,21 +236,21 @@ Tidak mengubah mode otomatis setelah +1R/+2R. Hybrid fixed TP sebagian, aktivasi
 
 ### Evaluasi exit EOD — fixed_rr
 
-T=E+target_r*(E-S). Pada sesi setelah entry, cek open dahulu:
+T=E+target_r*(E-S). Pada setiap sesi mulai sesi entry, cek open dahulu:
 
 1. Open <= S → assumed stop fill pada open (gap loss dapat melebihi -1R).
 2. Open >= T → assumed take-profit fill pada T (konservatif, tanpa positive gap improvement).
 3. Jika open di antara S dan T: low <= S dan high >= T → ambiguous_both_hit; baseline SL-first; simpan juga alternate TP-first.
 4. Hanya low <= S → exit S. Hanya high >= T → exit T. Tidak ada → tetap open.
 
-Pada sesi entry, fill E terjadi di open; evaluasi high/low untuk SL/TP sesudahnya dengan aturan ambigu yang sama. Bar OHLC tidak dapat membuktikan urutan intraday. Data invalid/corporate-action hold menghentikan auto-evaluation ticker itu, bukan menutup posisi paksa.
+Pada sesi entry, fill referensi E tetap close sinyal; evaluasi open yang teramati terlebih dahulu, kemudian high/low untuk SL/TP dengan aturan ambigu yang sama. Bar OHLC tidak dapat membuktikan urutan intraday. Data invalid/corporate-action hold menghentikan auto-evaluation ticker itu, bukan menutup posisi paksa.
 
 ### Evaluasi exit EOD — ma_close
 
 1. Posisi dari sesi sebelumnya: jika open <= initial SL, exit open dengan stop gap reason. Jika ada pending MA exit dari sesi sebelumnya dan open > SL, exit open dengan ma_breakdown reason. Bila keduanya bertemu, satu fill saja (stop gap mengambil reason).
 2. Jika belum keluar: low <= initial SL → simulated exit SL; tidak memerlukan close di bawah MA. Stop tidak pernah dilonggarkan mengikuti MA.
 3. Jika masih open setelah evaluasi stop: close < MA → append pending exit untuk sesi berikutnya; simpan MA value/type/period, close, signal session, publication timestamp, dan versi data.
-4. Entry-day open buy diikuti pemeriksaan stop, lalu close/MA. Tidak membeli dan menjual pada open yang sama berdasarkan close yang belum diketahui.
+4. Entry-day reference-close buy diikuti pemeriksaan open/stop, lalu close/MA. Tidak membeli dan menjual pada open yang sama berdasarkan close yang belum diketahui.
 5. Missing next-session bar → data_hold, bukan fill pada tanggal recovery. Jika ada bukti resmi saham tidak dapat diperdagangkan, pending market exit tetap menunggu sesi pertama yang benar-benar tradable; bedakan dari expiry entry order. Daily bar open adalah asumsi fill, bukan jaminan transaksi saat terkunci batas harga.
 6. MA value pada close t hanya memberi exit t+1. Tidak menggunakan harga MA sebagai fill, tidak mengklaim stop intraday real-time. Jika exit signal baru ditemukan setelah open eksekusi yang semestinya, tandai late/model-only dan keluarkan dari actionable forward cohort; jangan backdate.
 
@@ -284,16 +286,16 @@ Publikasi exit dari data tepat waktu dicatat sebelum open eksekusi; sinyal malam
 - `expectancy_R=mean(realized_R)` seluruh closed trades, termasuk breakeven.
 - `profit_factor=sum(net positive P&L)/abs(sum(net negative P&L))` pada cohort/basis sama.
 - No closed → null, bukan 0% win rate. No loss → PF/payoff undefined/infinite sesuai konteks; tampilkan “belum ada loss”, bukan angka palsu. No wins dengan losses → PF 0.
-- Paper curve = cumulative closed R, drawdown dalam R (absolute drawdown); bukan persentase portfolio atau CAGR.
-- Default payoff/profit factor paper dihitung dari realized R positif/negatif, bukan P&L satu saham yang nominal risikonya berbeda antarticker. Label `basis=R`. Actual default memakai IDR dengan opsi basis R, dan keduanya tidak dicampur.
+- Model paper baru: kurva utama cumulative closed net P&L IDR dan drawdown dari puncak dengan titik awal nol. Kurva R tetap opsional; bukan persentase portfolio, equity marked-to-market, atau CAGR.
+- Model paper baru default expectancy/payoff/profit factor berbasis net IDR untuk quantity hasil sizing. Model legacy unit-risk tetap basis R. Actual memakai IDR dengan opsi R; model dan mode tidak dicampur.
 - Actual equity drawdown memakai EOD marked-to-market plus cash, disesuaikan arus dana. Sebelum capital/cash ledger tersedia, jangan menampilkan portfolio drawdown%; closed-P&L drawdown boleh dengan label tepat.
 - EOD equity tidak merepresentasikan intraday max drawdown. Stale marks diberi flag.
-- Ambiguous baseline dan sensitivity TP-first dilaporkan terpisah dengan jumlah kasusnya. Jangan menyembunyikan atau membuang ambigu tanpa melaporkan denominator.
+- Model baru mengecualikan ambiguous_review dan late/model-only dari statistik utama dengan count dan alasan terlihat. Sensitivitas SL-first dan TP-first dihitung terpisah dengan denominator known+ambiguous yang jelas. Legacy baseline tidak direwrite.
 - Semua statistik menampilkan sample size; confidence/probability kemenangan tidak diproduksi oleh AI.
 
 ### Perbandingan eksperimen
 
-Default hanya empat baseline fixed2R aktif, satu per setup. Exit1.5R/MA5/10/20 tersedia tetapi experiment baru diaktifkan secara eksplisit dengan tanggal mulai. Jangan otomatis mencari kombinasi terbaik lalu menyebutnya terbukti.
+Model close-signal-risk-v1 memiliki delapan eksperimen: empat setup × Fixed2R/SMA10. Aktivasi persisten terjadi sebelum publikasi pertama model ini; hanya sinyal forward published_at >= activated_at yang masuk. Statistik satu exit family per tampilan (default Fixed2R), tanpa penjumlahan kedua eksperimen. Exit lain memerlukan versi/aktivasi baru. Jangan otomatis mencari kombinasi terbaik lalu menyebutnya terbukti.
 
 Bandingkan biaya, periode, data, dan universe yang sama; laporkan closed/open, durasi holding, skip counts, expectancy R net dan drawdown cumulative realized R. Batas satu posisi per experiment berarti exit lebih lama dapat mengubah kesempatan entry berikutnya. Laporkan overlap signal IDs dan perbedaan sampel; perbandingan bukan otomatis paired. Analisis paired tambahan memakai common entry IDs, menampilkan trade yang belum closed di masing-masing mode tanpa membuangnya secara diam-diam.
 
@@ -332,3 +334,7 @@ Parameter baru → versi/experiment baru. Jangan menggabungkan MACD base dan fil
 - Buffer tambahan di luar definisi RS/Pullback, liquidity filters, gap cap, time stop, portfolio risk cap, re-entry, broker order validity memerlukan versi tambahan.
 - Kriteria halal/pajak/kesesuaian investasi tidak diasumsikan oleh sistem.
 - Batas layanan/free tier dapat berubah; diverifikasi ulang saat provisioning, bukan menjadi konstanta bisnis.
+
+## Evaluasi sinyal close-signal-risk-v1 (disetujui 2026-10-08)
+
+Satu observasi per sinyal forward valid sejak aktivasi, tidak digandakan per eksperimen exit; sinyal skipped_budget/position tetap dianalisis. Target 1R/2R memakai jarak harga entry-SL dan first-hit independen sampai target/SL; dual-hit tanpa urutan diketahui adalah ambiguous. Horizon 5/10 adalah checkpoint riset, BUKAN auto-close atau time exit. Sesi entry adalah sesi ke-1. Sukses horizon: tidak ada sentuhan SL sampai N dan close_N*0.9975-entry*1.0015 > 0 secara teoritis per saham. SL tersentuh berarti gagal; data hilang menahan observasi untuk replay, bukan menggeser tanggal. Setiap sel menampilkan dinilai/wins/pending/ambiguous/data_hold/excluded dan alasan. Periode riset berdasarkan signal_session; periode statistik trade closed berdasarkan exit session Asia/Jakarta. SMA10 memicu hanya pada confirmed daily close < SMA10; equality/wick bukan trigger, initial technical SL tetap aktif; eksekusi MA pada next-open.

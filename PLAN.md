@@ -1,3 +1,10 @@
+# Close-signal paper and reporting (2026-10-08)
+
+Source publication authorization (2026-10-08): commit and push to `feat/persistent-paper-reporting-v1`. Production main rollout, remote migrations, activation and deployment remain separate gates. A branch push can start existing CI/preview automation; it does not establish hosted acceptance.
+
+Action: Extend existing engine with immutable close-reference entry, fee-inclusive Rp1m lot sizing, separate Fixed2R/SMA10 experiments, persistent Supabase runtime and signal research checkpoints (not time exits).
+Proof: full Python 324 PASS / 5 native-Docker SKIPPED; Ruff PASS; full SQL/PGlite 93 PASS including upgrade/RLS/retry/ledger and sibling frontend parsers. Frontend unit 28 PASS; browser desktop/mobile scanner 36, journal 40, reporting 12 PASS; lint/typecheck/production build PASS. Local implementation is complete against available checks. Hosted/native Docker acceptance remains NOT VERIFIED; no remote release authorized.
+
 # Autonomous Scanner, Paper Journal & Data Reconciliation Plan — 2026-10-03
 
 Scope: backend and scheduler workflows.

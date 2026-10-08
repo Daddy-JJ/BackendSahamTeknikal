@@ -1,5 +1,29 @@
 # Implementation status — IDX Night Scanner backend
 
+## 2026-10-08 - Persistent paper/reporting: implemented and tested locally
+
+Implemented locally: the existing paper engine now freezes signal-close plans with fee-inclusive floor sizing and separate Fixed 2R/SMA10 experiments. Supabase owns model, checkpoint, book, immutable events and signal research through revision/idempotency RPCs. Recovery replays published signals and stored inputs, including monitored tickers outside the current universe. Additive SQL009 and strict frontend readers support Paper/Actual/Signal Evaluation dashboards, source signal IDs/targets and paper audit details. Legacy history and the actual ledger/manual fills/CSV remain separate and compatible. Five/ten sessions never auto-close; SMA10 requires confirmed close below the average.
+
+Verified locally:
+
+- Python full suite: **324 PASS / 5 native-Docker SKIPPED**. Ruff passes for scanner src/tests and changed runtime scripts.
+- SQL/PGlite full suite: **93 PASS**, including migration upgrade, simulated-role RLS, atomic rollback/retry, ledger precision and direct sibling frontend parser compatibility. Latest release-guard regression: 7 PASS / 2 native-Docker SKIPPED (a subset of the full Python suite).
+- Frontend unit: **28 PASS**. Lint, typecheck and production build: **PASS**.
+- Browser desktop/mobile: **36 scanner + 40 journal + 12 reporting = 88 PASS**, using explicit local HTTP doubles. Initial scanner failures were stale expectations for the old unavailable headings; replacement assertions verify missing reporting RPCs and the existing bounded operational snapshot read. No production fallback or access check was removed.
+- Desktop/mobile dashboard captures inspected; responsive detail lists fit without horizontal scrolling. Matrices retain horizontal scrolling. Final tracked diff/added-source whitespace checks and added-content credential-pattern checks pass; no environment files changed.
+
+Navigation follow-up: after verified authentication, owner membership and deployment-mode reads now run concurrently. A delayed local HTTP regression proves overlap on desktop/mobile, and auth/owner/failure/mutation/export guards pass. The public unauthenticated scanner/analytics probe measured 367-445 ms with sin1::iad1 routing; it does not establish authenticated SQL latency or a Supabase bottleneck. See frontend/docs/PERFORMANCE_AUDIT_20261008.md. No hosted speed improvement, provider change or region change is claimed.
+
+NOT VERIFIED: hosted SQL009/RPC/RLS, authenticated production reporting and latency, current deployed SHA, native Docker restore/concurrency. The five Docker skips remain explicit. The user has now authorized commit/push of the source candidate to `feat/persistent-paper-reporting-v1`. No remote migration, model activation or production deploy was performed; source publication is distinct from hosted acceptance.
+
+Release sequence: separately authorize release actions; verify applied migration history/checksums and apply only pending forward backend migrations/RPCs; verify hosted owner/access behavior; release frontend after capability exists; then authorize activation and enable the updated runtime/workflow. The first new live preflight locks activation. Historical evidence below does not accept this new candidate.
+
+
+## Earlier interim implementation note - 2026-10-08
+
+The earlier IN PROGRESS note is superseded by the completed local evidence above. Hosted release remains unverified.
+
+
 ## Phase H: Canonical PipelineResult Contract & Variable Binding Resolution — 2026-10-06, latest
 
 Fixed attribute contract mismatch and publication receipt variable binding in scheduled runner:

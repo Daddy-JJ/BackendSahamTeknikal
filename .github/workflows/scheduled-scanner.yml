@@ -66,6 +66,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL || vars.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          APP_OWNER_USER_ID: ${{ secrets.APP_OWNER_USER_ID || vars.APP_OWNER_USER_ID }}
           TARGET_ARG: ${{ inputs.target_date }}
           EXECUTE_FLAG: ${{ (github.event_name == 'schedule' || inputs.execute_publication) && '--execute' || '' }}
 

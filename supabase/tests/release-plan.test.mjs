@@ -16,7 +16,7 @@ async function bootstrap(db) {
     create function auth.uid() returns uuid language sql stable as $$ select null::uuid $$;`);
 }
 
-test("complete 001-007 release applies in order, preserves live mode, and planned replay is empty", async () => {
+test("complete 001-009 release applies in order, preserves live mode, and planned replay is empty", async () => {
   const db = new PGlite();
   try {
     await bootstrap(db);
@@ -50,7 +50,7 @@ test("complete 001-007 release applies in order, preserves live mode, and planne
   } finally { await db.close(); }
 });
 
-test("existing 001 upgrades with 002-008; a failed 005 rolls back DDL and can resume", async () => {
+test("existing 001 upgrades with 002-009; a failed 005 rolls back DDL and can resume", async () => {
   const db = new PGlite();
   try {
     await bootstrap(db);
@@ -64,8 +64,7 @@ test("existing 001 upgrades with 002-008; a failed 005 rolls back DDL and can re
     await db.exec("rollback");
     assert.equal((await db.query("select to_regclass('public.actual_trades') t")).rows[0].t, null);
     await db.exec(actual);
-    await db.exec(migrationSql(pending[4]));
-    await db.exec(migrationSql(pending[5]));
+    for (const migration of pending.slice(4)) await db.exec(migrationSql(migration));
     assert.equal((await db.query("select count(*)::int n from public.actual_journal_requests")).rows[0].n, 0);
   } finally { await db.close(); }
 });
