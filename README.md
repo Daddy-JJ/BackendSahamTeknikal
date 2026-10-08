@@ -1,3 +1,15 @@
+# OHLC integrity and reporting coverage follow-up - 2026-10-08
+
+Approved clarification: for the pinned Yahoo Finance baseline with `auto_adjust=False`, known cash-dividend amounts are audit metadata, not a price-quality eligibility gate. Policy `cash_dividend_metadata_nonblocking_v1` records new/mismatched dividends honestly as unreviewed without changing OHLC or crediting cash. Exact reviewed split approvals survive unrelated dividend mismatches. Missing/invalid/stale/gapped price data, unknown action coverage, unresolved splits and unsupported action types remain blocking. Prior signal snapshots and frozen paper configuration/risk remain immutable.
+
+Forward SQL010 adds `scanner_coverage` to paper and signal-evaluation reporting independently of existing journal/observation `coverage_status`; actual reporting returns null scanner coverage. It preserves reader signatures, financial math, owner checks and grants. Deploy the additive migration before the compatible frontend to expose scanner coverage; SQL009-compatible frontend reads explicitly report metadata unavailable until010 exists.
+
+Local evidence: Python343 PASS/5 native skips in full run, focused cash-policy19 PASS including paper/research shared gating and initial-risk preservation; sequential native backup/rehearsal12 PASS; SQL/PGlite98 PASS; Ruff PASS. Read-only evaluation of100 persisted8-Oct series yields100 valid with all OHLC unchanged; this is not a new production scan/publication. Production SQL010 applied and verified2026-10-09 WIB after fresh encrypted backup/full isolated restore; catalog matches rehearsal and all actual/paper/publication rows are unchanged. Hosted read-only owner reports pass strict frontend parsers; outsider/anon SQL-role claims are denied. Fresh released-source scan and Vercel deployment are the next gates, recorded in shared release documents. Current source candidates do not change provider, fees, entry/exit rules or actual ledger.
+
+Earlier dated operational history follows; latest root IMPLEMENTATION_STATUS/CODEX_HANDOFF owns the release status.
+
+---
+
 # BackendSahamTeknikal
 
 Latest finalization2026-10-03: owner production read and anonymous denials PASS;

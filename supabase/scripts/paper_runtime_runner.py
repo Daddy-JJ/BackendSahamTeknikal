@@ -1,14 +1,13 @@
 """Production paper processing using committed scanner and market snapshots."""
 from datetime import date, datetime
 
-from manual_scanner_smoke import prepare_series
-
 from idx_scanner.paper import paper_book_from_dict
 from idx_scanner.paper_persistence import PaperRuntimeStore
 from idx_scanner.paper_research import evaluation_active
 from idx_scanner.paper_runtime import process_persisted_paper_session
 from idx_scanner.persistence import PersistenceError
 from idx_scanner.providers import FetchRequest, ProviderError
+from manual_scanner_smoke import prepare_series
 
 
 def complete_persisted_paper(scan_store, paper_store: PaperRuntimeStore, prepared, requests,

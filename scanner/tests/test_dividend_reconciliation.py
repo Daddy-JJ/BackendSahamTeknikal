@@ -51,7 +51,7 @@ def example():
 
 def test_exact_reviewed_dividend_changes_only_approval_and_provenance():
     raw, proof, calendar, target = example()
-    assert quality(raw, target, calendar) == "corporate_action_hold"
+    assert quality(raw, target, calendar) == "valid"
     result = reconcile_dividends(raw, (proof,), calendar, target)
     assert quality(result, target, calendar) == "valid"
     assert result.bars == raw.bars and result.actions == raw.actions
@@ -70,7 +70,10 @@ def test_unreviewed_events_and_splits_are_never_blanket_approved():
     result = reconcile_dividends(raw, (proof,), calendar, target)
     assert digest(extra) not in result.reconciled_actions
     assert quality(result, target, calendar) == "corporate_action_hold"
-    assert reconcile_dividends(raw, (), calendar, target) is raw
+    unreviewed = reconcile_dividends(raw, (), calendar, target)
+    assert not unreviewed.reconciled_actions
+    assert unreviewed.bars == raw.bars
+    assert quality(unreviewed, target, calendar) == "corporate_action_hold"
 
 
 @pytest.mark.parametrize("change", ["value", "duplicate", "basis"])
@@ -82,13 +85,23 @@ def test_wrong_provider_event_or_basis_cannot_reuse_evidence(change):
         raw = replace(raw, actions=raw.actions * 2)
     if change == "basis":
         raw = replace(raw, price_basis="different-adjusted-feed")
-    with pytest.raises(ValueError, match="mismatch"):
-        reconcile_dividends(raw, (proof,), calendar, target)
+    if change == "basis":
+        with pytest.raises(ValueError, match="basis_mismatch"):
+            reconcile_dividends(raw, (proof,), calendar, target)
+    else:
+        result = reconcile_dividends(raw, (proof,), calendar, target)
+        assert quality(result, target, calendar) == "valid"
+        assert proof.action_digest not in result.reconciled_actions
+        assert result.bars == raw.bars
+        assert json.loads(result.provenance[-1])["evidence_mismatches"]
 
 
 def test_other_ticker_and_future_event_do_not_approve_current_input():
     raw, proof, calendar, target = example()
-    assert reconcile_dividends(raw, (replace(proof, ticker="OTHER"),), calendar, target) is raw
+    unrelated = reconcile_dividends(raw, (replace(proof, ticker="OTHER"),), calendar, target)
+    assert not unrelated.reconciled_actions
+    assert unrelated.bars == raw.bars
+    assert unrelated == reconcile_dividends(raw, (), calendar, target)
     assert reconcile_dividends(raw, (proof,), calendar, raw.bars[9].session) is raw
 
 

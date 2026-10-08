@@ -16,7 +16,7 @@ async function bootstrap(db) {
     create function auth.uid() returns uuid language sql stable as $$ select null::uuid $$;`);
 }
 
-test("complete 001-009 release applies in order, preserves live mode, and planned replay is empty", async () => {
+test("complete 001-010 release applies in order, preserves live mode, and planned replay is empty", async () => {
   const db = new PGlite();
   try {
     await bootstrap(db);
@@ -50,7 +50,7 @@ test("complete 001-009 release applies in order, preserves live mode, and planne
   } finally { await db.close(); }
 });
 
-test("existing 001 upgrades with 002-009; a failed 005 rolls back DDL and can resume", async () => {
+test("existing 001 upgrades with 002-010; a failed 005 rolls back DDL and can resume", async () => {
   const db = new PGlite();
   try {
     await bootstrap(db);
@@ -90,4 +90,56 @@ test("changed applied SQL is rejected by the frozen release checksum", () => {
     assert.ok(basename(dir).startsWith("idx-release-check-"));
     rmSync(dir, {recursive:true});
   }
+});
+
+
+test("populated 001-009 upgrades to010 without changing runtime, actual ledger or existing reporting values", async () => {
+  const db = new PGlite();
+  try {
+    await bootstrap(db);
+    const previous=release.migrations.filter(m=>m.version<'202610080010');
+    for(const m of previous) await db.exec(migrationSql(m));
+    await db.exec(`create or replace function auth.uid() returns uuid language sql stable as $$
+      select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$;
+      insert into auth.users values('11111111-1111-4111-8111-111111111111');
+      insert into public.app_members(user_id) values('11111111-1111-4111-8111-111111111111');
+      set role service_role;
+      select public.init_paper_model_v1('11111111-1111-4111-8111-111111111111','live');
+      select public.commit_paper_session_v1('11111111-1111-4111-8111-111111111111','live',0,'upgrade-checkpoint','2026-10-08','{"experiments":{},"trades":{}}','{}');
+      reset role;
+      insert into public.scan_runs(namespace,run_digest,data_mode,session_date,status,coverage_valid,coverage_total,snapshot)
+      values('forward',repeat('a',64),'live','2026-10-08','partial',95,100,'{}');
+      select set_config('request.jwt.claim.sub','11111111-1111-4111-8111-111111111111',false);
+      set role authenticated;`);
+    const apply=async(action,id,payload)=>(await db.query('select public.apply_actual_journal($1,$2,$3::jsonb,$4) r',[action,id,JSON.stringify(payload),crypto.randomUUID()])).rows[0].r;
+    const id=(await apply('create',null,{ticker:'TEST',primary_strategy:'MACD_EMA200_V1',initial_stop:925,exit_policy_snapshot:{version:'fixed2r-v1',mode:'fixed_rr',target_r:2}})).trade_id;
+    await apply('fill',id,{side:'buy',quantity:12600,price_idr:1000,fee_idr:18900,fee_status:'actual',filled_at:'2026-10-08T03:00:00Z',expected_revision:1});
+    await apply('finalize',id,{expected_revision:2});
+    await apply('fill',id,{side:'sell',quantity:12600,price_idr:1150,fee_idr:36225,fee_status:'actual',filled_at:'2026-10-09T03:00:00Z',expected_revision:3});
+    const read=async fn=>(await db.query(`select public.${fn}() r`)).rows[0].r;
+    const actualRead=async()=>(await db.query("select public.read_trade_reporting_v1('actual') r")).rows[0].r;
+    const paperBefore=await read('read_trade_reporting_v1');
+    const evaluationBefore=await read('read_signal_evaluation_v1');
+    const actualBefore=await actualRead();
+    assert.equal(Object.hasOwn(paperBefore,'scanner_coverage'),false);
+    assert.equal(actualBefore.summary.net_pnl_idr,1834875);
+    await db.exec('reset role');
+    const state=async()=>(await db.query(`select jsonb_build_object(
+      'models',(select jsonb_agg(to_jsonb(x)) from public.paper_models x),
+      'requests',(select jsonb_agg(to_jsonb(x)) from public.paper_runtime_requests x),
+      'settings',(select jsonb_agg(to_jsonb(x)) from public.deployment_settings x),
+      'scans',(select jsonb_agg(to_jsonb(x)) from public.scan_runs x),
+      'actual_trades',(select jsonb_agg(to_jsonb(x)) from public.actual_trades x),
+      'actual_fills',(select jsonb_agg(to_jsonb(x)) from public.actual_fills x)) value`)).rows[0].value;
+    const before=await state();
+    const pending=pendingMigrations(release,previous.map(m=>m.version));
+    assert.deepEqual(pending.map(m=>m.version),['202610080010']);
+    await db.exec(migrationSql(pending[0]));
+    assert.deepEqual(await state(),before);
+    await db.exec('set role authenticated');
+    const scanner={status:'partial',session_date:'2026-10-08',coverage_valid:95,coverage_total:100};
+    assert.deepEqual(await read('read_trade_reporting_v1'),{...paperBefore,scanner_coverage:scanner});
+    assert.deepEqual(await read('read_signal_evaluation_v1'),{...evaluationBefore,scanner_coverage:scanner});
+    assert.deepEqual(await actualRead(),{...actualBefore,scanner_coverage:null});
+  } finally { await db.close(); }
 });

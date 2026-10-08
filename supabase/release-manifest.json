@@ -47,6 +47,11 @@
       "version": "202610080009",
       "file": "202610080009_persistent_paper_reporting.sql",
       "sha256_lf": "342375ba3a9f85f49eb0fa82aedc22ecfee1c6c0ead4ae5cf70263687c0c5f32"
+    },
+    {
+      "version": "202610080010",
+      "file": "202610080010_reporting_scanner_coverage.sql",
+      "sha256_lf": "38d144537ab5642763848373258b957df4a4e009bd4b114d97feb2c9c1964a6d"
     }
   ]
 }

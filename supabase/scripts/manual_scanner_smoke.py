@@ -62,8 +62,8 @@ def prepare_series(raw, proofs, calendar, target):
         except ValueError as exc:
             if str(exc) != "dividend_provider_event_mismatch":
                 raise
-            # A changed source event invalidates this ticker's approvals; keep it
-            # held, preserve the new raw receipt, and demand a new source review.
+            # Unresolved price-affecting events remain held; cash-dividend
+            # amount mismatches are audited by reconciliation without this hold.
             result[ticker] = normalized
             mismatches.append(ticker)
     return result, mismatches

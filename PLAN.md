@@ -1,3 +1,32 @@
+## Production SQL010 verified - 2026-10-09 WIB
+
+Action: apply only frozen SQL010 after frontend unit30/browser102/typecheck/lint/build PASS and backend gates PASS.
+Proof: pinned SupabaseCLI dry-run listed only010; remote history now001-010, catalog matches the full populated-backup rehearsal, and all actual/paper/publication rows remained identical. Read-only real owner reporting payloads pass current strict frontend parsers; SQL-role outsider/anon denials and private-helper ACL checks PASS. Existing model/config, eight pending Oct9 plans and actual ledger are preserved. This SQL-role proof is not a real JWT/browser session.
+
+Next: commit/push both tested repos, verify exact Vercel source SHA, run fresh primary/recovery scanner for closed Oct8, and record actual coverage/idempotency/integrity. Shared root release documents retain exact remote receipts after source publication; no persistent QA account or trade was created.
+
+# Active follow-up: OHLC integrity and reporting coverage (2026-10-08)
+
+
+## Final local evidence - 2026-10-08 follow-up
+
+Action: verify approved cash-dividend metadata exemption, unchanged OHLC, held splits/unknown action coverage, paper/research shared gate, frozen risks, and compatible SQL010 readers before publication.
+Proof: full Python suite 343 PASS / 5 native opt-in SKIP; separate explicit native backup/restore/release suites 12 PASS; focused policy tests 19 PASS; Ruff from backend root PASS; SQL/PGlite 98 PASS. Read-only production capture replay: all 100 persisted 2026-10-08 series valid under candidate policy, all OHLC unchanged. This is not a new production scanner result.
+
+Action: prepare reversible metadata migration using current production state, preserving actual ledger, paper model/plans/evaluations and publication history.
+Proof: fresh encrypted database/roles backup and verified second local encrypted copy; full isolated no-network restore and SQL010 rehearsal PASS. All persistent public rows and canonical reporting results preserved except additive scanner coverage; production catalog/readback still pending. Backup recovery currently requires this Windows profile/machine; portable/offsite recovery is not verified.
+
+User clarification: cash-dividend nominal metadata does not alter baseline OHLC; eligibility must protect price integrity rather than require matching cash-dividend amounts.
+
+- Action: Version the nonblocking cash-dividend metadata policy for the approved Yahoo `auto_adjust=False` basis; retain exact source-review facts without approving mismatches, preserve matching split approvals, and keep unresolved splits/unknown actions, missing actions, invalid/stale/missing bars held. Preserve prices, ledger, prior signals and immutable paper configuration.
+  Proof: Regression tests for changed/new dividends, simultaneous reviewed/unreviewed splits, unsupported basis, missing actions, paper and scanner/RS behavior; replay serialization and unchanged OHLC assertions. Pending.
+- Action: Add forward SQL010 scanner coverage metadata independently of journal/observation coverage, without reader arithmetic or authentication changes; release manifest and rehearsal chain remain exact.
+  Proof: SQL upgrade/security/latest-scan tests and populated native restore rehearsal before remote migration. Pending.
+- Action: Release the compatible frontend labels and unbroken monetary amounts after backend capability; verify exact deployed SHAs and hosted metadata while preserving activation, actual ledger and existing plans.
+  Proof: Frontend unit/typecheck/lint/build/browser checks; fresh encrypted backup/restore; remote migration history and contract readback. Pending.
+
+Prior evidence and history follow.
+
 # Close-signal paper and reporting (2026-10-08)
 
 ## Production rollout authorization - 2026-10-08

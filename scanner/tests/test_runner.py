@@ -24,6 +24,7 @@ class FakeStore:
         self.calls = []
         self.fail_ingest = fail_ingest
         self.fail_read = fail_read
+        self.series_by_revision = {}
 
     def load_state(self, **kwargs):
         self.calls.append(("load", kwargs["through_session"]))
@@ -33,12 +34,15 @@ class FakeStore:
         self.calls.append(("ingest", series.ticker))
         if self.fail_ingest:
             raise RuntimeError("test-only-ingest-failure")
-        return {"revision_id": "revision-" + series.ticker, "replayed": False}
+        revision_id = "revision-" + series.ticker
+        self.series_by_revision[revision_id] = series
+        return {"revision_id": revision_id, "replayed": False}
 
     def load_series(self, revision_id, **kwargs):
         self.calls.append(("verify", revision_id))
         if self.fail_read:
             raise RuntimeError("test-only-read-failure")
+        return self.series_by_revision[revision_id]
 
     def publish(self, result, **kwargs):
         self.calls.append(("publish", result.status))
@@ -232,7 +236,7 @@ def test_live_runner_sends_calendar_deadline_to_atomic_publisher():
     assert outcome.publication["run_id"] == "test-run"
 
 
-def test_runner_holds_unreconciled_dividend_mismatch_without_crashing():
+def test_runner_audits_dividend_mismatch_without_holding_valid_ohlcv():
     from datetime import UTC, datetime
     from decimal import Decimal
 
@@ -284,5 +288,7 @@ def test_runner_holds_unreconciled_dividend_mismatch_without_crashing():
         dividend_evidence=(mismatch_proof,),
     )
     first_item = next(i for i in outcome.pipeline.scan.items if i.ticker == first_ticker)
-    assert first_item.status == "corporate_action_hold"
+    assert first_item.status == "evaluated"
+    assert outcome.pipeline.scan.coverage_valid == outcome.pipeline.scan.coverage_total
+    assert outcome.pipeline.scan.ranking.status == "complete"
 

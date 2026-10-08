@@ -5,6 +5,16 @@ from datetime import date, datetime
 
 from .models import Series, digest
 
+CASH_DIVIDEND_POLICY_VERSION = "cash_dividend_metadata_nonblocking_v1"
+
+
+def cash_dividends_are_metadata_only(series: Series) -> bool:
+    """Only the approved non-dividend-adjusted Yahoo basis has this exemption."""
+    return (
+        series.provider == "yfinance"
+        and series.price_basis == "yahoo_provider_ohlcv_auto_adjust_false_v1"
+    )
+
 
 @dataclass(frozen=True)
 class Session:
@@ -126,6 +136,7 @@ def quality(series: Series, target: date, calendar: Calendar) -> str:
         digest(action) not in series.reconciled_actions
         for action in series.actions
         if action.session <= target
+        and not (action.kind == "dividend" and cash_dividends_are_metadata_only(series))
     ):
         return "corporate_action_hold"
     return "valid"

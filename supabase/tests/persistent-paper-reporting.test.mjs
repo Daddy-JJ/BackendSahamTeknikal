@@ -207,3 +207,56 @@ test('missing RR or mismatched frozen target fails closed before any projection'
  assert.equal((await sql('select count(*)::int n from public.paper_trades')).rows[0].n,0);
  assert.equal((await sql('select public.load_paper_runtime_v1($1,$2) r',[owner,'live'])).rows[0].r.revision,0);
 });
+
+
+const missingScannerCoverage={status:'missing',session_date:null,coverage_valid:null,coverage_total:null};
+async function syntheticScan({mode='live',namespace='forward',day='2026-10-08',status='partial',valid=95,total=100,stored='2026-10-08T11:00:00Z',id=crypto.randomUUID()}={}){
+ await role('postgres');
+ await sql(`insert into public.scan_runs(id,namespace,run_digest,data_mode,session_date,status,coverage_valid,coverage_total,snapshot,stored_at)
+ values($1,$2,$3,$4,$5,$6,$7,$8,'{}',$9)`,[id,namespace,id.replaceAll('-','').repeat(2),mode,day,status,valid,total,stored]);
+}
+const evaluationReport=async()=>{await role('authenticated',owner);return(await sql('select public.read_signal_evaluation_v1() r')).rows[0].r;};
+
+test('scanner coverage missing is explicit and actual reporting does not inherit scanner coverage',async()=>{
+ assert.deepEqual((await report()).scanner_coverage,missingScannerCoverage);
+ assert.deepEqual((await evaluationReport()).scanner_coverage,missingScannerCoverage);
+ await syntheticScan();await role('authenticated',owner);
+ const actual=(await sql("select public.read_trade_reporting_v1('actual') r")).rows[0].r;
+ assert.equal(actual.scanner_coverage,null);assert.equal(actual.coverage_status,'complete');
+});
+
+test('95/100 scanner partial stays distinct from complete paper and observation checkpoints',async()=>{
+ await role('service_role');await init();await commit(0,'coverage-checkpoint');
+ await syntheticScan();
+ const expected={status:'partial',session_date:'2026-10-08',coverage_valid:95,coverage_total:100};
+ const paper=await report();const evaluations=await evaluationReport();
+ assert.equal(paper.coverage_status,'complete');assert.equal(evaluations.coverage_status,'complete');
+ assert.deepEqual(paper.scanner_coverage,expected);assert.deepEqual(evaluations.scanner_coverage,expected);
+});
+
+test('scanner metadata uses latest forward session then storage time then deterministic ID and includes failed attempts',async()=>{
+ await syntheticScan({day:'2026-10-07',status:'complete',valid:100,stored:'2026-10-10T00:00:00Z'});
+ await syntheticScan({mode:'fixture',day:'2026-10-10',status:'complete',valid:100});
+ await syntheticScan({namespace:'backtest',day:'2026-10-10',status:'complete',valid:100});
+ await syntheticScan({status:'complete',valid:100,stored:'2026-10-08T10:59:00Z'});
+ await syntheticScan({id:'10000000-0000-4000-8000-000000000000'});
+ await syntheticScan({status:'failed',valid:0,id:'f0000000-0000-4000-8000-000000000000'});
+ assert.deepEqual((await report()).scanner_coverage,{status:'failed',session_date:'2026-10-08',coverage_valid:0,coverage_total:100});
+ assert.equal((await evaluationReport()).scanner_coverage.status,'failed');
+ await role('postgres');await sql("update public.deployment_settings set data_mode='fixture' where singleton");
+ assert.deepEqual((await report()).scanner_coverage,{status:'complete',session_date:'2026-10-10',coverage_valid:100,coverage_total:100});
+});
+
+test('private coverage helper is inaccessible to API roles and owner checks remain on both reporting readers',async()=>{
+ await syntheticScan();
+ for(const name of ['anon','authenticated','service_role']){
+  await role(name,name==='authenticated'?owner:'');
+  await denied(()=>sql("select public.paper_scan_coverage_v1('live')"),'42501');
+  assert.equal((await sql("select has_function_privilege($1,'public.paper_scan_coverage_v1(text)','EXECUTE') allowed",[name])).rows[0].allowed,false);
+ }
+ await role('authenticated',outsider);
+ await denied(()=>sql('select public.read_trade_reporting_v1()'),'42501');
+ await denied(()=>sql('select public.read_signal_evaluation_v1()'),'42501');
+ await role('anon');await denied(()=>sql('select public.read_trade_reporting_v1()'),'42501');
+ await denied(()=>sql('select public.read_signal_evaluation_v1()'),'42501');
+});

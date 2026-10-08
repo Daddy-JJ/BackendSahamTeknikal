@@ -9,7 +9,11 @@ from decimal import Decimal
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from .context import Calendar
+from .context import (
+    CASH_DIVIDEND_POLICY_VERSION,
+    Calendar,
+    cash_dividends_are_metadata_only,
+)
 from .models import CorporateAction, Series, canonical_json, digest
 
 RECONCILIATION_VERSION = "reviewed_cash_dividends_no_adjust_v1"
@@ -124,7 +128,7 @@ def load_dividend_evidence(path: Path, root: Path) -> tuple[DividendEvidence, ..
 def reconcile_dividends(
     series: Series, proofs: tuple[DividendEvidence, ...], calendar: Calendar, target: date
 ) -> Series:
-    approvals = []
+    approvals, dividend_mismatches = [], []
     open_days = sorted(calendar.historical_days + tuple(s.day for s in calendar.sessions))
     for proof in proofs:
         if proof.ticker != series.ticker or proof.session > target:
@@ -143,33 +147,59 @@ def reconcile_dividends(
             a for a in series.actions if a.session == proof.session and a.kind == proof.kind
         ]
         if len(matching) != 1 or digest(matching[0]) != proof.action_digest:
+            if proof.kind == "dividend" and cash_dividends_are_metadata_only(series):
+                # A metadata mismatch is not a price-basis mismatch. Do not approve
+                # the changed event, and continue reviewing independent split facts.
+                dividend_mismatches.append({
+                    "reviewed_action_digest": proof.action_digest,
+                    "observed_action_digests": sorted(digest(a) for a in matching),
+                })
+                continue
             raise ValueError("dividend_provider_event_mismatch")
         if proof.action_digest not in series.reconciled_actions:
             approvals.append(proof)
-    if not approvals:
-        return series
     approvals.sort(key=lambda p: (p.ticker, p.session, p.kind))
-    reason = (
-        "cash_dividend_date_value_verified_unadjusted_baseline_retained"
-        if all(p.kind == "dividend" for p in approvals)
-        else "corporate_action_date_value_verified_unadjusted_baseline_retained"
+    reconciled = tuple(
+        sorted(set(series.reconciled_actions) | {p.action_digest for p in approvals})
     )
-    return replace(
-        series,
-        reconciled_actions=tuple(
-            sorted(set(series.reconciled_actions) | {p.action_digest for p in approvals})
-        ),
-        provenance=series.provenance
-        + (
-            canonical_json(
-                {
-                    "kind": RECONCILIATION_VERSION,
-                    "source_input_digest": series.input_digest,
-                    "evidence": approvals,
-                    "price_changes": False,
-                    "ledger_changes": False,
-                    "reason": reason,
-                }
+    provenance = series.provenance
+    if approvals:
+        reason = (
+            "cash_dividend_date_value_verified_unadjusted_baseline_retained"
+            if all(p.kind == "dividend" for p in approvals)
+            else "corporate_action_date_value_verified_unadjusted_baseline_retained"
+        )
+        provenance += (canonical_json({
+            "kind": RECONCILIATION_VERSION,
+            "source_input_digest": series.input_digest,
+            "evidence": approvals,
+            "price_changes": False,
+            "ledger_changes": False,
+            "reason": reason,
+        }),)
+    dividends = sorted(
+        (a for a in series.actions if a.kind == "dividend" and a.session <= target),
+        key=lambda a: (a.session, digest(a)),
+    )
+    if cash_dividends_are_metadata_only(series) and (dividends or dividend_mismatches):
+        # Recorded separately from factual source approval. This does not credit
+        # dividends, adjust candles or claim unreviewed provider values are correct.
+        record = canonical_json({
+            "kind": CASH_DIVIDEND_POLICY_VERSION,
+            "price_basis": series.price_basis,
+            "events": [{
+                "action_digest": digest(a),
+                "review_status": "verified" if digest(a) in reconciled else "unreviewed",
+            } for a in dividends],
+            "evidence_mismatches": sorted(
+                dividend_mismatches, key=lambda m: m["reviewed_action_digest"]
             ),
-        ),
-    )
+            "price_changes": False,
+            "ledger_changes": False,
+            "reason": "cash_dividend_metadata_does_not_gate_unadjusted_ohlcv",
+        })
+        if record not in provenance:
+            provenance += (record,)
+    if not approvals and provenance == series.provenance:
+        return series
+    return replace(series, reconciled_actions=reconciled, provenance=provenance)

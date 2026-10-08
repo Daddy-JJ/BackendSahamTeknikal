@@ -63,8 +63,8 @@ def run_once(
         except ValueError as exc:
             if str(exc) != "dividend_provider_event_mismatch":
                 raise
-            # SOT Invariant #6: A changed source event invalidates this ticker's approvals;
-            # keep it held under corporate_action_hold without crashing the entire run.
+            # Unresolved price-affecting evidence (e.g. split) remains held.
+            # Cash-dividend amount mismatches are audited inside reconciliation.
         if value.input_digest != series.input_digest:
             receipt = store.ingest_series(value, namespace=namespace, data_mode=universe.data_mode)
             value = store.load_series(
