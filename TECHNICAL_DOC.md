@@ -1,3 +1,10 @@
+## Remediation release verified - 2026-10-10
+
+Action: completed the authorized release after the backup/restore gate; applied the additive backend migration before the compatible frontend and verified the released runtime's recovery and retry behavior.
+Proof: local checks recorded below passed. Production deployment, public HTTP/asset checks, hosted reporting contract validation, SQL-role access-denial checks and recovery idempotency were verified. Detailed operator receipts and financial reconciliation are intentionally retained locally and are not published in this repository.
+
+Limits: authenticated owner-browser interaction, real outsider JWT and subsequent-session operational stability remain unverified. Continue monitoring scheduled sessions. Trading rules, historical configuration and the actual ledger remain preserved. Earlier local/historical evidence follows.
+
 ## Incident remediation contract - approved 2026-10-10, local implementation
 
 SQL011 is a forward migration over001-010. Backend schema/RPC must be released before frontend/runtime consumers. Production application and recovery remain pending separate release authorization.

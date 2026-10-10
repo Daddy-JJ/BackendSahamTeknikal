@@ -1,9 +1,9 @@
-## Authorized production release in progress - 2026-10-10 WIB
+## Remediation release verified - 2026-10-10
 
-Action: user authorized commit/push and deployment of the locally verified G01-G17 remediation. Recheck both main branches, pause scanner during a fresh encrypted capture, fully restore/rehearse SQL011, apply backend capability first, commit/push both repos, verify exact-SHA Vercel Production, resume and recover the committed Oct8 paper cohort through Oct9 without publishing historical signals.
-Proof: GitHub fetch shows both main branches match origin. Read-only production preflight confirms SQL001-010, live mode/valid owner, no duplicate economics, checkpoint Oct8/revision1, eight pending plans/four evaluations/zero events. Scanner workflow paused with no active job. All prior local checks are retained below; backup/migration/deployment/recovery are not yet claimed complete.
+Action: completed the authorized release after the backup/restore gate; applied the additive backend migration before the compatible frontend and verified the released runtime's recovery and retry behavior.
+Proof: local checks recorded below passed. Production deployment, public HTTP/asset checks, hosted reporting contract validation, SQL-role access-denial checks and recovery idempotency were verified. Detailed operator receipts and financial reconciliation are intentionally retained locally and are not published in this repository.
 
-Release receipts: backend/data/production-release-evidence/sql011-release-20261010 (private ignored diagnostics); durable shared handoff: docs/REMEDIATION_RELEASE_20261010.md. No trading rule, provider, activation or actual ledger change is authorized by this rollout. Earlier local/historical evidence follows.
+Limits: authenticated owner-browser interaction, real outsider JWT and subsequent-session operational stability remain unverified. Continue monitoring scheduled sessions. Trading rules, historical configuration and the actual ledger remain preserved. Earlier local/historical evidence follows.
 
 ## Incident repair - implemented and verified locally (2026-10-10)
 

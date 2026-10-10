@@ -1,0 +1,13 @@
+{
+  "release": "journal-entry-remediation-20261010",
+  "verification_scope": "status only; private operator receipts and financial records are excluded",
+  "migration": "202610100011",
+  "deployment_verified": true,
+  "public_http_asset_smoke_passed": true,
+  "hosted_contract_validation_passed": true,
+  "sql_role_access_denials_verified": true,
+  "recovery_retry_idempotency_verified": true,
+  "owner_browser_verified": false,
+  "real_outsider_jwt_verified": false,
+  "subsequent_session_stability_verified": false
+}
