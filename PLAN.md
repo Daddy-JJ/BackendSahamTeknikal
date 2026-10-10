@@ -1,3 +1,31 @@
+## Authorized production release in progress - 2026-10-10 WIB
+
+Action: user authorized commit/push and deployment of the locally verified G01-G17 remediation. Recheck both main branches, pause scanner during a fresh encrypted capture, fully restore/rehearse SQL011, apply backend capability first, commit/push both repos, verify exact-SHA Vercel Production, resume and recover the committed Oct8 paper cohort through Oct9 without publishing historical signals.
+Proof: GitHub fetch shows both main branches match origin. Read-only production preflight confirms SQL001-010, live mode/valid owner, no duplicate economics, checkpoint Oct8/revision1, eight pending plans/four evaluations/zero events. Scanner workflow paused with no active job. All prior local checks are retained below; backup/migration/deployment/recovery are not yet claimed complete.
+
+Release receipts: backend/data/production-release-evidence/sql011-release-20261010 (private ignored diagnostics); durable shared handoff: docs/REMEDIATION_RELEASE_20261010.md. No trading rule, provider, activation or actual ledger change is authorized by this rollout. Earlier local/historical evidence follows.
+
+## Incident remediation - locally verified, release pending (2026-10-10 WIB)
+
+Status: IMPLEMENTED AND VERIFIED LOCALLY. G01-G17 fixes cover independent persisted paper recovery, verified-calendar cadence, job/checkpoint health, exact-risk/evaluation integrity and canonical journal/reporting. Production/history remains unchanged in this remediation; commit/push/migration/deployment/recovery await separate release authorization.
+
+Action: implement the approved incident plan while preserving signal-close entry, initial risks, both exit experiments, actual ledger/CSV and old book/config. Proof: Python377 PASS/5 native opt-in SKIPPED; Ruff PASS; SQL/PGlite116 PASS, with final SQL01118/release-plan5/persistent-reporting21 subsets PASS after the additive health timestamp update; native PostgreSQL integrity/CAS/RLS probe PASS (six checks). Frontend unit36 PASS; reporting36 and journal69 browser cases PASS across full runs plus corrected-case reruns; production-built scanner66 cases PASS across the full65 passing cases and the affected-case rerun; typecheck/lint/build/diff checks PASS.
+
+Next action: after release authorization, fresh encrypted backup/restore rehearsal, SQL011 capability first, compatible frontend, runtime/workflow, then committed-cohort paper-only Oct9 recovery and live reconciliation. Authenticated production browser, real outsider JWT, current production restore and multi-session stability remain unverified. The native backup/restore subset was PARTIAL due Docker startup/cleanup timeouts; the separate no-network integrity probe passed with test-only bounded startup allowances. Do not infer current production recovery from the local eight-entry/seven-open/one-closed replay. Gap mapping, exact evidence limits, prior failed attempts and release order: [handoff](../docs/REMEDIATION_RELEASE_20261010.md).
+
+# Active audit and remediation plan - entry incident 2026-10-09
+
+Status: REVIEW / RETEST; application source and production data unchanged. User requests root-cause analysis, journal/analytics retest and comprehensive repair planning, not implementation/deployment in this turn. Full evidence, gap register and cross-repo sequencing: [shared audit](../docs/AUDIT_JOURNAL_ENTRY_20261009.md).
+
+- Action: reproduce signal Oct8 / entry Oct9 using persisted production book read-only and fresh verified source; trace scheduler and checkpoint. Proof: live snapshot21:31WIB has8pending/checkpointOct8; local-only replay21:37WIB with3valid tickers gives8entries/7open/1closed, without production writes.
+- Action: plan independent existing-book recovery, latest-closed-session selection across weekend/holiday, explicit operational health and bounded provider retries. Proof required: chronological restart/replay, publication failure vs paper success/failure, delayed Friday cron onSaturday, holiday and unknown-calendar cases, no duplicate economic events and visible overdue status.
+- Action: plan forward economic uniqueness/evaluation guards, confirmed-untradable input, reporting exclusion/sensitivity eligibility and missing IDR payoff/PF/experiment comparisons. Proof required: adversarial local probes rejected atomically, populated migration rehearsal preserving actual/legacy, native concurrency when available; backend schema/RPC before compatible frontend/runtime rollout.
+- Action: retest existing domain/SQL contracts without mutating production. Proof: full Python343PASS/5opt-in nativeSKIP; focused89/scheduler9 are subsets, SQL/PGlite98PASS, live owner-role reporting accepted by four actual frontend parsers. Full limitations/test results in shared audit.
+
+Recovery commit, migration, push and deploy remain future release steps. Preserve original plan/history/config; never reissue historical signals as forward. Earlier plans below are historical.
+
+---
+
 ## Production SQL010 verified - 2026-10-09 WIB
 
 Action: apply only frozen SQL010 after frontend unit30/browser102/typecheck/lint/build PASS and backend gates PASS.

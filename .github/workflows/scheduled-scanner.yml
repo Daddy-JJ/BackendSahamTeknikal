@@ -14,11 +14,15 @@ on:
     # 1-5 = Monday-Friday
     - cron: '18 11 * * 1-5'  # 18:18 WIB (11:18 UTC) Primary
     - cron: '19 12 * * 1-5'  # 19:19 WIB (12:19 UTC) Recovery
+    # Bounded extra slots; verified calendar chooses the latest closed session.
+    # Weekend/holiday execution may recover Friday without assuming a new session.
+    - cron: '23 15 * * *'    # 22:23 WIB late recovery
+    - cron: '31 23 * * *'    # 06:31 WIB before the next exchange open
 
   workflow_dispatch:
     inputs:
       target_date:
-        description: 'Explicit closed exchange session YYYY-MM-DD (leave empty for today WIB)'
+        description: 'Explicit closed exchange session YYYY-MM-DD (empty = latest verified closed session)'
         required: false
         default: ''
 
@@ -26,6 +30,11 @@ on:
         description: 'Publish results to live Supabase database'
         type: boolean
         default: true
+
+      paper_only:
+        description: 'Recover stored paper/signals only; never publish new signals'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -69,6 +78,8 @@ jobs:
           APP_OWNER_USER_ID: ${{ secrets.APP_OWNER_USER_ID || vars.APP_OWNER_USER_ID }}
           TARGET_ARG: ${{ inputs.target_date }}
           EXECUTE_FLAG: ${{ (github.event_name == 'schedule' || inputs.execute_publication) && '--execute' || '' }}
+          PAPER_ONLY: ${{ inputs.paper_only }}
+          SCANNER_SCHEDULE: ${{ github.event.schedule }}
 
         run: |
           ARGS=""
@@ -79,6 +90,10 @@ jobs:
 
           if [ -n "$EXECUTE_FLAG" ]; then
             ARGS="$ARGS $EXECUTE_FLAG"
+          fi
+
+          if [ "$PAPER_ONLY" = "true" ]; then
+            ARGS="$ARGS --paper-only"
           fi
 
           scanner/.venv/bin/python \

@@ -10,6 +10,7 @@ const second='33333333-3333-4333-8333-333333333333';
 const sql=(q,a=[])=>db.query(q,a);
 const role=async(name,uid='')=>{await db.exec('set local role '+name);await sql("select set_config('request.jwt.claim.sub',$1,true)",[uid]);};
 const denied=async(fn,code)=>{await db.exec('savepoint expected_failure');await assert.rejects(fn,e=>{assert.equal(e.code,code);return true;});await db.exec('rollback to savepoint expected_failure');};
+const observations=(...days)=>days.map(day=>({session:day,digest:'c'.repeat(64),observed_at:day+'T10:00:00Z'}));
 const init=()=>sql("select public.init_paper_model_v1($1,'live') r",[owner]).then(x=>x.rows[0].r);
 const commit=(revision,request,book={experiments:{},trades:{}},evaluations={},day='2026-10-08')=>sql("select public.commit_paper_session_v1($1,'live',$2,$3,$4,$5::jsonb,$6::jsonb) r",[owner,revision,request,day,JSON.stringify(book),JSON.stringify(evaluations)]).then(x=>x.rows[0].r);
 before(async()=>{
@@ -63,7 +64,7 @@ async function syntheticTrade(model,{key='a',exit='fixed_rr',state='pending_entr
  const events=done?[{session:day,kind:'entry',price:'1000',reason:'assumed_signal_close',observed_at:model.activated_at,input_digest:'c'.repeat(64)},
   {session:day,kind:'exit',price:String(exitPrice),reason:alternate===null?'take_profit':'ambiguous_sl_first',observed_at:model.activated_at,input_digest:'c'.repeat(64),alternate_price:alternate===null?null:String(alternate)}]:[];
  const alt=alternate===null?null:12600*(alternate-1000)-18900-Math.round(12600*alternate*0.0025*100)/100;
- return {id,signal:snapshot,experiment,state,reason:done?'exit':state,entry:done?'1000':null,stop:String(technicalStop),target:exit==='fixed_rr'?String(1000+2*(1000-technicalStop)):null,
+ return {id,sizing_policy_version:'exact_risk_fees_v2',signal:snapshot,experiment,state,reason:done?'exit':state,entry:done?'1000':null,stop:String(technicalStop),target:exit==='fixed_rr'?String(1000+2*(1000-technicalStop)):null,
   initial_risk:'945000',pending_exit:null,last_session:done?day:null,events,net_pnl:net===null?null:String(net),realized_r:net===null?null:String(net/945000),
   alternate_r:alt===null?null:String(alt/945000),actionable:alternate===null,planned_entry_price:'1000',quantity:12600,lots:126,
   planned_stop_loss_idr:'993037.50',entry_fee_idr:'18900.00',exit_fee_idr:fee===null?null:String(fee),alternate_net_pnl:alt===null?null:String(alt)};
@@ -114,9 +115,9 @@ test('plans and event prefix are immutable and commit rollback leaves no project
 });
 test('research denominators distinguish pending, ambiguous, hold and excluded without changing trades',async()=>{
  await role('service_role');const m=await init();const t=await syntheticTrade(m);
- const e={signal_id:t.signal.id,ticker:t.signal.ticker,strategy:t.experiment.strategy,signal_session:'2026-10-08',entry_session:'2026-10-09',entry_price:'1000',initial_stop:'925',target_1r:'1075',target_2r:'1150',observed_sessions:5,
-  results:{target_1r:'won',target_2r:'ambiguous',net_5:'lost',net_10:'data_hold'},exclusion_reasons:{},signal:t.signal,input_digests:[],provider_symbol:'TEST.JK',model_version:'close-signal-risk-v1',data_mode:'live'};
- await commit(0,'research',bookOf(t),{[t.signal.id]:e});await role('authenticated',owner);
+ const e={signal_id:t.signal.id,ticker:t.signal.ticker,strategy:t.experiment.strategy,signal_session:'2026-10-08',entry_session:'2026-10-09',entry_price:'1000',initial_stop:'925',target_1r:'1075',target_2r:'1150',observed_sessions:5,last_session:'2026-10-15',
+  results:{target_1r:'won',target_2r:'ambiguous',net_5:'lost',net_10:'data_hold'},exclusion_reasons:{},signal:t.signal,input_digests:observations('2026-10-09','2026-10-12','2026-10-13','2026-10-14','2026-10-15'),provider_symbol:'TEST.JK',model_version:'close-signal-risk-v1',data_mode:'live'};
+ await commit(0,'research',bookOf(t),{[t.signal.id]:e},'2026-10-15');await role('authenticated',owner);
  const r=(await sql('select public.read_signal_evaluation_v1() r')).rows[0].r;
  const c=r.strategies[0].cells;assert.equal(c.target_1r.assessed,1);assert.equal(c.target_1r.win_rate,1);assert.equal(c.target_2r.assessed,0);assert.equal(c.target_2r.ambiguous,1);
  assert.equal(c.net_5.win_rate,0);assert.equal(c.net_10.data_hold,1);assert.equal(c.net_10.win_rate,null);assert.equal(r.coverage_status,'partial');
@@ -141,12 +142,12 @@ test('same semantic request retries with refreshed revision and changed run meta
 test('research resolved outcomes, observation chronology and input digest prefix cannot be rewritten',async()=>{
  await role('service_role');const m=await init();const t=await syntheticTrade(m);const e={signal_id:t.signal.id,ticker:t.signal.ticker,strategy:t.experiment.strategy,
   signal_session:'2026-10-08',entry_session:'2026-10-09',entry_price:'1000',initial_stop:'925',target_1r:'1075',target_2r:'1150',observed_sessions:1,last_session:'2026-10-09',
-  results:{target_1r:'won',target_2r:'pending',net_5:'pending',net_10:'pending'},exclusion_reasons:{},input_digests:['first-bar-digest']};
+  results:{target_1r:'won',target_2r:'pending',net_5:'pending',net_10:'pending'},exclusion_reasons:{},input_digests:observations('2026-10-09')};
  await commit(0,'research-start',bookOf(t),{[t.signal.id]:e},'2026-10-09');
- for(const change of [x=>x.results.target_1r='lost',x=>x.input_digests[0]='changed',x=>x.observed_sessions=0,x=>x.last_session='2026-10-08']){
+ for(const change of [x=>x.results.target_1r='lost',x=>x.input_digests[0].digest='changed',x=>x.observed_sessions=0,x=>x.last_session='2026-10-08']){
   const bad=structuredClone(e);change(bad);await denied(()=>commit(1,'bad-'+crypto.randomUUID(),bookOf(t),{[t.signal.id]:bad},'2026-10-09'),'22023');
  }
- const progressed=structuredClone(e);progressed.observed_sessions=2;progressed.last_session='2026-10-12';progressed.input_digests.push('second-bar-digest');progressed.results.target_2r='data_hold';
+ const progressed=structuredClone(e);progressed.observed_sessions=2;progressed.last_session='2026-10-12';progressed.input_digests.push(...observations('2026-10-12'));progressed.results.target_2r='data_hold';
  await commit(1,'research-progress',bookOf(t),{[t.signal.id]:progressed},'2026-10-12');await role('authenticated',owner);
  const r=(await sql('select public.read_signal_evaluation_v1() r')).rows[0].r;assert.equal(r.evaluations[0].entry_price,1000);assert.equal(r.evaluations[0].observed_sessions,2);
 });
@@ -188,7 +189,7 @@ test('local sibling frontend parsers accept canonical SQL reporting, research an
  const {parseTradeReporting,parseSignalEvaluation,parsePaperTradeDetail}=await import('../../../frontend/src/lib/trade-reporting.ts');
  const f={from:null,to:null,strategy:null,exitVersion:null,exitSnapshot:null,exitSnapshotKey:null,exitKey:'fixed2r',page:1};
  await role('service_role');const m=await init();const t=await syntheticTrade(m,{state:'closed'});
- const e={signal_id:t.signal.id,ticker:t.signal.ticker,strategy:t.experiment.strategy,signal_session:'2026-10-08',entry_session:'2026-10-09',entry_price:'1000',initial_stop:'925',target_1r:'1075',target_2r:'1150',observed_sessions:1,last_session:'2026-10-09',results:{target_1r:'won',target_2r:'won',net_5:'pending',net_10:'pending'},exclusion_reasons:{},input_digests:[]};
+ const e={signal_id:t.signal.id,ticker:t.signal.ticker,strategy:t.experiment.strategy,signal_session:'2026-10-08',entry_session:'2026-10-09',entry_price:'1000',initial_stop:'925',target_1r:'1075',target_2r:'1150',observed_sessions:1,last_session:'2026-10-09',results:{target_1r:'won',target_2r:'won',net_5:'pending',net_10:'pending'},exclusion_reasons:{},input_digests:observations('2026-10-09')};
  await commit(0,'cross-repo',bookOf(t),{[t.signal.id]:e},'2026-10-09');const paper=await report();
  assert.ok(parseTradeReporting(paper,'live','paper',f),'paper SQL response parses');
  const actual=(await sql('select public.read_trade_reporting_v1($1,null,null,null,null) r',['actual'])).rows[0].r;

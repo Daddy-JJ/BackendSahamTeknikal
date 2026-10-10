@@ -1,5 +1,5 @@
 {
-  "release": "backend-paper-reporting-candidate-2026-10-08",
+  "release": "backend-paper-integrity-candidate-2026-10-10",
   "project_ref": "hcjfxbynqzsaidlwvdfx",
   "hash_normalization": "UTF-8 with LF newlines; original migration files unchanged",
   "migrations": [
@@ -52,6 +52,11 @@
       "version": "202610080010",
       "file": "202610080010_reporting_scanner_coverage.sql",
       "sha256_lf": "38d144537ab5642763848373258b957df4a4e009bd4b114d97feb2c9c1964a6d"
+    },
+    {
+      "version": "202610100011",
+      "file": "202610100011_paper_integrity_and_processing_health.sql",
+      "sha256_lf": "7928f1d54e9361158c8fc22af26af2c444413b82b5fc4b77ef8aece69c1c907a"
     }
   ]
 }

@@ -16,7 +16,7 @@ async function bootstrap(db) {
     create function auth.uid() returns uuid language sql stable as $$ select null::uuid $$;`);
 }
 
-test("complete 001-010 release applies in order, preserves live mode, and planned replay is empty", async () => {
+test("complete 001-011 release applies in order, preserves live mode, and planned replay is empty", async () => {
   const db = new PGlite();
   try {
     await bootstrap(db);
@@ -50,7 +50,7 @@ test("complete 001-010 release applies in order, preserves live mode, and planne
   } finally { await db.close(); }
 });
 
-test("existing 001 upgrades with 002-010; a failed 005 rolls back DDL and can resume", async () => {
+test("existing 001 upgrades with 002-011; a failed 005 rolls back DDL and can resume", async () => {
   const db = new PGlite();
   try {
     await bootstrap(db);
@@ -133,7 +133,7 @@ test("populated 001-009 upgrades to010 without changing runtime, actual ledger o
       'actual_fills',(select jsonb_agg(to_jsonb(x)) from public.actual_fills x)) value`)).rows[0].value;
     const before=await state();
     const pending=pendingMigrations(release,previous.map(m=>m.version));
-    assert.deepEqual(pending.map(m=>m.version),['202610080010']);
+    assert.deepEqual(pending.map(m=>m.version),['202610080010','202610100011']);
     await db.exec(migrationSql(pending[0]));
     assert.deepEqual(await state(),before);
     await db.exec('set role authenticated');

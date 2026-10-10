@@ -1,0 +1,1486 @@
+{
+  "provenance": {
+    "fixture": true,
+    "source": "Python paper_book_to_dict and deterministic engine tests G05/G15",
+    "not_live_market_evidence": true
+  },
+  "cases": {
+    "suspended_entry": {
+      "signal": {
+        "calendar_version": "unspecified",
+        "candidate": {
+          "available_session": null,
+          "fractal_id": null,
+          "level": 100,
+          "pivot_date": null,
+          "reason": "eligible",
+          "reference_close": 100,
+          "rules": [
+            {
+              "name": "close_above_level",
+              "passed": true
+            }
+          ],
+          "stop": 90,
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "triggered": true
+        },
+        "cohort": "forward",
+        "config_hash": "config",
+        "data_mode": "fixture",
+        "engine_version": "0.1.0",
+        "features": [],
+        "id": "s1",
+        "input_digest": "input",
+        "planned_entry_session": "2024-01-16",
+        "price_basis": "test",
+        "provider": "fixture",
+        "provider_version": "unspecified",
+        "published_at": "2024-01-15T09:00:00+00:00",
+        "session": "2024-01-15",
+        "source_revision": "local-uncommitted",
+        "ticker": "TEST",
+        "universe_version": "universe"
+      },
+      "activated_at": "2024-01-02T02:00:00+00:00",
+      "session": "2024-01-16",
+      "calendar": {
+        "closed_days": [],
+        "data_mode": "fixture",
+        "historical_days": [],
+        "sessions": [
+          {
+            "closes_at": "2024-01-02T09:00:00+00:00",
+            "day": "2024-01-02",
+            "opens_at": "2024-01-02T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-03T09:00:00+00:00",
+            "day": "2024-01-03",
+            "opens_at": "2024-01-03T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-04T09:00:00+00:00",
+            "day": "2024-01-04",
+            "opens_at": "2024-01-04T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-05T09:00:00+00:00",
+            "day": "2024-01-05",
+            "opens_at": "2024-01-05T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-08T09:00:00+00:00",
+            "day": "2024-01-08",
+            "opens_at": "2024-01-08T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-09T09:00:00+00:00",
+            "day": "2024-01-09",
+            "opens_at": "2024-01-09T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-10T09:00:00+00:00",
+            "day": "2024-01-10",
+            "opens_at": "2024-01-10T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-11T09:00:00+00:00",
+            "day": "2024-01-11",
+            "opens_at": "2024-01-11T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-12T09:00:00+00:00",
+            "day": "2024-01-12",
+            "opens_at": "2024-01-12T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-15T09:00:00+00:00",
+            "day": "2024-01-15",
+            "opens_at": "2024-01-15T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-16T09:00:00+00:00",
+            "day": "2024-01-16",
+            "opens_at": "2024-01-16T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-17T09:00:00+00:00",
+            "day": "2024-01-17",
+            "opens_at": "2024-01-17T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-18T09:00:00+00:00",
+            "day": "2024-01-18",
+            "opens_at": "2024-01-18T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-19T09:00:00+00:00",
+            "day": "2024-01-19",
+            "opens_at": "2024-01-19T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-22T09:00:00+00:00",
+            "day": "2024-01-22",
+            "opens_at": "2024-01-22T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-23T09:00:00+00:00",
+            "day": "2024-01-23",
+            "opens_at": "2024-01-23T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-24T09:00:00+00:00",
+            "day": "2024-01-24",
+            "opens_at": "2024-01-24T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-25T09:00:00+00:00",
+            "day": "2024-01-25",
+            "opens_at": "2024-01-25T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-26T09:00:00+00:00",
+            "day": "2024-01-26",
+            "opens_at": "2024-01-26T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-29T09:00:00+00:00",
+            "day": "2024-01-29",
+            "opens_at": "2024-01-29T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-30T09:00:00+00:00",
+            "day": "2024-01-30",
+            "opens_at": "2024-01-30T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-31T09:00:00+00:00",
+            "day": "2024-01-31",
+            "opens_at": "2024-01-31T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-01T09:00:00+00:00",
+            "day": "2024-02-01",
+            "opens_at": "2024-02-01T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-02T09:00:00+00:00",
+            "day": "2024-02-02",
+            "opens_at": "2024-02-02T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-05T09:00:00+00:00",
+            "day": "2024-02-05",
+            "opens_at": "2024-02-05T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-06T09:00:00+00:00",
+            "day": "2024-02-06",
+            "opens_at": "2024-02-06T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-07T09:00:00+00:00",
+            "day": "2024-02-07",
+            "opens_at": "2024-02-07T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-08T09:00:00+00:00",
+            "day": "2024-02-08",
+            "opens_at": "2024-02-08T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-09T09:00:00+00:00",
+            "day": "2024-02-09",
+            "opens_at": "2024-02-09T02:00:00+00:00"
+          }
+        ],
+        "source": "synthetic://fixture-calendar",
+        "version": "SYNTHETIC-WEEKDAYS-v1"
+      },
+      "book": {
+        "experiments": {
+          "close-signal-risk-v1-fixed2r-FRACTAL_BREAKOUT_V1": "f3e0743c451d3f052275c27091dcd2e682ac5a1bcc8768b35a048118eec0f1e4",
+          "close-signal-risk-v1-ma10-FRACTAL_BREAKOUT_V1": "30392e0cf317c84290fdd7bcf5f4586256c7c236dd629ddad07f90db47479387"
+        },
+        "trades": {
+          "11588ea7fe640e792ab309a02fa5021a61fe0ebe1a41c30a7373137685501baa": {
+            "id": "11588ea7fe640e792ab309a02fa5021a61fe0ebe1a41c30a7373137685501baa",
+            "signal": {
+              "calendar_version": "unspecified",
+              "candidate": {
+                "available_session": null,
+                "fractal_id": null,
+                "level": 100,
+                "pivot_date": null,
+                "reason": "eligible",
+                "reference_close": 100,
+                "rules": [
+                  {
+                    "name": "close_above_level",
+                    "passed": true
+                  }
+                ],
+                "stop": 90,
+                "strategy": "FRACTAL_BREAKOUT_V1",
+                "triggered": true
+              },
+              "cohort": "forward",
+              "config_hash": "config",
+              "data_mode": "fixture",
+              "engine_version": "0.1.0",
+              "features": [],
+              "id": "s1",
+              "input_digest": "input",
+              "planned_entry_session": "2024-01-16",
+              "price_basis": "test",
+              "provider": "fixture",
+              "provider_version": "unspecified",
+              "published_at": "2024-01-15T09:00:00+00:00",
+              "session": "2024-01-15",
+              "source_revision": "local-uncommitted",
+              "ticker": "TEST",
+              "universe_version": "universe"
+            },
+            "experiment": {
+              "id": "close-signal-risk-v1-fixed2r-FRACTAL_BREAKOUT_V1",
+              "strategy": "FRACTAL_BREAKOUT_V1",
+              "exit": {
+                "mode": "fixed_rr",
+                "target_r": "2",
+                "ma_type": null,
+                "period": null,
+                "version": "v1"
+              },
+              "costs": {
+                "buy_bps": "15",
+                "sell_bps": "25",
+                "slippage_bps": "0",
+                "status": "verified"
+              },
+              "activated_at": "2024-01-02T02:00:00+00:00",
+              "entry_model": "signal_close",
+              "risk_budget_idr": "1000000",
+              "lot_size": 100,
+              "model_version": "close-signal-risk-v1"
+            },
+            "state": "expired",
+            "reason": "expired_untradable",
+            "entry": null,
+            "stop": "90",
+            "target": "120",
+            "initial_risk": "963000",
+            "pending_exit": null,
+            "last_session": "2024-01-16",
+            "events": [
+              {
+                "session": "2024-01-16",
+                "kind": "entry_expired",
+                "price": null,
+                "reason": "expired_untradable",
+                "observed_at": "2024-01-16T09:00:00+00:00",
+                "input_digest": "6222c021df26bba9945237813b916de08ae089692d8b17d4c7de772766eb3f07",
+                "alternate_price": null,
+                "ma_value": null,
+                "ma_type": null,
+                "ma_period": null,
+                "untradable_evidence": {
+                  "version": "verified_untradable_v1",
+                  "ticker": "TEST",
+                  "session": "2024-01-16",
+                  "data_mode": "fixture",
+                  "source_url": "synthetic://reviewed-suspension",
+                  "document_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                  "verified_at": "2024-01-16T09:00:00+00:00",
+                  "reason": "official_whole_session_suspension",
+                  "digest": "6222c021df26bba9945237813b916de08ae089692d8b17d4c7de772766eb3f07"
+                }
+              }
+            ],
+            "net_pnl": null,
+            "realized_r": null,
+            "alternate_r": null,
+            "actionable": true,
+            "planned_entry_price": "100",
+            "quantity": 96300,
+            "lots": 963,
+            "planned_stop_loss_idr": "999112.50",
+            "entry_fee_idr": "14445.00",
+            "exit_fee_idr": null,
+            "alternate_net_pnl": null,
+            "sizing_policy_version": "exact_risk_fees_v2"
+          },
+          "2d2e5c2624d8a4d222eba618404dbb12f281f1623db3b471635d66c7ecce505c": {
+            "id": "2d2e5c2624d8a4d222eba618404dbb12f281f1623db3b471635d66c7ecce505c",
+            "signal": {
+              "calendar_version": "unspecified",
+              "candidate": {
+                "available_session": null,
+                "fractal_id": null,
+                "level": 100,
+                "pivot_date": null,
+                "reason": "eligible",
+                "reference_close": 100,
+                "rules": [
+                  {
+                    "name": "close_above_level",
+                    "passed": true
+                  }
+                ],
+                "stop": 90,
+                "strategy": "FRACTAL_BREAKOUT_V1",
+                "triggered": true
+              },
+              "cohort": "forward",
+              "config_hash": "config",
+              "data_mode": "fixture",
+              "engine_version": "0.1.0",
+              "features": [],
+              "id": "s1",
+              "input_digest": "input",
+              "planned_entry_session": "2024-01-16",
+              "price_basis": "test",
+              "provider": "fixture",
+              "provider_version": "unspecified",
+              "published_at": "2024-01-15T09:00:00+00:00",
+              "session": "2024-01-15",
+              "source_revision": "local-uncommitted",
+              "ticker": "TEST",
+              "universe_version": "universe"
+            },
+            "experiment": {
+              "id": "close-signal-risk-v1-ma10-FRACTAL_BREAKOUT_V1",
+              "strategy": "FRACTAL_BREAKOUT_V1",
+              "exit": {
+                "mode": "ma_close",
+                "target_r": null,
+                "ma_type": "SMA",
+                "period": 10,
+                "version": "v1"
+              },
+              "costs": {
+                "buy_bps": "15",
+                "sell_bps": "25",
+                "slippage_bps": "0",
+                "status": "verified"
+              },
+              "activated_at": "2024-01-02T02:00:00+00:00",
+              "entry_model": "signal_close",
+              "risk_budget_idr": "1000000",
+              "lot_size": 100,
+              "model_version": "close-signal-risk-v1"
+            },
+            "state": "expired",
+            "reason": "expired_untradable",
+            "entry": null,
+            "stop": "90",
+            "target": null,
+            "initial_risk": "963000",
+            "pending_exit": null,
+            "last_session": "2024-01-16",
+            "events": [
+              {
+                "session": "2024-01-16",
+                "kind": "entry_expired",
+                "price": null,
+                "reason": "expired_untradable",
+                "observed_at": "2024-01-16T09:00:00+00:00",
+                "input_digest": "6222c021df26bba9945237813b916de08ae089692d8b17d4c7de772766eb3f07",
+                "alternate_price": null,
+                "ma_value": null,
+                "ma_type": null,
+                "ma_period": null,
+                "untradable_evidence": {
+                  "version": "verified_untradable_v1",
+                  "ticker": "TEST",
+                  "session": "2024-01-16",
+                  "data_mode": "fixture",
+                  "source_url": "synthetic://reviewed-suspension",
+                  "document_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                  "verified_at": "2024-01-16T09:00:00+00:00",
+                  "reason": "official_whole_session_suspension",
+                  "digest": "6222c021df26bba9945237813b916de08ae089692d8b17d4c7de772766eb3f07"
+                }
+              }
+            ],
+            "net_pnl": null,
+            "realized_r": null,
+            "alternate_r": null,
+            "actionable": true,
+            "planned_entry_price": "100",
+            "quantity": 96300,
+            "lots": 963,
+            "planned_stop_loss_idr": "999112.50",
+            "entry_fee_idr": "14445.00",
+            "exit_fee_idr": null,
+            "alternate_net_pnl": null,
+            "sizing_policy_version": "exact_risk_fees_v2"
+          }
+        }
+      },
+      "evaluations": {
+        "s1": {
+          "signal_id": "s1",
+          "ticker": "TEST",
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "signal_session": "2024-01-15",
+          "entry_session": "2024-01-16",
+          "entry_price": "100",
+          "initial_stop": "90",
+          "target_1r": "110",
+          "target_2r": "120",
+          "observed_sessions": 0,
+          "last_session": null,
+          "results": {
+            "target_1r": "excluded",
+            "target_2r": "excluded",
+            "net_5": "excluded",
+            "net_10": "excluded"
+          },
+          "exclusion_reasons": {
+            "target_1r": "official_untradable_entry",
+            "target_2r": "official_untradable_entry",
+            "net_5": "official_untradable_entry",
+            "net_10": "official_untradable_entry"
+          },
+          "signal": {
+            "calendar_version": "unspecified",
+            "candidate": {
+              "available_session": null,
+              "fractal_id": null,
+              "level": 100,
+              "pivot_date": null,
+              "reason": "eligible",
+              "reference_close": 100,
+              "rules": [
+                {
+                  "name": "close_above_level",
+                  "passed": true
+                }
+              ],
+              "stop": 90,
+              "strategy": "FRACTAL_BREAKOUT_V1",
+              "triggered": true
+            },
+            "cohort": "forward",
+            "config_hash": "config",
+            "data_mode": "fixture",
+            "engine_version": "0.1.0",
+            "features": [],
+            "id": "s1",
+            "input_digest": "input",
+            "planned_entry_session": "2024-01-16",
+            "price_basis": "test",
+            "provider": "fixture",
+            "provider_version": "unspecified",
+            "published_at": "2024-01-15T09:00:00+00:00",
+            "session": "2024-01-15",
+            "source_revision": "local-uncommitted",
+            "ticker": "TEST",
+            "universe_version": "universe"
+          },
+          "input_digests": [],
+          "provider_symbol": "TEST.JK",
+          "data_mode": "fixture",
+          "model_version": "close-signal-risk-v1",
+          "untradable_evidence": [
+            {
+              "version": "verified_untradable_v1",
+              "ticker": "TEST",
+              "session": "2024-01-16",
+              "data_mode": "fixture",
+              "source_url": "synthetic://reviewed-suspension",
+              "document_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "verified_at": "2024-01-16T09:00:00+00:00",
+              "reason": "official_whole_session_suspension",
+              "digest": "6222c021df26bba9945237813b916de08ae089692d8b17d4c7de772766eb3f07",
+              "observed_at": "2024-01-16T09:00:00+00:00"
+            }
+          ]
+        }
+      }
+    },
+    "pending_ma_then_suspension_resume": {
+      "signal": {
+        "calendar_version": "unspecified",
+        "candidate": {
+          "available_session": null,
+          "fractal_id": null,
+          "level": 100,
+          "pivot_date": null,
+          "reason": "eligible",
+          "reference_close": 100,
+          "rules": [
+            {
+              "name": "close_above_level",
+              "passed": true
+            }
+          ],
+          "stop": 90,
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "triggered": true
+        },
+        "cohort": "forward",
+        "config_hash": "config",
+        "data_mode": "fixture",
+        "engine_version": "0.1.0",
+        "features": [],
+        "id": "s1",
+        "input_digest": "input",
+        "planned_entry_session": "2024-01-16",
+        "price_basis": "test",
+        "provider": "fixture",
+        "provider_version": "unspecified",
+        "published_at": "2024-01-15T09:00:00+00:00",
+        "session": "2024-01-15",
+        "source_revision": "local-uncommitted",
+        "ticker": "TEST",
+        "universe_version": "universe"
+      },
+      "activated_at": "2024-01-02T02:00:00+00:00",
+      "session": "2024-01-18",
+      "calendar": {
+        "closed_days": [],
+        "data_mode": "fixture",
+        "historical_days": [],
+        "sessions": [
+          {
+            "closes_at": "2024-01-02T09:00:00+00:00",
+            "day": "2024-01-02",
+            "opens_at": "2024-01-02T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-03T09:00:00+00:00",
+            "day": "2024-01-03",
+            "opens_at": "2024-01-03T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-04T09:00:00+00:00",
+            "day": "2024-01-04",
+            "opens_at": "2024-01-04T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-05T09:00:00+00:00",
+            "day": "2024-01-05",
+            "opens_at": "2024-01-05T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-08T09:00:00+00:00",
+            "day": "2024-01-08",
+            "opens_at": "2024-01-08T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-09T09:00:00+00:00",
+            "day": "2024-01-09",
+            "opens_at": "2024-01-09T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-10T09:00:00+00:00",
+            "day": "2024-01-10",
+            "opens_at": "2024-01-10T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-11T09:00:00+00:00",
+            "day": "2024-01-11",
+            "opens_at": "2024-01-11T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-12T09:00:00+00:00",
+            "day": "2024-01-12",
+            "opens_at": "2024-01-12T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-15T09:00:00+00:00",
+            "day": "2024-01-15",
+            "opens_at": "2024-01-15T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-16T09:00:00+00:00",
+            "day": "2024-01-16",
+            "opens_at": "2024-01-16T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-17T09:00:00+00:00",
+            "day": "2024-01-17",
+            "opens_at": "2024-01-17T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-18T09:00:00+00:00",
+            "day": "2024-01-18",
+            "opens_at": "2024-01-18T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-19T09:00:00+00:00",
+            "day": "2024-01-19",
+            "opens_at": "2024-01-19T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-22T09:00:00+00:00",
+            "day": "2024-01-22",
+            "opens_at": "2024-01-22T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-23T09:00:00+00:00",
+            "day": "2024-01-23",
+            "opens_at": "2024-01-23T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-24T09:00:00+00:00",
+            "day": "2024-01-24",
+            "opens_at": "2024-01-24T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-25T09:00:00+00:00",
+            "day": "2024-01-25",
+            "opens_at": "2024-01-25T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-26T09:00:00+00:00",
+            "day": "2024-01-26",
+            "opens_at": "2024-01-26T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-29T09:00:00+00:00",
+            "day": "2024-01-29",
+            "opens_at": "2024-01-29T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-30T09:00:00+00:00",
+            "day": "2024-01-30",
+            "opens_at": "2024-01-30T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-31T09:00:00+00:00",
+            "day": "2024-01-31",
+            "opens_at": "2024-01-31T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-01T09:00:00+00:00",
+            "day": "2024-02-01",
+            "opens_at": "2024-02-01T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-02T09:00:00+00:00",
+            "day": "2024-02-02",
+            "opens_at": "2024-02-02T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-05T09:00:00+00:00",
+            "day": "2024-02-05",
+            "opens_at": "2024-02-05T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-06T09:00:00+00:00",
+            "day": "2024-02-06",
+            "opens_at": "2024-02-06T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-07T09:00:00+00:00",
+            "day": "2024-02-07",
+            "opens_at": "2024-02-07T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-08T09:00:00+00:00",
+            "day": "2024-02-08",
+            "opens_at": "2024-02-08T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-09T09:00:00+00:00",
+            "day": "2024-02-09",
+            "opens_at": "2024-02-09T02:00:00+00:00"
+          }
+        ],
+        "source": "synthetic://fixture-calendar",
+        "version": "SYNTHETIC-WEEKDAYS-v1"
+      },
+      "book": {
+        "experiments": {
+          "close-signal-risk-v1-fixed2r-FRACTAL_BREAKOUT_V1": "f3e0743c451d3f052275c27091dcd2e682ac5a1bcc8768b35a048118eec0f1e4",
+          "close-signal-risk-v1-ma10-FRACTAL_BREAKOUT_V1": "30392e0cf317c84290fdd7bcf5f4586256c7c236dd629ddad07f90db47479387"
+        },
+        "trades": {
+          "11588ea7fe640e792ab309a02fa5021a61fe0ebe1a41c30a7373137685501baa": {
+            "id": "11588ea7fe640e792ab309a02fa5021a61fe0ebe1a41c30a7373137685501baa",
+            "signal": {
+              "calendar_version": "unspecified",
+              "candidate": {
+                "available_session": null,
+                "fractal_id": null,
+                "level": 100,
+                "pivot_date": null,
+                "reason": "eligible",
+                "reference_close": 100,
+                "rules": [
+                  {
+                    "name": "close_above_level",
+                    "passed": true
+                  }
+                ],
+                "stop": 90,
+                "strategy": "FRACTAL_BREAKOUT_V1",
+                "triggered": true
+              },
+              "cohort": "forward",
+              "config_hash": "config",
+              "data_mode": "fixture",
+              "engine_version": "0.1.0",
+              "features": [],
+              "id": "s1",
+              "input_digest": "input",
+              "planned_entry_session": "2024-01-16",
+              "price_basis": "test",
+              "provider": "fixture",
+              "provider_version": "unspecified",
+              "published_at": "2024-01-15T09:00:00+00:00",
+              "session": "2024-01-15",
+              "source_revision": "local-uncommitted",
+              "ticker": "TEST",
+              "universe_version": "universe"
+            },
+            "experiment": {
+              "id": "close-signal-risk-v1-fixed2r-FRACTAL_BREAKOUT_V1",
+              "strategy": "FRACTAL_BREAKOUT_V1",
+              "exit": {
+                "mode": "fixed_rr",
+                "target_r": "2",
+                "ma_type": null,
+                "period": null,
+                "version": "v1"
+              },
+              "costs": {
+                "buy_bps": "15",
+                "sell_bps": "25",
+                "slippage_bps": "0",
+                "status": "verified"
+              },
+              "activated_at": "2024-01-02T02:00:00+00:00",
+              "entry_model": "signal_close",
+              "risk_budget_idr": "1000000",
+              "lot_size": 100,
+              "model_version": "close-signal-risk-v1"
+            },
+            "state": "open",
+            "reason": "",
+            "entry": "100",
+            "stop": "90",
+            "target": "120",
+            "initial_risk": "963000",
+            "pending_exit": null,
+            "last_session": "2024-01-18",
+            "events": [
+              {
+                "session": "2024-01-16",
+                "kind": "entry",
+                "price": "100",
+                "reason": "assumed_signal_close",
+                "observed_at": "2024-01-18T09:00:00+00:00",
+                "input_digest": "2794f00f3a8738afa17cecf884b2550fdac4434aba7357f6512a214684739e5c",
+                "alternate_price": null,
+                "ma_value": null,
+                "ma_type": null,
+                "ma_period": null
+              },
+              {
+                "session": "2024-01-17",
+                "kind": "untradable",
+                "price": null,
+                "reason": "awaiting_tradable_session",
+                "observed_at": "2024-01-18T09:00:00+00:00",
+                "input_digest": "cde44e3f0a25ae0af4e2b2446f2dbe386e3a42d984818c0c0ef835c1aab3a26b",
+                "alternate_price": null,
+                "ma_value": null,
+                "ma_type": null,
+                "ma_period": null,
+                "untradable_evidence": {
+                  "version": "verified_untradable_v1",
+                  "ticker": "TEST",
+                  "session": "2024-01-17",
+                  "data_mode": "fixture",
+                  "source_url": "synthetic://reviewed-suspension",
+                  "document_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                  "verified_at": "2024-01-17T09:00:00+00:00",
+                  "reason": "official_whole_session_suspension",
+                  "digest": "cde44e3f0a25ae0af4e2b2446f2dbe386e3a42d984818c0c0ef835c1aab3a26b"
+                }
+              }
+            ],
+            "net_pnl": null,
+            "realized_r": null,
+            "alternate_r": null,
+            "actionable": true,
+            "planned_entry_price": "100",
+            "quantity": 96300,
+            "lots": 963,
+            "planned_stop_loss_idr": "999112.50",
+            "entry_fee_idr": "14445.00",
+            "exit_fee_idr": null,
+            "alternate_net_pnl": null,
+            "sizing_policy_version": "exact_risk_fees_v2"
+          },
+          "2d2e5c2624d8a4d222eba618404dbb12f281f1623db3b471635d66c7ecce505c": {
+            "id": "2d2e5c2624d8a4d222eba618404dbb12f281f1623db3b471635d66c7ecce505c",
+            "signal": {
+              "calendar_version": "unspecified",
+              "candidate": {
+                "available_session": null,
+                "fractal_id": null,
+                "level": 100,
+                "pivot_date": null,
+                "reason": "eligible",
+                "reference_close": 100,
+                "rules": [
+                  {
+                    "name": "close_above_level",
+                    "passed": true
+                  }
+                ],
+                "stop": 90,
+                "strategy": "FRACTAL_BREAKOUT_V1",
+                "triggered": true
+              },
+              "cohort": "forward",
+              "config_hash": "config",
+              "data_mode": "fixture",
+              "engine_version": "0.1.0",
+              "features": [],
+              "id": "s1",
+              "input_digest": "input",
+              "planned_entry_session": "2024-01-16",
+              "price_basis": "test",
+              "provider": "fixture",
+              "provider_version": "unspecified",
+              "published_at": "2024-01-15T09:00:00+00:00",
+              "session": "2024-01-15",
+              "source_revision": "local-uncommitted",
+              "ticker": "TEST",
+              "universe_version": "universe"
+            },
+            "experiment": {
+              "id": "close-signal-risk-v1-ma10-FRACTAL_BREAKOUT_V1",
+              "strategy": "FRACTAL_BREAKOUT_V1",
+              "exit": {
+                "mode": "ma_close",
+                "target_r": null,
+                "ma_type": "SMA",
+                "period": 10,
+                "version": "v1"
+              },
+              "costs": {
+                "buy_bps": "15",
+                "sell_bps": "25",
+                "slippage_bps": "0",
+                "status": "verified"
+              },
+              "activated_at": "2024-01-02T02:00:00+00:00",
+              "entry_model": "signal_close",
+              "risk_budget_idr": "1000000",
+              "lot_size": 100,
+              "model_version": "close-signal-risk-v1"
+            },
+            "state": "closed",
+            "reason": "ma_breakdown",
+            "entry": "100",
+            "stop": "90",
+            "target": null,
+            "initial_risk": "963000",
+            "pending_exit": null,
+            "last_session": "2024-01-18",
+            "events": [
+              {
+                "session": "2024-01-16",
+                "kind": "entry",
+                "price": "100",
+                "reason": "assumed_signal_close",
+                "observed_at": "2024-01-18T09:00:00+00:00",
+                "input_digest": "2794f00f3a8738afa17cecf884b2550fdac4434aba7357f6512a214684739e5c",
+                "alternate_price": null,
+                "ma_value": null,
+                "ma_type": null,
+                "ma_period": null
+              },
+              {
+                "session": "2024-01-16",
+                "kind": "pending_exit",
+                "price": null,
+                "reason": "late_model_only",
+                "observed_at": "2024-01-18T09:00:00+00:00",
+                "input_digest": "f313f857a4b10e5fa42a076e42830de7eba900be46affc6e3fb891ba551e9494",
+                "alternate_price": null,
+                "ma_value": "99.9",
+                "ma_type": "SMA",
+                "ma_period": 10
+              },
+              {
+                "session": "2024-01-17",
+                "kind": "untradable",
+                "price": null,
+                "reason": "awaiting_tradable_session",
+                "observed_at": "2024-01-18T09:00:00+00:00",
+                "input_digest": "cde44e3f0a25ae0af4e2b2446f2dbe386e3a42d984818c0c0ef835c1aab3a26b",
+                "alternate_price": null,
+                "ma_value": null,
+                "ma_type": null,
+                "ma_period": null,
+                "untradable_evidence": {
+                  "version": "verified_untradable_v1",
+                  "ticker": "TEST",
+                  "session": "2024-01-17",
+                  "data_mode": "fixture",
+                  "source_url": "synthetic://reviewed-suspension",
+                  "document_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                  "verified_at": "2024-01-17T09:00:00+00:00",
+                  "reason": "official_whole_session_suspension",
+                  "digest": "cde44e3f0a25ae0af4e2b2446f2dbe386e3a42d984818c0c0ef835c1aab3a26b"
+                }
+              },
+              {
+                "session": "2024-01-18",
+                "kind": "exit",
+                "price": "100",
+                "reason": "ma_breakdown",
+                "observed_at": "2024-01-18T09:00:00+00:00",
+                "input_digest": "e1e8db42e5a99d7577351a571a62a72c3c18f9d4bad81ec73d96be81c860dd84",
+                "alternate_price": null,
+                "ma_value": null,
+                "ma_type": null,
+                "ma_period": null
+              }
+            ],
+            "net_pnl": "-38520.00",
+            "realized_r": "-0.04",
+            "alternate_r": null,
+            "actionable": false,
+            "planned_entry_price": "100",
+            "quantity": 96300,
+            "lots": 963,
+            "planned_stop_loss_idr": "999112.50",
+            "entry_fee_idr": "14445.00",
+            "exit_fee_idr": "24075.00",
+            "alternate_net_pnl": null,
+            "sizing_policy_version": "exact_risk_fees_v2"
+          }
+        }
+      },
+      "evaluations": {
+        "s1": {
+          "signal_id": "s1",
+          "ticker": "TEST",
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "signal_session": "2024-01-15",
+          "entry_session": "2024-01-16",
+          "entry_price": "100",
+          "initial_stop": "90",
+          "target_1r": "110",
+          "target_2r": "120",
+          "observed_sessions": 3,
+          "last_session": "2024-01-18",
+          "results": {
+            "target_1r": "pending",
+            "target_2r": "pending",
+            "net_5": "pending",
+            "net_10": "pending"
+          },
+          "exclusion_reasons": {},
+          "signal": {
+            "calendar_version": "unspecified",
+            "candidate": {
+              "available_session": null,
+              "fractal_id": null,
+              "level": 100,
+              "pivot_date": null,
+              "reason": "eligible",
+              "reference_close": 100,
+              "rules": [
+                {
+                  "name": "close_above_level",
+                  "passed": true
+                }
+              ],
+              "stop": 90,
+              "strategy": "FRACTAL_BREAKOUT_V1",
+              "triggered": true
+            },
+            "cohort": "forward",
+            "config_hash": "config",
+            "data_mode": "fixture",
+            "engine_version": "0.1.0",
+            "features": [],
+            "id": "s1",
+            "input_digest": "input",
+            "planned_entry_session": "2024-01-16",
+            "price_basis": "test",
+            "provider": "fixture",
+            "provider_version": "unspecified",
+            "published_at": "2024-01-15T09:00:00+00:00",
+            "session": "2024-01-15",
+            "source_revision": "local-uncommitted",
+            "ticker": "TEST",
+            "universe_version": "universe"
+          },
+          "input_digests": [
+            {
+              "session": "2024-01-16",
+              "digest": "2794f00f3a8738afa17cecf884b2550fdac4434aba7357f6512a214684739e5c",
+              "observed_at": "2024-01-18T09:00:00+00:00"
+            },
+            {
+              "session": "2024-01-17",
+              "digest": "cde44e3f0a25ae0af4e2b2446f2dbe386e3a42d984818c0c0ef835c1aab3a26b",
+              "observed_at": "2024-01-18T09:00:00+00:00"
+            },
+            {
+              "session": "2024-01-18",
+              "digest": "e1e8db42e5a99d7577351a571a62a72c3c18f9d4bad81ec73d96be81c860dd84",
+              "observed_at": "2024-01-18T09:00:00+00:00"
+            }
+          ],
+          "provider_symbol": "TEST.JK",
+          "data_mode": "fixture",
+          "model_version": "close-signal-risk-v1",
+          "untradable_evidence": [
+            {
+              "version": "verified_untradable_v1",
+              "ticker": "TEST",
+              "session": "2024-01-17",
+              "data_mode": "fixture",
+              "source_url": "synthetic://reviewed-suspension",
+              "document_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "verified_at": "2024-01-17T09:00:00+00:00",
+              "reason": "official_whole_session_suspension",
+              "digest": "cde44e3f0a25ae0af4e2b2446f2dbe386e3a42d984818c0c0ef835c1aab3a26b",
+              "observed_at": "2024-01-18T09:00:00+00:00"
+            }
+          ]
+        }
+      }
+    },
+    "exact_cap_zero_lot": {
+      "signal": {
+        "calendar_version": "unspecified",
+        "candidate": {
+          "available_session": null,
+          "fractal_id": null,
+          "level": 100,
+          "pivot_date": null,
+          "reason": "eligible",
+          "reference_close": 10000,
+          "rules": [
+            {
+              "name": "close_above_level",
+              "passed": true
+            }
+          ],
+          "stop": 15.037593994962407,
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "triggered": true
+        },
+        "cohort": "forward",
+        "config_hash": "config",
+        "data_mode": "fixture",
+        "engine_version": "0.1.0",
+        "features": [],
+        "id": "s1",
+        "input_digest": "input",
+        "planned_entry_session": "2024-01-16",
+        "price_basis": "test",
+        "provider": "fixture",
+        "provider_version": "unspecified",
+        "published_at": "2024-01-15T09:00:00+00:00",
+        "session": "2024-01-15",
+        "source_revision": "local-uncommitted",
+        "ticker": "TEST",
+        "universe_version": "universe"
+      },
+      "activated_at": "2024-01-02T02:00:00+00:00",
+      "session": "2024-01-15",
+      "calendar": {
+        "closed_days": [],
+        "data_mode": "fixture",
+        "historical_days": [],
+        "sessions": [
+          {
+            "closes_at": "2024-01-02T09:00:00+00:00",
+            "day": "2024-01-02",
+            "opens_at": "2024-01-02T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-03T09:00:00+00:00",
+            "day": "2024-01-03",
+            "opens_at": "2024-01-03T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-04T09:00:00+00:00",
+            "day": "2024-01-04",
+            "opens_at": "2024-01-04T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-05T09:00:00+00:00",
+            "day": "2024-01-05",
+            "opens_at": "2024-01-05T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-08T09:00:00+00:00",
+            "day": "2024-01-08",
+            "opens_at": "2024-01-08T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-09T09:00:00+00:00",
+            "day": "2024-01-09",
+            "opens_at": "2024-01-09T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-10T09:00:00+00:00",
+            "day": "2024-01-10",
+            "opens_at": "2024-01-10T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-11T09:00:00+00:00",
+            "day": "2024-01-11",
+            "opens_at": "2024-01-11T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-12T09:00:00+00:00",
+            "day": "2024-01-12",
+            "opens_at": "2024-01-12T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-15T09:00:00+00:00",
+            "day": "2024-01-15",
+            "opens_at": "2024-01-15T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-16T09:00:00+00:00",
+            "day": "2024-01-16",
+            "opens_at": "2024-01-16T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-17T09:00:00+00:00",
+            "day": "2024-01-17",
+            "opens_at": "2024-01-17T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-18T09:00:00+00:00",
+            "day": "2024-01-18",
+            "opens_at": "2024-01-18T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-19T09:00:00+00:00",
+            "day": "2024-01-19",
+            "opens_at": "2024-01-19T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-22T09:00:00+00:00",
+            "day": "2024-01-22",
+            "opens_at": "2024-01-22T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-23T09:00:00+00:00",
+            "day": "2024-01-23",
+            "opens_at": "2024-01-23T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-24T09:00:00+00:00",
+            "day": "2024-01-24",
+            "opens_at": "2024-01-24T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-25T09:00:00+00:00",
+            "day": "2024-01-25",
+            "opens_at": "2024-01-25T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-26T09:00:00+00:00",
+            "day": "2024-01-26",
+            "opens_at": "2024-01-26T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-29T09:00:00+00:00",
+            "day": "2024-01-29",
+            "opens_at": "2024-01-29T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-30T09:00:00+00:00",
+            "day": "2024-01-30",
+            "opens_at": "2024-01-30T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-01-31T09:00:00+00:00",
+            "day": "2024-01-31",
+            "opens_at": "2024-01-31T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-01T09:00:00+00:00",
+            "day": "2024-02-01",
+            "opens_at": "2024-02-01T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-02T09:00:00+00:00",
+            "day": "2024-02-02",
+            "opens_at": "2024-02-02T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-05T09:00:00+00:00",
+            "day": "2024-02-05",
+            "opens_at": "2024-02-05T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-06T09:00:00+00:00",
+            "day": "2024-02-06",
+            "opens_at": "2024-02-06T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-07T09:00:00+00:00",
+            "day": "2024-02-07",
+            "opens_at": "2024-02-07T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-08T09:00:00+00:00",
+            "day": "2024-02-08",
+            "opens_at": "2024-02-08T02:00:00+00:00"
+          },
+          {
+            "closes_at": "2024-02-09T09:00:00+00:00",
+            "day": "2024-02-09",
+            "opens_at": "2024-02-09T02:00:00+00:00"
+          }
+        ],
+        "source": "synthetic://fixture-calendar",
+        "version": "SYNTHETIC-WEEKDAYS-v1"
+      },
+      "book": {
+        "experiments": {
+          "close-signal-risk-v1-fixed2r-FRACTAL_BREAKOUT_V1": "f3e0743c451d3f052275c27091dcd2e682ac5a1bcc8768b35a048118eec0f1e4",
+          "close-signal-risk-v1-ma10-FRACTAL_BREAKOUT_V1": "30392e0cf317c84290fdd7bcf5f4586256c7c236dd629ddad07f90db47479387"
+        },
+        "trades": {
+          "11588ea7fe640e792ab309a02fa5021a61fe0ebe1a41c30a7373137685501baa": {
+            "id": "11588ea7fe640e792ab309a02fa5021a61fe0ebe1a41c30a7373137685501baa",
+            "signal": {
+              "calendar_version": "unspecified",
+              "candidate": {
+                "available_session": null,
+                "fractal_id": null,
+                "level": 100,
+                "pivot_date": null,
+                "reason": "eligible",
+                "reference_close": 10000,
+                "rules": [
+                  {
+                    "name": "close_above_level",
+                    "passed": true
+                  }
+                ],
+                "stop": 15.037593994962407,
+                "strategy": "FRACTAL_BREAKOUT_V1",
+                "triggered": true
+              },
+              "cohort": "forward",
+              "config_hash": "config",
+              "data_mode": "fixture",
+              "engine_version": "0.1.0",
+              "features": [],
+              "id": "s1",
+              "input_digest": "input",
+              "planned_entry_session": "2024-01-16",
+              "price_basis": "test",
+              "provider": "fixture",
+              "provider_version": "unspecified",
+              "published_at": "2024-01-15T09:00:00+00:00",
+              "session": "2024-01-15",
+              "source_revision": "local-uncommitted",
+              "ticker": "TEST",
+              "universe_version": "universe"
+            },
+            "experiment": {
+              "id": "close-signal-risk-v1-fixed2r-FRACTAL_BREAKOUT_V1",
+              "strategy": "FRACTAL_BREAKOUT_V1",
+              "exit": {
+                "mode": "fixed_rr",
+                "target_r": "2",
+                "ma_type": null,
+                "period": null,
+                "version": "v1"
+              },
+              "costs": {
+                "buy_bps": "15",
+                "sell_bps": "25",
+                "slippage_bps": "0",
+                "status": "verified"
+              },
+              "activated_at": "2024-01-02T02:00:00+00:00",
+              "entry_model": "signal_close",
+              "risk_budget_idr": "1000000",
+              "lot_size": 100,
+              "model_version": "close-signal-risk-v1"
+            },
+            "state": "skipped",
+            "reason": "skipped_budget",
+            "entry": null,
+            "stop": "15.037593994962407",
+            "target": "29969.924812010075186",
+            "initial_risk": "0E-15",
+            "pending_exit": null,
+            "last_session": null,
+            "events": [],
+            "net_pnl": null,
+            "realized_r": null,
+            "alternate_r": null,
+            "actionable": true,
+            "planned_entry_price": "10000",
+            "quantity": 0,
+            "lots": 0,
+            "planned_stop_loss_idr": "0",
+            "entry_fee_idr": "0",
+            "exit_fee_idr": null,
+            "alternate_net_pnl": null,
+            "sizing_policy_version": "exact_risk_fees_v2"
+          },
+          "2d2e5c2624d8a4d222eba618404dbb12f281f1623db3b471635d66c7ecce505c": {
+            "id": "2d2e5c2624d8a4d222eba618404dbb12f281f1623db3b471635d66c7ecce505c",
+            "signal": {
+              "calendar_version": "unspecified",
+              "candidate": {
+                "available_session": null,
+                "fractal_id": null,
+                "level": 100,
+                "pivot_date": null,
+                "reason": "eligible",
+                "reference_close": 10000,
+                "rules": [
+                  {
+                    "name": "close_above_level",
+                    "passed": true
+                  }
+                ],
+                "stop": 15.037593994962407,
+                "strategy": "FRACTAL_BREAKOUT_V1",
+                "triggered": true
+              },
+              "cohort": "forward",
+              "config_hash": "config",
+              "data_mode": "fixture",
+              "engine_version": "0.1.0",
+              "features": [],
+              "id": "s1",
+              "input_digest": "input",
+              "planned_entry_session": "2024-01-16",
+              "price_basis": "test",
+              "provider": "fixture",
+              "provider_version": "unspecified",
+              "published_at": "2024-01-15T09:00:00+00:00",
+              "session": "2024-01-15",
+              "source_revision": "local-uncommitted",
+              "ticker": "TEST",
+              "universe_version": "universe"
+            },
+            "experiment": {
+              "id": "close-signal-risk-v1-ma10-FRACTAL_BREAKOUT_V1",
+              "strategy": "FRACTAL_BREAKOUT_V1",
+              "exit": {
+                "mode": "ma_close",
+                "target_r": null,
+                "ma_type": "SMA",
+                "period": 10,
+                "version": "v1"
+              },
+              "costs": {
+                "buy_bps": "15",
+                "sell_bps": "25",
+                "slippage_bps": "0",
+                "status": "verified"
+              },
+              "activated_at": "2024-01-02T02:00:00+00:00",
+              "entry_model": "signal_close",
+              "risk_budget_idr": "1000000",
+              "lot_size": 100,
+              "model_version": "close-signal-risk-v1"
+            },
+            "state": "skipped",
+            "reason": "skipped_budget",
+            "entry": null,
+            "stop": "15.037593994962407",
+            "target": null,
+            "initial_risk": "0E-15",
+            "pending_exit": null,
+            "last_session": null,
+            "events": [],
+            "net_pnl": null,
+            "realized_r": null,
+            "alternate_r": null,
+            "actionable": true,
+            "planned_entry_price": "10000",
+            "quantity": 0,
+            "lots": 0,
+            "planned_stop_loss_idr": "0",
+            "entry_fee_idr": "0",
+            "exit_fee_idr": null,
+            "alternate_net_pnl": null,
+            "sizing_policy_version": "exact_risk_fees_v2"
+          }
+        }
+      },
+      "evaluations": {
+        "s1": {
+          "signal_id": "s1",
+          "ticker": "TEST",
+          "strategy": "FRACTAL_BREAKOUT_V1",
+          "signal_session": "2024-01-15",
+          "entry_session": "2024-01-16",
+          "entry_price": "10000",
+          "initial_stop": "15.037593994962407",
+          "target_1r": "19984.962406005037593",
+          "target_2r": "29969.924812010075186",
+          "observed_sessions": 0,
+          "last_session": null,
+          "results": {
+            "target_1r": "pending",
+            "target_2r": "pending",
+            "net_5": "pending",
+            "net_10": "pending"
+          },
+          "exclusion_reasons": {},
+          "signal": {
+            "calendar_version": "unspecified",
+            "candidate": {
+              "available_session": null,
+              "fractal_id": null,
+              "level": 100,
+              "pivot_date": null,
+              "reason": "eligible",
+              "reference_close": 10000,
+              "rules": [
+                {
+                  "name": "close_above_level",
+                  "passed": true
+                }
+              ],
+              "stop": 15.037593994962407,
+              "strategy": "FRACTAL_BREAKOUT_V1",
+              "triggered": true
+            },
+            "cohort": "forward",
+            "config_hash": "config",
+            "data_mode": "fixture",
+            "engine_version": "0.1.0",
+            "features": [],
+            "id": "s1",
+            "input_digest": "input",
+            "planned_entry_session": "2024-01-16",
+            "price_basis": "test",
+            "provider": "fixture",
+            "provider_version": "unspecified",
+            "published_at": "2024-01-15T09:00:00+00:00",
+            "session": "2024-01-15",
+            "source_revision": "local-uncommitted",
+            "ticker": "TEST",
+            "universe_version": "universe"
+          },
+          "input_digests": [],
+          "provider_symbol": "TEST.JK",
+          "data_mode": "fixture",
+          "model_version": "close-signal-risk-v1"
+        }
+      }
+    }
+  }
+}

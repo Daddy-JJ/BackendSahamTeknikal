@@ -1,5 +1,5 @@
-import inspect
 import sys
+from dataclasses import replace
 from datetime import UTC, datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -11,7 +11,7 @@ if str(SCRIPTS_DIR) not in sys.path:
 
 from scheduled_scanner_runner import (  # noqa: E402
     get_current_target_session,
-    run_scheduled_scanner,
+    latest_closed_session,
 )
 
 from idx_scanner.fixtures import sample_market  # noqa: E402
@@ -85,13 +85,35 @@ def test_get_current_target_session_intraday_not_closed():
     assert reason == "target_session_not_closed"
 
 
-def test_scheduled_runner_publication_receipt_binding():
-    """Prove publication_receipt is safely initialized and assigned from outcome."""
-    source = inspect.getsource(run_scheduled_scanner)
-    # Ensure initialization before conditionals
-    assert "publication_receipt: dict | None = None" in source
-    # Ensure assignment from outcome when published
-    assert "publication_receipt = outcome.publication" in source
-    # Ensure usage in final report
-    assert '"publication_receipt": publication_receipt' in source
+def test_friday_delayed_to_saturday_keeps_forward_window():
+    _, calendar, _ = sample_market(30)
+    friday = next(s for s in calendar.sessions if s.day.weekday() == 4)
+    saturday = datetime.combine(friday.day, datetime.min.time(), WIB)
+    from datetime import timedelta
+    saturday += timedelta(days=1, hours=22)
+    assert get_current_target_session(calendar, saturday.astimezone(UTC)) == (
+        friday.day, True, "eligible")
+    assert latest_closed_session(calendar, saturday.astimezone(UTC)) == friday.day
 
+
+def test_explicit_exchange_holiday_recovers_previous_closed_session():
+    _, calendar, _ = sample_market(30)
+    closed = calendar.sessions[2]
+    holiday_calendar = replace(calendar,
+        sessions=tuple(s for s in calendar.sessions if s != closed), closed_days=(closed.day,))
+    now = datetime.combine(closed.day, datetime.min.time(), WIB).replace(hour=18)
+    assert get_current_target_session(holiday_calendar, now.astimezone(UTC)) == (
+        calendar.sessions[1].day, True, "eligible")
+
+
+def test_unknown_calendar_range_does_not_guess_closed_session():
+    import pytest
+    _, calendar, _ = sample_market(30)
+    with pytest.raises(ValueError, match="calendar_unknown"):
+        latest_closed_session(calendar, datetime(2099, 1, 1, tzinfo=UTC))
+
+
+def test_intraday_recovery_target_is_previous_closed_session():
+    _, calendar, _ = sample_market(30)
+    current = calendar.sessions[1]
+    assert latest_closed_session(calendar, current.opens_at) == calendar.sessions[0].day

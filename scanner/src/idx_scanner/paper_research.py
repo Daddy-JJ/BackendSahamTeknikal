@@ -8,6 +8,7 @@ from decimal import Decimal
 from .context import Calendar
 from .exits import evaluate_exit, money
 from .models import Bar, ExitConfig, Signal, canonical_json, digest
+from .untradable import VerifiedUntradable, require_nontrading_bar
 
 MODEL_VERSION = "close-signal-risk-v1"
 RESULT_KEYS = ("target_1r", "target_2r", "net_5", "net_10")
@@ -37,7 +38,8 @@ def evaluation_active(record: dict) -> bool:
 
 
 def step_evaluation(record: dict, session: date, bar: Bar | None,
-                    calendar: Calendar, observed_at: datetime, *, data_valid: bool = True) -> dict:
+                    calendar: Calendar, observed_at: datetime, *, data_valid: bool = True,
+                    untradable_evidence: VerifiedUntradable | None = None) -> dict:
     if not evaluation_active(record):
         return record
     last = date.fromisoformat(record["last_session"]) if record["last_session"] else None
@@ -50,6 +52,32 @@ def step_evaluation(record: dict, session: date, bar: Bar | None,
         raise ValueError("target_session_not_closed")
     updated = copy.deepcopy(record)
     results = updated["results"]
+    if untradable_evidence is not None:
+        require_nontrading_bar(untradable_evidence, record["ticker"], session,
+                              observed_at, bar, record["data_mode"])
+        updated.setdefault("untradable_evidence", []).append({
+            **untradable_evidence.audit(), "observed_at": observed_at.isoformat()
+        })
+        updated.pop("hold_reason", None)
+        if last is None:
+            for key in RESULT_KEYS:
+                results[key] = "excluded"
+                updated["exclusion_reasons"][key] = "official_untradable_entry"
+            return updated
+        observed = record["observed_sessions"] + 1
+        for key in RESULT_KEYS:
+            if results[key] in UNRESOLVED:
+                results[key] = "pending"
+        for key, horizon in (("net_5", 5), ("net_10", 10)):
+            if observed == horizon and results[key] == "pending":
+                results[key] = "excluded"
+                updated["exclusion_reasons"][key] = "official_untradable_horizon"
+        updated["observed_sessions"] = observed
+        updated["last_session"] = session.isoformat()
+        updated["input_digests"].append({"session": session.isoformat(),
+                                         "digest": untradable_evidence.input_digest,
+                                         "observed_at": observed_at.isoformat()})
+        return updated
     if bar is None or not data_valid or not bar.valid() or bar.volume == 0:
         for key in RESULT_KEYS:
             if results[key] in UNRESOLVED:

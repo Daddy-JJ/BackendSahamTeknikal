@@ -10,6 +10,7 @@ from conftest import bar
 from idx_scanner.context import Calendar, Session
 from idx_scanner.models import Costs, ExitConfig
 from idx_scanner.paper import (
+    EXACT_SIZING_POLICY,
     Experiment,
     PaperBook,
     cash_fee,
@@ -98,6 +99,20 @@ def test_one_lot_over_budget_keeps_signal_as_skipped(
     assert trade.state == "skipped" and trade.reason == "skipped_budget"
     assert trade.quantity == 0 and trade.lots == 0
     assert trade.signal.id == close_signal.id and not trade.events
+
+
+@pytest.mark.parametrize("reason", ["late_or_backtest_signal", "experiment_activated_too_late"])
+def test_new_skipped_close_plan_retains_exact_policy(
+    close_signal, close_experiment, close_calendar, reason,
+):
+    if reason == "late_or_backtest_signal":
+        close_signal = replace(close_signal, cohort="backtest")
+    else:
+        close_experiment = replace(close_experiment,
+            activated_at=close_calendar.get(close_signal.planned_entry_session).opens_at)
+    trade = create_plan(close_signal, close_experiment, close_calendar)
+    assert trade.state == "skipped" and trade.reason == reason
+    assert trade.sizing_policy_version == EXACT_SIZING_POLICY
 
 
 @pytest.mark.parametrize("entry,stop,budget", [

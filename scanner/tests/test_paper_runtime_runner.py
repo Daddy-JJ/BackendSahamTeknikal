@@ -1,11 +1,14 @@
 """Out-of-universe paper monitoring against explicit offline persisted fixtures."""
 import sys
 from dataclasses import replace
+from datetime import timedelta
 from pathlib import Path
 
 import pytest
 from test_paper_runtime import PersistedFixtureStore, initial, market
 
+from idx_scanner.fixtures import sample_market
+from idx_scanner.models import Bar, Series
 from idx_scanner.persistence import PersistenceError
 from idx_scanner.providers import FetchRequest, ProviderError
 
@@ -100,3 +103,64 @@ def test_unverified_historical_mapping_fails_instead_of_guessing(signal, calenda
             provider, None,
         )
     assert provider.requests == [] and store.state["revision"] == 0
+
+
+def test_independent_recovery_fetches_tracked_member_despite_mapping_request(signal, calendar):
+    target = calendar.sessions[1]
+    source = replace(market(signal, calendar, 2)[signal.ticker], provider_symbol="EXPLICIT_OLD.JK")
+    store = PersistedFixtureStore(initial(calendar), [signal])
+    store.data_mode = "fixture"
+    snapshots = SnapshotStore(source, signal.input_digest)
+    provider = OutsideProvider(source)
+    requests = {signal.ticker: FetchRequest(signal.ticker, source.provider_symbol,
+                                           signal.session, target.day, True)}
+    book, summary = complete_persisted_paper(snapshots, store, {}, requests, target.day,
+        calendar, (), target.closes_at, provider, None)
+    assert len(provider.requests) == 1
+    assert all(t.entry == signal.candidate.reference_close for t in book.trades.values())
+    assert summary["provider_errors"] == []
+
+
+def test_primary_failed_capture_is_not_refetched_unboundedly(signal, calendar):
+    target = calendar.sessions[1]
+    source = market(signal, calendar, 2)[signal.ticker]
+    store = PersistedFixtureStore(initial(calendar), [signal])
+    store.data_mode = "fixture"
+    provider = OutsideProvider(source)
+    requests = {signal.ticker: FetchRequest(signal.ticker, source.provider_symbol,
+                                           signal.session, target.day, True)}
+    book, _ = complete_persisted_paper(SnapshotStore(source, signal.input_digest), store,
+        {}, requests, target.day, calendar, (), target.closes_at, provider, None,
+        attempted_tickers=tuple(requests))
+    assert provider.requests == []
+    assert all(t.state == "data_hold" for t in book.trades.values())
+
+
+def test_recovery_clock_after_fetch_prevents_false_timely_ma_observation(signal):
+    _, calendar, _ = sample_market(24)
+    signal_day, entry, following = calendar.sessions[9:12]
+    signal = replace(signal, session=signal_day.day, planned_entry_session=entry.day,
+                     published_at=signal_day.closes_at,
+                     candidate=replace(signal.candidate, reference_close=100, stop=90))
+    source = Series(signal.ticker, "EXPLICIT_OLD.JK", "fixture", "test", tuple(
+        Bar(s.day, 100, 102, 95, 99 if s.day == entry.day else 100, 1000)
+        for s in calendar.sessions[:11]))
+    store = PersistedFixtureStore(initial(calendar), [signal])
+    store.data_mode = "fixture"
+    after_fetch = following.opens_at + timedelta(minutes=1)
+    class DelayedProvider(OutsideProvider):
+        def fetch(self, request):
+            result = super().fetch(request)
+            timeline.append("fetched")
+            return result
+    timeline = []
+    def clock():
+        assert timeline == ["fetched"]
+        return after_fetch
+    book, _ = complete_persisted_paper(SnapshotStore(source, signal.input_digest), store,
+        {}, {}, entry.day, calendar, (), following.opens_at - timedelta(minutes=1),
+        DelayedProvider(source), None, clock=clock)
+    ma = next(t for t in book.trades.values() if t.experiment.exit.mode == "ma_close")
+    assert not ma.actionable and ma.pending_exit == following.day
+    assert ma.events[-1].observed_at == after_fetch
+    assert ma.events[-1].reason == "late_model_only"

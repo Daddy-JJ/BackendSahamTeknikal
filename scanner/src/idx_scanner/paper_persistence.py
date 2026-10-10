@@ -56,3 +56,16 @@ class PaperRuntimeStore:
         return sorted((s for s in state.signals.values()
                        if s.cohort == "forward" and s.published_at >= activation
                        and s.candidate.execution_eligible), key=lambda s: (s.session, s.id))
+
+    def record_job(self, *, job_id: str, phase: str, status: str, session: date,
+                   failure_code: str | None = None, context: dict | None = None):
+        response = self._rpc(
+            "record_paper_job_v1", p_job_id=job_id, p_phase=phase, p_status=status,
+            p_session=session.isoformat(), p_failure_code=failure_code,
+            p_context=context or {},
+        )
+        if (not isinstance(response, dict) or response.get("contract_version") != 1
+            or response.get("job_id") != job_id or response.get("phase") != phase
+            or response.get("status") != status or not isinstance(response.get("replayed"), bool)):
+            raise PersistenceError("database_invalid_paper_job")
+        return response

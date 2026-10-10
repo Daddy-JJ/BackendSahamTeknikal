@@ -110,13 +110,18 @@ def _normalized(
 class YFinanceProvider:
     download: Callable | None = field(default=None, repr=False)
     sleep: Callable[[float], None] = field(default=time.sleep, repr=False)
+    # Diagnostics are intentionally outside market content identity. Fetch time
+    # and retry count must not create a new signal from identical final OHLC.
+    fetch_diagnostics: dict[str, tuple[dict, ...]] = field(default_factory=dict, repr=False)
 
     def fetch(self, request: FetchRequest) -> Series:
         import yfinance as yf
 
         loader = self.download or yf.download
-        frame = None
+        attempts = []
+        self.fetch_diagnostics[request.ticker] = ()
         for attempt in range(3):
+            fetched_at = datetime.now(UTC).isoformat()
             try:
                 frame = loader(
                     request.symbol,
@@ -135,15 +140,47 @@ class YFinanceProvider:
                     timeout=20,
                     multi_level_index=False,
                 )
-                if frame is not None and not frame.empty:
-                    break
             except Exception:
                 # yfinance exceptions may contain transport details. Never serialize them.
                 frame = None
+                status = "transport_error"
+            else:
+                status = "provider_empty" if frame is None or frame.empty else "received"
+            result = None
+            if frame is not None and not frame.empty:
+                try:
+                    result = self._normalize_frame(request, frame)
+                except ProviderError as exc:
+                    attempts.append({"attempt": attempt + 1, "status": exc.code,
+                                     "fetched_at": fetched_at, "retryable": False})
+                    self.fetch_diagnostics[request.ticker] = tuple(attempts)
+                    raise
+                retryable = any(i.session == request.end and i.code in (
+                    "incomplete_ohlcv", "missing_ohlcv"
+                ) for i in result.provider_row_issues)
+                status = "target_bar_incomplete" if retryable else (
+                    "valid_target_received"
+                    if result.bars and result.bars[-1].session == request.end
+                    else "target_bar_absent_or_stale"
+                )
+            else:
+                retryable = True
+            diagnostic = {"attempt": attempt + 1, "status": status,
+                          "fetched_at": fetched_at, "retryable": retryable}
+            if result is not None:
+                diagnostic["input_digest"] = result.input_digest
+            attempts.append(diagnostic)
+            self.fetch_diagnostics[request.ticker] = tuple(attempts)
+            if result is not None and (not retryable or attempt == 2):
+                # An exhausted incomplete capture remains incomplete. The quality
+                # gate decides hold/failure; never substitute an earlier capture.
+                return result
             if attempt < 2:
                 self.sleep(2**attempt + random.random())
-        if frame is None or frame.empty:
-            raise ProviderError("provider_empty_or_unavailable")
+        raise ProviderError("provider_empty_or_unavailable")
+
+    @staticmethod
+    def _normalize_frame(request: FetchRequest, frame) -> Series:
         rows, actions = [], []
         try:
             if "Dividends" not in frame.columns or "Stock Splits" not in frame.columns:

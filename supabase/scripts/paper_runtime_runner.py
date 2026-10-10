@@ -11,7 +11,8 @@ from manual_scanner_smoke import prepare_series
 
 
 def complete_persisted_paper(scan_store, paper_store: PaperRuntimeStore, prepared, requests,
-                             target, calendar, proofs, observed_at, provider, run_id):
+                             target, calendar, proofs, observed_at, provider, run_id,
+                             *, attempted_tickers=(), untradable_evidence=(), clock=None):
     runtime = paper_store.load()
     signals = paper_store.committed_signals(target, datetime.fromisoformat(runtime["activated_at"]))
     mappings = {ticker: request.symbol for ticker, request in requests.items()}
@@ -39,7 +40,11 @@ def complete_persisted_paper(scan_store, paper_store: PaperRuntimeStore, prepare
         mappings[signal.ticker] = original.provider_symbol
     market = dict(prepared)
     errors = []
-    for ticker in sorted(tracked - requests.keys()):
+    # Requests describe verified mappings, not proof that a ticker was fetched.
+    # Independent recovery has no prepared scanner input and must fetch tracked
+    # universe members too. A primary run explicitly passes its attempted set,
+    # so failed scanner captures stay holds instead of causing unbounded retries.
+    for ticker in sorted(tracked - market.keys() - set(attempted_tickers)):
         if ticker not in mappings:
             raise PersistenceError("paper_verified_mapping_unavailable")
         request = FetchRequest(ticker, mappings[ticker], date(2024, 1, 1), target, True)
@@ -54,9 +59,13 @@ def complete_persisted_paper(scan_store, paper_store: PaperRuntimeStore, prepare
         receipt = scan_store.ingest_series(source, data_mode=paper_store.data_mode)
         market[ticker] = scan_store.load_series(receipt["revision_id"],
             data_mode=paper_store.data_mode, expected_input_digest=source.input_digest)
+    # Eligibility of a delayed MA observation is determined after market IO,
+    # not by the time the scheduler started fetching.
+    observed_at = clock() if clock is not None else observed_at
     result, summary = process_persisted_paper_session(
         paper_store, target, market, calendar, observed_at, source_run_id=run_id,
         mappings=mappings, committed_signals=signals,
+        untradable_evidence=untradable_evidence,
     )
     summary["provider_errors"] = errors
     return result, summary

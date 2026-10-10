@@ -20,7 +20,7 @@ def modules(monkeypatch):
 
 def test_release_checksums_and_remote_name_fail_closed(modules, tmp_path):
     restore, rehearsal = modules
-    assert len(rehearsal.checked_release(restore.ROOT)) == 10
+    assert len(rehearsal.checked_release(restore.ROOT)) == 11
     shutil.copytree(restore.ROOT / "supabase/migrations", tmp_path / "supabase/migrations")
     shutil.copy2(
         restore.ROOT / "supabase/release-manifest.json", tmp_path / "supabase/release-manifest.json"
@@ -115,7 +115,7 @@ def test_native_acl_repair_release_failure_rollback_and_schema(modules, tmp_path
         assert report["migration_rehearsal_tested"] is True
         assert report["local005_injected_failure_rollback_passed"] is True
         assert report["local_acl_repair_and_clean001_catalog_passed"] is True
-        assert len(report["local_applied_migrations"]) == 9
+        assert len(report["local_applied_migrations"]) == 10
         assert report["local_schema_after_release"]["correction_fk"] is True
         assert report["local_schema_after_release"]["actual_trades"] == 0
         assert report["migration_history_cli_tested"] is False

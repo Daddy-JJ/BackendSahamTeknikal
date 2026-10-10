@@ -11,6 +11,10 @@ from .indicators import ema, sma
 from .metrics import summarize
 from .models import Bar, Costs, ExitConfig, Series, Signal, canonical_json, digest
 from .strategies import STRATEGIES
+from .untradable import VerifiedUntradable, require_nontrading_bar
+
+EXACT_SIZING_POLICY = "exact_risk_fees_v2"
+LEGACY_SIZING_POLICY = "rounded_net_v1"
 
 
 @dataclass(frozen=True)
@@ -54,6 +58,7 @@ class Event:
     ma_value: Decimal | None = None
     ma_type: str | None = None
     ma_period: int | None = None
+    untradable_evidence: dict | None = None
 
 
 @dataclass(frozen=True)
@@ -81,6 +86,11 @@ class PaperTrade:
     entry_fee_idr: Decimal | None = None
     exit_fee_idr: Decimal | None = None
     alternate_net_pnl: Decimal | None = None
+    sizing_policy_version: str = LEGACY_SIZING_POLICY
+
+    def __post_init__(self):
+        if self.sizing_policy_version not in (LEGACY_SIZING_POLICY, EXACT_SIZING_POLICY):
+            raise ValueError("invalid_sizing_policy")
 
 
 def cash_fee(notional: Decimal, bps: Decimal) -> Decimal:
@@ -97,19 +107,25 @@ def sized_profit(entry: Decimal, exit_price: Decimal, quantity: int, costs: Cost
 
 
 def size_lots(entry: Decimal, stop: Decimal, costs: Costs,
-              budget: Decimal = Decimal(1000000), lot_size: int = 100):
+              budget: Decimal = Decimal(1000000), lot_size: int = 100,
+              *, sizing_policy_version: str = EXACT_SIZING_POLICY):
     if not entry.is_finite() or not stop.is_finite() or not 0 < stop < entry:
         raise ValueError("invalid_initial_prices")
     if not budget.is_finite() or budget <= 0 or lot_size <= 0:
         raise ValueError("invalid_risk_budget")
+    if sizing_policy_version not in (EXACT_SIZING_POLICY, LEGACY_SIZING_POLICY):
+        raise ValueError("invalid_sizing_policy")
     per_share = entry - stop + (
         entry * (costs.buy_bps + costs.slippage_bps)
         + stop * (costs.sell_bps + costs.slippage_bps)
     ) / Decimal(10000)
     lots = int((budget / (per_share * lot_size)).to_integral_value(ROUND_FLOOR))
     while lots > 0:
-        loss, fee, _ = sized_profit(entry, stop, lots * lot_size, costs)
-        if -loss <= budget:
+        quantity = lots * lot_size
+        loss, fee, sell_fee = sized_profit(entry, stop, quantity, costs)
+        exact_loss = quantity * (entry - stop) + fee + sell_fee
+        checked_loss = exact_loss if sizing_policy_version == EXACT_SIZING_POLICY else -loss
+        if checked_loss <= budget:
             return lots, lots * lot_size, -loss, fee
         lots -= 1
     return 0, 0, Decimal(0), Decimal(0)
@@ -131,6 +147,8 @@ def create_plan(signal: Signal, experiment: Experiment, calendar: Calendar) -> P
     plan = PaperTrade(
         identity, signal, experiment, "skipped" if reason else "pending_entry", reason,
         stop=money(signal.candidate.stop) if signal.candidate.stop is not None else None,
+        sizing_policy_version=(EXACT_SIZING_POLICY if experiment.entry_model == "signal_close"
+                               else LEGACY_SIZING_POLICY),
     )
     if reason or experiment.entry_model != "signal_close":
         return plan
@@ -146,6 +164,7 @@ def create_plan(signal: Signal, experiment: Experiment, calendar: Calendar) -> P
         initial_risk=quantity * (entry - stop), planned_stop_loss_idr=loss,
         entry_fee_idr=fee, state="pending_entry" if lots else "skipped",
         reason="" if lots else "skipped_budget",
+        sizing_policy_version=EXACT_SIZING_POLICY,
     )
 
 
@@ -159,6 +178,8 @@ def step(
     history: tuple[Bar, ...] = (),
     data_valid: bool = True,
     confirmed_untradable: bool = False,
+    untradable_evidence: VerifiedUntradable | None = None,
+    untradable_sessions: tuple[date, ...] = (),
 ) -> PaperTrade:
     """Replay a held session before any later session. Daily entry/exit events are idempotent."""
     if trade.state in ("closed", "skipped", "expired", "ambiguous_review"):
@@ -175,12 +196,22 @@ def step(
     )
     if session != expected:
         raise ValueError("chronological_replay_required")
+    if untradable_evidence is not None:
+        require_nontrading_bar(untradable_evidence, trade.signal.ticker, session,
+                              observed_at, bar, trade.signal.data_mode)
+        confirmed_untradable = True
     if confirmed_untradable:
         return replace(
             trade,
             state="expired" if trade.entry is None else "open",
             reason="expired_untradable" if trade.entry is None else "awaiting_tradable_session",
             last_session=session,
+            events=trade.events + (Event(
+                session, "entry_expired" if trade.entry is None else "untradable", None,
+                "expired_untradable" if trade.entry is None else "awaiting_tradable_session",
+                observed_at, untradable_evidence.input_digest,
+                untradable_evidence=untradable_evidence.audit(),
+            ),) if untradable_evidence is not None else trade.events,
         )
     if bar is None or not data_valid or not bar.valid() or bar.volume == 0:
         return replace(trade, state="data_hold", reason="missing_or_invalid_bar")
@@ -219,7 +250,10 @@ def step(
             not history
             or history[-1] != bar
             or any(b.session > session for b in history)
-            or tuple(b.session for b in history) != calendar.between(history[0].session, session)
+            or tuple(b.session for b in history) != tuple(
+                d for d in calendar.between(history[0].session, session)
+                if d not in untradable_sessions
+            )
             or any(not b.valid() or b.volume == 0 for b in history)
         ):
             raise ValueError("complete_ma_history_required")
@@ -347,7 +381,7 @@ class PaperBook:
 
 
 def event_to_dict(event: Event) -> dict:
-    return {
+    result = {
         "session": event.session.isoformat(),
         "kind": event.kind,
         "price": str(event.price) if event.price is not None else None,
@@ -361,6 +395,9 @@ def event_to_dict(event: Event) -> dict:
         "ma_type": event.ma_type,
         "ma_period": event.ma_period,
     }
+    if event.untradable_evidence is not None:
+        result["untradable_evidence"] = event.untradable_evidence
+    return result
 
 
 def event_from_dict(data: dict) -> Event:
@@ -377,6 +414,7 @@ def event_from_dict(data: dict) -> Event:
         ma_value=Decimal(data["ma_value"]) if data.get("ma_value") is not None else None,
         ma_type=data.get("ma_type"),
         ma_period=data.get("ma_period"),
+        untradable_evidence=data.get("untradable_evidence"),
     )
 
 
@@ -435,7 +473,7 @@ def experiment_from_dict(data: dict) -> Experiment:
 
 
 def paper_trade_to_dict(trade: PaperTrade) -> dict:
-    return {
+    result = {
         "id": trade.id,
         "signal": json.loads(canonical_json(trade.signal)),
         "experiment": experiment_to_dict(trade.experiment),
@@ -462,6 +500,9 @@ def paper_trade_to_dict(trade: PaperTrade) -> dict:
         "alternate_net_pnl": str(trade.alternate_net_pnl)
         if trade.alternate_net_pnl is not None else None,
     }
+    if trade.sizing_policy_version != LEGACY_SIZING_POLICY:
+        result["sizing_policy_version"] = trade.sizing_policy_version
+    return result
 
 
 def paper_trade_from_dict(data: dict) -> PaperTrade:
@@ -503,6 +544,7 @@ def paper_trade_from_dict(data: dict) -> PaperTrade:
         if data.get("exit_fee_idr") is not None else None,
         alternate_net_pnl=Decimal(data["alternate_net_pnl"])
         if data.get("alternate_net_pnl") is not None else None,
+        sizing_policy_version=data.get("sizing_policy_version", LEGACY_SIZING_POLICY),
     )
 
 

@@ -1,3 +1,14 @@
+## Authorized production release in progress - 2026-10-10 WIB
+
+Action: user authorized commit/push and deployment of the locally verified G01-G17 remediation. Recheck both main branches, pause scanner during a fresh encrypted capture, fully restore/rehearse SQL011, apply backend capability first, commit/push both repos, verify exact-SHA Vercel Production, resume and recover the committed Oct8 paper cohort through Oct9 without publishing historical signals.
+Proof: GitHub fetch shows both main branches match origin. Read-only production preflight confirms SQL001-010, live mode/valid owner, no duplicate economics, checkpoint Oct8/revision1, eight pending plans/four evaluations/zero events. Scanner workflow paused with no active job. All prior local checks are retained below; backup/migration/deployment/recovery are not yet claimed complete.
+
+Release receipts: backend/data/production-release-evidence/sql011-release-20261010 (private ignored diagnostics); durable shared handoff: docs/REMEDIATION_RELEASE_20261010.md. No trading rule, provider, activation or actual ledger change is authorized by this rollout. Earlier local/historical evidence follows.
+
+## Incident repair - implemented and verified locally (2026-10-10)
+
+Approved G01-G17 remediation is implemented across both independent repositories. SQL011 adds economic/evaluation integrity, immutable job health, reporting eligibility and IDR/holding/paired metrics; frontend shares canonical exit filters and displays checkpoint/held-data/read errors honestly. Entry/exit rules, actual ledger/CSV and historical activation/config/book are preserved. See [PLAN.md](PLAN.md) for local proof and release gates. Commit/push, migration, deployment and production recovery remain pending separate release authorization; the current production incident has not been recovered by this local work.
+
 # Implementation status — IDX Night Scanner backend
 
 ## 2026-10-08 - Persistent paper/reporting: implemented and tested locally

@@ -1,0 +1,1313 @@
+{
+  "provenance": {
+    "fixture": true,
+    "source": "PGlite synthetic ledger with applied canonical SQL",
+    "migration_versions": [
+      "202609290001",
+      "202609290002",
+      "202609290003",
+      "202609290004",
+      "202609290005",
+      "202609300006",
+      "202610010007",
+      "202610040008",
+      "202610080009",
+      "202610080010",
+      "202610100011"
+    ],
+    "sql011_sha256_lf": "7928f1d54e9361158c8fc22af26af2c444413b82b5fc4b77ef8aece69c1c907a",
+    "generated_at": "2026-10-10T05:06:10.187Z",
+    "not_live_market_evidence": true
+  },
+  "reporting_fixed2r": {
+    "to": null,
+    "from": null,
+    "mode": "paper",
+    "basis": "IDR",
+    "curve": [
+      {
+        "ticker": "TESTA",
+        "sequence": 1,
+        "strategy": "MACD_EMA200_V1",
+        "trade_id": "a-fixed_rr",
+        "exit_session": "2026-10-09",
+        "realized_pnl_idr": 1834875,
+        "cumulative_pnl_idr": 1834875
+      },
+      {
+        "ticker": "TESTB",
+        "sequence": 2,
+        "strategy": "MACD_EMA200_V1",
+        "trade_id": "b-fixed_rr",
+        "exit_session": "2026-10-12",
+        "realized_pnl_idr": -993037.5,
+        "cumulative_pnl_idr": 841837.5
+      }
+    ],
+    "paging": {
+      "page": 1,
+      "has_more": false,
+      "page_size": 25
+    },
+    "trades": [
+      {
+        "id": "b-fixed_rr",
+        "lots": 126,
+        "state": "closed",
+        "cohort": "forward",
+        "reason": "exit",
+        "ticker": "TESTB",
+        "strategy": "MACD_EMA200_V1",
+        "ambiguous": false,
+        "signal_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "exit_price": 925,
+        "realized_r": -1.050833333333,
+        "entry_price": 1000,
+        "exit_session": "2026-10-12",
+        "initial_stop": 925,
+        "target_price": 1150,
+        "entry_session": "2026-10-09",
+        "fee_total_idr": 48037.5,
+        "model_version": "close-signal-risk-v1",
+        "signal_session": "2026-10-08",
+        "metric_eligible": true,
+        "exclusion_reason": null,
+        "holding_sessions": 2,
+        "planned_loss_idr": 993037.5,
+        "realized_pnl_idr": -993037.5,
+        "holding_calendar_days": 4,
+        "initial_price_risk_idr": 945000
+      },
+      {
+        "id": "a-fixed_rr",
+        "lots": 126,
+        "state": "closed",
+        "cohort": "forward",
+        "reason": "exit",
+        "ticker": "TESTA",
+        "strategy": "MACD_EMA200_V1",
+        "ambiguous": false,
+        "signal_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "exit_price": 1150,
+        "realized_r": 1.941666666667,
+        "entry_price": 1000,
+        "exit_session": "2026-10-09",
+        "initial_stop": 925,
+        "target_price": 1150,
+        "entry_session": "2026-10-09",
+        "fee_total_idr": 55125,
+        "model_version": "close-signal-risk-v1",
+        "signal_session": "2026-10-08",
+        "metric_eligible": true,
+        "exclusion_reason": null,
+        "holding_sessions": 1,
+        "planned_loss_idr": 993037.5,
+        "realized_pnl_idr": 1834875,
+        "holding_calendar_days": 1,
+        "initial_price_risk_idr": 945000
+      },
+      {
+        "id": "c-fixed_rr",
+        "lots": 126,
+        "state": "ambiguous_review",
+        "cohort": "forward",
+        "reason": "exit",
+        "ticker": "TESTC",
+        "strategy": "MACD_EMA200_V1",
+        "ambiguous": true,
+        "signal_id": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "exit_price": 925,
+        "realized_r": -1.050833333333,
+        "entry_price": 1000,
+        "exit_session": "2026-10-09",
+        "initial_stop": 925,
+        "target_price": 1150,
+        "entry_session": "2026-10-09",
+        "fee_total_idr": 48037.5,
+        "model_version": "close-signal-risk-v1",
+        "signal_session": "2026-10-08",
+        "metric_eligible": false,
+        "exclusion_reason": "ambiguous_order",
+        "holding_sessions": 1,
+        "planned_loss_idr": 993037.5,
+        "realized_pnl_idr": -993037.5,
+        "holding_calendar_days": 1,
+        "initial_price_risk_idr": 945000
+      },
+      {
+        "id": "e-fixed_rr",
+        "lots": 126,
+        "state": "pending_entry",
+        "cohort": "forward",
+        "reason": "pending_entry",
+        "ticker": "TESTE",
+        "strategy": "MACD_EMA200_V1",
+        "ambiguous": false,
+        "signal_id": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "exit_price": null,
+        "realized_r": null,
+        "entry_price": 1000,
+        "exit_session": null,
+        "initial_stop": 925,
+        "target_price": 1150,
+        "entry_session": "2026-10-09",
+        "fee_total_idr": 0,
+        "model_version": "close-signal-risk-v1",
+        "signal_session": "2026-10-08",
+        "metric_eligible": false,
+        "exclusion_reason": null,
+        "holding_sessions": null,
+        "planned_loss_idr": 993037.5,
+        "realized_pnl_idr": null,
+        "holding_calendar_days": null,
+        "initial_price_risk_idr": 945000
+      }
+    ],
+    "summary": {
+      "wins": 1,
+      "closed": 2,
+      "losses": 1,
+      "win_rate": 0.5,
+      "breakeven": 0,
+      "net_pnl_idr": 841837.5,
+      "expectancy_r": 0.445416666667,
+      "expectancy_idr": 420918.75,
+      "max_drawdown_idr": 993037.5,
+      "payoff_ratio_idr": 1.8477398889770025,
+      "profit_factor_idr": 1.8477398889770025,
+      "payoff_ratio_state": "finite",
+      "profit_factor_state": "finite"
+    },
+    "exit_key": "fixed2r",
+    "statuses": {
+      "open": 0,
+      "closed": 2,
+      "expired": 0,
+      "skipped": 0,
+      "ambiguous": 1,
+      "data_hold": 0,
+      "pending_entry": 1
+    },
+    "data_mode": "live",
+    "exclusions": {
+      "reasons": {
+        "ambiguous_order": 1
+      },
+      "closed_excluded": 1
+    },
+    "strategies": [
+      {
+        "wins": 1,
+        "closed": 2,
+        "losses": 1,
+        "strategy": "MACD_EMA200_V1",
+        "win_rate": 0.5,
+        "breakeven": 0,
+        "net_pnl_idr": 841837.5,
+        "expectancy_r": 0.445416666667,
+        "expectancy_idr": 420918.75,
+        "payoff_ratio_idr": 1.8477398889770025,
+        "profit_factor_idr": 1.8477398889770025,
+        "payoff_ratio_state": "finite",
+        "profit_factor_state": "finite"
+      }
+    ],
+    "updated_at": "2026-10-10T12:06:08.711+07:00",
+    "cohort_date": "exit_session_Asia_Jakarta",
+    "exit_version": null,
+    "status_scope": "all_history",
+    "as_of_session": "2026-10-15",
+    "exit_snapshot": null,
+    "model_version": "close-signal-risk-v1",
+    "sensitivities": {
+      "sl_first": {
+        "wins": 1,
+        "closed": 3,
+        "losses": 2,
+        "win_rate": 0.3333333333333333,
+        "breakeven": 0,
+        "net_pnl_idr": -151200,
+        "expectancy_r": -0.053333333333,
+        "expectancy_idr": -50400,
+        "max_drawdown_idr": 1986075,
+        "payoff_ratio_idr": 1.8477398889770025,
+        "profit_factor_idr": 0.9238699444885012,
+        "payoff_ratio_state": "finite",
+        "profit_factor_state": "finite"
+      },
+      "tp_first": {
+        "wins": 2,
+        "closed": 3,
+        "losses": 1,
+        "win_rate": 0.6666666666666666,
+        "breakeven": 0,
+        "net_pnl_idr": 2676712.5,
+        "expectancy_r": 0.944166666667,
+        "expectancy_idr": 892237.5,
+        "max_drawdown_idr": 993037.5,
+        "payoff_ratio_idr": 1.8477398889770025,
+        "profit_factor_idr": 3.695479777954005,
+        "payoff_ratio_state": "finite",
+        "profit_factor_state": "finite"
+      }
+    },
+    "coverage_status": "complete",
+    "contract_version": 1,
+    "primary_strategy": null,
+    "scanner_coverage": {
+      "status": "missing",
+      "session_date": null,
+      "coverage_total": null,
+      "coverage_valid": null
+    },
+    "processing_health": {
+      "status": "data_hold",
+      "overdue": true,
+      "data_mode": "live",
+      "checked_at": "2026-10-10T12:06:08.711+07:00",
+      "failure_code": null,
+      "model_version": "close-signal-risk-v1",
+      "data_hold_count": 1,
+      "last_attempt_at": null,
+      "calendar_version": "idx-calendar-known-sources-20261002-v2-explicit-closures",
+      "contract_version": 1,
+      "expected_session": "2026-10-09",
+      "latest_job_phase": null,
+      "latest_job_status": null,
+      "pending_entry_due": 1,
+      "processed_session": "2026-10-15",
+      "held_since_session": "2026-10-09",
+      "next_eligible_processing_at": "2026-10-09T16:15:00+07:00"
+    },
+    "experiment_comparison": {
+      "ma10": {
+        "open": 1,
+        "entered": 2,
+        "signals": 2,
+        "skipped": 0,
+        "summary": {
+          "wins": 0,
+          "closed": 0,
+          "losses": 0,
+          "win_rate": null,
+          "breakeven": 0,
+          "net_pnl_idr": 0,
+          "expectancy_r": null,
+          "expectancy_idr": null,
+          "max_drawdown_idr": 0,
+          "payoff_ratio_idr": null,
+          "profit_factor_idr": null,
+          "payoff_ratio_state": "no_closed",
+          "profit_factor_state": "no_closed"
+        },
+        "excluded": 1,
+        "pending_entry": 0,
+        "closed_assessed": 0,
+        "mean_holding_sessions": 3.5
+      },
+      "paired": [
+        {
+          "ma10": {
+            "state": "open",
+            "pnl_idr": null,
+            "trade_id": "a-ma_close",
+            "metric_eligible": false,
+            "holding_sessions": 5
+          },
+          "ticker": "TESTA",
+          "fixed2r": {
+            "state": "closed",
+            "pnl_idr": 1834875,
+            "trade_id": "a-fixed_rr",
+            "metric_eligible": true,
+            "holding_sessions": 1
+          },
+          "strategy": "MACD_EMA200_V1",
+          "signal_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ],
+      "fixed2r": {
+        "open": 0,
+        "entered": 3,
+        "signals": 4,
+        "skipped": 0,
+        "summary": {
+          "wins": 1,
+          "closed": 2,
+          "losses": 1,
+          "win_rate": 0.5,
+          "breakeven": 0,
+          "net_pnl_idr": 841837.5,
+          "expectancy_r": 0.445416666667,
+          "expectancy_idr": 420918.75,
+          "max_drawdown_idr": 993037.5,
+          "payoff_ratio_idr": 1.8477398889770025,
+          "profit_factor_idr": 1.8477398889770025,
+          "payoff_ratio_state": "finite",
+          "profit_factor_state": "finite"
+        },
+        "excluded": 1,
+        "pending_entry": 1,
+        "closed_assessed": 2,
+        "mean_holding_sessions": 1.3333333333333333
+      },
+      "cohort_basis": "exit_session_and_active",
+      "common_entry_signal_ids": [
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "sma_only_entry_signal_ids": [
+        "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+      ],
+      "fixed_only_entry_signal_ids": [
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    }
+  },
+  "reporting_ma10": {
+    "to": null,
+    "from": null,
+    "mode": "paper",
+    "basis": "IDR",
+    "curve": [],
+    "paging": {
+      "page": 1,
+      "has_more": false,
+      "page_size": 25
+    },
+    "trades": [
+      {
+        "id": "d-ma_close",
+        "lots": 126,
+        "state": "closed",
+        "cohort": "forward",
+        "reason": "exit",
+        "ticker": "TESTD",
+        "strategy": "MACD_EMA200_V1",
+        "ambiguous": false,
+        "signal_id": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "exit_price": 1150,
+        "realized_r": 1.941666666667,
+        "entry_price": 1000,
+        "exit_session": "2026-10-12",
+        "initial_stop": 925,
+        "target_price": null,
+        "entry_session": "2026-10-09",
+        "fee_total_idr": 55125,
+        "model_version": "close-signal-risk-v1",
+        "signal_session": "2026-10-08",
+        "metric_eligible": false,
+        "exclusion_reason": "late_model_only",
+        "holding_sessions": 2,
+        "planned_loss_idr": 993037.5,
+        "realized_pnl_idr": 1834875,
+        "holding_calendar_days": 4,
+        "initial_price_risk_idr": 945000
+      },
+      {
+        "id": "a-ma_close",
+        "lots": 126,
+        "state": "open",
+        "cohort": "forward",
+        "reason": "open",
+        "ticker": "TESTA",
+        "strategy": "MACD_EMA200_V1",
+        "ambiguous": false,
+        "signal_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "exit_price": null,
+        "realized_r": null,
+        "entry_price": 1000,
+        "exit_session": null,
+        "initial_stop": 925,
+        "target_price": null,
+        "entry_session": "2026-10-09",
+        "fee_total_idr": 18900,
+        "model_version": "close-signal-risk-v1",
+        "signal_session": "2026-10-08",
+        "metric_eligible": false,
+        "exclusion_reason": null,
+        "holding_sessions": 5,
+        "planned_loss_idr": 993037.5,
+        "realized_pnl_idr": null,
+        "holding_calendar_days": 7,
+        "initial_price_risk_idr": 945000
+      }
+    ],
+    "summary": {
+      "wins": 0,
+      "closed": 0,
+      "losses": 0,
+      "win_rate": null,
+      "breakeven": 0,
+      "net_pnl_idr": 0,
+      "expectancy_r": null,
+      "expectancy_idr": null,
+      "max_drawdown_idr": 0,
+      "payoff_ratio_idr": null,
+      "profit_factor_idr": null,
+      "payoff_ratio_state": "no_closed",
+      "profit_factor_state": "no_closed"
+    },
+    "exit_key": "ma10",
+    "statuses": {
+      "open": 1,
+      "closed": 1,
+      "expired": 0,
+      "skipped": 0,
+      "ambiguous": 0,
+      "data_hold": 0,
+      "pending_entry": 0
+    },
+    "data_mode": "live",
+    "exclusions": {
+      "reasons": {
+        "late_model_only": 1
+      },
+      "closed_excluded": 1
+    },
+    "strategies": [],
+    "updated_at": "2026-10-10T12:06:08.711+07:00",
+    "cohort_date": "exit_session_Asia_Jakarta",
+    "exit_version": null,
+    "status_scope": "all_history",
+    "as_of_session": "2026-10-15",
+    "exit_snapshot": null,
+    "model_version": "close-signal-risk-v1",
+    "sensitivities": {
+      "sl_first": {
+        "wins": 0,
+        "closed": 0,
+        "losses": 0,
+        "win_rate": null,
+        "breakeven": 0,
+        "net_pnl_idr": 0,
+        "expectancy_r": null,
+        "expectancy_idr": null,
+        "max_drawdown_idr": 0,
+        "payoff_ratio_idr": null,
+        "profit_factor_idr": null,
+        "payoff_ratio_state": "no_closed",
+        "profit_factor_state": "no_closed"
+      },
+      "tp_first": {
+        "wins": 0,
+        "closed": 0,
+        "losses": 0,
+        "win_rate": null,
+        "breakeven": 0,
+        "net_pnl_idr": 0,
+        "expectancy_r": null,
+        "expectancy_idr": null,
+        "max_drawdown_idr": 0,
+        "payoff_ratio_idr": null,
+        "profit_factor_idr": null,
+        "payoff_ratio_state": "no_closed",
+        "profit_factor_state": "no_closed"
+      }
+    },
+    "coverage_status": "complete",
+    "contract_version": 1,
+    "primary_strategy": null,
+    "scanner_coverage": {
+      "status": "missing",
+      "session_date": null,
+      "coverage_total": null,
+      "coverage_valid": null
+    },
+    "processing_health": {
+      "status": "data_hold",
+      "overdue": true,
+      "data_mode": "live",
+      "checked_at": "2026-10-10T12:06:08.711+07:00",
+      "failure_code": null,
+      "model_version": "close-signal-risk-v1",
+      "data_hold_count": 1,
+      "last_attempt_at": null,
+      "calendar_version": "idx-calendar-known-sources-20261002-v2-explicit-closures",
+      "contract_version": 1,
+      "expected_session": "2026-10-09",
+      "latest_job_phase": null,
+      "latest_job_status": null,
+      "pending_entry_due": 1,
+      "processed_session": "2026-10-15",
+      "held_since_session": "2026-10-09",
+      "next_eligible_processing_at": "2026-10-09T16:15:00+07:00"
+    },
+    "experiment_comparison": {
+      "ma10": {
+        "open": 1,
+        "entered": 2,
+        "signals": 2,
+        "skipped": 0,
+        "summary": {
+          "wins": 0,
+          "closed": 0,
+          "losses": 0,
+          "win_rate": null,
+          "breakeven": 0,
+          "net_pnl_idr": 0,
+          "expectancy_r": null,
+          "expectancy_idr": null,
+          "max_drawdown_idr": 0,
+          "payoff_ratio_idr": null,
+          "profit_factor_idr": null,
+          "payoff_ratio_state": "no_closed",
+          "profit_factor_state": "no_closed"
+        },
+        "excluded": 1,
+        "pending_entry": 0,
+        "closed_assessed": 0,
+        "mean_holding_sessions": 3.5
+      },
+      "paired": [
+        {
+          "ma10": {
+            "state": "open",
+            "pnl_idr": null,
+            "trade_id": "a-ma_close",
+            "metric_eligible": false,
+            "holding_sessions": 5
+          },
+          "ticker": "TESTA",
+          "fixed2r": {
+            "state": "closed",
+            "pnl_idr": 1834875,
+            "trade_id": "a-fixed_rr",
+            "metric_eligible": true,
+            "holding_sessions": 1
+          },
+          "strategy": "MACD_EMA200_V1",
+          "signal_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ],
+      "fixed2r": {
+        "open": 0,
+        "entered": 3,
+        "signals": 4,
+        "skipped": 0,
+        "summary": {
+          "wins": 1,
+          "closed": 2,
+          "losses": 1,
+          "win_rate": 0.5,
+          "breakeven": 0,
+          "net_pnl_idr": 841837.5,
+          "expectancy_r": 0.445416666667,
+          "expectancy_idr": 420918.75,
+          "max_drawdown_idr": 993037.5,
+          "payoff_ratio_idr": 1.8477398889770025,
+          "profit_factor_idr": 1.8477398889770025,
+          "payoff_ratio_state": "finite",
+          "profit_factor_state": "finite"
+        },
+        "excluded": 1,
+        "pending_entry": 1,
+        "closed_assessed": 2,
+        "mean_holding_sessions": 1.3333333333333333
+      },
+      "cohort_basis": "exit_session_and_active",
+      "common_entry_signal_ids": [
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "sma_only_entry_signal_ids": [
+        "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+      ],
+      "fixed_only_entry_signal_ids": [
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      ]
+    }
+  },
+  "detail_fixed2r": {
+    "mode": "paper",
+    "trade": {
+      "id": "a-fixed_rr",
+      "lots": 126,
+      "state": "closed",
+      "cohort": "forward",
+      "reason": "exit",
+      "ticker": "TESTA",
+      "exit_key": "fixed2r",
+      "strategy": "MACD_EMA200_V1",
+      "ambiguous": false,
+      "exit_mode": "fixed_rr",
+      "signal_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "exit_price": 1150,
+      "realized_r": 1.941666666667,
+      "alternate_r": null,
+      "entry_price": 1000,
+      "current_stop": 925,
+      "exit_fee_idr": 36225,
+      "exit_session": "2026-10-09",
+      "initial_stop": 925,
+      "target_price": 1150,
+      "entry_fee_idr": 18900,
+      "entry_session": "2026-10-09",
+      "fee_total_idr": 55125,
+      "model_version": "close-signal-risk-v1",
+      "source_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "signal_session": "2026-10-08",
+      "config_snapshot": {
+        "id": "close-signal-risk-v1-fixed2r-MACD_EMA200_V1",
+        "exit": {
+          "mode": "fixed_rr",
+          "period": null,
+          "ma_type": null,
+          "version": "fixed2r-v1",
+          "target_r": "2"
+        },
+        "costs": {
+          "status": "verified",
+          "buy_bps": "15",
+          "sell_bps": "25",
+          "slippage_bps": "0"
+        },
+        "lot_size": 100,
+        "strategy": "MACD_EMA200_V1",
+        "entry_model": "signal_close",
+        "activated_at": "2026-10-10T12:06:08.711+07:00",
+        "model_version": "close-signal-risk-v1",
+        "risk_budget_idr": "1000000"
+      },
+      "metric_eligible": true,
+      "exclusion_reason": null,
+      "holding_sessions": 1,
+      "planned_loss_idr": 993037.5,
+      "realized_pnl_idr": 1834875,
+      "alternate_pnl_idr": null,
+      "holding_calendar_days": 1,
+      "initial_price_risk_idr": 945000
+    },
+    "events": [
+      {
+        "payload": {
+          "kind": "entry",
+          "price": "1000",
+          "reason": "assumed_signal_close",
+          "session": "2026-10-09",
+          "observed_at": "2026-10-09T10:00:00Z",
+          "input_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "event_id": "a-fixed_rr:1",
+        "event_type": "entry",
+        "session_date": "2026-10-09"
+      },
+      {
+        "payload": {
+          "kind": "exit",
+          "price": "1150",
+          "reason": "take_profit",
+          "session": "2026-10-09",
+          "observed_at": "2026-10-09T10:00:00Z",
+          "input_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+          "alternate_price": null
+        },
+        "event_id": "a-fixed_rr:2",
+        "event_type": "exit",
+        "session_date": "2026-10-09"
+      }
+    ],
+    "data_mode": "live",
+    "model_version": "close-signal-risk-v1",
+    "contract_version": 1
+  },
+  "detail_ma10": {
+    "mode": "paper",
+    "trade": {
+      "id": "a-ma_close",
+      "lots": 126,
+      "state": "open",
+      "cohort": "forward",
+      "reason": "open",
+      "ticker": "TESTA",
+      "exit_key": "ma10",
+      "strategy": "MACD_EMA200_V1",
+      "ambiguous": false,
+      "exit_mode": "ma_close",
+      "signal_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "exit_price": null,
+      "realized_r": null,
+      "alternate_r": null,
+      "entry_price": 1000,
+      "current_stop": 925,
+      "exit_fee_idr": null,
+      "exit_session": null,
+      "initial_stop": 925,
+      "target_price": null,
+      "entry_fee_idr": 18900,
+      "entry_session": "2026-10-09",
+      "fee_total_idr": 18900,
+      "model_version": "close-signal-risk-v1",
+      "source_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "signal_session": "2026-10-08",
+      "config_snapshot": {
+        "id": "close-signal-risk-v1-ma10-MACD_EMA200_V1",
+        "exit": {
+          "mode": "ma_close",
+          "period": 10,
+          "ma_type": "SMA",
+          "version": "ma10-v1",
+          "target_r": null
+        },
+        "costs": {
+          "status": "verified",
+          "buy_bps": "15",
+          "sell_bps": "25",
+          "slippage_bps": "0"
+        },
+        "lot_size": 100,
+        "strategy": "MACD_EMA200_V1",
+        "entry_model": "signal_close",
+        "activated_at": "2026-10-10T12:06:08.711+07:00",
+        "model_version": "close-signal-risk-v1",
+        "risk_budget_idr": "1000000"
+      },
+      "metric_eligible": false,
+      "exclusion_reason": null,
+      "holding_sessions": 5,
+      "planned_loss_idr": 993037.5,
+      "realized_pnl_idr": null,
+      "alternate_pnl_idr": null,
+      "holding_calendar_days": 7,
+      "initial_price_risk_idr": 945000
+    },
+    "events": [
+      {
+        "payload": {
+          "kind": "entry",
+          "price": "1000",
+          "reason": "assumed_signal_close",
+          "session": "2026-10-09",
+          "observed_at": "2026-10-09T10:00:00Z",
+          "input_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "event_id": "a-ma_close:1",
+        "event_type": "entry",
+        "session_date": "2026-10-09"
+      }
+    ],
+    "data_mode": "live",
+    "model_version": "close-signal-risk-v1",
+    "contract_version": 1
+  },
+  "detail_ma10_closed": {
+    "mode": "paper",
+    "trade": {
+      "id": "d-ma_close",
+      "lots": 126,
+      "state": "closed",
+      "cohort": "forward",
+      "reason": "exit",
+      "ticker": "TESTD",
+      "exit_key": "ma10",
+      "strategy": "MACD_EMA200_V1",
+      "ambiguous": false,
+      "exit_mode": "ma_close",
+      "signal_id": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "exit_price": 1150,
+      "realized_r": 1.941666666667,
+      "alternate_r": null,
+      "entry_price": 1000,
+      "current_stop": 925,
+      "exit_fee_idr": 36225,
+      "exit_session": "2026-10-12",
+      "initial_stop": 925,
+      "target_price": null,
+      "entry_fee_idr": 18900,
+      "entry_session": "2026-10-09",
+      "fee_total_idr": 55125,
+      "model_version": "close-signal-risk-v1",
+      "source_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "signal_session": "2026-10-08",
+      "config_snapshot": {
+        "id": "close-signal-risk-v1-ma10-MACD_EMA200_V1",
+        "exit": {
+          "mode": "ma_close",
+          "period": 10,
+          "ma_type": "SMA",
+          "version": "ma10-v1",
+          "target_r": null
+        },
+        "costs": {
+          "status": "verified",
+          "buy_bps": "15",
+          "sell_bps": "25",
+          "slippage_bps": "0"
+        },
+        "lot_size": 100,
+        "strategy": "MACD_EMA200_V1",
+        "entry_model": "signal_close",
+        "activated_at": "2026-10-10T12:06:08.711+07:00",
+        "model_version": "close-signal-risk-v1",
+        "risk_budget_idr": "1000000"
+      },
+      "metric_eligible": false,
+      "exclusion_reason": "late_model_only",
+      "holding_sessions": 2,
+      "planned_loss_idr": 993037.5,
+      "realized_pnl_idr": 1834875,
+      "alternate_pnl_idr": null,
+      "holding_calendar_days": 4,
+      "initial_price_risk_idr": 945000
+    },
+    "events": [
+      {
+        "payload": {
+          "kind": "entry",
+          "price": "1000",
+          "reason": "assumed_signal_close",
+          "session": "2026-10-09",
+          "observed_at": "2026-10-09T10:00:00Z",
+          "input_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "event_id": "d-ma_close:1",
+        "event_type": "entry",
+        "session_date": "2026-10-09"
+      },
+      {
+        "payload": {
+          "kind": "pending_exit",
+          "price": null,
+          "reason": "late_model_only",
+          "ma_type": "SMA",
+          "session": "2026-10-09",
+          "ma_value": "1005",
+          "ma_period": 10,
+          "observed_at": "2026-10-12T03:00:00Z",
+          "input_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "event_id": "d-ma_close:2",
+        "event_type": "pending_exit",
+        "session_date": "2026-10-09"
+      },
+      {
+        "payload": {
+          "kind": "exit",
+          "price": "1150",
+          "reason": "ma_breakdown",
+          "session": "2026-10-12",
+          "observed_at": "2026-10-12T10:00:00Z",
+          "input_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+          "alternate_price": null
+        },
+        "event_id": "d-ma_close:3",
+        "event_type": "exit",
+        "session_date": "2026-10-12"
+      }
+    ],
+    "data_mode": "live",
+    "model_version": "close-signal-risk-v1",
+    "contract_version": 1
+  },
+  "evaluation": {
+    "to": null,
+    "from": null,
+    "mode": "signal_evaluation",
+    "basis": "IDR",
+    "paging": {
+      "page": 1,
+      "has_more": false,
+      "page_size": 25
+    },
+    "exit_key": null,
+    "data_mode": "live",
+    "strategies": [
+      {
+        "cells": {
+          "net_5": {
+            "wins": 1,
+            "pending": 0,
+            "assessed": 1,
+            "excluded": 0,
+            "win_rate": 1,
+            "ambiguous": 0,
+            "data_hold": 1,
+            "excluded_reasons": {}
+          },
+          "net_10": {
+            "wins": 0,
+            "pending": 1,
+            "assessed": 0,
+            "excluded": 0,
+            "win_rate": null,
+            "ambiguous": 0,
+            "data_hold": 1,
+            "excluded_reasons": {}
+          },
+          "target_1r": {
+            "wins": 1,
+            "pending": 0,
+            "assessed": 1,
+            "excluded": 0,
+            "win_rate": 1,
+            "ambiguous": 0,
+            "data_hold": 1,
+            "excluded_reasons": {}
+          },
+          "target_2r": {
+            "wins": 0,
+            "pending": 0,
+            "assessed": 0,
+            "excluded": 0,
+            "win_rate": null,
+            "ambiguous": 1,
+            "data_hold": 1,
+            "excluded_reasons": {}
+          }
+        },
+        "signals": 2,
+        "strategy": "MACD_EMA200_V1"
+      }
+    ],
+    "updated_at": "2026-10-10T12:06:08.711+07:00",
+    "cohort_date": "signal_session",
+    "evaluations": [
+      {
+        "ticker": "TESTA",
+        "results": {
+          "net_5": "won",
+          "net_10": "pending",
+          "target_1r": "won",
+          "target_2r": "ambiguous"
+        },
+        "strategy": "MACD_EMA200_V1",
+        "signal_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "target_1r": 1075,
+        "target_2r": 1150,
+        "entry_price": 1000,
+        "initial_stop": 925,
+        "last_session": "2026-10-15",
+        "entry_session": "2026-10-09",
+        "signal_session": "2026-10-08",
+        "exclusion_reasons": {},
+        "observed_sessions": 5
+      },
+      {
+        "ticker": "TESTE",
+        "results": {
+          "net_5": "data_hold",
+          "net_10": "data_hold",
+          "target_1r": "data_hold",
+          "target_2r": "data_hold"
+        },
+        "strategy": "MACD_EMA200_V1",
+        "signal_id": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "target_1r": 1075,
+        "target_2r": 1150,
+        "entry_price": 1000,
+        "initial_stop": 925,
+        "last_session": null,
+        "entry_session": "2026-10-09",
+        "signal_session": "2026-10-08",
+        "exclusion_reasons": {},
+        "observed_sessions": 0
+      }
+    ],
+    "exit_version": null,
+    "as_of_session": "2026-10-15",
+    "exit_snapshot": null,
+    "model_version": "close-signal-risk-v1",
+    "coverage_status": "partial",
+    "contract_version": 1,
+    "primary_strategy": null,
+    "scanner_coverage": {
+      "status": "missing",
+      "session_date": null,
+      "coverage_total": null,
+      "coverage_valid": null
+    },
+    "processing_health": {
+      "status": "data_hold",
+      "overdue": true,
+      "data_mode": "live",
+      "checked_at": "2026-10-10T12:06:08.711+07:00",
+      "failure_code": null,
+      "model_version": "close-signal-risk-v1",
+      "data_hold_count": 1,
+      "last_attempt_at": null,
+      "calendar_version": "idx-calendar-known-sources-20261002-v2-explicit-closures",
+      "contract_version": 1,
+      "expected_session": "2026-10-09",
+      "latest_job_phase": null,
+      "latest_job_status": null,
+      "pending_entry_due": 1,
+      "processed_session": "2026-10-15",
+      "held_since_session": "2026-10-09",
+      "next_eligible_processing_at": "2026-10-09T16:15:00+07:00"
+    }
+  },
+  "actual_reporting": {
+    "to": null,
+    "from": null,
+    "mode": "actual",
+    "basis": "IDR",
+    "curve": [
+      {
+        "ticker": "TEST",
+        "sequence": 1,
+        "strategy": "MACD_EMA200_V1",
+        "trade_id": "def394e8-f062-4cfe-9bd6-668eb6e4688d",
+        "exit_session": "2026-10-12",
+        "realized_pnl_idr": 1834875,
+        "cumulative_pnl_idr": 1834875
+      }
+    ],
+    "paging": {
+      "page": 1,
+      "has_more": false,
+      "page_size": 25
+    },
+    "trades": [
+      {
+        "id": "def394e8-f062-4cfe-9bd6-668eb6e4688d",
+        "lots": null,
+        "state": "closed",
+        "cohort": null,
+        "reason": null,
+        "ticker": "TEST",
+        "revision": 4,
+        "strategy": "MACD_EMA200_V1",
+        "ambiguous": false,
+        "signal_id": null,
+        "exit_price": 1150,
+        "realized_r": 1.941666666667,
+        "entry_price": 1000,
+        "current_stop": 925,
+        "exit_session": "2026-10-12",
+        "initial_stop": 925,
+        "target_price": 1150,
+        "entry_session": "2026-10-09",
+        "fee_total_idr": 55125,
+        "model_version": null,
+        "open_quantity": 0,
+        "signal_session": null,
+        "metric_eligible": true,
+        "exclusion_reason": null,
+        "holding_sessions": 2,
+        "planned_loss_idr": null,
+        "realized_pnl_idr": 1834875,
+        "holding_calendar_days": 4,
+        "initial_price_risk_idr": 945000
+      },
+      {
+        "id": "efde3236-8f23-4584-a83f-3a002e00e976",
+        "lots": null,
+        "state": "draft",
+        "cohort": null,
+        "reason": null,
+        "ticker": "DRAFT",
+        "revision": 1,
+        "strategy": "MACD_EMA200_V1",
+        "ambiguous": false,
+        "signal_id": null,
+        "exit_price": null,
+        "realized_r": null,
+        "entry_price": null,
+        "current_stop": 90,
+        "exit_session": null,
+        "initial_stop": 90,
+        "target_price": null,
+        "entry_session": null,
+        "fee_total_idr": 0,
+        "model_version": null,
+        "open_quantity": 0,
+        "signal_session": null,
+        "metric_eligible": false,
+        "exclusion_reason": null,
+        "holding_sessions": null,
+        "planned_loss_idr": null,
+        "realized_pnl_idr": 0,
+        "holding_calendar_days": null,
+        "initial_price_risk_idr": null
+      }
+    ],
+    "summary": {
+      "wins": 1,
+      "closed": 1,
+      "losses": 0,
+      "win_rate": 1,
+      "breakeven": 0,
+      "net_pnl_idr": 1834875,
+      "expectancy_r": 1.941666666667,
+      "expectancy_idr": 1834875,
+      "max_drawdown_idr": 0,
+      "payoff_ratio_idr": null,
+      "profit_factor_idr": null,
+      "payoff_ratio_state": "no_losses",
+      "profit_factor_state": "no_losses"
+    },
+    "exit_key": null,
+    "statuses": {
+      "open": 0,
+      "draft": 1,
+      "closed": 1,
+      "expired": 0,
+      "skipped": 0,
+      "ambiguous": 0,
+      "data_hold": 0,
+      "pending_entry": 0
+    },
+    "data_mode": "live",
+    "exclusions": {
+      "reasons": {},
+      "closed_excluded": 0
+    },
+    "strategies": [
+      {
+        "wins": 1,
+        "closed": 1,
+        "losses": 0,
+        "strategy": "MACD_EMA200_V1",
+        "win_rate": 1,
+        "breakeven": 0,
+        "net_pnl_idr": 1834875,
+        "expectancy_r": 1.941666666667,
+        "expectancy_idr": 1834875,
+        "payoff_ratio_idr": null,
+        "profit_factor_idr": null,
+        "payoff_ratio_state": "no_losses",
+        "profit_factor_state": "no_losses"
+      }
+    ],
+    "updated_at": "2026-10-12T10:00:00+07:00",
+    "cohort_date": "exit_session_Asia_Jakarta",
+    "exit_version": null,
+    "status_scope": "all_history",
+    "as_of_session": "2026-10-12",
+    "exit_snapshot": null,
+    "model_version": null,
+    "sensitivities": {
+      "sl_first": {
+        "wins": 1,
+        "closed": 1,
+        "losses": 0,
+        "win_rate": 1,
+        "breakeven": 0,
+        "net_pnl_idr": 1834875,
+        "expectancy_r": 1.941666666667,
+        "expectancy_idr": 1834875,
+        "max_drawdown_idr": 0,
+        "payoff_ratio_idr": null,
+        "profit_factor_idr": null,
+        "payoff_ratio_state": "no_losses",
+        "profit_factor_state": "no_losses"
+      },
+      "tp_first": {
+        "wins": 1,
+        "closed": 1,
+        "losses": 0,
+        "win_rate": 1,
+        "breakeven": 0,
+        "net_pnl_idr": 1834875,
+        "expectancy_r": 1.941666666667,
+        "expectancy_idr": 1834875,
+        "max_drawdown_idr": 0,
+        "payoff_ratio_idr": null,
+        "profit_factor_idr": null,
+        "payoff_ratio_state": "no_losses",
+        "profit_factor_state": "no_losses"
+      }
+    },
+    "coverage_status": "complete",
+    "contract_version": 1,
+    "primary_strategy": null,
+    "scanner_coverage": null,
+    "processing_health": null
+  },
+  "health": {
+    "status": "data_hold",
+    "overdue": true,
+    "data_mode": "live",
+    "checked_at": "2026-10-10T12:06:08.711+07:00",
+    "failure_code": null,
+    "model_version": "close-signal-risk-v1",
+    "data_hold_count": 1,
+    "last_attempt_at": null,
+    "calendar_version": "idx-calendar-known-sources-20261002-v2-explicit-closures",
+    "contract_version": 1,
+    "expected_session": "2026-10-09",
+    "latest_job_phase": null,
+    "latest_job_status": null,
+    "pending_entry_due": 1,
+    "processed_session": "2026-10-15",
+    "held_since_session": "2026-10-09",
+    "next_eligible_processing_at": "2026-10-09T16:15:00+07:00"
+  },
+  "ratio_cases": {
+    "empty": {
+      "wins": 0,
+      "closed": 0,
+      "losses": 0,
+      "win_rate": null,
+      "breakeven": 0,
+      "net_pnl_idr": 0,
+      "expectancy_r": null,
+      "expectancy_idr": null,
+      "max_drawdown_idr": 0,
+      "payoff_ratio_idr": null,
+      "profit_factor_idr": null,
+      "payoff_ratio_state": "no_closed",
+      "profit_factor_state": "no_closed"
+    },
+    "no_loss": {
+      "wins": 1,
+      "closed": 1,
+      "losses": 0,
+      "win_rate": 1,
+      "breakeven": 0,
+      "net_pnl_idr": 100,
+      "expectancy_r": 1,
+      "expectancy_idr": 100,
+      "max_drawdown_idr": 0,
+      "payoff_ratio_idr": null,
+      "profit_factor_idr": null,
+      "payoff_ratio_state": "no_losses",
+      "profit_factor_state": "no_losses"
+    },
+    "no_win": {
+      "wins": 0,
+      "closed": 1,
+      "losses": 1,
+      "win_rate": 0,
+      "breakeven": 0,
+      "net_pnl_idr": -100,
+      "expectancy_r": -1,
+      "expectancy_idr": -100,
+      "max_drawdown_idr": 100,
+      "payoff_ratio_idr": null,
+      "profit_factor_idr": 0,
+      "payoff_ratio_state": "no_wins",
+      "profit_factor_state": "finite"
+    },
+    "breakeven": {
+      "wins": 0,
+      "closed": 1,
+      "losses": 0,
+      "win_rate": 0,
+      "breakeven": 1,
+      "net_pnl_idr": 0,
+      "expectancy_r": 0,
+      "expectancy_idr": 0,
+      "max_drawdown_idr": 0,
+      "payoff_ratio_idr": null,
+      "profit_factor_idr": null,
+      "payoff_ratio_state": "no_directional_results",
+      "profit_factor_state": "no_directional_results"
+    },
+    "mixed": {
+      "wins": 2,
+      "closed": 4,
+      "losses": 1,
+      "win_rate": 0.5,
+      "breakeven": 1,
+      "net_pnl_idr": 200,
+      "expectancy_r": 0.5,
+      "expectancy_idr": 50,
+      "max_drawdown_idr": 100,
+      "payoff_ratio_idr": 1.5,
+      "profit_factor_idr": 3,
+      "payoff_ratio_state": "finite",
+      "profit_factor_state": "finite"
+    }
+  }
+}

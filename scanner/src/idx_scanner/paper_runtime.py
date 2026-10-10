@@ -17,6 +17,7 @@ from .paper import (
 from .paper_persistence import PaperRuntimeStore
 from .paper_research import MODEL_VERSION, create_evaluation, evaluation_active, step_evaluation
 from .strategies import STRATEGIES
+from .untradable import evidence_for, merge_untradable_evidence, require_nontrading_source
 
 
 def close_experiments(activation: datetime) -> dict[str, list[Experiment]]:
@@ -31,13 +32,17 @@ def close_experiments(activation: datetime) -> dict[str, list[Experiment]]:
     )] for strategy in STRATEGIES}
 
 
-def session_source(series: Series | None, session: date, calendar: Calendar):
+def session_source(series: Series | None, session: date, calendar: Calendar,
+                   untradable_sessions: tuple[date, ...] = ()):
     if series is None:
         return None, (), False
-    history = tuple(b for b in series.bars if b.session <= session)
-    current = history[-1] if history and history[-1].session == session else None
-    historical = replace(series, bars=history)
-    valid = quality(historical, session, calendar) == "valid"
+    require_nontrading_source(series, untradable_sessions)
+    original = tuple(b for b in series.bars if b.session <= session)
+    current = original[-1] if original and original[-1].session == session else None
+    history = tuple(b for b in original if b.session not in untradable_sessions)
+    historical = replace(series, bars=original)
+    valid = quality(historical, session, calendar,
+                    untradable_sessions=untradable_sessions) == "valid"
     return current, history, valid
 
 
@@ -49,8 +54,10 @@ def next_trade_session(trade, calendar: Calendar):
 
 def advance_runtime(book: PaperBook, evaluations: dict, signals: list[Signal],
                     activation: datetime, target: date, series: dict[str, Series],
-                    calendar: Calendar, observed_at: datetime, mappings: dict[str, str]):
+                    calendar: Calendar, observed_at: datetime, mappings: dict[str, str],
+                    *, untradable_evidence=()):
     experiments = close_experiments(activation)
+    untradable_evidence = merge_untradable_evidence(untradable_evidence, book, evaluations)
     signals = [s for s in signals if s.published_at >= activation and s.cohort == "forward"
                and s.candidate.execution_eligible and s.session <= target]
     register = [s for s in signals if s.id not in evaluations or any(
@@ -69,17 +76,27 @@ def advance_runtime(book: PaperBook, evaluations: dict, signals: list[Signal],
             if (trade.state not in ("pending_entry", "open", "data_hold")
                 or next_trade_session(trade, calendar) != day):
                 continue
-            bar, history, valid = session_source(series.get(trade.signal.ticker), day, calendar)
+            proofs = evidence_for(untradable_evidence, trade.signal.ticker, observed_at,
+                                  trade.signal.data_mode)
+            known_days = tuple(d for d in proofs if d <= day)
+            bar, history, valid = session_source(series.get(trade.signal.ticker), day, calendar,
+                                                known_days)
             book.trades[key] = step(trade, day, bar, calendar, observed_at,
-                                   history=history, data_valid=valid)
+                                   history=history, data_valid=valid,
+                                   untradable_evidence=proofs.get(day),
+                                   untradable_sessions=known_days)
         for key, record in tuple(evaluations.items()):
             expected = (calendar.next(date.fromisoformat(record["last_session"])).day
                         if record["last_session"] else date.fromisoformat(record["entry_session"]))
             if not evaluation_active(record) or expected != day:
                 continue
-            bar, _, valid = session_source(series.get(record["ticker"]), day, calendar)
+            proofs = evidence_for(untradable_evidence, record["ticker"], observed_at,
+                                  record["data_mode"])
+            known_days = tuple(d for d in proofs if d <= day)
+            bar, _, valid = session_source(series.get(record["ticker"]), day, calendar, known_days)
             evaluations[key] = step_evaluation(record, day, bar, calendar, observed_at,
-                                              data_valid=valid)
+                                              data_valid=valid,
+                                              untradable_evidence=proofs.get(day))
         for signal in register:
             if signal.session != day:
                 continue
@@ -94,7 +111,8 @@ def process_persisted_paper_session(store: PaperRuntimeStore, target: date,
                                     series: dict[str, Series], calendar: Calendar,
                                     observed_at: datetime, *, source_run_id: str | None = None,
                                     mappings: dict[str, str] | None = None,
-                                    committed_signals: list[Signal] | None = None):
+                                    committed_signals: list[Signal] | None = None,
+                                    untradable_evidence=()):
     runtime = store.load()
     activation = datetime.fromisoformat(runtime["activated_at"])
     book = paper_book_from_dict(runtime["book"])
@@ -103,7 +121,8 @@ def process_persisted_paper_session(store: PaperRuntimeStore, target: date,
         target, activation
     )
     book, evaluations = advance_runtime(book, evaluations, signals, activation, target,
-                                        series, calendar, observed_at, mappings or {})
+                                        series, calendar, observed_at, mappings or {},
+                                        untradable_evidence=untradable_evidence)
     serialized = paper_book_to_dict(book)
     request_id = digest((store.owner_id, MODEL_VERSION, target, serialized, evaluations))
     receipt = store.commit(revision=runtime["revision"], request_id=request_id,
@@ -116,4 +135,9 @@ def process_persisted_paper_session(store: PaperRuntimeStore, target: date,
                    runtime_revision=receipt["revision"], commit_replayed=receipt["replayed"],
                    last_session=target.isoformat(), last_updated_at=observed_at.isoformat(),
                    evaluations_count=len(evaluations))
+    trade_holds = sum(t.state == "data_hold" for t in book.trades.values())
+    evaluation_holds = sum("data_hold" in r["results"].values() for r in evaluations.values())
+    summary.update(trades_data_hold_count=trade_holds,
+                   evaluations_data_hold_count=evaluation_holds,
+                   data_hold_count=trade_holds + evaluation_holds)
     return book, summary

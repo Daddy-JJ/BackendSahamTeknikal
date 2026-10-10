@@ -100,10 +100,15 @@ class Universe:
             raise ValueError("blocked_configuration: universe not effective")
 
 
-def quality(series: Series, target: date, calendar: Calendar) -> str:
-    bars = series.bars
+def quality(series: Series, target: date, calendar: Calendar, *,
+            untradable_sessions: tuple[date, ...] = ()) -> str:
+    # Only the reviewed-evidence paper caller supplies these dates. Scanner/RS
+    # retains its full comparison-set gate with the default empty tuple.
+    excluded = set(untradable_sessions)
+    bars = tuple(b for b in series.bars if b.session not in excluded)
     if any(
-        i.code == "incomplete_ohlcv" and i.session <= target for i in series.provider_row_issues
+        i.code == "incomplete_ohlcv" and i.session <= target and i.session not in excluded
+        for i in series.provider_row_issues
     ):
         return "data_quality_hold"
     if not bars:
@@ -121,14 +126,15 @@ def quality(series: Series, target: date, calendar: Calendar) -> str:
     ):
         return "data_quality_hold"
     try:
-        if tuple(days) != calendar.between(days[0], target):
+        if tuple(days) != tuple(d for d in calendar.between(days[0], target)
+                               if d not in excluded):
             return "history_gap"
     except ValueError:
         return "calendar_unknown"
     known_open = {d for d in calendar.historical_days if d <= target} | {
         s.day for s in calendar.sessions if s.day <= target
     }
-    if known_open.intersection(series.provider_missing_sessions):
+    if (known_open - excluded).intersection(series.provider_missing_sessions):
         return "missing_session"
     if not series.actions_complete:
         return "corporate_actions_unknown"
