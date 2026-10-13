@@ -1,3 +1,9 @@
+## P1–P8 recovery release — 2026-10-13
+
+Local Python422/SQL139 and frontend boundary/browser checks verify the recovery and operational hardening. SQL012 has passed fresh encrypted backup/full isolated restore and is applied with financial history unchanged. The Edge watchdog is deployed and its repository-scoped dispatch secret is provisioned; activation and released-source catch-up remain pending the final source/frontend gate. See [recovery contract](docs/INCIDENT_RECOVERY_CONTRACT_V1.md) and [PLAN](PLAN.md).
+
+Known current source limit: Yahoo's exact historical12-Oct bar became missing/incomplete after the next session started. Recovery must preserve this hold when no matching valid source exists; no invented Close or replacement provider is used. Production readiness of the code does not certify unavailable market data.
+
 ## Remediation release verified - 2026-10-10
 
 Action: completed the authorized release after the backup/restore gate; applied the additive backend migration before the compatible frontend and verified the released runtime's recovery and retry behavior.

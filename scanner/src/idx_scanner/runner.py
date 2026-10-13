@@ -8,6 +8,7 @@ from datetime import date, datetime
 from .context import Calendar, Universe
 from .corporate_actions import DividendEvidence, reconcile_dividends
 from .engine import scan
+from .incremental_provider import persist_provider_captures
 from .normalization import normalize_closed_sessions
 from .persistence import SupabaseScanStore
 from .pipeline import PipelineResult, fetch_series, require_scan_context
@@ -47,6 +48,8 @@ def run_once(
     prepared = {}
     for ticker in sorted(series_by_ticker):
         series = series_by_ticker[ticker]
+        persist_provider_captures(provider, store, ticker, namespace=namespace,
+                                  data_mode=universe.data_mode)
         receipt = store.ingest_series(series, namespace=namespace, data_mode=universe.data_mode)
         store.load_series(
             receipt["revision_id"],

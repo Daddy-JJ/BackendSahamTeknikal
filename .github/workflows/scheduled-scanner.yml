@@ -100,13 +100,12 @@ jobs:
             supabase/scripts/scheduled_scanner_runner.py \
             $ARGS
 
-      - name: Retain scanner evidence & paper journal summary
+      - name: Retain sanitized operational evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: scheduled-scanner-artifacts
           path: |
-            data/scheduled-scanner/
-            data/paper-journal/
+            data/scheduled-scanner/latest-evidence.json
           retention-days: 14
           if-no-files-found: warn

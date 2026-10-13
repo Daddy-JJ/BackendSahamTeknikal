@@ -1,5 +1,5 @@
 {
-  "release": "backend-paper-integrity-candidate-2026-10-10",
+  "release": "backend-processing-recovery-watchdog-candidate-2026-10-13",
   "project_ref": "hcjfxbynqzsaidlwvdfx",
   "hash_normalization": "UTF-8 with LF newlines; original migration files unchanged",
   "migrations": [
@@ -57,6 +57,11 @@
       "version": "202610100011",
       "file": "202610100011_paper_integrity_and_processing_health.sql",
       "sha256_lf": "7928f1d54e9361158c8fc22af26af2c444413b82b5fc4b77ef8aece69c1c907a"
+    },
+    {
+      "version": "202610130012",
+      "file": "202610130012_processing_recovery_watchdog.sql",
+      "sha256_lf": "f5537428985ba88f9d8f6d459079fca8bcc3656c2975617054724a089a4b0eb5"
     }
   ]
 }

@@ -112,7 +112,7 @@ def process_persisted_paper_session(store: PaperRuntimeStore, target: date,
                                     observed_at: datetime, *, source_run_id: str | None = None,
                                     mappings: dict[str, str] | None = None,
                                     committed_signals: list[Signal] | None = None,
-                                    untradable_evidence=()):
+                                    untradable_evidence=(), lease_check=None):
     runtime = store.load()
     activation = datetime.fromisoformat(runtime["activated_at"])
     book = paper_book_from_dict(runtime["book"])
@@ -125,6 +125,8 @@ def process_persisted_paper_session(store: PaperRuntimeStore, target: date,
                                         untradable_evidence=untradable_evidence)
     serialized = paper_book_to_dict(book)
     request_id = digest((store.owner_id, MODEL_VERSION, target, serialized, evaluations))
+    if lease_check is not None:
+        lease_check()
     receipt = store.commit(revision=runtime["revision"], request_id=request_id,
                            session=target, book=serialized, evaluations=evaluations,
                            source_run_id=source_run_id)

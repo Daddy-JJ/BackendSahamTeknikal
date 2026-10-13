@@ -7,7 +7,7 @@ from dataclasses import dataclass, replace
 from datetime import date, datetime
 from functools import lru_cache
 
-from .context import Calendar, Universe, quality
+from .context import Calendar, Universe, quality, quality_diagnostics
 from .indicators import calculate
 from .models import DEFAULT_ENTRY_CONFIG, Candidate, EntryConfig, ScanState, Series, Signal, digest
 from .strategies import Ranking, evaluate, rank_returns
@@ -18,6 +18,7 @@ class ScanItem:
     ticker: str
     status: str
     candidates: tuple[Candidate, ...]
+    diagnostics: dict | None = None
 
 
 @dataclass(frozen=True)
@@ -115,13 +116,15 @@ def scan(
     ranking = rank_returns(returns, universe.tickers, tuple(excluded), snapshot_digest)
     emitted, items = [], []
     for ticker in sorted(universe.tickers):
+        diagnostics = quality_diagnostics(selected.get(ticker), target, calendar,
+                                          status=statuses[ticker])
         if statuses[ticker] != "valid":
-            items.append(ScanItem(ticker, statuses[ticker], ()))
+            items.append(ScanItem(ticker, statuses[ticker], (), diagnostics))
             continue
         s = selected[ticker]
         features = calculate(s.bars)
         candidates = evaluate(ticker, s.bars, features, ranking, config)
-        items.append(ScanItem(ticker, "evaluated", candidates))
+        items.append(ScanItem(ticker, "evaluated", candidates, diagnostics))
         config_hash = digest((config, s.provider, s.price_basis, "effective-universe-v1"))
         for candidate in candidates:
             if not candidate.triggered:

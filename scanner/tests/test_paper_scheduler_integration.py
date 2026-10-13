@@ -42,6 +42,8 @@ def scheduled(monkeypatch, calendar, tmp_path):
             events.append("owner")
         def initialize(self):
             events.append("activation")
+        def runtime_lease(self, operation, job_id, session=None):
+            return {"contract_version": 1, "acquired": True}
         def record_job(self, **kwargs):
             events.append((kwargs["phase"], kwargs["status"]))
     scan = ScanResult(calendar.sessions[0].day, "complete", 1, 1,
@@ -156,6 +158,28 @@ def test_explicit_paper_only_does_not_publish_or_regenerate_signals(scheduled, c
     assert json.loads(evidence.read_text())["scanner_status"] == "skipped"
 
 
+@pytest.mark.parametrize("paper_only", [False, True])
+def test_persisted_held_closed_session_fails_workflow(scheduled, calendar, monkeypatch, paper_only):
+    events, _, evidence = scheduled
+    monkeypatch.setattr(runner, "complete_persisted_paper", lambda *a, **kw: (None, {
+        "persistence": "supabase", "runtime_revision": 2, "data_hold_count": 29}))
+    assert runner.run_scheduled_scanner(calendar.sessions[0].day, True, paper_only=paper_only) == 1
+    report = json.loads(evidence.read_text())
+    assert report["paper_persistence"] == "supabase" and report["production_write"]
+    assert report["status"] == "failed" and report["failure"] == "paper_data_hold"
+    assert ("paper", "failed") in events and ("job", "succeeded") not in events
+
+
+def test_active_cloud_lease_skips_without_poisoning_job_health(scheduled, calendar, monkeypatch):
+    events, _, evidence = scheduled
+    monkeypatch.setattr(runner.PaperRuntimeStore, "runtime_lease",
+                        lambda *a, **kw: {"contract_version": 1, "acquired": False})
+    assert runner.run_scheduled_scanner(calendar.sessions[0].day, True) == 0
+    assert "publication" not in events and "paper" not in events
+    assert ("job", "failed") not in events
+    assert json.loads(evidence.read_text())["reason"] == "paper_runtime_lease_busy"
+
+
 def test_expired_publication_window_still_recovers_persisted_paper(
     scheduled, calendar, monkeypatch,
 ):
@@ -193,3 +217,16 @@ def test_preflight_failure_replaces_old_success_without_private_error(
     assert report["status"] == "failed" and not report["production_write"]
     assert report["failure"] == "preflight_error: configuration_invalid"
     assert events == [] and "private configuration" not in evidence.read_text()
+
+
+def test_public_job_diagnostic_has_no_financial_state_or_privileged_values(scheduled, capsys):
+    _, _, evidence = scheduled
+    runner._write_report({"status": "failed", "failure": "paper_data_hold",
+        "service_secret": "PRIVATE-CREDENTIAL", "paper_experiment_metrics": {"net_pnl": "900000"},
+        "paper_summary": {"data_hold_count": 29, "runtime_revision": 5,
+                          "experiment_metrics": {"net_pnl": "900000"}, "trades": "PRIVATE-BOOK"},
+        "fetch_diagnostics": {"TICKER": [{"status": "missing_close",
+                                           "input_digest": "PRIVATE-SOURCE"}]}})
+    output = capsys.readouterr().out + evidence.read_text()
+    assert "PRIVATE-" not in output and "net_pnl" not in output and "900000" not in output
+    assert json.loads(evidence.read_text())["paper_summary"]["data_hold_count"] == 29

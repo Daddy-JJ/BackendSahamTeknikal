@@ -121,9 +121,9 @@ def test_independent_recovery_fetches_tracked_member_despite_mapping_request(sig
     assert summary["provider_errors"] == []
 
 
-def test_primary_failed_capture_is_not_refetched_unboundedly(signal, calendar):
+def test_primary_failed_capture_gets_one_independent_bounded_recovery(signal, calendar):
     target = calendar.sessions[1]
-    source = market(signal, calendar, 2)[signal.ticker]
+    source = replace(market(signal, calendar, 2)[signal.ticker], provider_symbol="EXPLICIT_OLD.JK")
     store = PersistedFixtureStore(initial(calendar), [signal])
     store.data_mode = "fixture"
     provider = OutsideProvider(source)
@@ -132,8 +132,57 @@ def test_primary_failed_capture_is_not_refetched_unboundedly(signal, calendar):
     book, _ = complete_persisted_paper(SnapshotStore(source, signal.input_digest), store,
         {}, requests, target.day, calendar, (), target.closes_at, provider, None,
         attempted_tickers=tuple(requests))
+    assert len(provider.requests) == 1
+    assert all(t.entry == signal.candidate.reference_close for t in book.trades.values())
+
+
+def test_paper_recovery_budget_exhaustion_preserves_a_reasoned_hold(signal, calendar):
+    target = calendar.sessions[1]
+    source = market(signal, calendar, 2)[signal.ticker]
+    store = PersistedFixtureStore(initial(calendar), [signal])
+    store.data_mode = "fixture"
+    provider = OutsideProvider(source)
+    requests = {signal.ticker: FetchRequest(signal.ticker, source.provider_symbol,
+                                           signal.session, target.day, True)}
+    book, summary = complete_persisted_paper(SnapshotStore(source, signal.input_digest), store,
+        {}, requests, target.day, calendar, (), target.closes_at, provider, None,
+        recovery_max_tickers=0)
     assert provider.requests == []
     assert all(t.state == "data_hold" for t in book.trades.values())
+    assert summary["provider_errors"] == [{"ticker": signal.ticker,
+                                           "code": "paper_recovery_budget_exhausted"}]
+
+
+def test_already_current_positions_do_not_consume_next_recovery_budget(signal, calendar):
+    target = calendar.sessions[1]
+    source = replace(market(signal, calendar, 2)[signal.ticker], provider_symbol="EXPLICIT_OLD.JK")
+    store = PersistedFixtureStore(initial(calendar), [signal])
+    store.data_mode = "fixture"
+    provider = OutsideProvider(source)
+    requests = {signal.ticker: FetchRequest(signal.ticker, source.provider_symbol,
+                                           signal.session, target.day, True)}
+    snapshots = SnapshotStore(source, signal.input_digest)
+    first, _ = complete_persisted_paper(snapshots, store, {}, requests, target.day,
+        calendar, (), target.closes_at, provider, None)
+    count = len(provider.requests)
+    second, summary = complete_persisted_paper(snapshots, store, {}, requests, target.day,
+        calendar, (), target.closes_at, provider, None)
+    assert len(provider.requests) == count
+    assert first.trades == second.trades and summary["provider_errors"] == []
+
+
+def test_future_entry_waits_without_fetch_or_false_hold(signal, calendar):
+    source = market(signal, calendar, 2)[signal.ticker]
+    store = PersistedFixtureStore(initial(calendar), [signal])
+    store.data_mode = "fixture"
+    provider = OutsideProvider(source)
+    requests = {signal.ticker: FetchRequest(signal.ticker, source.provider_symbol,
+                                           signal.session, signal.session, True)}
+    book, summary = complete_persisted_paper(SnapshotStore(source, signal.input_digest), store,
+        {}, requests, signal.session, calendar, (), calendar.get(signal.session).closes_at,
+        provider, None)
+    assert provider.requests == [] and summary["data_hold_count"] == 0
+    assert all(t.state == "pending_entry" for t in book.trades.values())
 
 
 def test_recovery_clock_after_fetch_prevents_false_timely_ma_observation(signal):

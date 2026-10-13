@@ -1,0 +1,6 @@
+project_id = "idx-night-scanner"
+
+[functions.idx-paper-watchdog]
+# Invocation is authorized by a short-lived, atomically consumed SQL ticket.
+# The public request contains no GitHub or service-role credential.
+verify_jwt = false

@@ -11,6 +11,8 @@ class PaperRuntimeStore:
         if str(UUID(owner_id)) != owner_id or data_mode not in ("live", "fixture"):
             raise ValueError("invalid_paper_owner_context")
         self.store, self.owner_id, self.data_mode = store, owner_id, data_mode
+        self.active_job_id = None
+        self.recovery_sequence = 0
 
     def _rpc(self, name: str, **kwargs):
         return self.store._request("POST", "rpc/" + name, json={
@@ -39,12 +41,37 @@ class PaperRuntimeStore:
     def load(self):
         return self._runtime(self._rpc("load_paper_runtime_v1"))
 
+    def runtime_lease(self, operation: str, job_id: str, session: date | None = None):
+        if operation not in ("claim", "heartbeat", "release"):
+            raise ValueError("invalid_paper_lease_operation")
+        payload = {"p_job_id": job_id}
+        if operation == "claim":
+            if session is None:
+                raise ValueError("paper_lease_session_required")
+            payload["p_session"] = session.isoformat()
+        result = self._rpc(operation + "_paper_runtime_lease_v1", **payload)
+        if (not isinstance(result, dict) or result.get("contract_version") != 1
+            or type(result.get("acquired")) is not bool):
+            raise PersistenceError("database_invalid_paper_lease")
+        if operation == "claim" and result["acquired"]:
+            self.active_job_id = job_id
+            rotation = result.get("recovery_sequence", 0)
+            if type(rotation) is not int or rotation < 0:
+                raise PersistenceError("database_invalid_paper_lease")
+            self.recovery_sequence = rotation
+        if operation == "release" and self.active_job_id == job_id:
+            self.active_job_id = None
+        return result
+
     def commit(self, *, revision: int, request_id: str, session: date,
                book: dict, evaluations: dict, source_run_id: str | None = None):
+        options = {"p_job_id": self.active_job_id} if self.active_job_id else {}
+        name = "commit_paper_session_with_lease_v1" if options else "commit_paper_session_v1"
         result = self._rpc(
-            "commit_paper_session_v1", p_expected_revision=revision,
+            name, p_expected_revision=revision,
             p_request_id=request_id, p_session=session.isoformat(),
             p_book=book, p_evaluations=evaluations, p_source_run_id=source_run_id,
+            **options,
         )
         if (not isinstance(result, dict) or type(result.get("revision")) is not int
             or not isinstance(result.get("replayed"), bool)):

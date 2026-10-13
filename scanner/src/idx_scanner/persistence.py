@@ -172,6 +172,8 @@ class SupabaseScanStore:
             transport=transport,
         )
         self._sleep = sleep
+        self.runtime_owner_id = None
+        self.runtime_job_id = None
 
     def __repr__(self):
         return "SupabaseScanStore(credentials=REDACTED)"
@@ -244,7 +246,11 @@ class SupabaseScanStore:
             if publication_deadline.tzinfo is None:
                 raise ValueError("publication_deadline_timezone_required")
             payload["p_run"]["publication_deadline"] = publication_deadline.isoformat()
-        response = self._request("POST", "rpc/publish_scan", json=payload)
+        name = "publish_scan"
+        if self.runtime_job_id:
+            name = "publish_scan_with_lease_v1"
+            payload.update(p_owner_id=self.runtime_owner_id, p_job_id=self.runtime_job_id)
+        response = self._request("POST", "rpc/" + name, json=payload)
         if (
             not isinstance(response, dict)
             or not isinstance(response.get("run_id"), str)

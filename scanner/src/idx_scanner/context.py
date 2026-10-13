@@ -1,5 +1,6 @@
 """Explicit calendar and effective-dated universe. Weekdays are not an exchange calendar."""
 
+import json
 from dataclasses import dataclass
 from datetime import date, datetime
 
@@ -146,3 +147,48 @@ def quality(series: Series, target: date, calendar: Calendar, *,
     ):
         return "corporate_action_hold"
     return "valid"
+
+
+def quality_diagnostics(series: Series | None, target: date, calendar: Calendar,
+                        *, status: str | None = None) -> dict:
+    """Safe canonical reason fields; raw captures and transport text stay private."""
+    result = {"contract_version": 1,
+              "code": status or (quality(series, target, calendar) if series else "missing"),
+              "session": target.isoformat(), "missing_fields": [], "recovery_status": None}
+    if series is None:
+        result["missing_fields"] = ["open", "high", "low", "close", "volume"]
+        return result
+    issues = [issue for issue in series.provider_row_issues if issue.session <= target]
+    if issues:
+        issue = min(issues, key=lambda item: item.session)
+        observed = dict(issue.observed_values)
+        missing = [key for key in ("open", "high", "low", "close", "volume")
+                   if observed.get(key, "unknown") is None]
+        result.update(code="missing_close" if missing == ["close"] else "missing_ohlcv_fields",
+                      session=issue.session.isoformat(), missing_fields=missing,
+                      recovery_status="unresolved")
+        return result
+    if result["code"] in ("history_gap", "missing_session") and series.bars:
+        try:
+            expected = calendar.between(series.bars[0].session, target)
+        except ValueError:
+            expected = ()
+        observed_days = {bar.session for bar in series.bars}
+        missing_days = [day for day in expected if day not in observed_days]
+        if missing_days:
+            result.update(code="missing_session", session=missing_days[0].isoformat(),
+                          missing_fields=["open", "high", "low", "close", "volume"],
+                          recovery_status="unresolved")
+            return result
+    for source in series.provenance:
+        try:
+            record = json.loads(source)
+        except (TypeError, ValueError):
+            continue
+        if (isinstance(record, dict)
+            and record.get("kind") == "yahoo_daily_short_range_recovery_v1"
+            and record.get("status") == "recovered"
+            and record.get("target_session") == target.isoformat()):
+            result["recovery_status"] = "recovered"
+            break
+    return result

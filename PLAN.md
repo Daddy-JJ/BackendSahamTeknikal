@@ -1,3 +1,15 @@
+## Approved P1–P8 incident remediation — 2026-10-13
+
+Status: IMPLEMENTING LOCALLY. User explicitly authorized implementation, additive SQL012, Supabase Cron/Vault dispatch watchdog, release and fresh latest-main catch-up. Shared approved plan: `../docs/AUDIT_SCANNER_JOURNAL_20261013.md`. No trading-rule/provider/actual-ledger change.
+
+Proof update: Python422 PASS/5 explicit native skips and Ruff PASS; full SQL/PGlite139 PASS including populated001–011→012 upgrade, RLS, lease takeover fencing, tickets/caps and actual ledger. Fresh encrypted backup/full no-network restore/rehearsal PASS, second encrypted local copy verified; SQL012 applied with history/catalog/fingerprints matching rehearsal. Edge function and only its scoped GitHub secret provisioned; invalid-ticket cloud smoke400 PASS. Scheduler temporarily paused; watchdog disabled pending released-source gate. Current Yahoo historical12-Oct source remains unavailable in the latest100-ticker probe, while four morning canaries were valid; preserve holds, no source fabrication. Technical security adaptation: long-lived PAT in Edge secrets, one-use ticket in pg_net, because hosted queue ACLs cannot hide Authorization headers.
+
+1. Action: P1/P2 retain strict source validation, classify missing fields, add guarded same-Yahoo closed daily short-range recovery, immutable captures and persisted incremental history with ten-session overlap. Proof: incident/negative tests, canary and read-only full-universe validation; reject wrong session, prices/basis/actions and unverified history.
+2. Action: P3/P4 independently recover tracked-book data within a separate bounded budget, preserve economic chronology and expose attempted versus resolved progress. A committed held required session must fail the job. Proof: primary/paper-only/restart/retry/missed-session tests, cursor/frozen-risk/ledger checks.
+3. Action: P5 add service-only runtime leases/heartbeats and independently scheduled, capped Supabase watchdog. Provision a new repository-limited dispatch token securely in Vault; default disabled until verified. Proof: overlap/cooldown/cap/permanent error/lease expiry tests and SQL RLS/privilege checks; actual cloud provisioning recorded separately.
+4. Action: P6/P7 release additive diagnostic/health/detail contracts before frontend consumers; run Python/Ruff, SQL/PGlite/native and populated migration rehearsal after a fresh encrypted backup. Proof: exact test results, fingerprints and compatibility checks; no private receipts or secrets committed.
+5. Action: P8 commit/push approved source, apply forward migration, deploy compatible frontend, activate verified watchdog and dispatch catch-up from latest main. Proof: exact SHAs, deployment/job receipts, per-object book/health reconciliation and no economic duplicate on retry. Three later sessions require subsequent monitoring.
+
 ## Remediation release verified - 2026-10-10
 
 Action: completed the authorized release after the backup/restore gate; applied the additive backend migration before the compatible frontend and verified the released runtime's recovery and retry behavior.
@@ -154,6 +166,3 @@ Addresses frontend audit gaps R-01 (Paper live persistence) and R-02 (Canonical 
 - Step F.2: Automated PGlite & Pytest Verification
   Action: Add dedicated test suite `tests/canonical-analytics-paper.test.mjs`, update `release-plan.test.mjs` and rehearsal guards.
   Proof: SQL test suite expanded from 72 to 76 tests (all 76 PASSED, 0 failures). Pytest full suite: 262 PASSED, 5 skipped, 0 failures. Ruff: 0 errors.
-
-
-

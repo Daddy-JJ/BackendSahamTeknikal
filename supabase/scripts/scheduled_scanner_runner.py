@@ -18,18 +18,21 @@ from datetime import UTC, date, datetime
 from uuid import uuid4
 from zoneinfo import ZoneInfo
 
+from manual_scanner_smoke import load_manual_context, prepare_series
+from paper_journal_runner import process_paper_session
+from paper_runtime_runner import complete_persisted_paper
+from prepare_dev_setup import ROOT
+
 from idx_scanner.config_io import load_requests
 from idx_scanner.engine import current_source_revision, scan
+from idx_scanner.incremental_provider import IncrementalProvider
 from idx_scanner.models import ScanState, canonical_json
+from idx_scanner.paper_lease import PaperRuntimeLease
 from idx_scanner.paper_persistence import PaperRuntimeStore
 from idx_scanner.persistence import PersistenceError, SupabaseScanStore
 from idx_scanner.providers import ProviderError, YFinanceProvider
 from idx_scanner.runner import run_once
 from idx_scanner.untradable import load_untradable_evidence
-from manual_scanner_smoke import load_manual_context, prepare_series
-from paper_journal_runner import process_paper_session
-from paper_runtime_runner import complete_persisted_paper
-from prepare_dev_setup import ROOT
 
 WIB = ZoneInfo("Asia/Jakarta")
 SCHEDULED_DIR = ROOT / "data" / "scheduled-scanner"
@@ -95,9 +98,33 @@ def get_current_target_session(calendar, now_utc: datetime) -> tuple[date, bool,
 
 
 def _write_report(report):
+    # This repository's Actions logs/artifacts are public. Canonical financial
+    # state stays owner-protected in Supabase, never in the diagnostic report.
+    fields = ("checked_at_utc", "target", "status", "failure", "reason", "production_write",
+              "production_write_attempted", "scanner_status", "paper_status",
+              "scanner_skip_reason", "activation_status", "coverage_valid", "coverage_total",
+              "counts", "ranking_status", "signals_count", "strategy_signals",
+              "paper_persistence", "paper_runtime_revision", "paper_trades_total",
+              "paper_closed_total")
+    public_report = {key: report[key] for key in fields if key in report}
+    if isinstance(report.get("paper_summary"), dict):
+        summary_fields = ("persistence", "model_version", "runtime_revision", "commit_replayed",
+                          "last_session", "last_updated_at", "trades_count", "closed_count",
+                          "evaluations_count", "trades_data_hold_count",
+                          "evaluations_data_hold_count", "data_hold_count")
+        public_report["paper_summary"] = {
+            key: value for key, value in report["paper_summary"].items() if key in summary_fields}
+    for key in ("provider_errors", "paper_provider_errors"):
+        if key in report:
+            public_report[key] = dict(Counter(item["code"] for item in report[key]))
+    for key in ("fetch_diagnostics", "paper_fetch_diagnostics"):
+        if key in report:
+            public_report[key] = dict(Counter(
+                item["status"] for attempts in report[key].values() for item in attempts))
     SCHEDULED_DIR.mkdir(parents=True, exist_ok=True)
-    EVIDENCE_PATH.write_text(json.dumps(report, indent=2, default=str) + "\n", encoding="utf-8")
-    print(json.dumps(report, indent=2, default=str))
+    EVIDENCE_PATH.write_text(json.dumps(public_report, indent=2, default=str) + "\n",
+                             encoding="utf-8")
+    print(json.dumps(public_report, indent=2, default=str))
 
 
 def _run_live(target, calendar, universe, proofs, requests, provider, now, *, paper_only):
@@ -114,11 +141,14 @@ def _run_live(target, calendar, universe, proofs, requests, provider, now, *, pa
         if os.environ.get(variable):
             context[key] = os.environ[variable]
     scanner_failure = None
+    paper_failure = None
     phase = "preflight"
     try:
         evidence = load_untradable_evidence(
             ROOT / "supabase/config/verified_untradable_live_v1.json", "live")
-        with SupabaseScanStore(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SECRET_KEY"]) as store:
+        with (SupabaseScanStore(os.environ["SUPABASE_URL"],
+                               os.environ["SUPABASE_SECRET_KEY"]) as store,
+              contextlib.ExitStack() as lease_stack):
             store.require_live_schema()
             owner = os.environ.get("APP_OWNER_USER_ID")
             if not owner:
@@ -133,6 +163,17 @@ def _run_live(target, calendar, universe, proofs, requests, provider, now, *, pa
             # Initialization is a writer RPC, even if it reuses the old model.
             # Its receipt does not distinguish a new activation from a replay.
             report["production_write"] = True
+            lease = lease_stack.enter_context(PaperRuntimeLease(paper_store, job_id, target))
+            if not lease.acquired:
+                report.update(status="skipped", reason="paper_runtime_lease_busy")
+                _write_report(report)
+                return 0
+            store.runtime_owner_id, store.runtime_job_id = owner, job_id
+            provider = IncrementalProvider(provider, store, calendar, force_full=(
+                os.environ.get("SCANNER_FORCE_FULL_REFRESH") == "true"))
+            paper_provider = IncrementalProvider(YFinanceProvider(
+                calendar=calendar, clock=lambda: datetime.now(UTC), max_requests=100,
+                max_elapsed_seconds=300), store, calendar)
             def record(stage, status, failure=None):
                 paper_store.record_job(job_id=job_id, phase=stage, status=status,
                                        session=target, failure_code=failure, context=context)
@@ -147,6 +188,7 @@ def _run_live(target, calendar, universe, proofs, requests, provider, now, *, pa
                 record("publication", "running")
                 try:
                     universe.require(target)
+                    lease.require_healthy()
                     outcome = run_once(provider, store, requests, target, calendar, universe,
                                        now, dividend_evidence=proofs,
                                        source_revision=current_source_revision(),
@@ -157,10 +199,13 @@ def _run_live(target, calendar, universe, proofs, requests, provider, now, *, pa
                     attempted = tuple(requests)
                     report.update(scanner_status="published", production_write=True,
                                   publication_receipt=publication_receipt, status=result.status,
-                                  coverage_valid=result.coverage_valid, coverage_total=result.coverage_total,
+                                  coverage_valid=result.coverage_valid,
+                                  coverage_total=result.coverage_total,
                                   counts=dict(Counter(i.status for i in result.items)),
-                                  ranking_status=result.ranking.status, signals_count=len(result.signals),
-                                  strategy_signals=dict(Counter(s.candidate.strategy for s in result.signals)),
+                                  ranking_status=result.ranking.status,
+                                  signals_count=len(result.signals),
+                                  strategy_signals=dict(Counter(
+                                      s.candidate.strategy for s in result.signals)),
                                   provider_errors=[{"ticker": t, "code": c}
                                                    for t, c in outcome.pipeline.provider_errors])
                     if result.coverage_valid == 0:
@@ -169,7 +214,8 @@ def _run_live(target, calendar, universe, proofs, requests, provider, now, *, pa
                     else:
                         record("publication", "succeeded")
                 except (PersistenceError, ValueError) as exc:
-                    scanner_failure = exc.code if isinstance(exc, PersistenceError) else "validation_failed"
+                    scanner_failure = (exc.code if isinstance(exc, PersistenceError)
+                                       else "validation_failed")
                     report["scanner_status"] = "failed"
                     record("publication", "failed", scanner_failure)
                     # Recover only persisted forward signals. No regenerated
@@ -180,9 +226,11 @@ def _run_live(target, calendar, universe, proofs, requests, provider, now, *, pa
             try:
                 _book, summary = complete_persisted_paper(
                     store, paper_store, prepared, requests, target, calendar, proofs,
-                    now, provider, publication_receipt["run_id"] if publication_receipt else None,
+                    now, paper_provider,
+                    publication_receipt["run_id"] if publication_receipt else None,
                     attempted_tickers=attempted, untradable_evidence=evidence,
                     clock=lambda: datetime.now(UTC),
+                    lease_check=lease.require_healthy,
                 )
                 held = summary["data_hold_count"] > 0
                 report.update(paper_status="data_hold" if held else "complete",
@@ -193,7 +241,9 @@ def _run_live(target, calendar, universe, proofs, requests, provider, now, *, pa
                               paper_closed_total=summary.get("closed_count", 0),
                               paper_experiment_metrics=summary.get("experiment_metrics", {}),
                               paper_provider_errors=summary.get("provider_errors", []))
-                record("paper", "succeeded")
+                paper_failure = "paper_data_hold" if held else None
+                record("paper", "failed" if held else "succeeded", paper_failure)
+                report["paper_fetch_diagnostics"] = paper_provider.fetch_diagnostics
             except (PersistenceError, ValueError) as exc:
                 code = exc.code if isinstance(exc, PersistenceError) else "validation_failed"
                 report.update(paper_status="failed", failure="paper_commit_error: " + code)
@@ -202,19 +252,21 @@ def _run_live(target, calendar, universe, proofs, requests, provider, now, *, pa
                 report["status"] = "failed"
                 _write_report(report)
                 return 1
-            record("job", "failed" if scanner_failure else "succeeded", scanner_failure)
+            lease.require_healthy()
+            failure = scanner_failure or paper_failure
+            record("job", "failed" if failure else "succeeded", failure)
     except (PersistenceError, ValueError, OSError) as exc:
         code = exc.code if isinstance(exc, PersistenceError) else "validation_failed"
         report.update(status="failed", failure=phase + "_error: " + code)
         _write_report(report)
         return 1
     report["fetch_diagnostics"] = provider.fetch_diagnostics
-    if scanner_failure:
-        report.update(status="failed", failure=scanner_failure)
+    if scanner_failure or paper_failure:
+        report.update(status="failed", failure=scanner_failure or paper_failure)
     else:
         report.setdefault("status", "complete")
     _write_report(report)
-    return 1 if scanner_failure else 0
+    return 1 if scanner_failure or paper_failure else 0
 
 
 def _run_scheduled_scanner(
@@ -232,12 +284,16 @@ def _run_scheduled_scanner(
         if target not in {s.day for s in calendar.sessions} or now < calendar.get(target).closes_at:
             raise ValueError("target_session_not_closed_or_unknown")
         if not os.environ.get("SUPABASE_URL") or not os.environ.get("SUPABASE_SECRET_KEY"):
-            _write_report({"status": "failed", "failure": "missing_credentials", "production_write": False})
+            _write_report({"status": "failed", "failure": "missing_credentials",
+                           "production_write": False})
             return 1
         paper_only = paper_only or not publication_window_open(calendar, target, now)
-        requests = load_requests(ROOT / "config/reference/yfinance-kompas100-verified-mappings.json",
-                                 "yfinance", date(2024, 1, 1), target)
-        return _run_live(target, calendar, universe, proofs, requests, YFinanceProvider(), now,
+        requests = load_requests(
+            ROOT / "config/reference/yfinance-kompas100-verified-mappings.json",
+            "yfinance", date(2024, 1, 1), target)
+        return _run_live(target, calendar, universe, proofs, requests,
+                         YFinanceProvider(calendar=calendar, max_requests=500,
+                                          max_elapsed_seconds=900), now,
                          paper_only=paper_only)
     if paper_only:
         raise ValueError("paper_only_requires_execute")
@@ -276,7 +332,7 @@ def _run_scheduled_scanner(
     )
     folder = SCHEDULED_DIR / now.strftime("%Y%m%dT%H%M%SZ")
     folder.mkdir(parents=True, exist_ok=True)
-    provider = YFinanceProvider()
+    provider = YFinanceProvider(calendar=calendar)
 
     paper_summary = None
 
@@ -330,10 +386,7 @@ def _run_scheduled_scanner(
             "paper_status": "complete" if paper_summary is not None else "not_run",
             "paper_summary": paper_summary,
         }
-        SCHEDULED_DIR.mkdir(parents=True, exist_ok=True)
-        EVIDENCE_PATH.write_text(
-            json.dumps(report, indent=2, default=str) + "\n", encoding="utf-8"
-        )
+        _write_report(report)
         return 1
 
     # Step 4: Run automated Paper Journal simulation on committed snapshot
@@ -370,13 +423,7 @@ def _run_scheduled_scanner(
         "publication_receipt": publication_receipt,
     }
 
-    SCHEDULED_DIR.mkdir(parents=True, exist_ok=True)
-    EVIDENCE_PATH.write_text(
-        json.dumps(report, indent=2, default=str) + "\n", encoding="utf-8"
-    )
-    print(
-        json.dumps({k: v for k, v in report.items() if k != "items"}, indent=2, default=str)
-    )
+    _write_report(report)
 
     return 0
 
@@ -402,7 +449,8 @@ def main():
     )
     parser.add_argument("--execute", action="store_true", help="Publish to Supabase if configured")
     parser.add_argument("--require-usable", action="store_true", help="Fail if coverage_valid == 0")
-    parser.add_argument("--paper-only", action="store_true", help="Recover persisted paper without publishing signals")
+    parser.add_argument("--paper-only", action="store_true",
+                        help="Recover persisted paper without publishing signals")
     args = parser.parse_args()
 
     return run_scheduled_scanner(
