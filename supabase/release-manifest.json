@@ -67,6 +67,11 @@
       "version": "202610130013",
       "file": "202610130013_performance_indexes.sql",
       "sha256_lf": "31ff78b7a8d571a3a421620910f2b5f599aa64abf6c43e52504b36989f4ff4a2"
+    },
+    {
+      "version": "202610130014",
+      "file": "202610130014_optimize_trade_reporting_rpc.sql",
+      "sha256_lf": "c7f7b9ea8ba2f305c02d1f8f1207097fa1aa867519e8d4f8c6f40a63baf6b2a6"
     }
   ]
 }

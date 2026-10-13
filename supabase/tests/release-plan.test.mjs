@@ -133,7 +133,7 @@ test("populated 001-009 upgrades to010 without changing runtime, actual ledger o
       'actual_fills',(select jsonb_agg(to_jsonb(x)) from public.actual_fills x)) value`)).rows[0].value;
     const before=await state();
     const pending=pendingMigrations(release,previous.map(m=>m.version));
-    assert.deepEqual(pending.map(m=>m.version),['202610080010','202610100011','202610130012','202610130013']);
+    assert.deepEqual(pending.map(m=>m.version),['202610080010','202610100011','202610130012','202610130013','202610130014']);
     await db.exec(migrationSql(pending[0]));
     assert.deepEqual(await state(),before);
     await db.exec('set role authenticated');
