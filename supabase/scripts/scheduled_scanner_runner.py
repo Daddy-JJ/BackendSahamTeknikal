@@ -26,6 +26,10 @@ from idx_scanner.paper_lease import PaperRuntimeLease
 from idx_scanner.paper_persistence import PaperRuntimeStore
 from idx_scanner.persistence import PersistenceError, SupabaseScanStore
 from idx_scanner.providers import ProviderError, YFinanceProvider
+from idx_scanner.reviewed_backfill import (
+    ReviewedBackfillProvider,
+    parse_reviewed_backfill_manifest,
+)
 from idx_scanner.runner import run_once
 from idx_scanner.untradable import load_untradable_evidence
 from manual_scanner_smoke import load_manual_context, prepare_series
@@ -36,6 +40,20 @@ from prepare_dev_setup import ROOT
 WIB = ZoneInfo("Asia/Jakarta")
 SCHEDULED_DIR = ROOT / "data" / "scheduled-scanner"
 EVIDENCE_PATH = SCHEDULED_DIR / "latest-evidence.json"
+REVIEWED_BACKFILL_PATH = ROOT / "config/reference/reviewed-historical-backfill-v1.json"
+
+
+def load_reviewed_paper_backfill(path=REVIEWED_BACKFILL_PATH):
+    """Pinned paper-only review rights; missing/malformed configuration fails closed."""
+    def unique_pairs(pairs):
+        if len({key for key, _ in pairs}) != len(pairs):
+            raise ValueError("invalid_reviewed_backfill_manifest")
+        return dict(pairs)
+    raw = path.read_bytes()
+    if len(raw) > 65536:
+        raise ValueError("invalid_reviewed_backfill_manifest")
+    return parse_reviewed_backfill_manifest(json.loads(
+        raw, object_pairs_hook=unique_pairs))
 
 
 def latest_closed_session(calendar, now_utc: datetime) -> date:
@@ -145,6 +163,7 @@ def _run_live(target, calendar, universe, proofs, requests, provider, now, *, pa
     try:
         evidence = load_untradable_evidence(
             ROOT / "supabase/config/verified_untradable_live_v1.json", "live")
+        reviewed_backfills = load_reviewed_paper_backfill()
         with (SupabaseScanStore(os.environ["SUPABASE_URL"],
                                os.environ["SUPABASE_SECRET_KEY"]) as store,
               contextlib.ExitStack() as lease_stack):
@@ -170,9 +189,10 @@ def _run_live(target, calendar, universe, proofs, requests, provider, now, *, pa
             store.runtime_owner_id, store.runtime_job_id = owner, job_id
             provider = IncrementalProvider(provider, store, calendar, force_full=(
                 os.environ.get("SCANNER_FORCE_FULL_REFRESH") == "true"))
-            paper_provider = IncrementalProvider(YFinanceProvider(
+            paper_provider = ReviewedBackfillProvider(IncrementalProvider(YFinanceProvider(
                 calendar=calendar, clock=lambda: datetime.now(UTC), max_requests=100,
-                max_elapsed_seconds=300), store, calendar)
+                max_elapsed_seconds=300), store, calendar), store, calendar,
+                reviewed_backfills, clock=lambda: datetime.now(UTC))
             def record(stage, status, failure=None):
                 paper_store.record_job(job_id=job_id, phase=stage, status=status,
                                        session=target, failure_code=failure, context=context)

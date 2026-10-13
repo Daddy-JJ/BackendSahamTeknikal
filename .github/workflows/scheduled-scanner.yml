@@ -100,6 +100,14 @@ jobs:
             supabase/scripts/scheduled_scanner_runner.py \
             $ARGS
 
+      - name: Print failure operational evidence
+        if: failure()
+        run: |
+          if [ -f data/scheduled-scanner/latest-evidence.json ]; then
+            echo "=== LATEST OPERATIONAL EVIDENCE ON FAILURE ==="
+            cat data/scheduled-scanner/latest-evidence.json
+          fi
+
       - name: Retain sanitized operational evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
