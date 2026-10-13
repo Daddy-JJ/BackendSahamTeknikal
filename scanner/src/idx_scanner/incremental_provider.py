@@ -30,7 +30,7 @@ class IncrementalProvider:
             "data_mode": "eq." + self.data_mode, "provider": "eq.yfinance",
             "ticker": "eq." + request.ticker, "provider_symbol": "eq." + request.symbol,
             "price_basis": "eq.yahoo_provider_ohlcv_auto_adjust_false_v1",
-            "bar_count": "gte.600", "bar_cutoff": "lte." + request.end.isoformat(),
+            "bar_count": "gte.600",
             "order": "stored_at.desc,id.desc", "limit": "6",
         })
         for row in rows:
@@ -38,6 +38,7 @@ class IncrementalProvider:
                                             expected_input_digest=row["input_digest"])
             if (source.ticker == request.ticker and source.provider_symbol == request.symbol
                 and source.bars and source.bars[0].session >= request.start
+                and source.bars[-1].session <= request.end
                 and quality(source, source.bars[-1].session, self.calendar) == "valid"):
                 return source
         return None

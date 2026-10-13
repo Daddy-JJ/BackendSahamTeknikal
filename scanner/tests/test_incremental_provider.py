@@ -2,12 +2,14 @@
 from dataclasses import replace
 from datetime import UTC, datetime
 
+import httpx
 import pytest
 
 from idx_scanner.context import quality, quality_diagnostics
 from idx_scanner.fixtures import sample_market
 from idx_scanner.incremental_provider import IncrementalProvider, persist_provider_captures
 from idx_scanner.models import CorporateAction, canonical_json
+from idx_scanner.persistence import SupabaseScanStore
 from idx_scanner.providers import FetchRequest
 
 
@@ -108,3 +110,39 @@ def test_missing_historical_session_diagnostic_points_to_actual_gap(source):
     result = quality_diagnostics(broken, full.bars[-1].session, calendar)
     assert result["session"] == day.isoformat() and result["code"] == "missing_session"
     assert result["missing_fields"] == ["open", "high", "low", "close", "volume"]
+
+
+def test_revision_lookup_uses_sql_revision_cutoff_as_integer_not_session(source):
+    full, calendar = source
+    requests = []
+
+    def database(request):
+        assert request.url.path == "/rest/v1/market_series_revisions"
+        requests.append(request)
+        # SQL002 defines bar_cutoff as bigint revision_seq, not a market date.
+        cutoff = request.url.params.get("bar_cutoff")
+        if cutoff is not None:
+            try:
+                int(cutoff.split(".", 1)[1])
+            except ValueError:
+                return httpx.Response(400, json={"code": "22P02"})
+        return httpx.Response(200, json=[])
+
+    request = FetchRequest(full.ticker, full.provider_symbol, full.bars[0].session,
+                           full.bars[-1].session, True)
+    with SupabaseScanStore("https://example.supabase.co", "test-key",
+                           transport=httpx.MockTransport(database)) as store:
+        assert IncrementalProvider(Provider(full), store, calendar).fetch(request) == full
+    assert len(requests) == 1
+
+
+def test_future_persisted_revision_cannot_seed_a_historical_target(source):
+    full, calendar = source
+    target = full.bars[-2].session
+    provider = Provider(full)
+    request = FetchRequest(full.ticker, full.provider_symbol, full.bars[0].session, target, True)
+    result = IncrementalProvider(provider, Store(full), calendar).fetch(request)
+    assert provider.requests == [request]
+    assert result.bars == full.bars[:-1]
+    assert result.bars[-1].session == target
+    assert not any('yahoo_persisted_incremental_v1' in p for p in result.provenance)

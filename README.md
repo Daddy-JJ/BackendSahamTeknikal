@@ -1,8 +1,10 @@
-## P1–P8 recovery release — 2026-10-13
+## P1-P8 recovery release - 2026-10-13
 
-Local Python422/SQL139 and frontend boundary/browser checks verify the recovery and operational hardening. SQL012 has passed fresh encrypted backup/full isolated restore and is applied with financial history unchanged. The Edge watchdog is deployed and its repository-scoped dispatch secret is provisioned; activation and released-source catch-up remain pending the final source/frontend gate. See [recovery contract](docs/INCIDENT_RECOVERY_CONTRACT_V1.md) and [PLAN](PLAN.md).
+Approved recovery/runtime hardening is released with additive SQL012 and compatible frontend. Python425/SQL139/Ruff and frontend units/browser/typecheck/lint/build pass; fresh encrypted full backup and populated isolated restore/rehearsal pass. The first hosted catch-up revealed and reproduced an incremental lookup type error: SQL002 bar_cutoff is a bigint revision sequence, not a session date. The correction validates target sessions on reconstructed sources, with hosted read-only adapter and future-source regression proof. Catch-up/retry after that corrective source release is tracked in [PLAN](PLAN.md).
 
-Known current source limit: Yahoo's exact historical12-Oct bar became missing/incomplete after the next session started. Recovery must preserve this hold when no matching valid source exists; no invented Close or replacement provider is used. Production readiness of the code does not certify unavailable market data.
+Cloud runtime uses GitHub Actions secrets, Vercel environment and Supabase managed/Edge secrets. The laptop operator file is not a runtime dependency. Supabase Cron */20 and the Edge watchdog are provisioned; its restricted PAT never enters pg_net. Current dispatch is paused briefly during corrective release verification. See [contract](docs/INCIDENT_RECOVERY_CONTRACT_V1.md).
+
+Known source limit: Yahoo exact historical12-Oct bars remain missing/incomplete in the latest source probe. No fabricated Close, replacement provider or trading-rule change is used to force coverage. Source availability, hosted owner-browser verification and three later sessions must be reported separately from local/deployment proof. Earlier evidence follows.
 
 ## Remediation release verified - 2026-10-10
 
