@@ -39,6 +39,9 @@ def run_once(
 ) -> RunOutcome:
     if not re.fullmatch(r"[a-z0-9_-]{1,64}", namespace):
         raise ValueError("invalid_namespace")
+    if (getattr(provider, "is_paper_backfill", False)
+            or type(provider).__name__ == "ReviewedBackfillProvider"):
+        raise ValueError("scanner_reviewed_backfill_prohibited")
     require_scan_context(requests, target, calendar, universe, published_at)
     state = store.load_state(
         through_session=target, namespace=namespace, data_mode=universe.data_mode

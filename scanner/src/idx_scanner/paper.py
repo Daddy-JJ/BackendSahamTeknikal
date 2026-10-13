@@ -254,7 +254,8 @@ def step(
                 d for d in calendar.between(history[0].session, session)
                 if d not in untradable_sessions
             )
-            or any(not b.valid() or b.volume == 0 for b in history)
+            or any(not b.valid() for b in history)
+            or any(b.volume == 0 for b in history[-60:])
         ):
             raise ValueError("complete_ma_history_required")
         closes = [b.close for b in history]

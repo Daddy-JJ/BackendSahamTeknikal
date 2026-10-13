@@ -181,6 +181,8 @@ def _merge(fresh, archived, record, manifest_digest):
 
 class ReviewedBackfillProvider:
     """Opt-in paper-provider wrapper. Never substitute an archive on fetch failure."""
+    is_paper_backfill: bool = True
+
     def __init__(self, provider, store, calendar, records, *, clock=lambda: datetime.now(UTC)):
         if (type(records) is not tuple or len(records) > 100
             or any(not isinstance(r, ReviewedBackfill) for r in records)
@@ -262,13 +264,14 @@ class ReviewedBackfillProvider:
         records = tuple(record for record in self.records if record.ticker == request.ticker
                         and request.start <= record.session <= request.end)
         for record in records:
-            if not _needs_receipt(fresh, record.session):
-                continue
             now = self.clock()
-            self._retain(request.ticker, fresh)
             self._check_context(record, fresh, request, now)
             archived = self._load(record, now)
             self._retain(request.ticker, archived)
+            if not _needs_receipt(fresh, record.session):
+                _known_fields_agree(fresh, archived)
+                continue
+            self._retain(request.ticker, fresh)
             fresh = _merge(fresh, archived, record, self.manifest_digest)
             diagnostic = {"status": "reviewed_backfill_applied", "session": str(record.session),
                           "input_digest": fresh.input_digest, "fetched_at": now.isoformat()}

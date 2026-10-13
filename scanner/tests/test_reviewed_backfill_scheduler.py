@@ -1,16 +1,26 @@
-"""Reviewed-source configuration stays paper-only; all IO uses offline doubles."""
 import json
+import sys
+from datetime import date
+from pathlib import Path
 
 import pytest
-from test_paper_scheduler_integration import scheduled  # noqa: F401
 
-import scheduled_scanner_runner as runner
-from idx_scanner.incremental_provider import IncrementalProvider
-from idx_scanner.reviewed_backfill import BACKFILL_VERSION, ReviewedBackfillProvider
+SCRIPTS = Path(__file__).resolve().parents[2] / "supabase" / "scripts"
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+
+import scheduled_scanner_runner as runner  # noqa: E402
+
+from idx_scanner.incremental_provider import IncrementalProvider  # noqa: E402
+from idx_scanner.reviewed_backfill import BACKFILL_VERSION, ReviewedBackfillProvider  # noqa: E402
+
+pytest_plugins = ("test_paper_scheduler_integration",)
 
 
-def test_checked_in_paper_backfill_allowlist_grants_no_recovery_rights():
-    assert runner.load_reviewed_paper_backfill() == ()
+def test_checked_in_paper_backfill_allowlist_contains_only_reviewed_records():
+    records = runner.load_reviewed_paper_backfill()
+    assert len(records) == 7
+    assert all(r.session == date(2026, 10, 12) for r in records)
 
 
 @pytest.mark.parametrize("payload", [
@@ -56,7 +66,8 @@ def test_scheduler_wraps_only_paper_provider_and_preserves_stage_boundaries(
     assert runner.run_scheduled_scanner(calendar.sessions[0].day, True,
                                         paper_only=paper_only) == 0
     provider = captured["paper_provider"]
-    assert isinstance(provider, ReviewedBackfillProvider) and provider.records == ()
+    assert isinstance(provider, ReviewedBackfillProvider)
+    assert provider.records == runner.load_reviewed_paper_backfill()
     assert isinstance(provider.provider, IncrementalProvider)
     if paper_only:
         assert "scanner_provider" not in captured

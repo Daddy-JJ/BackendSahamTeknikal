@@ -14,6 +14,7 @@ from idx_scanner.reviewed_backfill import (
     ReviewedBackfillProvider,
     parse_reviewed_backfill_manifest,
 )
+from idx_scanner.runner import run_once
 
 BASIS = "yahoo_provider_ohlcv_auto_adjust_false_v1"
 
@@ -317,7 +318,23 @@ def test_unreviewed_and_already_complete_sessions_are_not_repaired(case):
     assert repair.fetch(request) == fresh and store.lookups == []
     complete = replace(fresh, bars=source.bars + fresh.bars[-1:], provider_row_issues=())
     repair, (_, store, _) = wrapper(case, fresh=complete)
-    assert repair.fetch(request) == complete and store.lookups == []
+    assert repair.fetch(request) == complete and len(store.lookups) == 1
+
+
+def test_complete_session_conflicting_with_reviewed_record_is_rejected(case):
+    source, fresh, _, _, _, request = case
+    conflicting = replace(source.bars[-1], close=source.bars[-1].close + 10)
+    complete = replace(fresh, bars=(source.bars[0], conflicting, fresh.bars[-1]),
+                       provider_row_issues=())
+    repair, _ = wrapper(case, fresh=complete)
+    with pytest.raises(ProviderError, match="reviewed_backfill_overlap_conflict"):
+        repair.fetch(request)
+
+
+def test_scanner_run_once_rejects_reviewed_backfill_provider(case):
+    repair, _ = wrapper(case)
+    with pytest.raises(ValueError, match="scanner_reviewed_backfill_prohibited"):
+        run_once(repair, None, {}, date(2026, 10, 13), None, None, datetime.now(UTC))
 
 
 def test_record_symbol_mismatch_is_not_silently_ignored(case):

@@ -302,6 +302,10 @@ def _run_scheduled_scanner(
     if execute_publication:
         if target not in {s.day for s in calendar.sessions} or now < calendar.get(target).closes_at:
             raise ValueError("target_session_not_closed_or_unknown")
+        if (ROOT / ".env").is_file():
+            from prepare_dev_setup import local_env
+            for k, v in local_env(ROOT / ".env").items():
+                os.environ.setdefault(k, v)
         if not os.environ.get("SUPABASE_URL") or not os.environ.get("SUPABASE_SECRET_KEY"):
             _write_report({"status": "failed", "failure": "missing_credentials",
                            "production_write": False})

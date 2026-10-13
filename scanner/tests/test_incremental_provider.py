@@ -146,3 +146,18 @@ def test_future_persisted_revision_cannot_seed_a_historical_target(source):
     assert result.bars == full.bars[:-1]
     assert result.bars[-1].session == target
     assert not any('yahoo_persisted_incremental_v1' in p for p in result.provenance)
+
+
+def test_incremental_provider_base_skips_reviewed_backfill(source):
+    full, calendar = source
+    backfill_provenance = canonical_json({"kind": "reviewed_historical_backfill_v1"})
+    base = replace(full, bars=full.bars[:-1], provenance=(backfill_provenance,))
+    store, provider = Store(base), Provider(full)
+    wrapper = IncrementalProvider(provider, store, calendar)
+    request = FetchRequest(full.ticker, full.provider_symbol, full.bars[0].session,
+                           full.bars[-1].session, True)
+    result = wrapper.fetch(request)
+    assert result.bars == full.bars
+    # When base with reviewed backfill provenance is skipped, provider fetch is called
+    # with full request directly
+    assert provider.requests == [request]

@@ -19,8 +19,15 @@ from idx_scanner.config_io import load_calendar, load_requests
 from idx_scanner.context import Calendar, quality
 from idx_scanner.models import Bar, Series, canonical_json
 from idx_scanner.paper_persistence import PaperRuntimeStore
-from idx_scanner.persistence import PersistenceError, SupabaseScanStore, series_from_revision
-from idx_scanner.reviewed_backfill import ReviewedBackfill, parse_reviewed_backfill_manifest
+from idx_scanner.persistence import (
+    PersistenceError,
+    SupabaseScanStore,
+    series_from_revision,
+)
+from idx_scanner.reviewed_backfill import (
+    ReviewedBackfill,
+    parse_reviewed_backfill_manifest,
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA_ROOT = ROOT / "data"

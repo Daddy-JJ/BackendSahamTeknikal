@@ -36,6 +36,17 @@ class IncrementalProvider:
         for row in rows:
             source = self.store.load_series(row["id"], data_mode=self.data_mode,
                                             expected_input_digest=row["input_digest"])
+            is_backfill = False
+            for p in source.provenance:
+                try:
+                    if (isinstance(p, str) and
+                            json.loads(p).get("kind") == "reviewed_historical_backfill_v1"):
+                        is_backfill = True
+                        break
+                except (ValueError, TypeError, AttributeError):
+                    continue
+            if is_backfill:
+                continue
             if (source.ticker == request.ticker and source.provider_symbol == request.symbol
                 and source.bars and source.bars[0].session >= request.start
                 and source.bars[-1].session <= request.end
