@@ -2,16 +2,18 @@
 from datetime import date, datetime
 from time import monotonic
 
-from manual_scanner_smoke import prepare_series
-
 from idx_scanner.context import quality
 from idx_scanner.incremental_provider import persist_provider_captures
 from idx_scanner.paper import paper_book_from_dict
 from idx_scanner.paper_persistence import PaperRuntimeStore
 from idx_scanner.paper_research import evaluation_active
-from idx_scanner.paper_runtime import next_trade_session, process_persisted_paper_session
+from idx_scanner.paper_runtime import (
+    next_trade_session,
+    process_persisted_paper_session,
+)
 from idx_scanner.persistence import PersistenceError
 from idx_scanner.providers import FetchRequest, ProviderError
+from manual_scanner_smoke import prepare_series
 
 
 def complete_persisted_paper(scan_store, paper_store: PaperRuntimeStore, prepared, requests,
@@ -61,7 +63,7 @@ def complete_persisted_paper(scan_store, paper_store: PaperRuntimeStore, prepare
     candidates = {t for t in required if t not in market
                   or quality(market[t], target, calendar) != "valid"}
     needed = []
-    for day in sorted(set(required[t] for t in candidates)):
+    for day in sorted({required[t] for t in candidates}):
         group = sorted(t for t in candidates if required[t] == day)
         offset = (getattr(paper_store, "recovery_sequence", 0) * recovery_max_tickers) % len(group)
         needed.extend(group[offset:] + group[:offset])

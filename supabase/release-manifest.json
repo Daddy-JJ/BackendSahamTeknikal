@@ -62,6 +62,11 @@
       "version": "202610130012",
       "file": "202610130012_processing_recovery_watchdog.sql",
       "sha256_lf": "f5537428985ba88f9d8f6d459079fca8bcc3656c2975617054724a089a4b0eb5"
+    },
+    {
+      "version": "202610130013",
+      "file": "202610130013_performance_indexes.sql",
+      "sha256_lf": "31ff78b7a8d571a3a421620910f2b5f599aa64abf6c43e52504b36989f4ff4a2"
     }
   ]
 }

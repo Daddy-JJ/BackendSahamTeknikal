@@ -18,11 +18,6 @@ from datetime import UTC, date, datetime
 from uuid import uuid4
 from zoneinfo import ZoneInfo
 
-from manual_scanner_smoke import load_manual_context, prepare_series
-from paper_journal_runner import process_paper_session
-from paper_runtime_runner import complete_persisted_paper
-from prepare_dev_setup import ROOT
-
 from idx_scanner.config_io import load_requests
 from idx_scanner.engine import current_source_revision, scan
 from idx_scanner.incremental_provider import IncrementalProvider
@@ -33,6 +28,10 @@ from idx_scanner.persistence import PersistenceError, SupabaseScanStore
 from idx_scanner.providers import ProviderError, YFinanceProvider
 from idx_scanner.runner import run_once
 from idx_scanner.untradable import load_untradable_evidence
+from manual_scanner_smoke import load_manual_context, prepare_series
+from paper_journal_runner import process_paper_session
+from paper_runtime_runner import complete_persisted_paper
+from prepare_dev_setup import ROOT
 
 WIB = ZoneInfo("Asia/Jakarta")
 SCHEDULED_DIR = ROOT / "data" / "scheduled-scanner"
