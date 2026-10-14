@@ -1,3 +1,52 @@
+## Chart V1 — Tahap 6 authorized release preparation, 2026-10-15
+
+Action: user-authorized commit/push and chart rollout. Read-only hosted preflight proved migration
+history001–012; existing013 performance indexes and014 reporting optimization must be rehearsed
+together with015/016 from a fresh populated012 backup. Pause/resume exact prior workflow/watchdog/Cron
+state; preserve backoff and all economic rows. Optional chart writer remains disabled before capability.
+Proof: preflight PASS, credentials present without values emitted; no active jobs/leases/dispatches.
+Private operator guards8 negative cases and canonical pagination/money sensitivity PASS. Cloud schema,
+chart activation and frontend release are not yet performed. Stage5 backend proof follows.
+
+## Previous Chart V1 — Tahap 5 backend lokal, 2026-10-14
+
+Action: additive 016 private core/public bounded wrapper, response budget 1 MiB tanpa truncation,
+indexed null/equality context lookup dan service-only expired-cursor cleanup (maksimum 200k/job).
+Proof: full Python 569 PASS / 5 native opt-in SKIPPED; SQL/PGlite 160 PASS, Ruff PASS; native upgrade/
+rollback 015/016, ACL dan 18 economic/config fingerprints PASS. Original 015 hash tidak berubah.
+Core equivalence test membuktikan logic 015 dipertahankan selain lookup; benchmark canonical
+500 slot + 500 marker 287.650 bytes; query plan populated 5k artifacts PASS. Coverage empat modul
+chart 90,40% aggregate, minimum 85,17%. Tidak ada provider fetch atau mutasi ekonomi/produksi.
+
+## Previous Chart V1 — Tahap 2 selesai lokal, 2026-10-14
+
+Action: implement immutable canonical artifact, frozen resolver, owner reader/service writer/input loader,
+shared limiter, pinned pagination dan migrasi additive 015. Job cloud opsional masih dinonaktifkan.
+Proof: Python 568 PASS / 5 native opt-in SKIPPED; SQL 155 PASS; chart 32 PASS dan coverage empat modul
+90.13% aggregate, masing-masing >80%. Native upgrade 014→015, rollback, grants dan 18 fingerprint PASS;
+Ruff/diff PASS. Canonical Python→SQL→FE fixture PASS. Tidak mengubah ekonomi atau produksi.
+Shared [verification](../docs/CHART_V1_LOCAL_VERIFICATION.md) mencatat batas bukti, security dan tindakan berikutnya.
+Working tree belum commit; 015 belum diterapkan remote. Berikutnya: Tahap 4 integrasi halaman,
+Tahap 5 QA lebih luas, Tahap 6 rilis terotorisasi. Harga aktual dengan basis yang belum terbukti ditahan;
+budget sumber/deferred catalog tetap eksplisit, tanpa fallback provider mentah.
+
+## Previous Chart V1 — Tahap 1, 2026-10-14
+
+Status: SPECIFICATION ONLY; belum ada artifact/reader/migrasi chart. Cakupan aktif hanya Tahap 1.
+Shared plan: [UX, Action/Proof dan acceptance C01–C18](../docs/CHART_V1_IMPLEMENTATION_PLAN.md).
+Contract: [ticker-chart-v1](../contracts/ticker-chart-v1.md). Pada Tahap 2 vendor kontrak versi sama beserta
+hash ke repo ini agar CI independen tidak bergantung pada parent workspace.
+
+Action (Tahap 1): rancang bounded owner-only read_ticker_chart_v1, frozen resolver, canonical indicator
+artifacts, separate source/event revisions, gaps/provenance dan cloud writer yang tidak memblokir ekonomi.
+Proof: inspeksi source/schema/engine dan review dokumen; belum ada tes runtime/migration/live chart.
+
+Next Action (Tahap 2): contract/temporal/RLS RED tests, immutable artifact dan reader additive, writer
+idempotent, query bounds/limiter dan native populated upgrade checks. Proof: C01–C10/C16–C18 dan frontend
+parser compatibility. Resolusi cutoff digest tidak boleh diasumsikan foreign key signal ke market.
+Source inspected: backend667a90d. Audit ulang recovery/provenance pada HEAD ini sebelum live integration;
+tidak menyimpulkan perbaikan OHLC/produksi dari judul commit. Tidak melakukan catch-up dalam fitur chart.
+
 ## Approved P1-P8 incident remediation - 2026-10-13
 
 Status: RELEASED; P8 catch-up/retry integrity VERIFIED LIVE, full economic resolution PARTIAL due to source holds. User authorization covers source, additive SQL012, independently scheduled Supabase cloud watchdog and latest-main catch-up. Trading/provider/actual-ledger rules unchanged. The dispatch PAT is held only in Edge secrets; pg_net queues only a one-use fixed-purpose ticket, with no long-lived credential.

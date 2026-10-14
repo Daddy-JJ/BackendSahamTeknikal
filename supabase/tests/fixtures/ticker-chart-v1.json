@@ -1,0 +1,265 @@
+{
+  "data": {
+    "bars": [
+      {
+        "low": "964.8241",
+        "high": "999.8219",
+        "open": "984.8219",
+        "close": "979.8241",
+        "volume": "2100000",
+        "session": "2024-02-20"
+      },
+      {
+        "low": "969.2239",
+        "high": "1002.5208",
+        "open": "987.5208",
+        "close": "984.2239",
+        "volume": "1000000",
+        "session": "2024-02-21"
+      },
+      {
+        "low": "973.8437",
+        "high": "1005.2348",
+        "open": "990.2348",
+        "close": "988.8437",
+        "volume": "1100000",
+        "session": "2024-02-22"
+      },
+      {
+        "low": "977.4971",
+        "high": "1008.0983",
+        "open": "992.4971",
+        "close": "993.0983",
+        "volume": "1200000",
+        "session": "2024-02-23"
+      },
+      {
+        "low": "1128.9782",
+        "high": "1161.5344",
+        "open": "1143.9782",
+        "close": "1146.5344",
+        "volume": "1300000",
+        "session": "2024-02-26"
+      }
+    ],
+    "gaps": [],
+    "source": {
+      "scope": "fixture",
+      "provider": "fixture",
+      "series_id": "4056b50b-1c04-4ce1-ad2d-2d18f6dbe95b",
+      "stored_at": "2024-02-26T09:00:00+00:00",
+      "fetched_at": "2024-02-26T09:00:00+00:00",
+      "price_basis": "synthetic_ohlcv_v1",
+      "input_digest": "4f028705607e64deba90390463480f963194b3c83fc6f3f15465de8f3f64b42d",
+      "history_start": "2024-01-02",
+      "resolved_cutoff": "2024-02-26",
+      "provider_version": "fixture-v1",
+      "last_market_session": "2024-02-26",
+      "resolved_input_digest": "4f028705607e64deba90390463480f963194b3c83fc6f3f15465de8f3f64b42d"
+    },
+    "ticker": "DEMO-A",
+    "context": {
+      "id": null,
+      "kind": "latest",
+      "view": "followup",
+      "experiment": null,
+      "model_version": null,
+      "signal_session": null,
+      "snapshot_cutoff": null,
+      "engine_source_revision": null
+    },
+    "quality": {
+      "reasons": [],
+      "warnings": [],
+      "freshness": "current",
+      "completeness": "complete",
+      "expected_session": "2024-02-26"
+    },
+    "currency": "IDR",
+    "exchange": "XIDX",
+    "overlays": {
+      "levels": [],
+      "reason": null,
+      "status": "ready",
+      "markers": [],
+      "has_more": false,
+      "next_cursor": null
+    },
+    "revision": "241ef3c8df2c751992491fbadf20b16d906c92b4c7ad39974f69d34c3d897335",
+    "sessions": [
+      "2024-02-20",
+      "2024-02-21",
+      "2024-02-22",
+      "2024-02-23",
+      "2024-02-26"
+    ],
+    "timezone": "Asia/Jakarta",
+    "data_mode": "fixture",
+    "timeframe": "1d",
+    "indicators": {
+      "macd": {
+        "points": [
+          {
+            "value": -16.232763350262303,
+            "session": "2024-02-20"
+          },
+          {
+            "value": -15.804353954685553,
+            "session": "2024-02-21"
+          },
+          {
+            "value": -14.92006791593235,
+            "session": "2024-02-22"
+          },
+          {
+            "value": -13.717823664306025,
+            "session": "2024-02-23"
+          },
+          {
+            "value": -0.37964912341010404,
+            "session": "2024-02-26"
+          }
+        ],
+        "reason": "insufficient_history",
+        "status": "ready",
+        "eligible_from": null,
+        "history_count": 40,
+        "artifact_digest": "b94fa96bab19be574fee526a39440e003814debf15b5e9d614d352a85602623d",
+        "definition_version": "sot-v1-full-history-chart-v1"
+      },
+      "sma10": {
+        "points": [
+          {
+            "value": 987.07376,
+            "session": "2024-02-20"
+          },
+          {
+            "value": 983.7492,
+            "session": "2024-02-21"
+          },
+          {
+            "value": 981.9545700000001,
+            "session": "2024-02-22"
+          },
+          {
+            "value": 981.59435,
+            "session": "2024-02-23"
+          },
+          {
+            "value": 997.45633,
+            "session": "2024-02-26"
+          }
+        ],
+        "reason": null,
+        "status": "ready",
+        "eligible_from": "2024-01-15",
+        "history_count": 40,
+        "artifact_digest": "40e81fa471549a2d53f78211454caef18270e647d1c262bb84615363cf231ce0",
+        "definition_version": "sot-v1-full-history-chart-v1"
+      },
+      "ema200": {
+        "points": [
+          {
+            "value": 1007.9231557304208,
+            "session": "2024-02-20"
+          },
+          {
+            "value": 1007.687342240566,
+            "session": "2024-02-21"
+          },
+          {
+            "value": 1007.4998433127992,
+            "session": "2024-02-22"
+          },
+          {
+            "value": 1007.3565443743634,
+            "session": "2024-02-23"
+          },
+          {
+            "value": 1008.7413986591956,
+            "session": "2024-02-26"
+          }
+        ],
+        "reason": "insufficient_history",
+        "status": "ready",
+        "eligible_from": null,
+        "history_count": 40,
+        "artifact_digest": "3034dd13713191f066f063ec1ab57743bb61c9414c5bb46c13231bb8b1a78af4",
+        "definition_version": "sot-v1-full-history-chart-v1"
+      },
+      "macd_signal": {
+        "points": [
+          {
+            "value": -10.260011842066863,
+            "session": "2024-02-20"
+          },
+          {
+            "value": -11.3688802645906,
+            "session": "2024-02-21"
+          },
+          {
+            "value": -12.079117794858952,
+            "session": "2024-02-22"
+          },
+          {
+            "value": -12.406858968748368,
+            "session": "2024-02-23"
+          },
+          {
+            "value": -10.001416999680716,
+            "session": "2024-02-26"
+          }
+        ],
+        "reason": "insufficient_history",
+        "status": "ready",
+        "eligible_from": null,
+        "history_count": 40,
+        "artifact_digest": "a2c90b85d35890049da3a96d5d51e4685c2b8600ecb7877631bdd52fbae4e618",
+        "definition_version": "sot-v1-full-history-chart-v1"
+      },
+      "macd_histogram": {
+        "points": [
+          {
+            "value": -5.97275150819544,
+            "session": "2024-02-20"
+          },
+          {
+            "value": -4.435473690094952,
+            "session": "2024-02-21"
+          },
+          {
+            "value": -2.840950121073398,
+            "session": "2024-02-22"
+          },
+          {
+            "value": -1.3109646955576562,
+            "session": "2024-02-23"
+          },
+          {
+            "value": 9.621767876270612,
+            "session": "2024-02-26"
+          }
+        ],
+        "reason": "insufficient_history",
+        "status": "ready",
+        "eligible_from": null,
+        "history_count": 40,
+        "artifact_digest": "6020c81a1d7745970b7b1e53ab8d51e3c11ecfef99e4cc72a4af16bcc7a23bf2",
+        "definition_version": "sot-v1-full-history-chart-v1"
+      }
+    },
+    "pagination": {
+      "limit": 5,
+      "has_more": true,
+      "window_to": "2024-02-26",
+      "next_cursor": "09101b69-eede-47f7-97b6-9dd9fbf9bfb9",
+      "window_from": "2024-02-20",
+      "returned_slots": 5
+    },
+    "volume_unit": "shares",
+    "signal_source": null
+  },
+  "error": null,
+  "success": true,
+  "contract_version": "ticker-chart-v1"
+}

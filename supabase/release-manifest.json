@@ -1,5 +1,5 @@
 {
-  "release": "backend-processing-recovery-watchdog-candidate-2026-10-13",
+  "release": "backend-ticker-chart-candidate-2026-10-14",
   "project_ref": "hcjfxbynqzsaidlwvdfx",
   "hash_normalization": "UTF-8 with LF newlines; original migration files unchanged",
   "migrations": [
@@ -72,6 +72,16 @@
       "version": "202610130014",
       "file": "202610130014_optimize_trade_reporting_rpc.sql",
       "sha256_lf": "c7f7b9ea8ba2f305c02d1f8f1207097fa1aa867519e8d4f8c6f40a63baf6b2a6"
+    },
+    {
+      "version": "202610140015",
+      "file": "202610140015_ticker_chart_artifacts.sql",
+      "sha256_lf": "1c4a0e4321ecd67a85132ce42e8638a641762fe060cd66abbb373dd81ee5f829"
+    },
+    {
+      "version": "202610140016",
+      "file": "202610140016_chart_reader_budgets.sql",
+      "sha256_lf": "8348758e0873361ce87074194527b801dd744ce08008a7e4ed090c295c4268ba"
     }
   ]
 }

@@ -1,3 +1,21 @@
+## Chart V1 — Tahap 6 preparation, 2026-10-15
+
+Backend local gates: Python569 PASS/5 explicit native opt-in SKIP, SQL160 PASS, Ruff PASS; native
+015/016 upgrade/rollback/grants and18 economic/config fingerprints PASS. Chart core coverage90.40%.
+Hosted read-only preflight confirmed history001–012, not014; pending release chain is013–016.
+User authorized commit/push and deployment. Fresh encrypted populated backup/rehearsal, pending-only
+migration, artifacts/readback and compatible frontend remain release steps, with optional writer off.
+No chart migration/activation or economic catch-up has occurred in this feature release yet.
+
+## Previous Chart V1 — Tahap 2 local, 2026-10-14
+
+Canonical artifact, frozen resolver, owner reader/service writer, pinned cursor/shared limiter dan
+migrasi 015 diimplementasikan lokal. Python 568 PASS / 5 native opt-in SKIPPED, SQL 155 PASS; native
+upgrade/rollback/grants/18 table fingerprints PASS; coverage empat modul chart 90.13% dan Ruff PASS.
+Workflow tersedia tetapi masih dinonaktifkan; state remote dan data ekonomi tidak diubah.
+[Shared evidence](../docs/CHART_V1_LOCAL_VERIFICATION.md). Basis harga aktual yang belum terbukti ditahan;
+budget eksplisit. Hosted JWT, aktivasi produksi dan gate rilis lebih luas belum dijalankan.
+
 ## Remediation release verified - 2026-10-10
 
 Action: completed the authorized release after the backup/restore gate; applied the additive backend migration before the compatible frontend and verified the released runtime's recovery and retry behavior.
