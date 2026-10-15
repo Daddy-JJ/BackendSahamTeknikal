@@ -1,3 +1,17 @@
+## Chart V1 live release — 2026-10-15
+
+Action: completed owner-authorized release on existing resources, no Supabase upgrade. Fresh full
+backup/populated restore rehearsal SKIPPED_OWNER_WAIVER, not PASS; no full data recovery established.
+Proof: exact013–016 CLI migrations, expanded ACL and18 economic/config fingerprints PASS; canonical
+all-page reports matched while paused. After resume, all nonoperational fields match; only captured
+watchdog enabled/last_checked_at metadata is projected for comparison. Automation restored/active.
+Final backend608 tests PASS/5 native opt-in SKIP, focused43 chart tests/Ruff/review PASS. Default256
+source receipts/hard500, max4 read-only requests, ordered/cancel-on-error projection, no source truncation
+or trading/provider changes. Cloud100/100 ticker build succeeds, real frontend parser live probes PASS.
+Frontend Production deployment/source and full private-receipt evidence tracked in workspace handoff.
+Owner browser/real outsider JWT and immutable-to-alias byte proof remain NOT VERIFIED. Existing dev-only
+braces release exception retained. Feature rollback keeps additive schema and all journal/source data.
+
 ## Chart V1 — explicit release exception, 2026-10-15
 
 Action: owner requests no Supabase upgrade and explicitly permits skipping fresh full backup and
