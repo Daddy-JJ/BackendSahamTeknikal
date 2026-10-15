@@ -16,6 +16,8 @@ from .models import digest
 from .persistence import PersistenceError, series_from_revision
 from .untradable import restore_untradable_evidence
 
+DEFAULT_MAX_REVISIONS = 256
+
 
 def calendar_from_payload(payload: dict, mode: str) -> Calendar:
     try:
@@ -49,7 +51,7 @@ class ChartArtifactStore:
             raise PersistenceError("chart_ticker_mismatch")
         return payload
 
-    def receipts(self, rows, ticker, *, maximum=128):
+    def receipts(self, rows, ticker, *, maximum=DEFAULT_MAX_REVISIONS):
         if not isinstance(rows, list) or len(rows) > maximum:
             raise PersistenceError("chart_revision_budget_exhausted")
         receipts = []
@@ -193,7 +195,7 @@ def build_context_records(bundle, receipts, calendar, *, observed_at):
 
 
 def run_chart_job(store: ChartArtifactStore, *, observed_at: datetime, ticker=None,
-                  execute=False, max_tickers=100, max_revisions=128):
+                  execute=False, max_tickers=100, max_revisions=DEFAULT_MAX_REVISIONS):
     if not 1 <= max_tickers <= 100 or not 1 <= max_revisions <= 500:
         raise ValueError("invalid_chart_job_budget")
     maintenance = (store.prune_cursors() if execute else

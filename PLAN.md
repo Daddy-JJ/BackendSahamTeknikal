@@ -4,8 +4,12 @@ Action: owner requests no Supabase upgrade and explicitly permits skipping fresh
 populated restore rehearsal. Record both SKIPPED_OWNER_WAIVER, not PASS. Fix sanitized diagnostic
 classification independently; retain exact pending013–016/hash/CLI dry-run, paused automation,
 server-side economic/reporting fingerprints, chart ACL and artifact canary before frontend release.
-Proof: read-only preflight confirmed001–012 and idle cloud writers; local waiver guard rejects eight
-invalid/missing/stale cases. No financial payload export. Production completion pending actual results.
+Proof: schema013–016 applied via exact pending-only CLI; postflight confirms18 economic/config
+fingerprints and all-page canonical reporting unchanged, expanded chart ACL/owner/outsider/anon checks
+PASS. Automation restored exactly. Waiver guards reject10 cases and prevent autoresume after uncertain
+DDL. Diagnostics39 tests PASS. Canary38693142193 rejected ADRO131 revisions above128; metadata counts
+confirm ADRO/BFIN131, others<=71. Raise shared default to256 (hard maximum500), preserve explicit
+over-budget failure/no truncation, then fresh cloud canary before frontend. No financial payload export.
 Rollback is feature disable/previous frontend, not full data recovery. This scoped owner decision
 supersedes the previous fresh backup/rehearsal gate for this release only; no paid resources added.
 

@@ -55,6 +55,13 @@ Scanner dan data layer untuk IDX Night Scanner. Repository ini menjadi sumber ba
 
 Lihat DEVELOPMENT.md untuk perintah Windows PowerShell. Runtime Python 3.12.14 dipin di scanner/.python-version; dependency scanner dikunci dengan uv.lock. Tes SQL memakai PostgreSQL PGlite di memori, jadi tidak menghubungi Supabase.
 
+Chart writer membaca revisi tersimpan dengan budget default 256 revisi per ticker
+(`--max-revisions`, rentang 1–500). Semua revisi dalam budget dibaca; jika jumlah
+melampaui budget, ticker gagal eksplisit dengan `chart_revision_budget_exhausted`
+sebelum pembacaan seri. Tidak ada pemotongan provenance, fetch provider, atau
+perubahan ledger. Batas ini perlu dipantau seiring pertumbuhan histori; kenaikan
+default dari 128 mempertahankan histori ticker dengan 129–131 revisi.
+
 ## Struktur
 
 - scanner/: engine deterministik, adapter sumber data, paper evaluator, persistence adapter, dan tes.

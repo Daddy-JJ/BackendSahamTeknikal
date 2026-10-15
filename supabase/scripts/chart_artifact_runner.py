@@ -6,7 +6,11 @@ import os
 import sys
 from datetime import UTC, datetime
 
-from idx_scanner.chart_runtime import ChartArtifactStore, run_chart_job
+from idx_scanner.chart_runtime import (
+    DEFAULT_MAX_REVISIONS,
+    ChartArtifactStore,
+    run_chart_job,
+)
 from idx_scanner.persistence import PersistenceError, SupabaseScanStore
 
 
@@ -15,7 +19,7 @@ def main(argv=None):
     parser.add_argument("--execute", action="store_true")
     parser.add_argument("--ticker")
     parser.add_argument("--max-tickers", type=int, default=100)
-    parser.add_argument("--max-revisions", type=int, default=128)
+    parser.add_argument("--max-revisions", type=int, default=DEFAULT_MAX_REVISIONS)
     args = parser.parse_args(argv)
     required = ("SUPABASE_URL", "SUPABASE_SECRET_KEY", "APP_OWNER_USER_ID")
     if any(not os.environ.get(name) for name in required):
