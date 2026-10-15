@@ -1,4 +1,15 @@
-## Chart V1 — Tahap 6 authorized release preparation, 2026-10-15
+## Chart V1 — explicit release exception, 2026-10-15
+
+Action: owner requests no Supabase upgrade and explicitly permits skipping fresh full backup and
+populated restore rehearsal. Record both SKIPPED_OWNER_WAIVER, not PASS. Fix sanitized diagnostic
+classification independently; retain exact pending013–016/hash/CLI dry-run, paused automation,
+server-side economic/reporting fingerprints, chart ACL and artifact canary before frontend release.
+Proof: read-only preflight confirmed001–012 and idle cloud writers; local waiver guard rejects eight
+invalid/missing/stale cases. No financial payload export. Production completion pending actual results.
+Rollback is feature disable/previous frontend, not full data recovery. This scoped owner decision
+supersedes the previous fresh backup/rehearsal gate for this release only; no paid resources added.
+
+## Previous Chart V1 — Tahap 6 authorized release preparation, 2026-10-15
 
 Action: user-authorized commit/push and chart rollout. Read-only hosted preflight proved migration
 history001–012; existing013 performance indexes and014 reporting optimization must be rehearsed

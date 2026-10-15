@@ -1,3 +1,10 @@
+## Chart V1 release exception — 2026-10-15
+
+Owner permits skipping fresh full backup/populated restore rehearsal and requires existing Supabase
+resources without upgrade. These checks are SKIPPED_OWNER_WAIVER, not PASS. Retained: exact013–016
+checksum/dry-run, paused writers, server-side economic/reporting hashes, ACL and artifact/deployment smoke.
+Production completion pending actual receipts; rollback is feature-only, no full data restore established.
+
 ## Chart V1 — Tahap 6 preparation, 2026-10-15
 
 Backend local gates: Python569 PASS/5 explicit native opt-in SKIP, SQL160 PASS, Ruff PASS; native

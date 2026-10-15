@@ -43,22 +43,27 @@ class PipelineFailure(RuntimeError):
         self.details = details
 
 
+def _crypto_stderr_code(message: str) -> str:
+    for needle, code in (
+        ("could not read passphrase", "crypto_hidden_prompt_failed"),
+        ("passphrases do not match", "crypto_passphrase_confirmation_mismatch"),
+        ("incorrect passphrase", "crypto_incorrect_passphrase"),
+        ("no identity matched", "crypto_identity_mismatch"),
+        ("failed to decrypt", "crypto_decryption_failed"),
+        ("too many input", "crypto_arguments_invalid"),
+    ):
+        if needle in message:
+            return code
+    return "crypto_command_failed"
+
+
 def stderr_code(stderr: bytes, kind: str) -> str:
+    """Return a fixed code only; specific causes precede generic COPY/query errors."""
     message = stderr.decode("utf-8", errors="replace").lower()
     if not message:
         return "no_driver_diagnostic"
     if kind == "encryption":
-        for needle, code in (
-            ("could not read passphrase", "crypto_hidden_prompt_failed"),
-            ("passphrases do not match", "crypto_passphrase_confirmation_mismatch"),
-            ("incorrect passphrase", "crypto_incorrect_passphrase"),
-            ("no identity matched", "crypto_identity_mismatch"),
-            ("failed to decrypt", "crypto_decryption_failed"),
-            ("too many input", "crypto_arguments_invalid"),
-        ):
-            if needle in message:
-                return code
-        return "crypto_command_failed"
+        return _crypto_stderr_code(message)
     for needle, code in (
         ("permission denied", "dump_permission_denied"),
         ("server version mismatch", "dump_server_version_mismatch"),
@@ -68,6 +73,31 @@ def stderr_code(stderr: bytes, kind: str) -> str:
         ("conflicting or redundant options", "dump_arguments_invalid"),
         ("error during connect", "docker_connection_failed"),
         ("cannot connect to the docker", "docker_connection_failed"),
+        ("ssl syscall error: eof", "dump_ssl_eof"),
+        ("ssl error: unexpected eof", "dump_ssl_eof"),
+        ("ssl connection has been closed", "dump_ssl_connection_closed"),
+        ("ssl connection closed", "dump_ssl_connection_closed"),
+        ("connection reset", "dump_connection_reset"),
+        ("server closed the connection unexpectedly", "dump_server_connection_closed"),
+        ("server closed connection unexpectedly", "dump_server_connection_closed"),
+        ("connection to server was lost", "dump_connection_lost"),
+        ("connection has been closed unexpectedly", "dump_connection_lost"),
+        ("could not receive data from server", "dump_connection_lost"),
+        ("could not send data to server", "dump_connection_lost"),
+        ("statement timeout", "dump_statement_timeout"),
+        ("lock timeout", "dump_lock_timeout"),
+        ("could not obtain lock", "dump_lock_timeout"),
+        ("canceling statement due to user request", "dump_cancelled"),
+        ("operation canceled", "dump_cancelled"),
+        ("operation cancelled", "dump_cancelled"),
+        ("no space left on device", "dump_disk_full"),
+        ("disk full", "dump_disk_full"),
+        ("copy failed", "dump_copy_failed"),
+        ("error during copy", "dump_copy_failed"),
+        ("copy command failed", "dump_copy_failed"),
+        ("query failed", "dump_query_failed"),
+        ("error executing query", "dump_query_failed"),
+        ("timeout expired", "dump_timeout"),
         ("timed out", "dump_timeout"),
     ):
         if needle in message:
@@ -207,9 +237,10 @@ def decrypted_digest(command: list[str]) -> tuple[str, int]:
             exit_code = process.wait(timeout=900)
             thread.join(timeout=15)
             if exit_code:
-                raise PipelineFailure({"crypto_exit_code": exit_code,
-                                       "crypto_diagnostic": stderr_code(bytes(errors), "encryption")},
-                                      "backup_decryption_failed")
+                raise PipelineFailure({
+                    "crypto_exit_code": exit_code,
+                    "crypto_diagnostic": stderr_code(bytes(errors), "encryption"),
+                }, "backup_decryption_failed")
         finally:
             if process.poll() is None:
                 process.kill()
@@ -301,7 +332,8 @@ def main() -> int:
                 environment.pop("PGPASSWORD", None)
                 subprocess.run(docker("rm", "--force", client), capture_output=True,
                                timeout=15, check=False)
-            print(f"Verify {kind}: enter the recovery passphrase again; no plaintext file is saved.")
+            print(f"Verify {kind}: enter the recovery passphrase again; "
+                  "no plaintext file is saved.")
             stage = f"{kind}_decryption_verification"
             observed = decrypted_digest([str(AGE), "--decrypt", str(archive)])
             if observed != expected:
