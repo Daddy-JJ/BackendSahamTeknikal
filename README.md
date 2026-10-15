@@ -61,6 +61,10 @@ melampaui budget, ticker gagal eksplisit dengan `chart_revision_budget_exhausted
 sebelum pembacaan seri. Tidak ada pemotongan provenance, fetch provider, atau
 perubahan ledger. Batas ini perlu dipantau seiring pertumbuhan histori; kenaikan
 default dari 128 mempertahankan histori ticker dengan 129–131 revisi.
+Pembacaan sumber dibatasi empat worker dalam satu ticker, dengan urutan hasil
+sesuai urutan revisi sumber dan jumlah RPC tetap sama. Ticker, pembangunan
+artifact, dan penulisannya tetap serial; satu revisi invalid menggagalkan
+proyeksi ticker tanpa menulis artifact dari kumpulan sumber parsial.
 
 ## Struktur
 

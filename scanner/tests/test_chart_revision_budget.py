@@ -27,8 +27,10 @@ def test_default_receipt_budget_accepts_all_persisted_revisions(count):
     with SupabaseScanStore("https://test.supabase.co", "synthetic-key",
                            transport=httpx.MockTransport(handle)) as base:
         receipts = ChartArtifactStore(base, OWNER, "fixture").receipts(rows, receipt.series.ticker)
-    assert reads == [row["id"] for row in rows]
-    assert [r.series_id for r in receipts] == reads
+    # Read-only source RPCs may complete out of order; the returned projection may not.
+    expected = [row["id"] for row in rows]
+    assert len(reads) == len(expected) and set(reads) == set(expected)
+    assert [r.series_id for r in receipts] == expected
     assert all(r.series.input_digest == receipt.series.input_digest for r in receipts)
 
 

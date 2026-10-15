@@ -1,6 +1,7 @@
 """Bounded cloud chart writer. Reads persisted state; never fetches or creates trades."""
 
 import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, datetime
 from uuid import UUID
 
@@ -17,6 +18,7 @@ from .persistence import PersistenceError, series_from_revision
 from .untradable import restore_untradable_evidence
 
 DEFAULT_MAX_REVISIONS = 256
+MAX_RECEIPT_READ_WORKERS = 4
 
 
 def calendar_from_payload(payload: dict, mode: str) -> Calendar:
@@ -54,26 +56,39 @@ class ChartArtifactStore:
     def receipts(self, rows, ticker, *, maximum=DEFAULT_MAX_REVISIONS):
         if not isinstance(rows, list) or len(rows) > maximum:
             raise PersistenceError("chart_revision_budget_exhausted")
-        receipts = []
-        for row in rows:
-            if row.get("data_mode") != self.data_mode or row.get("ticker") != ticker:
-                raise PersistenceError("chart_market_mode_mismatch")
-            response = self.store._request("POST", "rpc/read_market_series",
-                                            json={"p_revision_id": row["id"]})
+        if any(not isinstance(row, dict) or row.get("data_mode") != self.data_mode
+               or row.get("ticker") != ticker for row in rows):
+            raise PersistenceError("chart_market_mode_mismatch")
+        if not rows:
+            return ()
+        # Only source reads run concurrently. Detect errors promptly, cancel
+        # queued work and drain in-flight reads before returning any projection.
+        with ThreadPoolExecutor(max_workers=min(MAX_RECEIPT_READ_WORKERS, len(rows))) as workers:
+            futures = tuple(workers.submit(self._read_receipt, row, ticker) for row in rows)
             try:
-                if (response["revision_id"] != row["id"]
-                    or response["namespace"] != row["namespace"]
-                    or response["data_mode"] != self.data_mode
-                    or response["input_digest"] != row["input_digest"]):
-                    raise ValueError()
-                series = series_from_revision(response)
-                if series.ticker != ticker:
-                    raise ValueError()
-                receipts.append(ChartReceipt(row["id"], row["namespace"], self.data_mode,
-                                 series, datetime.fromisoformat(row["stored_at"])))
-            except (KeyError, TypeError, ValueError):
-                raise PersistenceError("chart_invalid_market_revision") from None
-        return tuple(receipts)
+                for completed in as_completed(futures):
+                    completed.result()
+                return tuple(future.result() for future in futures)
+            finally:
+                for future in futures:
+                    future.cancel()
+
+    def _read_receipt(self, row, ticker):
+        response = self.store._request("POST", "rpc/read_market_series",
+                                        json={"p_revision_id": row["id"]})
+        try:
+            if (response["revision_id"] != row["id"]
+                or response["namespace"] != row["namespace"]
+                or response["data_mode"] != self.data_mode
+                or response["input_digest"] != row["input_digest"]):
+                raise ValueError()
+            series = series_from_revision(response)
+            if series.ticker != ticker:
+                raise ValueError()
+            return ChartReceipt(row["id"], row["namespace"], self.data_mode,
+                                series, datetime.fromisoformat(row["stored_at"]))
+        except (KeyError, TypeError, ValueError):
+            raise PersistenceError("chart_invalid_market_revision") from None
 
     def persist(self, record):
         if record["owner_id"] != self.owner_id or record["data_mode"] != self.data_mode:
