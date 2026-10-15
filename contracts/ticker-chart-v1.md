@@ -1,6 +1,7 @@
 # Ticker chart v1 — kontrak implementasi
 
-Tanggal: 2026-10-14 WIB. Status: spesifikasi Tahap 1; **belum ada RPC/route ini di produksi**.
+Spesifikasi: 2026-10-14 WIB. Capability tercatat dirilis 2026-10-15;
+lihat [status dan batas bukti](../IMPLEMENTATION_STATUS.md). Pembaruan label ini tidak mengubah protokol.
 Pemilik kontrak: backend; konsumen: frontend. Rencana dan acceptance matrix:
 [CHART_V1_IMPLEMENTATION_PLAN](../docs/CHART_V1_IMPLEMENTATION_PLAN.md).
 Aturan trading tetap mengikuti [SOT](../SOT.md); kontrak ini hanya menambah pembacaan/visualisasi.

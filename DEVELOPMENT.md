@@ -1,6 +1,6 @@
 # Backend local development
 
-Backend repository meliputi scanner Python, provider yfinance/EODHD, schema kontrak, migrasi Supabase, serta tes database. Runtime hanya hidup sesuai scheduler/runner yang kelak diatur; migration tidak otomatis mendeploy scanner.
+Backend repository meliputi scanner Python, provider yfinance/EODHD, schema kontrak, migrasi Supabase, serta tes database. Runtime cloud mengikuti workflow yang dikonfigurasi; migration tidak otomatis mendeploy scanner. Status rilis ada di IMPLEMENTATION_STATUS.md.
 
 Persiapan production (bukan perintah deploy):
 [runbook/read-only preflight](docs/PRODUCTION_READINESS.md). Jalankan seluruh Git

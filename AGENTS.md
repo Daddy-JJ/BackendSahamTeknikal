@@ -28,35 +28,23 @@ The root project `AGENTS.md` contains the canonical shared project rules. This f
 
 ## 1. Read before changing code
 
-Before substantial work, inspect relevant project documentation when filesystem access permits:
+Owner-approved routing,15October2026: keep context scoped to the current task.
 
-1. `..\AGENTS.md`
-2. `..\SOT.md`
-3. `..\PRD.md`
-4. `..\TECHNICAL_DOC.md`
-5. `..\README.md`
-6. `..\CODEX_HANDOFF.md`
-7. `..\IMPLEMENTATION_STATUS.md`, when present
+1. Follow root and repository AGENTS; read ../CODEX_HANDOFF.md and this repo's active PLAN.md.
+2. Inspect Git status and relevant source, tests, contracts and environment conventions.
+3. Read applicable sections of ../SOT.md for trading/market-data/financial presentation;
+   read auth/RLS/security contracts whenever those boundaries are affected.
+4. Open ../PRD.md for product scope, ../TECHNICAL_DOC.md for architecture, and README.md
+   or DEVELOPMENT.md for setup only as needed. These are not mandatory full-file rereads.
+5. Open IMPLEMENTATION_STATUS.md or ../IMPLEMENTATION_STATUS.md when release evidence or
+   unresolved gates matter. Historical/archive docs are on demand; do not restart old plans.
 
-Also inspect:
-
-- repository Git status;
-- relevant backend/scanner code;
-- tests;
-- schema and migrations;
-- RLS policies when applicable;
-- environment/configuration conventions;
-- `PLAN.md` when active.
-
-Do not assume parent files were automatically loaded merely because they exist above this Git repository.
-
-If parent documentation cannot be accessed, do not invent requirements. Work from available evidence and clearly report what could not be verified.
-
-The latest explicit user instruction takes precedence.
-
-Canonical trading rules are defined in `SOT.md`.
-
-A `DEFAULT` explicitly approved in `SOT.md` may be implemented without repeated confirmation.
+Do not assume parent docs were automatically loaded or invent inaccessible requirements.
+If root docs are unavailable in a standalone backend checkout, use local versioned SOT/contracts,
+report the missing shared context, and request clarification only when it blocks safe work.
+Root SOT is canonical; repository copies are synchronized snapshots, not independent rule sources.
+Latest explicit user instructions take precedence. An approved SOT DEFAULT does not require
+repeated confirmation. Preserve all domain, security, testing and release rules below.
 
 ---
 

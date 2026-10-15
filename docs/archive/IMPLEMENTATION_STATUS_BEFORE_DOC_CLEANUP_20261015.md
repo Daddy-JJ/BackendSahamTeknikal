@@ -1,0 +1,1370 @@
+<!-- Historical snapshot, archived 2026-10-15. Source: IMPLEMENTATION_STATUS.md.
+Original SHA256: 1aaa44b240530f0e396ffe88673ae5ff3b897e79c8b63b17a71b8771b5345486.
+Body preserved except relative Markdown links rebased for this archive directory.
+Dated claims and unresolved findings remain historical evidence, not current PASS.
+Bare paths and commands retain their original source-directory context. -->
+
+## Chart V1 live release — 2026-10-15
+
+Action: completed owner-authorized release on existing resources, no Supabase upgrade. Fresh full
+backup/populated restore rehearsal SKIPPED_OWNER_WAIVER, not PASS; no full data recovery established.
+Proof: exact013–016 CLI migrations, expanded ACL and18 economic/config fingerprints PASS; canonical
+all-page reports matched while paused. After resume, all nonoperational fields match; only captured
+watchdog enabled/last_checked_at metadata is projected for comparison. Automation restored/active.
+Final backend608 tests PASS/5 native opt-in SKIP, focused43 chart tests/Ruff/review PASS. Default256
+source receipts/hard500, max4 read-only requests, ordered/cancel-on-error projection, no source truncation
+or trading/provider changes. Cloud100/100 ticker build succeeds, real frontend parser live probes PASS.
+Frontend Production deployment/source and full private-receipt evidence tracked in workspace handoff.
+Owner browser/real outsider JWT and immutable-to-alias byte proof remain NOT VERIFIED. Existing dev-only
+braces release exception retained. Feature rollback keeps additive schema and all journal/source data.
+
+## Chart V1 release exception — 2026-10-15
+
+Owner permits skipping fresh full backup/populated restore rehearsal and requires existing Supabase
+resources without upgrade. These checks are SKIPPED_OWNER_WAIVER, not PASS. Retained: exact013–016
+checksum/dry-run, paused writers, server-side economic/reporting hashes, ACL and artifact/deployment smoke.
+Schema001–016 now verified;18 economic/config fingerprints and all-page reporting unchanged, chart ACL
+and owner/outsider/anon SQL checks PASS, automation restored. First chart canary failed closed because
+ADRO/BFIN have131 revisions against default128. Bounded default256 fix under test; fresh canary/frontend
+release still pending. Rollback is feature-only, no full data restore established.
+
+## Chart V1 — Tahap 6 preparation, 2026-10-15
+
+Backend local gates: Python569 PASS/5 explicit native opt-in SKIP, SQL160 PASS, Ruff PASS; native
+015/016 upgrade/rollback/grants and18 economic/config fingerprints PASS. Chart core coverage90.40%.
+Hosted read-only preflight confirmed history001–012, not014; pending release chain is013–016.
+User authorized commit/push and deployment. Fresh encrypted populated backup/rehearsal, pending-only
+migration, artifacts/readback and compatible frontend remain release steps, with optional writer off.
+No chart migration/activation or economic catch-up has occurred in this feature release yet.
+
+## Previous Chart V1 — Tahap 2 local, 2026-10-14
+
+Canonical artifact, frozen resolver, owner reader/service writer, pinned cursor/shared limiter dan
+migrasi 015 diimplementasikan lokal. Python 568 PASS / 5 native opt-in SKIPPED, SQL 155 PASS; native
+upgrade/rollback/grants/18 table fingerprints PASS; coverage empat modul chart 90.13% dan Ruff PASS.
+Workflow tersedia tetapi masih dinonaktifkan; state remote dan data ekonomi tidak diubah.
+[Shared evidence](../../../docs/CHART_V1_LOCAL_VERIFICATION.md). Basis harga aktual yang belum terbukti ditahan;
+budget eksplisit. Hosted JWT, aktivasi produksi dan gate rilis lebih luas belum dijalankan.
+
+## Remediation release verified - 2026-10-10
+
+Action: completed the authorized release after the backup/restore gate; applied the additive backend migration before the compatible frontend and verified the released runtime's recovery and retry behavior.
+Proof: local checks recorded below passed. Production deployment, public HTTP/asset checks, hosted reporting contract validation, SQL-role access-denial checks and recovery idempotency were verified. Detailed operator receipts and financial reconciliation are intentionally retained locally and are not published in this repository.
+
+Limits: authenticated owner-browser interaction, real outsider JWT and subsequent-session operational stability remain unverified. Continue monitoring scheduled sessions. Trading rules, historical configuration and the actual ledger remain preserved. Earlier local/historical evidence follows.
+
+## Incident repair - implemented and verified locally (2026-10-10)
+
+Approved G01-G17 remediation is implemented across both independent repositories. SQL011 adds economic/evaluation integrity, immutable job health, reporting eligibility and IDR/holding/paired metrics; frontend shares canonical exit filters and displays checkpoint/held-data/read errors honestly. Entry/exit rules, actual ledger/CSV and historical activation/config/book are preserved. See [PLAN.md](../../PLAN.md) for local proof and release gates. Commit/push, migration, deployment and production recovery remain pending separate release authorization; the current production incident has not been recovered by this local work.
+
+# Implementation status — IDX Night Scanner backend
+
+## 2026-10-08 - Persistent paper/reporting: implemented and tested locally
+
+Implemented locally: the existing paper engine now freezes signal-close plans with fee-inclusive floor sizing and separate Fixed 2R/SMA10 experiments. Supabase owns model, checkpoint, book, immutable events and signal research through revision/idempotency RPCs. Recovery replays published signals and stored inputs, including monitored tickers outside the current universe. Additive SQL009 and strict frontend readers support Paper/Actual/Signal Evaluation dashboards, source signal IDs/targets and paper audit details. Legacy history and the actual ledger/manual fills/CSV remain separate and compatible. Five/ten sessions never auto-close; SMA10 requires confirmed close below the average.
+
+Verified locally:
+
+- Python full suite: **324 PASS / 5 native-Docker SKIPPED**. Ruff passes for scanner src/tests and changed runtime scripts.
+- SQL/PGlite full suite: **93 PASS**, including migration upgrade, simulated-role RLS, atomic rollback/retry, ledger precision and direct sibling frontend parser compatibility. Latest release-guard regression: 7 PASS / 2 native-Docker SKIPPED (a subset of the full Python suite).
+- Frontend unit: **28 PASS**. Lint, typecheck and production build: **PASS**.
+- Browser desktop/mobile: **36 scanner + 40 journal + 12 reporting = 88 PASS**, using explicit local HTTP doubles. Initial scanner failures were stale expectations for the old unavailable headings; replacement assertions verify missing reporting RPCs and the existing bounded operational snapshot read. No production fallback or access check was removed.
+- Desktop/mobile dashboard captures inspected; responsive detail lists fit without horizontal scrolling. Matrices retain horizontal scrolling. Final tracked diff/added-source whitespace checks and added-content credential-pattern checks pass; no environment files changed.
+
+Navigation follow-up: after verified authentication, owner membership and deployment-mode reads now run concurrently. A delayed local HTTP regression proves overlap on desktop/mobile, and auth/owner/failure/mutation/export guards pass. The public unauthenticated scanner/analytics probe measured 367-445 ms with sin1::iad1 routing; it does not establish authenticated SQL latency or a Supabase bottleneck. See frontend/docs/PERFORMANCE_AUDIT_20261008.md. No hosted speed improvement, provider change or region change is claimed.
+
+NOT VERIFIED: hosted SQL009/RPC/RLS, authenticated production reporting and latency, current deployed SHA, native Docker restore/concurrency. The five Docker skips remain explicit. The user has now authorized commit/push of the source candidate to `feat/persistent-paper-reporting-v1`. No remote migration, model activation or production deploy was performed; source publication is distinct from hosted acceptance.
+
+Release sequence: separately authorize release actions; verify applied migration history/checksums and apply only pending forward backend migrations/RPCs; verify hosted owner/access behavior; release frontend after capability exists; then authorize activation and enable the updated runtime/workflow. The first new live preflight locks activation. Historical evidence below does not accept this new candidate.
+
+
+## Earlier interim implementation note - 2026-10-08
+
+The earlier IN PROGRESS note is superseded by the completed local evidence above. Hosted release remains unverified.
+
+
+## Phase H: Canonical PipelineResult Contract & Variable Binding Resolution — 2026-10-06, latest
+
+Fixed attribute contract mismatch and publication receipt variable binding in scheduled runner:
+1. `supabase/scripts/scheduled_scanner_runner.py`: corrected attribute access from `outcome.pipeline.errors` to canonical `outcome.pipeline.provider_errors` (`tuple[tuple[str, str], ...]`), mapping to `[{"ticker": t, "code": c} for t, c in outcome.pipeline.provider_errors]`.
+2. `supabase/scripts/scheduled_scanner_runner.py`: fixed `UnboundLocalError` by initializing `publication_receipt: dict | None = None` before conditional branches and binding `publication_receipt = outcome.publication` upon successful atomic publication to Supabase.
+3. `supabase/scripts/scheduled_scanner_runner.py`: supported pre-market window (00:00 - 08:59 WIB) in `get_current_target_session` so running before market open automatically targets the previous closed trading session within its valid publication window.
+4. Unit tests: added `scanner/tests/test_scheduled_scanner_runner.py` with 5 tests verifying `PipelineResult` attribute contract, `publication_receipt` initialization and assignment contract, pre-market window selection, night window selection, and intraday open-market rejection. 268 passed, 5 skipped (Docker native), 0 failures. Ruff clean (0 errors).
+
+## Phase G: Runner Resiliency on Provider Corporate Action Mismatch — 2026-10-05
+
+Fixed runner crash on unreconciled or modified provider corporate actions:
+1. `runner.py:run_once`: wrapped `reconcile_dividends` in a try/except for `ValueError("dividend_provider_event_mismatch")`. Rather than failing the entire runner when Yahoo updates or publishes an unverified corporate action event (e.g. CUAN, INDY, PTRO, TOBA), the ticker gracefully remains un-reconciled (`actions_complete = False`) and is placed on `corporate_action_hold` (SOT Invariant #6), allowing all other valid tickers to be evaluated, scanned, and published to Supabase atomically.
+2. `supabase/scripts/scheduled_scanner_runner.py`: populated `mismatches` from `outcome.pipeline.prepared_series` where actions exist but are incomplete.
+3. Unit tests: added `test_runner_holds_unreconciled_dividend_mismatch_without_crashing` in `scanner/tests/test_runner.py`. 263 passed, 5 skipped (Docker native), 0 failures. Ruff clean (0 errors).
+
+## Phase F: Canonical Analytics Contracts & Live Paper Persistence (Paket 1) — 2026-10-04
+
+User approved Paket 1 addressing frontend audit findings R-01 (Paper live persistence) and R-02 (Canonical R-curve & strategy attribution):
+1. Migration `202610040008_canonical_analytics_and_paper.sql`:
+   - `actual_journal_r_curve`: computes chronological trade points, cumulative R, and max drawdown with strict parameter parity (`p_from`, `p_to`, `p_strategy`, `p_exit_version`, `p_exit_snapshot`). Returns zeroed summary on empty cohort.
+   - `actual_journal_attribution`: breaks down performance metrics by strategy (`wins`, `losses`, `breakeven`, `net_pnl_idr`, `win_rate`, `expectancy_r`, `profit_factor`). Exact mathematical parity with aggregate `actual_journal_analytics` and CSV export.
+   - `paper_trades` table: dedicated persistence store for simulated forward positions, enforcing owner-only RLS and strict logical decoupling from `actual_trades` (Invariant #7).
+   - `read_paper_journal`: owner-only RPC returning structured paper trade history and metrics.
+2. Automated Database Verification:
+   - Created `supabase/tests/canonical-analytics-paper.test.mjs` verifying empty cohort, multi-trade R-curve with drawdown, strategy attribution parity, and paper RLS isolation.
+   - Updated release manifest (`55ac81dd10d9eabbec1adf9dbd8cb6a493ec0fab8db4286fea95121a67f7963a`) and rehearsal guards.
+   - All 76 SQL tests passed (0 failures). Pytest full suite: 262 passed (5 skipped Docker native, 0 failures). Ruff: 0 errors.
+
+## Phase E: Post-Audit Hardening & Verification — 2026-10-04
+
+User approved comprehensive remediation of backend auditor findings (ChatGPT 6.1 sol audit report):
+1. Historical Zero-Volume Validation Hardening (B-01):
+   - Refined `quality()` in `scanner/src/idx_scanner/context.py` to inspect the full 60-session active evaluation window (`any(b.volume == 0 for b in bars[-60:])`). Historical zero-volume anomalies (e.g. trading suspensions or abnormal zero-volume bars within 60 sessions) strictly enforce `data_quality_hold` rather than checking only the last candle.
+   - Added unit test `test_penultimate_zero_volume_within_60_days_remains_hold`.
+2. Paper Journal Quality Hold Enforcement (B-02):
+   - In `scanner/src/idx_scanner/paper.py:step_paper_book()`, integrated `quality(series, session, calendar) == "valid"` check alongside `series.actions_complete`. When a ticker is held due to unreconciled corporate actions or zero-volume data anomalies, existing paper trades transition to `state="data_hold", reason="missing_or_invalid_bar"`, preventing false fills and artificial +2R outcomes during quality holds.
+   - Added unit test `test_step_paper_book_holds_when_corporate_actions_unreconciled`.
+3. Single-Fetch Architecture & Fail-Closed Scheduled Runner (B-03, B-06, B-07):
+   - In `supabase/scripts/scheduled_scanner_runner.py`:
+     - Eliminated dual-fetch drift: in publication mode (`--execute`), `run_once()` executes the authoritative single fetch, database revision ingestion, scan, and atomic Supabase publication. The paper journal simulation directly consumes the committed pipeline result and series snapshot without a second provider fetch.
+     - Enforced fail-closed preflight credentials: `--execute` requires valid `SUPABASE_URL` and `SUPABASE_SECRET_KEY`; missing credentials immediately terminate with error message and exit code 1.
+     - Enforced fail-closed calendar handling: unknown calendar dates return `blocked_configuration: calendar_unknown` with exit code 1 (only confirmed weekends and documented exchange holidays cleanly exit 0).
+     - Enforced fail-closed coverage gate: `coverage_valid == 0` terminates with exit code 1.
+4. Experiment Cohort Metrics Separation in Paper Book (B-05):
+   - Updated `summarize_book()` in `paper.py` to calculate `experiment_metrics` (mapping each experiment ID to its own isolated `summarize()` output), preventing mixed metric pooling across different exit policies (`fixed_rr` vs `ma_close`).
+5. Commit SHA Binding to Signals (B-09):
+   - Added `current_source_revision()` with `@lru_cache(maxsize=1)` in `engine.py` reading `GITHUB_SHA` or git HEAD (with fallback to `"local-uncommitted"`).
+   - Signals generated in live mode carry the immutable commit SHA, while fixture generation preserves reproducible static contracts.
+6. Code Quality & Linter Compliance:
+   - Fixed all 10 ruff lint violations in `supabase/scripts/` (import sorting, explicit exception annotations `# noqa: BLE001`).
+   - Clean verification: Ruff 0 errors, Pytest 262 passed (5 skipped Docker native), SQL 72 passed.
+
+Verification evidence:
+- Python full test suite: 262 passed, 5 skipped (Docker native), 0 failures.
+- SQL PGlite test suite: 72 passed, 0 failures.
+- Ruff linter: 100% clean across `scanner/src`, `scanner/tests`, and `supabase/scripts`.
+- Dry-run CLI execution of `scheduled_scanner_runner.py` verified fail-closed behavior on missing credentials and target session guards.
+
+## Universe 100/100 Evaluated, Corporate Actions Reconciled & RS_BREAKOUT_V1 Unlocked — 2026-10-03
+
+User approved formal reconciliation of all 10 held stocks (7 stock splits/bonus shares + 3 unconfirmed dividends) to fulfill SOT Invariant #16 and fully unlock the `RS_BREAKOUT_V1` (Relative Strength Breakout, Top 20% Return 60 Sessions) strategy:
+1. Stock Split Reconciliation & Continuity Verification:
+   - Verified that Yahoo Finance `auto_adjust=False` already adjusts historical OHLC for stock splits and bonus shares at source (SOT line 56). Prices across split ex-dates are continuous (e.g. ISAT 2,600 -> 2,650; PTRO 2,745 -> 2,820). No secondary division applied (`price_changes=False`, `ledger_changes=False`) to prevent double-adjustment distortion.
+   - Reconciled 7 stock split/bonus share events with primary KSEI PDF announcements: ISAT (1:4 split), PTRO (1:10 split), CUAN (1:10 split), RAJA (1:5 split), RMKE (1:5 split), SGER (7:18 bonus share), BRPT (625:1 bonus share).
+   - Reconciled 3 remaining dividends: SCMA (Rp 5.0), UNVR (Rp 41.0), INET (Rp 0.04).
+   - Reconciled post-split dividend values for ISAT, RAJA, RMKE, and PTRO.
+   - Total verified corporate action events expanded from 228 to 256 events across all 100 KOMPAS100 tickers.
+2. Engine & Manifest Upgrades:
+   - Extended `corporate_actions.py` to support `kind="split"`, `trading_start_date_new_nominal`, and composite keys `(ticker, session, kind)` to handle multi-action sessions (e.g. BRPT dividend + bonus share on same day).
+   - Repackaged `reviewed-action-source-archive-20261003.zip` containing all 251 verified source PDF/TXT files (7.90 MB, SHA256 `fca09719c9f044d13881785633fd5724f9f1c0af0d27842384427a325fc19179`).
+   - Verified hydration via `hydrate_reviewed_sources.py` (251 hashes verified, status 0).
+3. Strategy & Universe Outcome:
+   - Coverage: **100 / 100 evaluated** (100% evaluated, 0 corporate_action_hold, 0 data_quality_hold).
+   - SOT Invariant #16 fulfilled: `ranking_status = "complete"`.
+   - `RS_BREAKOUT_V1` fully unlocked: evaluates all 100 constituents, selects top 20% return60 leaders (top 20 tickers: SGER +82.27%, ERAA +75.44%, SMIL +52.74%, AADI +42.59%, CUAN +40.83%, TINS +40.30%, EMAS +38.74%, DSNG +37.55%, INET +36.46%, PTBA +35.32%, PTRO +33.46%, ARCI +33.33%, INDY +31.95%, BUMI +28.68%, PSAB +27.48%, HRTA +26.59%, AMMN +26.57%, TAPG +25.65%, ENRG +22.55%, ISAT +21.62%). Zero stocks held for cross-section incomplete.
+   - `scanner_quality_go: true`.
+
+Verification evidence:
+- Python full test suite: 260 passed, 5 skipped (Docker native), 0 failures.
+- SQL PGlite test suite: 72 passed, 0 failures.
+- Ruff linter: 100% clean across all files.
+- Manual smoke runner (`manual_scanner_smoke.py`): coverage_valid 100/100, ranking_status "complete", 0 hold.
+
+## Coverage Expanded to 90/100, Automated Paper Journal & Scheduled Scanner — 2026-10-03
+
+User approved execution of 3-phase plan:
+1. Phase A: Corporate action reconciliation & data quality refinement.
+   - Volume & suspension rule in context.py refined: active tickers trading on target session t are not permanently held by ancient suspensions (> 60 days ago). data_quality_hold count dropped from 30 to 0.
+   - Reconciled 99 new verified dividend proofs from official KSEI PDF announcements. Reference config ksei-reviewed-dividends-20261003.json expanded to 228 events across 85+ tickers.
+   - Evaluated coverage increased from 45/100 to 90/100. The remaining 10 held tickers are: 7 stock splits (BRPT, CUAN, ISAT, PTRO, RAJA, RMKE, SGER) held to preserve Invariant #1 & #16 until split adjustment factors are formally modeled; 3 unconfirmed dividends (INET, SCMA, UNVR).
+2. Phase B: Automated Paper Journal Engine.
+   - Domain paper trading simulation enabled: added PaperBook/PaperTrade serialization, multi-session stepping, and R-basis metrics summarization (win-rate, expectancy R, profit factor, payoff ratio, cumulative R).
+   - Created standalone orchestrator in supabase/scripts/paper_journal_runner.py with baseline experiments (fixed 2R and MA SMA10) across all 4 strategies.
+   - Strict logical separation from Actual Journal (actual_trades) preserved (Invariant #7).
+3. Phase C: Automated GitHub Actions Scheduler.
+   - Added .github/workflows/scheduled-scanner.yml with dual-schedule cron: 17 13 * * 1-5 (20:17 WIB primary) and 17 15 * * 1-5 (22:17 WIB recovery) plus workflow_dispatch.
+   - Created scheduled_scanner_runner.py with Asia/Jakarta calendar guard (auto-skips weekends and exchange holidays with zero error), session closure checks, corporate action reconciliation, paper journal simulation, and idempotent Supabase publication.
+
+Verification evidence:
+- Python full test suite: 259 passed, 5 skipped (Docker native), 0 failures.
+- SQL PGlite test suite: 72 passed, 0 failures.
+- Ruff linter: 100% clean across all python files.
+- Weekend calendar guard test: returned clean skip (status: skipped, reason: weekend, exit code 0).
+- Frontend production build: compiled and type-checked cleanly in 111s with 0 errors.
+
+Commit: 6a2c1c1 pushed to origin/main.
+
+## Approved local publication and recovered read-back — 2026-10-03
+
+User approved exactly one local publication of plan838183f9e3fcb5bcfe6c4681be885e87a1410672137d73eeed0f1a3d2ff4ffb0.
+Production receipt returned run3c700de4-8389-400e-b862-31f2c8998a64, replayedfalse,
+0inserted signals. Stored_at2026-10-03T12:44:34.492091+00:00 (19:44WIB),targetOct2,
+digest653f9f9168b20dabfc14dc9fa18090e6ed48f5d63546c897107cc44258dd4110.
+This is the LOCAL actual capture20261003T093419Z, not GitHub37114744856 input.
+Coverage45evaluated/25actionhold/30qualityhold,0signals,RSincomplete. Scheduleroff.
+
+Initial command FAILED postflight after committed receipt: scan_run_items query
+ordered by nonexistent id; GET reproducedHTTP400/42703. Failure evidence retained.
+Fixed composite scan orders and performed ONLY fixed-ID GET read-back, no second
+publication/replay. Recovery PASS at12:49:31.511972Z:100unique items/exactstatuses,
+200expectedraw/derived revision keys,0signals/live/forward/fixtureabsent.
+Old latest run digest/stored_at/coverage match prior proof and all3old IDs remain;
+complete old snapshot before/after hashes were not retained. NCKL closed/revision5
+projection/risk6500/net1244/fee256/R0.191384615385 matches prior ownerCSV; service
+GET integrity check is not new ownerJWT/RLS proof. Current7journal table counts
+1trade/2fills/1correction/5requests,0stop/note/tag. Full journal before/after
+fingerprint equality NOT VERIFIED because original baseline was lost in memory.
+Future hash-only checkpoint tested; do not infer no write after interrupted checkpoint.
+
+Local Python254PASS/5explicit Docker skips25.26s (19publisher cases),Ruff/diffPASS;
+read-only recovery reviewer PASS with documented limits. NoSQL/migration/Auth/
+journal mutation,QAtrade,frontend,.env,commit/push/dispatch or scheduler change.
+Original failure and GET-only recovery are separate sanitized evidence files.
+HostedGitHubpublisher still untested/environmentabsent. User skipped outsider
+and two-session/concurrency NOT VERIFIED; disabled-owner/rawownerreceiptaudit/
+hostedjournalerrorpaths NOT VERIFIED. Prior001–007 and oldsnapshot ownerPASS
+retained; NEW snapshot owner read now relevant/pending. Complete backend/full-
+stack NO-GO; frontend/Vercel needs separate authorization and actual smoke.
+See docs/MANUAL_PUBLICATION_RESULT_20261003.md for exact bounds and next action.
+
+
+## Real transaction and manual publisher preparation — 2026-10-03, latest
+
+This section supersedes older statements that no genuine trade was supplied.
+Owner NCKL e6dcfcc6-fd57-4e1d-9148-ecd5a738edc4 is real, closed/revision5/
+actual-ma10-v1. Existing owner browser read confirms two fills and correction#2
+(timing); frontend MA10 analytics/closed CSV one row accepted. Downloaded CSV
+SHA256 matched; exact risk6500/net1244/fee256/R0.191384615385 and backend-local
+Decimal net/risk consistency PASS. Fee quality includes_estimates, not broker
+verification. Raw request receipts/audit unavailable through current UI; no JWT
+extraction, replay, new fill/note or QAtrade. Transient first correction page was
+unavailable; owner remained active and subsequent correction read succeeded.
+
+Outsider and independent-session/concurrency: SKIPPED AT USER REQUEST / NOT
+VERIFIED. Disabled-owner and hosted mutation/error-path replay/PT412 remain NOT
+VERIFIED. No membership/Auth mutation. One-row production CSV does not prove
+production200+cursor pagination; prior local201 proof remains historical.
+
+Prepared manual publisher and protected-environment GET guard/workflow locally.
+Offline plan SHA838183f9e3fcb5bcfe6c4681be885e87a1410672137d73eeed0f1a3d2ff4ffb0
+binds actual LOCAL capture20261003T093419Z, digest653f9f9168b20dabfc14dc9fa18090e6ed48f5d63546c897107cc44258dd4110,
+target2026-10-02,45/25/30,0signals/RS incomplete. This is not GitHub summary input
+or older production run provenance. Next-open deadline2026-10-05T08:58+07;24h
+fetch-age guard expires this candidate earlier. New candidate requires review.
+
+Python251PASS/5explicit Docker skips,23.03s (16new guard cases); Ruff/diff PASS;
+read-only reviewer corrections resolved. No SQL changes/retest;72/72 is prior
+local evidence only. No commit/push/dispatch/publication this turn. Read-only GitHub Settings inspection found no environments in this repo;
+production-scanner-publisher is ABSENT. No configuration or secret changed;
+reviewer/main restrictions and environment-only secret placement remain pending.
+Production latest snapshot remains8f634f6c-efae-4837-b1eb-1db04de6ffd2 and old
+digest0aefe872fe3aa9ead45f1f98f9980ff96cd819142ddcc0f9f64a0a83c1c4c121.
+No001–007/unchanged scanner owner smoke repeated. Scheduler off.
+
+Complete backend/full-stack NO-GO; publisher execution needs exact approval,
+frontend/Vercel separate authorization. See docs/REAL_TRADE_READINESS_20261003.md,
+docs/MANUAL_PUBLICATION_PLAN_20261003.md and sanitized companion evidence.
+
+
+## Verified final gate status — 2026-10-03, 16:57 WIB runner result
+
+Owner latest production read PASS (accepted frontend evidence; not repeated).
+Hosted anonymous read14/14 denials PASS. Calendar/runtime100mapping and current
+universe PASS within configured dates; five short histories remain ineligible for
+600-bar rules. Fresh LOCAL target candle recheck recovered100/100; earlier failed
+fetch stays FAIL. Action/anomaly coverage is PARTIAL45/100;55 holds remain and RS
+cross-section stays incomplete. Skips are disclosed, not silently removed.
+
+Full-universe GitHub fetch/evaluation PASS after approved hydration fix:
+https://github.com/Daddy-JJ/BackendSahamTeknikal/actions/runs/37114744856
+commit b4762fd063f45df6a9b29fb3d0a75b1fbdc8d371,129 frozen public source hashes,
+100 fetched,45 evaluated/25 action hold/30 quality hold,0 signals; artifact1875
+bytes SHA2568f51cb6c35a0b6ce7d3312bb9bb7e679ce2a6e052822bd432c08c3778b781726
+was downloaded and independently matched. No database publication attempted;
+receipt null. Initial run37114212953 remains FAIL, preserved in evidence.
+Backend release commit c22c7d4 and hydration fix b4762fd were pushed as authorized.
+Final local regression235 passed/5 native Docker skips; SQL72/72;14 focused archive
+guards; Ruff and diff check PASS. No migration/Auth/frontend/QAledger changes.
+
+Backend/full-stack remains NO-GO: hosted production publisher and mandatory
+outsider/disabled-owner/mutation/lifecycle/concurrency proofs still BLOCKED.
+User declined disposable target and supplied no genuine ledger activity or test
+identities; no unsafe substitute was used. Scheduler stays off. Read adapter may
+remain active; no Vercel deployment authorization follows from runner PASS.
+See docs/BACKEND_FINALIZATION_REPORT_20261003.md and github-full-universe evidence.
+This dated section supersedes earlier pending statements below.
+
+## Finalization audit — 2026-10-03, owner read PASS; full-stack NO-GO
+
+Accepted frontend hosted owner read evidence observed 2026-10-02T22:50:09.953Z:
+run 8f634f6c-efae-4837-b1eb-1db04de6ffd2/digest 0aefe872...c121 matches backend;
+GET run/items/signals HTTP200, four pages/100 unique tickers, coverage45/100.
+Owner read latest-snapshot gate is closed; not rerun. Imported evidence and source
+SHA256 are in docs/evidence/frontend-owner-read-accepted-20261003.json.
+
+Fresh Yahoo recheck 2026-10-03T09:34:19–09:35:03Z (16:34–16:35 WIB) obtained complete
+target2026-10-02 candles for100/100, zero provider errors: partial45 evaluated,
+25 action hold,30 quality hold,0 signals,RS incomplete. New engine digest
+653f9f9168b20dabfc14dc9fa18090e6ed48f5d63546c897107cc44258dd4110.
+It is LOCAL/provider evidence, not published; previous fresh failed capture stays
+FAIL and unchanged. Config checksums/mapping100 verified; universe effective
+2026-08-03 inclusive–2027-01-30 exclusive, calendar651 known warm-up open sessions,
+72 explicit closures, next entry2026-10-05T08:58:00+07:00. Five IPO histories have
+less than600 bars; valid quality does not grant MACD/RS/pullback warm-up eligibility.
+
+Hosted anonymous GET check on2026-10-03T09:41:19Z passed14 denials:12 private tables
+and2 stable read RPCs returned HTTP401/42501. No JWT used or printed. This closes
+only anonymous read authorization, not authenticated outsider/disabled owner.
+KSEI November2024 archive nowHTTP200 (five relevant notices); February2026 remains
+HTTP500. New November notices do not auto-approve actions or change129 proofs;
+ADRO/UNVR/SCMA remain held. Action/anomaly skips remain visibly held; RS not opened.
+
+User authorized backend commit/push plus one manual full-universe workflow
+ dispatch; scheduler stays off. User declined disposable hosted target. No genuine
+owner-approved production trade is supplied, so hosted mutation/lifecycle,
+outsider/disabled-owner and independent-session gates remain BLOCKED. Direct
+rollout authorization does not supply those test identities or ledger activity.
+No Auth/migration/frontend changes and no QA production trade. Runner result is
+recorded in docs/BACKEND_FINALIZATION_REPORT_20261003.md when actually observed.
+
+## Latest verified recovery — 2026-10-03: scanner/full-stack NO-GO
+
+Production run `8f634f6c-efae-4837-b1eb-1db04de6ffd2` for 2026-10-02 was stored
+2026-10-02T17:50:07.347251Z. Original actual Yahoo receipts plus 129 reviewed
+cash-dividend proofs yielded 45/100 evaluated, 25 corporate-action holds,
+30 data-quality holds, zero signals and incomplete RS. 200 raw/derived revision
+digests were verified; previous runs and actual ledger are unchanged; fixture
+rows absent. This is partial production publication, not fresh-provider health.
+
+A separate fresh Yahoo fetch at 17:37–17:39Z obtained all 100 tickers but all target
+closes were null: zero evaluable, latest complete session October 1. It was not
+published. EODHD free account allows 20 requests/day and AMMN returned 254 bars,
+below 600. No provider switch or paid plan. 308 zero-volume open-session rows
+remain held; archive gaps, amendments and other actions remain unresolved.
+Manual full-universe workflow is local only, unpushed/unexecuted; scheduler off.
+
+Local Python passed 232 tests with five explicit Docker skips; local SQL 72/72.
+These do not prove hosted production JWT/RLS or GitHub publisher gates. Schema
+release 001–007 is unchanged. No frontend, Auth or journal mutation in this step.
+See `docs/SCANNER_RECOVERY_REPORT_20261003.md` and companion evidence for commands,
+source-review limitations, production/local distinctions and remaining gates.
+Earlier sections below are historical; 45/100 supersedes the 11/100 snapshot.
+
+## Approved scanner recovery steps 1-5 - 2026-10-03, in progress
+
+User approved source-backed action reconciliation, anomalous-bar classification,
+bounded EODHD feasibility comparison, partial non-RS evaluation and manual runner
+verification. Existing local work is preserved. No automatic provider switch,
+paid subscription, fabricated bars or scheduler activation is part of this step.
+KSEI legacy public archive returned HTTP200; its newer announcement endpoint
+redirected repeatedly. Public-source collection and evidence review are pending.
+Production readiness is not inferred from prior captures or these pending steps.
+
+## External collector study - 2026-10-03, read-only verified
+
+Reviewed D:\Saham2026\AntiGravity-Dashboard-IDX\collector without changes;
+all five collector Python-file SHA256s matched before and after. No source sync
+or database code, fundamentals, news or broker/foreign-flow code ran. Eight
+read-only Yahoo GETs compared AMMN, BBCA, BRPT, BUMI and COIN against the prior
+captured series. OHLCV matched on all common dates, but AMMN's three known
+zero-volume rows and COIN's seven remained. Four established tickers yielded
+more than 600 converted 5y rows; COIN remained below 600. These are provider
+counts, not certified calendar-valid continuity.
+
+At the probe time all five collector-style responses had incomplete target
+2026-10-02 close data; fixed-window AMMN/BBCA diagnostics confirmed close=null.
+The converter skips such rows. No price was synthesized and prior immutable
+production snapshots were untouched. The collector request omits action events;
+adding an explicit events parameter returned BBCA's seven dividends without
+fixing its missing close. Missing events cannot clear corporate-action holds.
+
+Useful transport/history reference, but this study did not resolve scanner
+quality gates or justify a provider change. Production scanner remains partial
+11/100 with 30 data-quality holds,59 action holds and incomplete RS; scheduler
+stays off. New evidence is docs/evidence/collector-reference-audit-20261003.json
+and docs/COLLECTOR_REFERENCE_AUDIT.md. No engine/frontend change or production
+write occurred during this study.
+
+
+## Calendar normalization and action reconciliation — 2026-10-02, in progress
+
+User approved A -> B -> EODHD comparison if unresolved problems remain. Starting
+with explicit source-backed closed-session exclusion, immutable raw receipts and
+derived-input provenance. No blanket zero-volume removal, synthetic prices,
+dividend back-adjustment or automatic corporate-action approval is authorized.
+Existing production hold run remains immutable; scheduler remains disabled.
+Implementation, source verification and tests are pending in this entry.
+
+Implementation and local verification are complete; the production one-off
+result is recorded below. Scheduler remains disabled and scanner quality stays
+NO-GO.
+
+### A+B live result and EODHD comparison — 2026-10-02, verified
+
+Production hcjfxbynqzsaidlwvdfx now has a second, independent forward/live run
+`b2bba460-abe3-4f68-9946-b13554a7c712`, stored at 15:57:34Z. It came from the
+same checksum-verified 100-ticker Yahoo capture as the original failed run.
+The original `08fb1080-5889-45e6-903d-3d2400bbf375` remains unchanged. One-off
+processing replayed/read back the 100 raw receipts, then stored and read-back
+verified 100 derived immutable revisions with calendar/action provenance, then
+published a partial run. No existing bars or actions were rewritten and no
+actual trade, signal, fixture row, Auth setting or scheduler was created or
+changed. Postflight confirmed 11 evaluated, 59 corporate-action holds, 30
+data-quality holds, 0 signals and incomplete RS cross-section. This is a
+partial run, not a successful/healthy scanner run.
+
+Calendar change A accepts only 72 explicit published closures in 2024–2026.
+It removed 451 flat/empty provider rows and 449 missing-row issues on those exact
+closed dates. It retains real-session zero volume, incomplete OHLCV, unknown
+dates, gaps, prices and the original receipt. Each derived revision records the
+parent digest, calendar digest/version and all exclusions. The quality guard was
+also corrected to consider known historical open sessions for warm-up continuity.
+
+Corporate-action change B approves only seven BBCA cash-dividend events proven
+against locally hashed official issuer sources: six explicit regular ex-dates
+and one ex-date derived from the announced cum-date plus the next known exchange
+session. Yahoo OHLCV and portfolio ledgers are untouched. Other ticker actions
+remain held. The event digests are in
+`config/reference/bbca-reviewed-dividends-20261002.json`; downloaded source bytes
+are ignored local files under `data/sources/`, so another machine must retrieve
+and verify them before executing this manifest.
+
+EODHD read-only discovery found Jakarta Exchange (`JK`, XIDX, IDR) and exact
+issuer-name matches for BBCA, BRPT, AMMN, BUMI and EMAS. A bounded 15-request
+comparison fetched 240 sessions per symbol, 2025-10-02 through 2026-10-02;
+none reaches the scanner's 600-bar warm-up. Close prices matched on the 240
+common sessions, although each of BBCA/BRPT differed in the open on 2026-09-02.
+EODHD did not cover AMMN's three Yahoo zero-volume dates that need inspection
+because they fall before the comparison window. It reported BRPT's 2024-06-27
+split as 626/625 and dividend 0.8744 versus Yahoo 1.0016 and 0.873; that remains
+held for primary-source review. No EODHD action is approved and no provider or
+configuration was changed. EODHD captures remain ignored under `data/`.
+
+Verification on this continuation: full Python suite 214 passed, 5 explicit
+native-Docker skips; seven additional new guard/provider-probe tests passed;
+SQL PGlite 72/72; Ruff passed; all seven production migration manifest
+checksums matched. A first new SQL round-trip test failed because its helper
+re-serialized float values through JavaScript JSON. After preserving exact Python
+source tokens, round-trip, replay and changed-content-conflict assertions
+passed. No remote database was touched by that failure. See
+`docs/evidence/scanner-quality-remediation-20261002.json`.
+
+### Remaining scanner gates
+
+Full-universe corporate-action proof remains open; all actions outside the
+reviewed BBCA cash dividends stay held. Thirty data-quality holds require
+individual diagnosis. EODHD's one-year slice cannot validate the older AMMN
+zero-volume dates or supply 600 sessions. RS remains held because only 11/100
+cross-section inputs are valid. The five-symbol GitHub provider smoke is not a
+full GitHub scanner publisher; reviewed issuer source files live only in the
+operator's ignored data folder. No scheduled runner is ready or enabled. Do not
+call scanner production GO or full stack live.
+
+## First production live diagnostic — 2026-10-02, verified
+
+Production one-off execution14:37:09–14:39:34Z (21:37–21:39 WIB) stored100 actual
+Yahoo revisions, verified all100 reconstructed digests, then published live
+forward run08fb1080-5889-45e6-903d-3d2400bbf375 for2026-10-02. Result is FAILED:
+coverage0/100,100 data_quality_hold, no signals, RS cross_section_incomplete.
+GET postflight at14:42:21Z verified one run,100 items,0 memberships/signals,
+100 live revisions, actual journal still0 and fixture counts0. No QA trade,
+Auth change or scheduler. This is actual production scanner storage/publication
+evidence; it does not close quality, owner-JWT scanner read, outsider/disabled
+or production journal mutation gates. Raw holiday/zero-volume bars and unreconciled
+actions were preserved. User permits skipping them; not a healthy/no-signal scan.
+
+Actual Yahoo probe now100/100 verified identities and100/100 successful fetches
+through2026-10-02. Current raw inputs have zero-volume rows in all100 tickers;
+78 have unreconciled actions. KPEI2024 calendar PDF referencing BEI was downloaded,
+hashed, transcribed and visually reviewed.2024/2025/2026 monthly day totals match
+237/236/239. Runtime config supports651 known warm-up dates through target, using
+date-only historical days and explicit current target/future times only. Earliest
+regular matching08:58 WIB sets next-session publication deadline2026-10-05;
+individual fill price/time is not guaranteed.2027 and historical execution timing
+remain unavailable. Known sources require review for new exchange amendments.
+
+GitHub manual provider workflow published on8617e56 actually ran successfully:
+run37019450372,21:22:49–21:23:21 WIB, artifact SHA verified. Scope is five-symbol
+historical read-only provider smoke, not full scanner GitHub publication or schedule.
+New full-universe/helper/calendar changes in this continuation remain local.
+Local full pytest189 passed/5 explicit native Docker tests skipped; two additional
+hold-publication guard tests passed. SQL71/71 and Ruff/diff checks passed. Initial
+pytest temp permission error resolved with fresh workspace basetemp; initial GET
+count probe rejected valid HTTP206, then GET-only retry verified counts. No
+production mutation was repeated because of that count-probe failure.
+
+Evidence: docs/evidence/production-first-live-hold-run-20261002.json,
+production-live-hold-postflight-20261002.json, github-provider-smoke-20261002.json,
+live-universe-provider-20261002.json and live-universe-engine-20261002.json.
+Scanner quality/full-stack readiness remains NO-GO. Frontend can now implement
+and owner-JWT test its live read adapter against an actual held run.
+
+## Full-universe continuation — 2026-10-02, earlier starting state
+
+Frontend reports successful production owner login/read with no forward run,
+empty journal/analytics and filtered terminal empty export. This is read-only
+evidence, no production trades. Backend is expanding the actual Yahoo probe to
+100 official workbook members and researching authoritative historical calendar
+and session rules. Manual provider workflow was published in8617e56; execution
+is not yet proven. Scheduler remains disabled; results will be updated only after
+the actual probe/run completes.
+
+## Scanner and disposable gates — 2026-10-02, latest continuation
+
+Actual live yfinance1.7.0 probe verified five issuer identities and fetched737–738
+complete bars each through the explicit target2026-10-01. Data quality/actions are
+not certified. User authorized skip/hold with visible reason/coverage for
+problematic bars and unreconciled actions, deferring reconciliation. Existing
+engine already holds those tickers; incomplete cross-section still holds RS.
+No live signals were published or scheduler enabled.
+
+Owner-supplied original KOMPAS100 workbook was found under ignored data/sources;
+SHA256/sheet/header/date review and exact100-ticker transcription passed. Effective
+constituents2026-08-03 through2027-01-29; share-weight period ends2026-10-30.
+2025 baseline/amendment PDFs downloaded and hashed. Current official session table
+reviewed; complete warm-up calendar/amendments/historical rule periods remain open.
+Only5/100 Yahoo mappings verified. Manual-only pinned GitHub provider smoke
+workflow prepared locally; not published/executed, no schedule or production keys.
+
+Real local Auth/PostgREST disposable smoke PASSED: two owner isolation, anon,
+outsider/disabled-owner seven-table visibility and RPC denials, direct write403,
+actual lifecycle/partial/correction/oversell, identical/conflicting replay,
+PT412 HTTP412 with no extra failed-request rows; canonical1200/100/1000/R0.833333333333,
+fee quality and latest explicit correction FK, independent session concurrency,
+and201 closed export pages200+1 ending has_more=false matched analytics/ledger.
+Scanner action007 real local Auth replay/conflict/PT412 and two-session200/412
+also passed. This closes the disposable gate; it is not hosted production mutation
+or outsider/disabled-owner proof. Cursor fixtures were generated by LOCAL SQL claims
+and backend RPC; export/analytics were real Auth HTTP reads. No production QA trade.
+
+The frontend status document reports real production owner login/read and tested
+anon401 denials; this backend chat read that report, did not rerun those sessions.
+Production outsider/disabled-owner/lifecycle and Vercel smoke remain open.
+36 targeted runner/engine/provider tests passed. Migration005 EOF drift from the
+prior cleanup commit was restored to the original frozen manifest checksum;
+all seven migration checksums now match. No rule/version/history change.
+See docs/SCANNER_LIVE_READINESS.md and docs/evidence/scanner-readiness-20261002.json.
+Scanner publication remains BLOCKED by authoritative runtime config/full mapping
+and GitHub execution. Frontend production go-live remains NO-GO.
+
+
+## Production CLI release verified — 2026-10-02T06:57:07.427441Z
+
+Operator hidden-password CLI report was read from the local evidence file.
+CLI2.119.0 repaired001 history after clean foundation verification and applied
+original002–007; readback contains all seven versions through202610010007.
+Execution window06:56:30.757540Z–06:57:07.427441Z (13:56–13:57 WIB).
+These are batch timestamps, not independently measured per-migration timestamps.
+Independent privileged GET postflight now returns HTTP200 for both market revision
+and all seven actual tables, explicit correction FK embedding, and deadline RPC
+version1. Mode remains live; checked fixture counts are zero; configured owner is
+enabled. Initial sandbox ConnectError resolved with authorized network retry.
+
+This is CLI history/API readiness evidence, not complete policy/ACL/RPC-signature
+verification or owner-JWT/RLS smoke. GitHub provider/redirect setup is operator
+reported, not yet independently login-tested. No journal mutation, canonical
+production ledger, two-session concurrency or scanner live smoke has passed yet.
+Frontend production deployment and scanner scheduling remain NO-GO pending gates.
+Evidence: docs/evidence/production-cli-release-20261002.json.
+
+
+## Readiness recheck â€” 2026-10-02T06:02:53Z
+
+Production read-only Dashboard query reconfirmed live mode, history absent,
+actual/market-revision schema absent and trigger ACL `{postgres=X/postgres}`.
+All source counts match the restored archive. Both latest encrypted backup files
+still match capture sizes/SHA256; recovery was not repeated. GET-only development
+checks returned 200 for all seven actual tables and explicit correction FK.
+These are schema observations, not owner-JWT/RLS or concurrency proof.
+
+Operator reports the deployment prompt has not run yet and will run it locally;
+no new production write was performed during this recheck. Sanitized result is
+pending. Offline disposable CLI init completed with seed/analytics disabled and
+7/7 migration copy checksums matching; containers/Auth/tests have not started.
+See docs/AUTH_AND_DISPOSABLE_SMOKE_GUIDE.md and
+ docs/evidence/readiness-recheck-20261002.json. Production journal and scanner
+remain NO-GO. No frontend edit, commit/push, Vercel deploy or scheduler activation.
+
+
+Updated: 2026-10-02 (Asia/Jakarta). Status uses verified evidence only.
+
+## Current status
+
+- User explicitly authorized "deploy production ... tuntaskan ... smoke".
+  Controlled deployment STARTED2026-10-02: repo audit preserves local changes;
+  authenticated in-app Dashboard SQL Editor for exact production project is
+  accessible. Fresh read-only preflight completed; known trigger ACL reduction
+  COMMITTED at2026-10-02T05:16:25.481422Z. All10 catalog groups then matched
+  clean001. Evidence: docs/evidence/production-acl-reconciliation-20261002.json.
+  No history repair/002â€“007/Auth/application writes yet. Local hidden-password
+  CLI package prepared; operator input required to perform history repair001,
+  exact dry-run and original002â€“007 push. GitHub Auth GET settings still disabled.
+  Latest USB waiver retained. Do not imply migration/Auth/JWT/scheduler/Vercel
+  success until observed. Frontend edits/deploy and scheduler remain separate.
+
+- Current local verification: SQL suite68/68 passed; additional production
+  rollback smoke asset tests3/3 passed (71 SQL tests across two commands).
+  Full Python with IDX_NATIVE_RESTORE_TEST=1: first run190 passed/1 failed
+  at isolated Docker startup; focused retry1/1 passed; final full run191/191
+  passed in85.91s. Full Ruff and diff check passed. No financial rule changes.
+  These are local/PGlite/native Docker evidence, not production JWT/HTTP smoke.
+  New fixed-target CLI helper guard/credential tests6/6 are included in191.
+  Production smoke/GO remains pending CLI application, real Auth owner access,
+  RLS/HTTP/concurrency and live scanner inputs/runner. Final frontend deployment
+  remains separately authorized and Vercel smoke unproven.
+
+- Latest source-count comparison for NEW candidate PASSED at
+  2026-10-02T04:45:07.035624Z (11:45:07WIB), user-run read-only/live/no-write.
+  Nine public counts, Auth/linked-owner counts match new restored archive;
+  CLI history absent. Evidence:
+  docs/evidence/production-backup-source-counts-user-20261002.json.
+  User explicitly waived NEW USB copy; accepted latest C: loss leaves older
+  verified2026-10-01 USB snapshot. Do not re-block on waived new-copy requirement
+  or mark offsite_copy_verified=true. New capture decrypt/hash/native restore,
+  actual local ACL/002â€“007/005 rollback/schema rehearsal and current aggregate
+  source comparison now passed; operator pause confirmation recorded separately.
+  No more backup retries required absent new change/failure. Remaining controlled
+  production steps: guarded ACL reduction, clean001 catalog confirmation,
+  reviewed CLI history repair001 + dry-run exactly002â€“007, original chain,
+  postflight/Auth/JWT/RLS/concurrency/ledger/export smoke. Full-stack/live scanner
+  remain NO-GO. This turn evidence/docs only, diff check passed; no test rerun,
+  production DDL/Auth/history/write, frontend edit, commit or push.
+
+- User ACTUAL new-archive native release rehearsal PASSED after owner fix:
+  restore/catalog/owner linkage, exact LOCAL ACL repair + clean001 catalog,
+  frozen002â€“007 chain as postgres NOSUPERUSER,005 injected rollback/resume,
+  correction FK, analytics/export signatures and PT412 function definitions.
+  Live mode/Auth counts preserved, actual_trades=0/fixture_runs=0, target removed.
+  Evidence: docs/evidence/actual-backup-release-passed-user-20261002.json.
+  This supersedes failed002 rehearsal below; all migration writes were local.
+  No CLI history/JWT/HTTP/RLS/concurrency proof. Source count comparison for NEW
+  candidate and NEW USB copy still pending (D: folder absent at fresh check).
+  Operator capture continuity confirmed separately; report flags conservative.
+  This turn docs/evidence + file existence checks only, diff check passed; no
+  test rerun, decryption or remote SQL by agent. Production still001/no history.
+
+- Source owner read-only screenshot verified database_owner=postgres,
+  public_schema_owner=pg_database_owner and postgres CREATE privileges true.
+  Evidence: docs/evidence/production-database-owner-user-20261002.json.
+  Target bare initdb had bootstrap supabase_admin as DB owner; helper now
+  reproduces verified source DB ownership locally after roles restore via
+  --source-database-owner postgres. No role promotion or additional grants.
+  Rehearsal requires explicit source DB owner; keeps bootstrap identity separate.
+  Actual new-archive retest remains pending; original migrations/production unchanged.
+  Native owner/release/restore/target regressions14/14 passed, including full
+  synthetic002â€“007 as postgres NOSUPERUSER, guarded ACL repair,005 rollback/resume,
+  schema/PT412 definitions and target cleanup. Ruff and diff check passed.
+  This validates local helper, not actual archive retest, JWT/PostgREST or remote
+  production migration. No secret/password used by agent.
+
+- User actual new-archive native release rehearsal FAILED at002 before any new
+  migration succeeded. Restore/catalog/linkage and LOCAL ACL repair/clean001
+  comparison/checksums PASSED; target removed; production_write=false.
+  Evidence: docs/evidence/actual-backup-release-failure002-user-20261002.json.
+  Missing SQLSTATE traced to duplicate module/__main__ exception identity;
+  now explicit caller SQL function/error class are supplied to rehearsal.
+  Added local postgres privilege booleans to diagnostics. Native tests3/3
+  passed, including reproduced nonsuperuser public CREATE denial when restored
+  DB owner differs, plus full synthetic ACL/002â€“007/005 rollback/schema test.
+  Ruff and diff check passed. Source DB-owner mismatch is still a HYPOTHESIS;
+  read-only source owner/privilege query requested before target adaptation.
+  No superuser promotion, broad grants, original migration changes or production
+  mutations. Actual migration rehearsal remains NOT passed, deployment NO-GO.
+
+- NEW candidate000758Z-dc7502a0 ACTUAL logical restore passed (user-run):
+  ten catalog groups match prior production, live mode, one linked enabled
+  owner/Auth user/identity; seven public workload tables empty; target removed.
+  Operator pause continuity confirmed separately. Evidence:
+  docs/evidence/production-backup-logical-restore-user-20261002.json.
+  New USB folder not present at D: when agent checked; old copy remains.
+  Added --rehearse-release: local-only guarded ACL repair as restored postgres,
+  clean001 catalog comparison, frozen002â€“007 hashes, injected005 rollback and
+  resume, FK/RPC definition/schema checks, live/no-fixture/Auth preservation.
+  CLI history repair, owner-JWT/HTTP/RLS/concurrency are explicitly NOT tested
+  by this mode. Actual new-archive rehearsal still needs hidden user input.
+  Native synthetic rehearsal + restore/target regression13/13 passed with
+  IDX_NATIVE_RESTORE_TEST=1; Ruff and diff check passed after formatting.
+  No original migrations changed, production writes or frontend edits.
+
+- User confirmed pause remained uninterrupted throughout new2026-10-02 capture
+  07:07:58â€“07:08:55WIB. Operator maintenance-continuity evidence recorded;
+  distinct from database-enforced write fence, which was not applied. This
+  closes requested operator continuity confirmation, superseding pending note
+  below. New archive actual restore, copy and native release rehearsal remain.
+
+- NEW user-run encrypted capture2026-10-02T00:07:58.307996â€“00:08:55.339542UTC
+  completed live PG17.6/verify-full. Candidate folder ends000758Z-dc7502a0;
+  database.age408785 bytes, roles.age6082; full-stream decryption verified by
+  user helper. Agent independently validated manifest and ciphertext hashes:
+  01dc7ead...d7a74ee / c096d4e6...7284a3c. Evidence:
+  docs/evidence/production-backup-capture-user-20261002.json.
+  Old archive/copies preserved. New actual restore/native release rehearsal,
+  new-copy integrity and pause continuity confirmation remain pending; do not
+  carry old restore/copy success flags onto new capture. Agent did not connect
+  or decrypt this capture. Production DDL/Auth/history remain untouched.
+
+- 2026-10-02 user maintenance confirmation: application activity stopped,
+  GitHub Actions has no workflow, cron_jobs_table_present=false. Recorded as
+  operator-reported current paused-writer state, not DB-enforced write fence or
+  retroactive proof of old capture quiescence. Evidence:
+  docs/evidence/production-maintenance-operator-20261002.json.
+  Python executable and public production CA file exist locally. New capture
+  command uses existing hidden-input helper and unique directory outside repo;
+  not run by agent because DB password/recovery passphrases remain user-only.
+  Await new capture plus uninterrupted-pause confirmation, then restore/new-copy
+  verification and actual native migration rehearsal. Production NO-GO.
+
+- 2026-10-02 follow-up: all three backup files now exist at original C: path
+  AND user-reported USB D: path. Independent byte lengths and SHA256 match
+  for database.age/roles.age/evidence.json. Two complete copies VERIFIED;
+  supersedes missing-C: observation below. Evidence:
+  docs/evidence/backup-two-copies-verified-20261002.json. Separate physical
+  custody remains an operator step, not proven by identical hashes.
+  Current paused-writer confirmation/capture and native actual-backup migration
+  rehearsal remain open. No database connection, decryption or production write.
+
+- 2026-10-02 inspected user-supplied D:\hcjfxbynqzsaidlwvdfx-20261001T114028Z-fbe8e14b:
+  database.age and roles.age sizes/SHA256 match recorded successful capture;
+  evidence.json exists. Original C: database.age path was not found, so two
+  complete copies are NOT verified. D: physical USB type/custody not independently
+  measured; capture-time/current paused-writer evidence remains incomplete.
+  No decryption, database connection or production write. Evidence:
+  docs/evidence/backup-d-drive-integrity-20261002.json. Deployment remains NO-GO.
+
+- 2026-10-02 local continuation: node --test
+  supabase/tests/release-plan.test.mjs PASSED4/4. Frozen001â€“007 LF checksums
+  verified by offline planner; conditional pending after reconciled001 remains
+  202609290002/003/004/005,202609300006,202610010007. PGlite test covered
+  full chain/live mode, upgrade001â†’007, injected005 rollback/resume, invalid
+  history and changed applied SQL rejection. This is local PGlite/simulated
+  history, NOT native actual-archive rehearsal or hosted CLI/RLS evidence.
+  git diff --check passed. No production connection/write or frontend edit.
+  Awaiting USB destination/hash evidence and current paused-writer confirmation
+  before a new controlled encrypted capture. Production deployment NO-GO.
+
+- User independently confirmed source-count query ran in production Dashboard
+  hcjfxbynqzsaidlwvdfx. User reports backup copied to USB; no destination path,
+  checksum comparison or separate-custody evidence yet, so offsite_copy_verified
+  remains false. User reports capture-time writer activity UNKNOWN; do not infer
+  quiescence from matching counts. Evidence:
+  docs/evidence/production-backup-operator-confirmations-20261001.json.
+  Next close USB integrity/custody and perform fresh capture during explicitly
+  confirmed paused-writer maintenance window, preserving prior valid archive.
+  Restore/count/release checks must reference that new candidate before writes.
+  Current successful logical restore and source-count evidence remain valid,
+  but deployment remains NO-GO. This turn docs/evidence only; diff check passed,
+  no tests, production write, Auth change, frontend edit, commit or push.
+
+- User-run source-count comparison at2026-10-01T13:47:47.613346Z PASSED:
+  nine public table counts and Auth user/identity/linked enabled-owner counts
+  match the restored actual archive. Source reports read_only=true, live mode,
+  history absent, production_write=false. Evidence:
+  docs/evidence/production-backup-source-counts-user-20261001.json.
+  This closes aggregate source-count comparison, superseding pending statements
+  below. Project identity remains independently unconfirmed in the report;
+  no inference of row-value equality or capture quiescence. Off-site/key custody,
+  maintenance-window evidence, migration/failure rehearsal and production
+  schema/Auth/JWT/RLS/live-scanner checks remain. NO-GO production.
+  This turn recorded evidence/docs only; git diff --check passed, no test suite
+  or remote SQL was run by agent; user local changes preserved, frontend untouched.
+
+- Latest user-run ACTUAL production backup logical restore PASSED on isolated
+  native PG17.11: ten public catalog groups match prior production observation,
+  live mode, one app_member and deployment_settings row, seven other public
+  foundation tables empty; one Auth user/identity, one linked enabled owner.
+  Source OID10 supabase_admin/SUPERUSER was verified in user's SQL Editor
+  screenshot. Matching local OID10 and preserved grantor clauses passed; target
+  removed. This supersedes restore failures below. Evidence:
+  docs/evidence/production-backup-logical-restore-user-20261001.json.
+  No production write/connection occurred during restore. CLI history remains
+  absent. restore_verified/deployment_gate_passed remain false: source count
+  comparison, off-site copy, capture quiescence, RLS and migration rehearsal
+  still open. Added read-only verify_backup_source_counts.sql for next source
+  comparison; it has NOT been run remotely. No test suite rerun this doc/SQL
+  preparation turn; git diff --check passed. Production deployment stays NO-GO.
+
+- Latest user-run roles-only check now identified line116/explicit GRANTED BY,
+  SQLSTATE42501, target removed, actual database archive not decrypted. Evidence:
+  docs/evidence/production-backup-roles-line116-user-20261001.json.
+  Agent reproduced rejection of a recreated nonbootstrap SUPERUSER grantor in
+  native PG17; source-bootstrap mismatch remains a hypothesis until production
+  pg_roles OID10 identity is read-only verified. New --source-bootstrap-role
+  initializes matching OID10 and an independent local operator; exactly one
+  source bootstrap CREATE is represented by initdb, all ALTER/GRANT text and
+  grantors remain intact. Local bootstrap identity is checked. No temporary
+  ADMIN grants or ignored errors. Actual archive fix has not run.
+  Targeted tests11/11 passed, including rejection reproduction and a real
+  synthetic full dump restore across two isolated PG17 clusters preserving an
+  explicit source-bootstrap grantor. Ruff and diff check passed. Production,
+  source SQL archives, frontend and .env remain unchanged; recovery NO-GO.
+  Next action: read-only OID10 query, then hidden-passphrase full restore with
+  verified source bootstrap name per docs/BACKUP_RESTORE_RUNBOOK.md.
+
+- Latest user-run roles-only diagnostic returned SQLSTATE42501/permission_denied
+  at local_roles_restore; no statement line was captured. Target removed,
+  database archive not decrypted, production_write=false. This establishes an
+  SQL permission rejection, not its exact cause. Evidence:
+  docs/evidence/production-backup-roles-diagnostic-user-20261001.json.
+  Updated helper uses psql -f - to capture the line plus a fixed statement-kind
+  enum; no raw SQL/role names/configuration values are emitted and source SQL
+  remains unchanged. Targeted restore/diagnostic/guard tests9/9 passed, including
+  native PG17 line-number regression and full synthetic restore. Ruff and
+  git diff --check passed (existing CRLF conversion warnings only).
+  User-only hidden passphrase is needed to rerun the actual roles diagnostic;
+  restore and production deployment remain NO-GO. No production writes.
+
+- User-run production-archive local restore failed at local_roles_restore with
+  local_restore_sql_failed; temporary target removed, logical_restore_completed,
+  restore_verified and deployment_gate_passed all false. Source ciphertexts
+  remain valid candidates; no hosted writes occurred. Exact role error was not
+  captured by the previous generic report, so its cause is not yet established.
+  Added safe SQLSTATE/fixed-category diagnostics and --check-roles mode: only
+  roles.age is decrypted in memory and applied unchanged to a fresh isolated
+  container, then removed. No raw SQL, records, passphrases or driver messages
+  are printed. Do not skip unsupported grants/settings just to pass recovery.
+  Evidence: `docs/evidence/production-backup-restore-failure-user-20261001.json`.
+  Diagnostic/restore/target tests8/8 passed, including actual native PG17
+  unsupported-role-setting SQLSTATE42704 classification and cleanup, plus the
+  full synthetic dump/restore regression. This does not identify the user's
+  actual role error. Ruff and diff check passed; production was not written.
+- Agent downloaded the official CLI-pinned Supabase PostgreSQL17.11 image,
+  digest0450166354dc9c1d25f0322ac8b580774d4fb0184d2b087f6e4fe9499c66cf53.
+  A real isolated tmpfs/no-network/no-published-port preflight created all four
+  required extensions with versions matching source: pg_stat_statements1.11,
+  pgcrypto1.3, uuid-ossp1.1, supabase_vault0.3.1. Container removed; no actual
+  backup decrypted/restored in this preflight. Sanitized evidence:
+  `docs/evidence/local-restore-target-preflight-20261001.json`.
+  Added `restore_backup_prompt.py`, using a distinct local operator, immutable
+  image digest, unchanged source role SQL and exit-on-error/full single-transaction
+  pg_restore. Its checks compare ten public catalog groups to prior production
+  evidence, counts and enabled-owner/Auth linkage; it removes only its unique
+  container, including after attempted startup failures. Actual production
+  archive restore still needs user-only hidden recovery-passphrase input.
+  Three tests passed including a real full synthetic pg_dump/pg_dumpall restore
+  between two separately initialized native PG17 containers, metadata verification
+  and target cleanup. This is synthetic local evidence, not production backup
+  recovery or owner JWT/RLS. Pytest reported a cache write-permission warning;
+  tests themselves passed. Two target-command guard tests and Ruff also passed.
+  User chose a separate folder for the backup copy but supplied no path or
+  separate-machine/media evidence: off-site verification remains open.
+  Final rerun after tightening cleanup passed5/5 (native restore3 +target guards2)
+  with pytest cache disabled, no warnings. Ruff and diff check passed.
+- User-run archive inspection now passed: nine public foundation tables;
+  auth.users/identities schema and data TOC entries;15 role definitions with no
+  role password statements; history schema absent. Required extensions:
+  pg_stat_statements, pgcrypto, supabase_vault, uuid-ossp. This is TOC/integrity
+  evidence, not restored row counts or restore success. See
+  `docs/evidence/production-backup-inspection-user-20261001.json`.
+  Official pinned CLI2.119.0 catalog selects supabase/postgres:17.11.0.002;
+  preparing its local image for extension compatibility checks, not a hosted
+  deploy or a complete local stack. Source17.6 and target17.11 share major17
+  but managed extension versions/restore behavior must still be measured.
+- Successful user-run encrypted capture2026-10-01,11:40:28.577031â€“11:41:21.551357UTC
+  supersedes the failed attempt below: database.age408785 bytes and roles.age6082
+  bytes; both full-stream decrypt/hash checks passed according to the script.
+  Agent independently checked both ciphertext SHA256/size, the stored evidence
+  and pinned age executable. Sanitized capture evidence is in
+  `docs/evidence/production-backup-capture-user-20261001.json`. This is an encrypted
+  backup candidate, not a proven restore. Off-site copy, writer quiescence,
+  compatible restore and deployment gates remain false; production not written.
+  Added local-only `inspect_backup_prompt.py` to inspect the decrypted archive
+  TOC/role prerequisites in memory. Docker pg_restore is network-disabled,
+  read-only and --list only, with no database connection or SQL execution.
+  User-only recovery passphrases are still required. Fifteen targeted tests
+  (5 inspection +10 backup), Ruff and bundle/tool integrity checks passed;
+  production archive TOC inspection itself has not yet run.
+- User-run backup attempt started2026-10-01T11:30:44.949915Z: verified TLS/live
+  connection, but failed with `local_tool_or_stream_failed`, files=[], all
+  recovery/deployment gates false. Local inspection found database.age0 bytes.
+  No valid backup or restore is established. A regression reproduced Windows
+  EINVAL for an exited encryption consumer, previously hidden by the generic
+  exception. Helper now reports fixed diagnostic codes, stage, exit codes and
+  safe OS codes; raw stderr remains memory-only and is never logged.
+  Ten targeted backup tests, Ruff and diff check passed after that fix (initial
+  regression9 passed/1 failed before Windows EINVAL handling). No full suite
+  rerun is claimed for this diagnostic-only change. Added --check-encryption
+  for an interactive synthetic/passphrase console check without database access.
+  User's precise production-attempt failure remains unknown until sanitized
+  diagnosis is returned. Failed candidate is preserved and never overwritten.
+- Security incident during the initial regression: pytest's failure traceback
+  displayed a provider credential inherited from the agent process environment.
+  No value is copied here. The helper now uses an OS-variable allowlist rather
+  than forwarding unrelated environment variables, and subsequent test invocation
+  uses --tb=no. Rotate that exposed provider credential; database password/JWT
+  were not involved in this local synthetic regression.
+- Latest instruction "selesaikan 1-5" authorizes backend continuation in gate
+  order, including production actions only after recovery and schema checks
+  pass. It does not enable the scheduler or authorize frontend deployment.
+  No production write occurred in this continuation.
+- Reverified locally on2026-10-01: SQL68/68, Python163/163, Ruff and diff check
+  passed. Python includes15 DB-prompt tests and7 new backup-helper tests.
+  The latter performed a real age encryption/decryption and tamper rejection
+  with synthetic bytes only; this is not a production backup or restore.
+- Added `supabase/scripts/backup_production_prompt.py`: fixed production target,
+  verify-full CA, hidden DB password, pinned PostgreSQL image, verified age
+  distribution/executable, binary dump-to-encryption pipes, exclusive archive
+  creation and full stream decryption/hash verification. Recovery passphrases
+  are entered directly into age's local console and never passed as arguments.
+  Writes only encrypted candidates and sanitized evidence outside the workspace.
+  The local interactive production capture is pending the user's password input;
+  restore/off-site custody/compatibility gates remain open. Full native pg_dump
+  includes managed schema definitions, unlike filtered CLI exports; it must not
+  be restored blindly over a hosted Supabase project.
+- A fresh GET-only production API preflight confirms live mode, configured owner
+  enabled,0 fixture scan/signal rows, and404/PGRST205 for market-revision and
+  actual-journal tables. Deadline capability and correction embedding return404.
+  These results are schema-readiness failures, not RLS evidence. Manifest
+  checksums/001â€“007 order passed; conditional pending plan after reconciled001
+  is exactly002â€“007. No history repair or migration was executed.
+- User approved direct-encrypted manual backup and temporary local restore
+  without BitLocker/VeraCrypt, accepting residual temporary-storage risk. This
+  does not waive backup/restore proof or approve unreviewed production DDL.
+  age1.3.2 official Windows package was downloaded into ignored tooling;
+  SHA256 matched the official GitHub asset digest and `--version` passed.
+  No recovery key, encrypted dump, decryption or restore was generated/run.
+  Streaming capture helper now exists; actual production capture, restore
+  automation/verification and recovery-passphrase custody remain open.
+- Production DB prompt attempts reported by the user failed at TLS verification.
+  A passwordless probe reproduced `SSL error: certificate verify failed` against
+  the supplied session pooler; this is not evidence of an incorrect password.
+  The script now requires a Dashboard-downloaded production CA (read-only mount)
+  and provides `--check-tls` without password input/SQL. Targeted security
+  tests15/15 and Ruff passed; a default pytest-temp sandbox permission error was
+  resolved using a fresh ignored backend temp directory. The user subsequently
+  supplied successful CA-backed TLS and authenticated read-only SQL output:
+  production17.6, live mode, migration history absent. Recorded in
+  docs/evidence/production-db-connectivity-user-20261001.json; exact execution
+  time not supplied. Backup/restore and real owner-JWT/RLS remain open.
+- Hidden local DB-password prompt prepared as
+  `supabase/scripts/check_production_db_prompt.py`. It is fixed to production
+  session-pooler metadata supplied by the user, uses verified TLS and a
+  read-only transaction, and prints sanitized metadata only. Official client
+  image download and local psql17.11 tooling check succeeded. Targeted mocked
+  security tests initially6/6, later15/15, and Ruff passed. The user completed
+  password input/read-only SQL as recorded above; no backup or restore has been
+  observed. No password was sent to this agent. This adds no financial rule.
+- Manual no-upgrade recovery preparation advanced on2026-10-01: Docker server
+  `desktop-linux` was directly queried and returned Engine29.8.1; pinned
+  Supabase CLI2.119.0 completed `--version` and `db dump --help` via the npm
+  tool cache. No project linking, remote DB connection, dump or restore ran.
+  User-run DB authentication now succeeded; encrypted storage/key custody and
+  an isolated restore target remain pending. No production migration/Auth write occurred.
+- Development `vgmkpsestahkfahzdtae` remains fixture. 005 and006 were already
+  active. The checksum-verified, guarded 007 SQL Editor handoff was applied on
+  2026-10-01; success was observed at02:47 UTC with
+  `signal_conflict_http_ready=true`, `data_mode=fixture`. Hosted rollback-only
+  SQL role/claim smoke passed identical replay, changed-payload23514 and stale
+  PT412 with one receipt/audit inside the transaction. Read-only postcheck found
+  PT412 present, old40001 absent and the pre-existing one receipt/audit. This
+  is neither a real owner JWT/HTTP412 nor a two-session concurrency test.
+- This continuation opened the local development `/auth/check` page and
+  observed an active owner session with RLS-backed data access, plus an existing
+  watchlist action at revision1 with one request and one audit. The existing
+  probe did not offer a new RPC action. No JWT was read or copied and no new
+  scanner action was written; real owner-JWT/PostgREST replay/conflict/stale
+  checks remain open because this page does not expose the stored request
+  inputs or a call control. A fresh successful request would persist an
+  additional action/audit in the shared fixture; exact replay would require the
+  original request UUID and payload, which were not available from the page.
+- Production `hcjfxbynqzsaidlwvdfx` remains live with foundation001 only;002â€“007
+  and CLI migration history remain absent. A fresh GET-only preflight confirmed
+  live mode, enabled configured owner, zero fixture scan/signal rows and
+  404/PGRST205 for newer schema. This is not RLS evidence.
+- Read-only production catalog still matches9/10 foundation groups. A further
+  `pg_default_acl` check found postgres/public function defaults grant EXECUTE
+  to service_role;001 omitted service_role from this trigger-function revoke.
+  Anon/authenticated effective EXECUTE is false; the function is SECURITY
+  INVOKER and returns trigger. A guarded one-function REVOKE plan passed local
+  PGlite rehearsal and fixture rejection; it has **not** run on production.
+  Historical grant origin cannot be proved from present catalogs alone. See
+  docs/evidence/foundation001-acl-provenance-20261001.json.
+- Supabase Free permits two active projects, already occupied by development and
+  production. Offline manual-backup/local-disposable restore options are in
+  docs/BACKUP_RESTORE_RUNBOOK.md. No backup, encryption, decryption or restore
+  occurred; DB credentials and a suitable restore target remain unverified.
+  Docker and the pinned CLI are now verified as described above; PostgreSQL
+  client compatibility and encryption tooling remain to be verified.
+  Production remains **NO-GO**. Auth production, scheduler, frontend, `.env`,
+  production database, Git commits/pushes and deployments were untouched.
+- Latest full verification on2026-10-01: **68/68 SQL/PGlite** and **141/141
+  Python**; Ruff over scanner/src, scanner/tests and supabase/scripts passed;
+  `git diff --check` passed. This continuation also ran hosted development
+  rollback-only SQL smoke, targeted ACL3/3 and handoff4/4 tests. In this
+  continuation, manifest/checksum loading and the fail-closed production
+  release planner were verified; `git diff --check` passed. The production
+  GET-only preflight ran successfully with `scanner/.venv` and confirmed live
+  mode, configured owner enabled, zero fixture scan/signal rows and PGRST205
+  schema absence for migrations002â€“007. The backend-root `.venv` does not
+  exist; use `scanner/.venv`. Frontend files were read only.
+  See docs/PRODUCTION_READINESS.md for the current checklist and
+  docs/FRONTEND_DEPLOYMENT_HANDOFF.md for the frontend prompt.
+
+## Historical snapshots (superseded where newer evidence above differs)
+
+- Production readiness preparation completed to the available access boundary;
+  **deployment remains NO-GO**. Read-only GET and PostgreSQL catalog preflight on
+  `hcjfxbynqzsaidlwvdfx` confirmed live mode, configured enabled owner, zero
+  fixture scan_runs/signals and nine foundation001 tables with RLS. History
+  `supabase_migrations.schema_migrations` is absent;002â€“006, actual FK/embedding
+  and deadline capability are absent. 404/PGRST205 is not RLS proof.
+- Dashboard read-only checks: Free plan has no project backups; GitHub Auth is
+  disabled, Site URL/redirect still localhost3050. No backup/restore rehearsal,
+  complete001 schema diff/history repair, production HTTP smoke, scanner live
+  proof or Vercel smoke is claimed. No production database/Auth write occurred.
+- Prepared `docs/PRODUCTION_READINESS.md` with exact001â€“006 chain, frozen
+  SHA256 manifest, apply-once/history controls, backup/recovery requirements,
+  environment contract and one go/no-go checklist. Added GET-only production
+  preflight, READ ONLY SQL, offline release planner and unexecuted emergency
+  journal-write containment SQL. Frontend handoff prompt is in
+  `docs/FRONTEND_DEPLOYMENT_HANDOFF.md`; no chat message was sent automatically.
+- Final tests actually run2026-10-01: **60/60 SQL/PGlite**, including journal/
+  export201-cursor and four release-chain/rollback/drift tests; **137/137 Python**;
+  Ruff over scanner/src, scanner/tests and all supabase/scripts passed; diff
+  check passed. Offline planner without reconciled history fails closed as
+  intended. Initial full baseline was56 SQL/134 Python; expanded tests added
+  four SQL and three Python checks. Frontend suites were not rerun here.
+- Initial expanded Ruff found three import issues in existing development
+  scripts; import-only fixes passed. First new rollback test failed because
+  JavaScript replacement collapsed SQL dollar quoting; corrected test injection,
+  targeted4/4 and full60/60 then passed. Initial sandbox GET failed ConnectError;
+  approved read-only retry passed. No product migration was modified by these fixes.
+- M2 remains open for official runtime calendar/universe/mapping, real provider
+  and GitHub runner proof, persistent-paper scope and `set_signal_action` custom
+  40001 conflict risk (006 fixes actual journal only). M4 remains open for
+  production identity/financial smoke without committed QA data, persistent
+  paper/equity and tested recovery. No scheduler, commit, push, frontend edit,
+  .env overwrite or deployment was performed. All prior local work preserved.
+- Frontend status/audit dated 2026-10-01 now records a real owner two-tab PT412
+  retest after 006: the winning note advanced revision 11 to 12, stale revision
+  11 was rejected promptly with no extra note/revision. This supersedes the
+  pending frontend PT412 notes below. Frontend tests are reported evidence;
+  this backend chat has not rerun or changed frontend.
+
+- Frontend owner-JWT smoke reported two stale-revision RPCs ending in upstream
+  timeouts without a trade revision change. Root cause: migration 005 raised
+  SQLSTATE 40001 for an application conflict; Supabase documents an infinite
+  PostgREST retry bug for custom 40001 errors. Versioned migration 006 now
+  replaces only `apply_actual_journal` with a non-retryable `PT412` mapping,
+  preserving `revision_conflict` as the message. It was applied through a
+  guarded SQL Editor handoff to development `vgmkpsestahkfahzdtae`; SQL returned
+  `actual_conflict_http_ready=true`, `data_mode=fixture`. A hosted SQL role/claim
+  stale call returned PT412 immediately. Subsequent read found zero receipt for
+  that failed UUID and no active `authenticator` journal query. Real owner-JWT
+  PostgREST response was subsequently confirmed by frontend's2026-10-01 retest above.
+- Development rollback-only cursor smoke used backend RPC to create 201 closed
+  TEST trades inside one transaction. Hosted export returned 200 rows plus one
+  cursor continuation row, `has_more=false` after page 2; analytics closed=201,
+  net P&L=2010. A read-only postcheck found zero persisted trades and request
+  receipts for that smoke. This proves hosted SQL pagination, not frontend HTTP
+  continuation or a multi-page database snapshot. A separate local PGlite test
+  also verifies 201 unique ordered IDs and each row's backend P&L.
+- Current development M4 evidence: guarded migration 005 was applied on
+  `vgmkpsestahkfahzdtae` through its SQL Editor after the user logged in.
+  The exact generated SQL was checked against the local source before execution;
+  SQL returned `actual_journal_ready=true`, `actual_export_ready=true`,
+  `data_mode=fixture`. PostgREST returned HTTP 200 for all seven actual tables
+  and the explicit latest-correction FK embedding. Production
+  `hcjfxbynqzsaidlwvdfx` was not written to. SQL Editor execution is not a
+  Supabase CLI migration-history entry.
+- Hosted rollback-only SQL smoke passed: canonical risk 1200, fee 100, net P&L
+  1000, R 0.833333333333; partial position, estimated-fee quality, correction,
+  stale revision, oversell, request replay and exact analytics/export checks.
+  It simulated authenticated role/owner claim within PostgreSQL, not a real
+  owner Auth JWT. A separate two-session hosted replay used different backend
+  PIDs (183081 and 183435): second waited 7407 ms, one request receipt and
+  one TEST trade remained, and the first session's note advanced it to revision
+  2. A second two-session race submitted different note requests against revision
+  2: one committed revision 3; the other returned SQLSTATE 40001
+  `revision_conflict`, with no second request receipt. This deliberately retained
+  synthetic fixture audit data in development.
+- Real anonymous HTTP reads of eight tables and calls to all three journal RPCs
+  returned 42501. A disposable signed-in outsider JWT saw empty tables and
+  correction embedding despite the populated TEST trade; all three RPCs
+  returned 42501. The temporary outsider user was deleted. Disabled-owner
+  denial was tested in hosted rollback-only SQL, not a real disabled-owner JWT.
+- Frontend M4 source/status were read only. Local tests check RPC named args,
+  exact `p_exit_snapshot`, `p_status='closed'`, `p_after`, 200-row limit and
+  explicit `actual_fill_corrections_fill_id_fkey` embedding. Real owner JWT
+  PostgREST and frontend integration smoke belong to the frontend chat by user
+  choice. M4 remains open for those gates, persistent paper, equity/backup scope.
+- Prior development-rollout verification: `npm.cmd test` from `supabase` passed **54/54**;
+  Ruff passed on scanner source/tests and the three development scripts;
+  `git diff --check` passed. Development API readiness and anonymous/outsider
+  denial scripts passed after the concurrency fixture was retained. No remote
+  owner JWT, frontend browser smoke, live-provider run, production write,
+  commit, push, or deploy was performed.
+
+Historical local-audit notes below describe the state before this development
+rollout; their unapplied/untested statements are superseded by the evidence above.
+
+- M4 backend continuation completed locally; milestone **remains open** for
+  remote/integration and persistent-paper gates. The original local 005 SQL,
+  M4 tests and status changes were audited and extended, not discarded.
+  Buy fills now produce open positions with provisional risk until finalization.
+  Effective fill order uses timestamp plus sequence; corrections can amend time,
+  quantity, price and fees while retaining prior history. Risk restatement must
+  be explicit; audit now includes the prior trade projection. Nonfinite and
+  overprecision money, invalid exit config and unknown payload fields are rejected.
+  Ledger responses use the same monetary rounding as persisted projections.
+- Owner isolation was exercised with populated fills/corrections/stops/notes/tags/
+  requests/audit, enabled second owner, outsider, anon and disabled membership.
+  Replay returns the prior receipt; changed request bodies, stale revisions,
+  oversells and invalid chronology roll back. These are **local role/JWT
+  simulations**, not hosted Auth/PostgREST or multi-connection race proof.
+- Actual-only analytics disclose fee quality and support exact exit snapshot
+  filtering. Export RPC adds owner/data-mode scope, decimal strings, pagination,
+  and optional status filtering; p_status='closed' aligns with analytics.
+  Versioned CSV serializer handles escaping/formula prefixes without calculating
+  metrics. Multiple tags count once. Paper persistence/metrics and cash/equity
+  marks are unavailable; actual export is not a ledger backup or a multi-page
+  database snapshot. Frontend was not inspected, edited or tested in this turn.
+- Verification actually run in this continuation:
+  - Baseline `npm.cmd test` from supabase: **42/42 passed** before edits.
+  - First targeted M4 run: 18 passed / 1 failed; test expected immutable trigger
+    SQLSTATE 55000 but existing trigger uses 23514. Corrected the expectation.
+  - Final `npm.cmd test`: **52/52 passed** (20 actual-journal/CSV tests,
+    1 generated-handoff test, 31 existing SQL tests).
+  - First Python full suite: 133 passed / 1 setup error due to denied access to
+    Windows pytest temp directory; no application assertion failure.
+  - Rerun `.venv\Scripts\python.exe -m pytest -q -p no:cacheprovider
+    --basetemp=<new absolute backend/data/pytest-m4-UUID directory>` from scanner:
+    **134/134 passed**. The fresh workspace temp path avoids the denied folder.
+  - Ruff initially found one long line in the new helper test; fixed.
+    `scanner\.venv\Scripts\ruff.exe check scanner/src scanner/tests
+    supabase/scripts/prepare_dev_actual_setup.py`: **passed**; git diff --check
+    passed (Git reports only existing LF/CRLF conversion warnings).
+  - Runtime observed: Node 22.23.2, npm 12.0.2, Python 3.12.14; no upgrades.
+  - SOT sample verified again: risk1200, total fee100, net1000, R0.833333333333.
+- Development handoff generated locally at ignored
+  `data/dev-actual-journal-vgmkpsestahkfahzdtae.sql`. Exact dev URL is required;
+  SQL rejects live mode, wrong owner, missing prerequisites or duplicate apply.
+  Its successful application and rejection cases were tested in PGlite only.
+  **005 is NOT applied to development or production; no remote M4 smoke ran.**
+  No remote requests/writes, commit, push, deploy or .env changes in this turn.
+  Development remains fixture and production remains live per supplied state;
+  neither remote mode was re-probed during this backend-only continuation.
+- Open M2 gates: authoritative runtime calendar/universe/mappings, 5â€“10 ticker
+  live fetch-to-web proof, GitHub runner and paper persistence. Open M4 gates:
+  authorized development 005 application, real owner/outsider JWT and concurrent
+  session smoke, frontend integration/export smoke, persistent paper analytics
+  including ambiguity sensitivity, cash/EOD equity scope and backup/restore.
+  No production rollout is authorized. See docs/ACTUAL_JOURNAL.md for handoff.
+
+Files changed/added by this continuation (all inside backend):
+
+- supabase/migrations/202609290005_actual_journal.sql (existing untracked work)
+- supabase/tests/actual-journal.test.mjs (existing untracked work)
+- supabase/tests/actual-setup.test.mjs
+- supabase/scripts/prepare_dev_actual_setup.py
+- supabase/scripts/check_dev_actual_ready.py,
+  supabase/scripts/verify_dev_actual_denials.py,
+  supabase/tests/dev_actual_smoke.sql
+- scanner/tests/test_actual_handoff.py
+- contracts/actual-journal-export.mjs
+- docs/ACTUAL_JOURNAL.md
+- contracts/README.md, supabase/README.md, README.md, DEVELOPMENT.md,
+  TECHNICAL_DOC.md, CODEX_HANDOFF.md, IMPLEMENTATION_STATUS.md
+
+Earlier evidence below is historical, including frontend results reported before
+this backend-only continuation. Newer entries supersede earlier open-gate notes.
+
+- Earlier M4 local slice is implemented but not remotely deployed: migration
+  `202609290005_actual_journal.sql` adds owner-only drafts, immutable fills,
+  audited corrections, initial-risk finalization, partial exits, stop/note/tag
+  events, idempotent mutation requests, and actual-only closed-cohort analytics.
+  Eleven targeted PGlite tests passed; the full SQL suite passed **42/42**.
+  The SOT example yields risk Rp1,200, fees Rp100, net Rp1,000 and realized R
+  0.833333. Frontend journal/analytics/export source is uncommitted in its own
+  repo; local typecheck, lint, build, and CSV sanitizer tests passed. Neither
+  migration 005 nor a remote owner-session M4 smoke has been run on development;
+  production remains untouched. Paper persistence and cash/equity marks remain
+  open, so M4 is not marked complete.
+
+- M0/M1: local foundation complete; deterministic scanner, four entry strategies,
+  paper lifecycle, provider adapters and demo contracts.
+- M2: local SQL scan foundation and REST persistence adapter implemented.
+  User applied the migration in the Supabase main (PROD) branch. Read-only
+  REST checks verified all nine tables, enabled owner membership and live mode.
+  No live scan yet. Development owner JWT/RLS reads and the signal-action
+  RPC write/replay are verified below; journal writes remain unimplemented.
+- Owner Auth UID supplied via ignored backend/.env. A read-only Auth Admin request
+  returned HTTP 200, matched that UID, and found a confirmed, non-anonymous user.
+- Backend .env SUPABASE_URL matches project hcjfxbynqzsaidlwvdfx, key is present
+  locally; values never go into Git or source.
+- Before migration, app_members and deployment_settings returned HTTP 404.
+  After user execution, all nine application tables returned HTTP 200 as JSON
+  lists through service access; owner membership is enabled and data_mode=live.
+  Publishable-key anonymous requests to scan_runs, signals and app_members
+  returned HTTP 401. This is not authenticated owner/non-owner RLS proof.
+- Backend repo main pushed to GitHub at ea308e6; frontend at bff40cc.
+- Earlier local verification: 92 scanner tests, 13 PGlite SQL tests, six frontend
+  browser tests, frontend lint/typecheck/build. The standalone backend contract
+  fixture path was checked independently: four targeted contract tests passed.
+- New isolated development project ref vgmkpsestahkfahzdtae supplied; its
+  Auth UID and dev API keys are configured only in ignored local env files.
+  Generated dev-only SQL passed an in-memory PGlite execution: nine tables,
+  enabled owner, live mode. Owner ran it in dev; read-only API checks confirmed
+  nine tables, owner membership, Auth UID, and initial live mode. Dev was
+  explicitly switched to fixture for smoke. Anonymous reads/RPC were denied.
+  An invalid service RPC returned 22023 and left scan_runs empty.
+- Market-series revision migration 202609290002 and Python ingest adapter are
+  implemented and tested only locally. Compact fetch receipts and changed-bar
+  rows are immutable; exact replay returns the original receipt. Changed bars
+  require a new input digest; digest reuse with changed content is rejected.
+  The migration has not been applied to development or production Supabase.
+- Remaining M2 gates: apply and verify the revision migration in development,
+  integrate ingestion into the run pipeline, official calendar/universe,
+  paper persistence, 5â€“10 ticker live proof and GitHub runner.
+- EODHD key has not been supplied. No scheduled scan is active. The frontend
+  Vercel production domain responds HTTP 200 with a live-connection placeholder;
+  this is not a live scanner deployment.
+- The generated SQL Editor handoff was executed on an in-memory PostgreSQL
+  PGlite database: nine application tables created, owner enabled, live mode
+  retained. The user then ran it on the production branch; read-only remote
+  checks confirmed table availability, owner membership and live mode.
+- Dashboard computer access failed in the Windows sandbox. User selected
+  the Supabase SQL Editor route; migration history needs reconciliation after
+  the remote schema is verified.
+- Production boundary: screenshot identifies Supabase branch main (PROD), and
+  the owner confirmed this is production. No fixture/live smoke writes, test
+  scans, seeds, or repeated migration against this project.
+- Dev setup generator now reads only ignored backend/.env.development and
+  rejects the known production project ref. Development SQL is applied and
+  read-only verified. A labeled synthetic dev scan published once and replayed
+  exactly: one run, five items, two signals and one audit event; snapshot reload
+  matched. An altered payload with the same digest returned 23514 with no
+  duplicate. A disposable non-owner Auth user signed in with a real JWT:
+  scan_runs, signals and app_members reads were empty; owner action was denied
+  with 42501 and left no residue; the temporary user was deleted. Owner
+  signal-action proof is recorded below.
+- Supabase new API keys are sent via `apikey` only in the backend adapter.
+  Thirteen persistence tests passed; one read-only production REST call with
+  the revised header returned 200 and live mode. No production write was attempted.
+- Development credentials are present only in ignored local env files.
+  Development data_mode=fixture; production remains live and its dev_smoke_m2
+  namespace is empty. The smoke script rejects the production URL and requires
+  --execute for writes.
+- The owner completed GitHub OAuth on localhost:3050/auth/check. The user-provided
+  screenshot shows the development Auth UID matching the enabled owner membership,
+  and one dev_smoke_m2 run plus two signals visible through the app's JWT/RLS
+  read path. Separate read-only service queries confirmed GitHub Auth enabled,
+  development data_mode=fixture, and the same one-run/two-signal counts. No raw
+  owner JWT was copied to chat or shell. The owner then used the app's guarded
+  development fixture button to call set_signal_action and replay the same
+  request. The user reported success; an independent read-only check found one
+  watchlist action at revision 1, one matching idempotency request, one audit
+  event, and the same two fixture signals. Production was not written.
+
+- Earlier revision-slice verification: 97 scanner tests, 19 PGlite SQL tests and Ruff
+  passed after adding revisioned market-series storage. PGlite tests cover
+  fixture-in-production rejection, immutable revisions, replay, unchanged-bar
+  reuse, duplicate-session rollback, digest conflict, RLS owner/outsider/anon
+  isolation, and denied direct writes. This does not prove remote migration,
+  full-series reconstruction, production storage sizing, or provider quality.
+
+- Local M2 orchestration now preflights calendar/universe and mapping before
+  database/provider IO, reloads published signal state, fetches the complete
+  cross-section, stores each fetched series receipt, and only then publishes
+  the run. Provider failures remain explicit and reduce coverage; empty-bar
+  results remain auditable missing-data receipts. A revision ingest failure
+  prevents publication. Five targeted runner tests passed, including these
+  failure paths. No CLI workflow, GitHub schedule, remote migration, or live
+  publish has been run.
+
+- Follow-up verification: 101 full scanner tests, 20 PGlite SQL tests, Ruff,
+  and five targeted runner tests after the empty-series case. The additional
+  runner test was run targeted after the 101-test full suite; no claim of a
+  102-test full-suite run is made.
+
+- Completed locally: exact normalized Series reconstruction via ordered session
+  manifests, immutable cutoffs, preserved Python numeric tokens, owner/RLS read
+  RPC and Python input-digest verification. Runner now verifies every stored
+  input before publication; read failure blocks publication.
+- Verification on 2026-09-29: 112 full Python tests, 26 PGlite SQL tests and Ruff
+  passed. Includes actual Python/PostgreSQL/Python round-trip with numeric edge
+  cases; omitted dates, empty series, revision replay and outsider/anon denial.
+- Read-only dev preflight: deployment mode fixture; market_series_revisions
+  returned HTTP 404. No market migration or new fixture write was executed
+  remotely in this slice. Guarded SQL Editor file for 002+003 prepared; wrapper
+  tested for wrong mode, missing owner, successful application and duplicate
+  application rejection. Owner was asked to run this file per chosen workflow.
+- Read-back preserves engine inputs, not original vendor HTTP responses.
+  Changed bars additionally retain numeric source text; real storage sizing
+  remains open. Legacy 002 receipts are never guessed or overwritten.
+- M2 remains in progress: remote revision/RLS smoke, official calendar/universe,
+  5-10 ticker live fetch-to-web proof, paper persistence and GitHub runner.
+  See docs/MARKET_REVISIONS.md for the handoff and rollout constraints.
+
+- Development confirmation on 2026-09-29: user SQL Editor result shows
+  revision_schema_ready=true and data_mode=fixture. Independent read-only API
+  preflight found the 003 columns; the guarded revision smoke then passed.
+  Exactly two receipts (3 bars and 2 bars) and four changed-bar rows exist in
+  dev_market_revision_m2. Original and revised Series digests match on read-back;
+  replay returns the original receipt. No live-provider fetch, scan publication
+  or production write was performed.
+- This proves remote service-key revision persistence and reconstruction.
+  Owner/outsider JWT tests for the new revision RPC remain a separate gate;
+  existing local RLS tests are not presented as remote revision-RLS proof.
+
+- In progress: remote revision RPC denial tests with a disposable non-owner JWT,
+  anonymous access checks, and a read-only owner-session probe in the frontend.
+
+- Revision access gate completed in development: anonymous table/RPC access
+  denied; disposable non-owner JWT sees five private tables empty, cannot read
+  existing or unknown revision IDs, and cannot call ingestion. Auth account
+  cleanup succeeded. The owner confirmed the frontend status "2 revisi fixture
+  terbaca melalui RPC owner" using their existing application session.
+- First remote denial test failed because the test expected HTTP 400 for P0002.
+  PostgREST maps P0* to HTTP 500. Corrected that expectation per official docs;
+  rerun passed without changing database policies.
+- Live CLI run command now provides offline preflight and explicit --execute,
+  exact project binding, live database/schema guard, safe summary and nonzero
+  partial status. Orchestration evaluates after IO with current UTC, and blocks
+  crossing next-open during evaluation. No live CLI run was executed.
+- Verification: 124 full Python tests and Ruff passed; frontend lint/typecheck
+  and nine Auth Playwright tests passed. No database migration changed.
+- M2 remains open: authoritative calendar/universe/mapping, 5-10 ticker live
+  proof, GitHub runner, paper persistence, and transaction-side timing deadline.
+  See docs/SCANNER_RUN.md; no scheduled job was activated.
+
+- Frontend production build also passed after the owner revision probe addition.
+
+- In progress: enforce the forward publication deadline inside PostgreSQL, and verify authoritative market configuration sources.
+
+- Publication deadline slice: migration 004 checks PostgreSQL clock before new
+  forward signal insertion and after all writes, rolling back expired runs with
+  PT409. Exact committed replay remains valid after deadline. CLI now requires
+  deadline_version=1 capability before live provider IO and sends the configured
+  next-session open in the immutable run envelope.
+- SQL verification at implementation time: 31 PGlite tests passed, including expired rollback, missing
+  deadline, mismatched entry date, replay after deadline and a delayed write.
+  Generated SQL Editor handoff was separately tested: live mode rejected,
+  fixture application returned deadline_version=1. Development application is
+  now confirmed by the user's SQL Editor screenshot (deadline_version=1,
+  data_mode=fixture) and an independent read-only capability check. Production
+  remains untouched; no live scan has been run.
+- Source progress: actual BEI 2026 calendar PDF downloaded from public IDXCarbon,
+  hash recorded and table visually verified. 22 weekday holidays and 239 trading
+  days reconcile per month. Stored as reference only; amendments, historical
+  calendar/hours and full effective KOMPAS100 attachment remain unverified.
+  See docs/MARKET_SOURCE_STATUS.md. No live scan or production write executed.
+
+- Final local verification at deadline-slice implementation time: 129 full Python tests, 31 PGlite SQL tests, and Ruff passed. Frontend unchanged. Development SQL application was later confirmed by the user and a read-only capability check; no live scan was run.
+
+
+- Development migration 004 confirmation - 2026-09-29: user screenshot shows
+  deadline_version=1 and data_mode=fixture in Supabase development. Independent
+  read-only REST capability query returned deadline_version=1 and deployment
+  mode fixture. This unlocks a capability-gated CLI path but does not authorize
+  or prove a live scan. No provider scan or production write was performed.
+- Official market-source progress: the 2025 BEI holiday baseline (237 trading
+  days) and the official 2025-08-18 amendment are transcribed into
+  config/reference/idx-holidays-2025-source.json. Known amended total is 236.
+  It remains a source reference, not runtime config; no local PDF hash/visual
+  verification or post-amendment reconciliation is claimed.
+
+
+- Official universe evidence - 2026-09-29: owner provided the BEI
+  Peng-00148/BEI.POP/07-2026 attachment 4 roster and its stated effective
+  interval, 2026-08-03 through 2027-01-29 inclusive. The pasted roster was
+  checked as 100 ticker codes with 100 unique values. It is stored only as a
+  reference transcription in config/reference/kompas100-2026-08-transcribed.csv
+  and config/reference/kompas100-2026-08-source.json. Runtime live configuration
+  is still gated on inspection/hash of the source workbook, full session
+  calendar/hours, and yfinance/EODHD symbol mappings. No scan was run.

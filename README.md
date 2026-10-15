@@ -1,105 +1,55 @@
-## P1-P8 recovery release - 2026-10-13
-
-Approved recovery/runtime hardening is released with additive SQL012 and compatible frontend. Python425/SQL139/Ruff and frontend units/browser/typecheck/lint/build pass; fresh encrypted full backup and populated isolated restore/rehearsal pass. The first hosted catch-up revealed and reproduced an incremental lookup type error: SQL002 bar_cutoff is a bigint revision sequence, not a session date. The correction validates target sessions on reconstructed sources, with hosted read-only adapter and future-source regression proof. Corrected hosted catch-up commits persistent held state, and retry is economically idempotent with original configuration/history/actual ledger preserved; [PLAN](PLAN.md) separates this proof from full source recovery.
-
-Cloud runtime uses GitHub Actions secrets, Vercel environment and Supabase managed/Edge secrets. The laptop operator file is not a runtime dependency. Supabase Cron */20 and the Edge watchdog are provisioned; its restricted PAT never enters pg_net. Cloud automation is active and an actual server Cron tick succeeded. Automatic watchdog dispatch and later-session feed stability require separate receipts. See [contract](docs/INCIDENT_RECOVERY_CONTRACT_V1.md).
-
-Known source limit: Yahoo exact historical12-Oct bars remain missing/incomplete in the latest source probe. No fabricated Close, replacement provider or trading-rule change is used to force coverage. Source availability, hosted owner-browser verification and three later sessions must be reported separately from local/deployment proof. Earlier evidence follows.
-
-## Remediation release verified - 2026-10-10
-
-Action: completed the authorized release after the backup/restore gate; applied the additive backend migration before the compatible frontend and verified the released runtime's recovery and retry behavior.
-Proof: local checks recorded below passed. Production deployment, public HTTP/asset checks, hosted reporting contract validation, SQL-role access-denial checks and recovery idempotency were verified. Detailed operator receipts and financial reconciliation are intentionally retained locally and are not published in this repository.
-
-Limits: authenticated owner-browser interaction, real outsider JWT and subsequent-session operational stability remain unverified. Continue monitoring scheduled sessions. Trading rules, historical configuration and the actual ledger remain preserved. Earlier local/historical evidence follows.
-
-## Incident repair - implemented and verified locally (2026-10-10)
-
-Approved G01-G17 remediation is implemented across both independent repositories. SQL011 adds economic/evaluation integrity, immutable job health, reporting eligibility and IDR/holding/paired metrics; frontend shares canonical exit filters and displays checkpoint/held-data/read errors honestly. Entry/exit rules, actual ledger/CSV and historical activation/config/book are preserved. See [PLAN.md](PLAN.md) for local proof and release gates. Commit/push, migration, deployment and production recovery remain pending separate release authorization; the current production incident has not been recovered by this local work.
-
-# OHLC integrity and reporting coverage follow-up - 2026-10-08
-
-Approved clarification: for the pinned Yahoo Finance baseline with `auto_adjust=False`, known cash-dividend amounts are audit metadata, not a price-quality eligibility gate. Policy `cash_dividend_metadata_nonblocking_v1` records new/mismatched dividends honestly as unreviewed without changing OHLC or crediting cash. Exact reviewed split approvals survive unrelated dividend mismatches. Missing/invalid/stale/gapped price data, unknown action coverage, unresolved splits and unsupported action types remain blocking. Prior signal snapshots and frozen paper configuration/risk remain immutable.
-
-Forward SQL010 adds `scanner_coverage` to paper and signal-evaluation reporting independently of existing journal/observation `coverage_status`; actual reporting returns null scanner coverage. It preserves reader signatures, financial math, owner checks and grants. Deploy the additive migration before the compatible frontend to expose scanner coverage; SQL009-compatible frontend reads explicitly report metadata unavailable until010 exists.
-
-Local evidence: Python343 PASS/5 native skips in full run, focused cash-policy19 PASS including paper/research shared gating and initial-risk preservation; sequential native backup/rehearsal12 PASS; SQL/PGlite98 PASS; Ruff PASS. Read-only evaluation of100 persisted8-Oct series yields100 valid with all OHLC unchanged; this is not a new production scan/publication. Production SQL010 applied and verified2026-10-09 WIB after fresh encrypted backup/full isolated restore; catalog matches rehearsal and all actual/paper/publication rows are unchanged. Hosted read-only owner reports pass strict frontend parsers; outsider/anon SQL-role claims are denied. Fresh released-source scan and Vercel deployment are the next gates, recorded in shared release documents. Current source candidates do not change provider, fees, entry/exit rules or actual ledger.
-
-Earlier dated operational history follows; latest root IMPLEMENTATION_STATUS/CODEX_HANDOFF owns the release status.
-
----
-
 # BackendSahamTeknikal
 
-Latest finalization2026-10-03: owner production read and anonymous denials PASS;
-manual full100 GitHub fetch/evaluation PASS with partial45/100 coverage after
-verified archived-source hydration. Mandatory hosted mutation/access/publisher
-gates remain BLOCKED; full-stack NO-GO, scheduler off. See
-[finalization report](docs/BACKEND_FINALIZATION_REPORT_20261003.md).
+Backend IDX Night Scanner: provider ingestion, deterministic indicators/strategies, persistent
+paper journal, actual ledger/reporting, canonical chart artifacts, Supabase migrations and cloud jobs.
+Frontend is a [separate repository](https://github.com/Daddy-JJ/FrontEndSahamTeknikal); Vercel builds
+that repository root. GitHub Actions runs this backend; Supabase hosts persistence and the watchdog.
 
-Latest scanner evidence (2026-10-03): production partial coverage 45/100, but fresh
-Yahoo target candles failed for 100/100. Scheduler/full-stack go-live remain NO-GO.
-See [recovery report](docs/SCANNER_RECOVERY_REPORT_20261003.md) and
-[frontend handoff](docs/FRONTEND_DEPLOYMENT_HANDOFF.md).
+## Start here
 
-Latest2026-10-02: first production forward/live diagnostic is published with
-100 actual market revisions, failed quality coverage0/100,100 holds and0 signals.
-Full Yahoo mappings/fetch100 passed; known runtime calendar preflight and manual
-GitHub five-symbol provider smoke passed. Scheduler stays disabled; quality and
-full-stack readiness remain NO-GO. See docs/SCANNER_LIVE_READINESS.md and latest
-IMPLEMENTATION_STATUS for evidence and frontend read-adapter handoff.
+- [Active plan](PLAN.md): current work only.
+- [Current implementation status](IMPLEMENTATION_STATUS.md): dated evidence and remaining limits.
+- [Continuation](CODEX_HANDOFF.md): next agent's entry point.
+- [SOT](SOT.md): authoritative trading rules; [technical document](TECHNICAL_DOC.md): architecture.
+- [Development](DEVELOPMENT.md): local commands; [scanner CLI](docs/SCANNER_RUN.md): execution contract.
+- [Market revisions](docs/MARKET_REVISIONS.md), [actual journal](docs/ACTUAL_JOURNAL.md),
+  [incident recovery contract](docs/INCIDENT_RECOVERY_CONTRACT_V1.md): task-specific references.
 
-Scanner dan data layer untuk IDX Night Scanner. Repository ini menjadi sumber backend: strategi, kalkulasi indikator, provider yfinance/EODHD, kontrak data, migrasi Supabase, serta tes.
+Production chart release is recorded on 15 October 2026 with schema 001-016 and 100/100 chart
+coverage. See current status for exact SHAs, tests, waived backup/restore and unverified owner/JWT
+boundaries. This README is not a live health check. The frontend-only detail relayout requires no
+backend work. Older dated operational claims are preserved in [README history](docs/archive/README_BEFORE_DOC_CLEANUP_20261015.md).
 
-## Lokal
+## Local runtime
 
-Lihat DEVELOPMENT.md untuk perintah Windows PowerShell. Runtime Python 3.12.14 dipin di scanner/.python-version; dependency scanner dikunci dengan uv.lock. Tes SQL memakai PostgreSQL PGlite di memori, jadi tidak menghubungi Supabase.
+Python 3.12.14 is pinned in `scanner/.python-version`; dependencies are locked by `uv.lock`.
+SQL/PGlite tests run locally without Supabase; native Docker/hosted tests have separate opt-in gates.
+Use the commands in `DEVELOPMENT.md` and verify their scope before running them.
 
-Chart writer membaca revisi tersimpan dengan budget default 256 revisi per ticker
-(`--max-revisions`, rentang 1–500). Semua revisi dalam budget dibaca; jika jumlah
-melampaui budget, ticker gagal eksplisit dengan `chart_revision_budget_exhausted`
-sebelum pembacaan seri. Tidak ada pemotongan provenance, fetch provider, atau
-perubahan ledger. Batas ini perlu dipantau seiring pertumbuhan histori; kenaikan
-default dari 128 mempertahankan histori ticker dengan 129–131 revisi.
-Pembacaan sumber dibatasi empat worker dalam satu ticker, dengan urutan hasil
-sesuai urutan revisi sumber dan jumlah RPC tetap sama. Ticker, pembangunan
-artifact, dan penulisannya tetap serial; satu revisi invalid menggagalkan
-proyeksi ticker tanpa menulis artifact dari kumpulan sumber parsial.
+Chart writer reads all stored source revisions within a default budget of 256 per ticker
+(`--max-revisions`, range 1-500). Over budget yields `chart_revision_budget_exhausted` before
+series reads. There is no provenance truncation, provider fetch or ledger mutation. The default
+increase from 128 retained 129-131-revision histories; future growth must remain explicitly bounded.
+Up to four workers read source receipts within one ticker, preserving source order and RPC count.
+Ticker projection, artifact construction and writes remain serial. Invalid/partial source groups
+cannot produce an artifact.
 
-## Struktur
+## Structure
 
-- scanner/: engine deterministik, adapter sumber data, paper evaluator, persistence adapter, dan tes.
-- config/ dan fixtures/: kalender/universe sintetis untuk development.
-- contracts/: JSON Schema signal/snapshot dan fixture hasil engine yang frontend gunakan.
-- supabase/migrations/: migration SQL versioned; supabase/tests/: akses/RLS/atomicity tests.
-- SOT.md: aturan trading canonical. TECHNICAL_DOC.md: kontrak arsitektur dan data.
+- `scanner/`: deterministic engine, adapters, paper evaluator, runtime and tests.
+- `config/`: versioned live/reference configuration and provenance; use explicit mode guards.
+- `fixtures/`: labelled synthetic development inputs.
+- `contracts/`: versioned consumer contracts and labelled contract fixtures.
+- `supabase/`: migrations, operations, guarded operator helpers, Edge function and tests.
+- `.github/`: cloud workflows; `docs/`: focused contracts, runbooks, evidence and dated archive.
 
-Backend dan frontend merupakan repository GitHub terpisah. Repo frontend: https://github.com/Daddy-JJ/FrontEndSahamTeknikal. Vercel menggunakan repository frontend; GitHub Actions nantinya menjalankan scanner backend setelah workflow dan secrets dikonfigurasi.
+Cloud runtime uses configured GitHub Actions secrets, Vercel environment and Supabase managed/Edge
+secrets. The laptop operator file is not a runtime dependency; the watchdog restricted dispatch PAT
+stays in Edge secrets, never `pg_net`. Keep `.env`, privileged credentials, provider responses and
+ignored `data/` outside Git. Development fixtures must remain visibly distinct from production.
 
-Data demo ditandai fixture dan sintetis. Jangan commit file .env, key, database password, atau respons provider live. data/ diabaikan Git.
-
-## Status batasan
-
-Engine empat strategi, exit paper, provider adapters, migrasi Supabase scan RPC, dan adapter persistence sudah ada dalam kode lokal. Migrasi scan foundation sudah ada di Supabase production dan development; uji fixture serta owner RLS/action berhasil di development. Migrasi revisi market 002-003 sudah diterapkan di development; smoke test simpan, baca ulang digest, dan replay dua revisi fixture berhasil. Orkestrator fetch -> ingest -> verifikasi baca ulang -> publish diuji lokal; CLI manual dengan preflight tersedia; belum ada eksekusi live atau runner GitHub aktif. Kalender/universe resmi, scanner scheduled live, persistence paper, jurnal actual, dan backup-restore masih gate pengembangan. Lihat DEVELOPMENT_ADDENDUM.md dan IMPLEMENTATION_STATUS.md pada checkout sumber kerja saat ini.
-
-Rekonstruksi histori, handoff SQL development, dan batas rollout: lihat docs/MARKET_REVISIONS.md.
-
-CLI scanner manual dan gate live: docs/SCANNER_RUN.md.
-
-M4 actual ledger, analytics, dan kontrak CSV tersedia pada migration 005, yang
-sudah diterapkan dan diuji terbatas di Supabase development mode fixture.
-Migration 006 memperbaiki stale-revision RPC timeout di development. Production sudah menerima migrations001–007 melalui CLI pada2026-10-02;
-smoke mutasi production tetap belum lulus; retest HTTP412 owner JWT dua tab telah lulus menurut
-audit frontend2026-10-01. Bukti dan
-kontrak UI: [docs/ACTUAL_JOURNAL.md](docs/ACTUAL_JOURNAL.md).
-
-Persiapan production berstatus **NO-GO**, dengan preflight read-only, daftar
-migrasi, backup/rollback, env dan smoke checklist di
-[PRODUCTION_READINESS](docs/PRODUCTION_READINESS.md). Prompt untuk chat frontend:
-[FRONTEND_DEPLOYMENT_HANDOFF](docs/FRONTEND_DEPLOYMENT_HANDOFF.md).
-
-## Jurnal otomatis v1 - 2026-10-08
-
-Implementasi lokal mencakup paper persisten Supabase, dashboard IDR paper/aktual dan evaluasi sinyal independen. Model baru memakai close sinyal sebagai fill pada sesi berikutnya, batas risiko Rp1 juta termasuk fee, Fixed 2R dan SMA10 terpisah. Evaluasi 5/10 sesi tidak menutup posisi. Lihat [SOT](SOT.md), [kontrak teknis](TECHNICAL_DOC.md) dan [status bukti](IMPLEMENTATION_STATUS.md).
-
-Rollout memerlukan migrasi forward `202610080009_persistent_paper_reporting.sql` sebelum frontend, lalu aktivasi/runner baru. Workflow membutuhkan `APP_OWNER_USER_ID` (owner aktif) dan konfigurasi server Supabase yang ada. JSON lokal hanya diagnostik dry-run legacy. Commit/push source candidate di branch `feat/persistent-paper-reporting-v1` telah diotorisasi pada 2026-10-08. Migrasi remote, aktivasi dan deploy production tetap merupakan tahap terpisah yang belum dilakukan.
+Paper entry uses the signal close as its frozen fill reference on the next exchange session,
+risk at most Rp1 million including both approved fees, Fixed 2R/SMA10 separate. Evaluation at
+5/10 sessions does not close positions. Cash-dividend nominal metadata does not gate valid OHLC;
+unknown actions, unresolved splits and invalid/stale/missing price data retain holds per SOT.
+Official ledger/risk/statistics remain canonical backend output, not browser calculations.
