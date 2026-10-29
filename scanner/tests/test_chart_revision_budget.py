@@ -81,3 +81,20 @@ def test_cli_uses_shared_default_and_preserves_explicit_override(monkeypatch, ca
     assert runner.main(["--max-revisions", "131"]) == 0
     assert budgets == [256, 131]
     assert "synthetic-key" not in capsys.readouterr().out
+
+
+def test_cli_accepts_max_tickers_and_max_revisions_batch_args(monkeypatch):
+    scripts = Path(__file__).resolve().parents[2] / "supabase/scripts"
+    monkeypatch.syspath_prepend(str(scripts))
+    runner = importlib.import_module("chart_artifact_runner")
+    for name, value in (("SUPABASE_URL", "https://test.supabase.co"),
+                        ("SUPABASE_SECRET_KEY", "synthetic-key"), ("APP_OWNER_USER_ID", OWNER)):
+        monkeypatch.setenv(name, value)
+    captured = {}
+    def run(store, **kwargs):
+        captured.update(kwargs)
+        return {"status": "ready"}
+    monkeypatch.setattr(runner, "run_chart_job", run)
+    assert runner.main(["--max-tickers", "50", "--max-revisions", "500"]) == 0
+    assert captured["max_tickers"] == 50
+    assert captured["max_revisions"] == 500

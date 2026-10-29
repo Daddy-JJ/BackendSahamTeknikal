@@ -11,6 +11,14 @@ on:
         description: 'Optional verified ticker; empty builds the bounded owner universe'
         required: false
         default: ''
+      max_tickers:
+        description: 'Max tickers to build per run (1-100)'
+        required: false
+        default: '50'
+      max_revisions:
+        description: 'Max revisions per ticker (1-500)'
+        required: false
+        default: '500'
 
 # This separate job never changes the status or transactions of the scanner job.
 permissions:
@@ -28,7 +36,7 @@ jobs:
       (github.event_name == 'workflow_dispatch' ||
        github.event.workflow_run.head_repository.full_name == github.repository)
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - name: Checkout trusted main
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
@@ -49,7 +57,9 @@ jobs:
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           APP_OWNER_USER_ID: ${{ secrets.APP_OWNER_USER_ID || vars.APP_OWNER_USER_ID }}
           CHART_TICKER: ${{ inputs.ticker }}
+          CHART_MAX_TICKERS: ${{ inputs.max_tickers || vars.CHART_MAX_TICKERS || '50' }}
+          CHART_MAX_REVISIONS: ${{ inputs.max_revisions || vars.CHART_MAX_REVISIONS || '500' }}
         run: |
-          args=(--execute)
+          args=(--execute --max-tickers "$CHART_MAX_TICKERS" --max-revisions "$CHART_MAX_REVISIONS")
           if [[ -n "$CHART_TICKER" ]]; then args+=(--ticker "$CHART_TICKER"); fi
           scanner/.venv/bin/python supabase/scripts/chart_artifact_runner.py "${args[@]}"
