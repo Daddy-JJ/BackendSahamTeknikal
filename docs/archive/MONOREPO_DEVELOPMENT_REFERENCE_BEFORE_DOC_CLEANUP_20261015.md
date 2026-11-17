@@ -1,3 +1,7 @@
+> HISTORICAL / NOT AN ACTIVE TASK / NOT AUTHORIZATION.
+> Source-date evidence only. Follow [current status](../../IMPLEMENTATION_STATUS.md)
+> and [instructions](../../AGENTS.md); old approvals do not authorize new work.
+
 # Development lokal — IDX Night Scanner
 
 Panduan implementasi saat ini. README.md dan lima dokumen awal tetap dipertahankan.

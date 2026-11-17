@@ -1,3 +1,7 @@
+> HISTORICAL / NOT AN ACTIVE TASK / NOT AUTHORIZATION.
+> Source-date evidence only. Follow [current status](../../IMPLEMENTATION_STATUS.md)
+> and [instructions](../../AGENTS.md); old approvals do not authorize new work.
+
 <!-- Historical snapshot, archived 2026-10-15. Source: docs/BACKUP_RESTORE_RUNBOOK.md.
 Original SHA256: 6895a0e35111b5ef928129a56142a7aeba07c3e6f2368c22a225dd3980a897f0.
 Body preserved except relative Markdown links rebased for this archive directory.

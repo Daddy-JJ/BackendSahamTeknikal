@@ -22,65 +22,29 @@ successful immutable receipts can remain and are safe to retry.
 Existing 002 receipts without source manifests are not guessed or rewritten.
 Reading them fails with market_revision_manifest_missing; reusing their key for
 003 ingestion fails with market_digest_conflict. An explicit new namespace is
-needed for any deliberate re-import. No 002 remote receipts were observed during
-the preflight for this slice.
+needed for any deliberate re-import. The original M2 preflight observed no 002 remote
+receipts for that slice; this historical observation is not a current database check.
 
-## Development SQL Editor
+## Setup and rollout evidence
 
-The owner selected manual SQL Editor application. Generate the ignored file:
+[Status](../IMPLEMENTATION_STATUS.md) owns dated migration/release proof (001–016
+at the 15 October cutoff); this cleanup made no remote check. Do not infer
+current rollout from the earlier M2 setup notes or replay applied migrations.
 
-    scanner/.venv/Scripts/python.exe supabase/scripts/prepare_dev_market_setup.py
+[Original revision handoff](archive/MARKET_REVISIONS_BEFORE_HANDOVER_CLEANUP_20261021.md)
+preserves guarded development generators, expected results, read-only/execute
+separation, local/hosted service-key/JWT evidence and original limits. SQL Editor
+application does not reconcile CLI history. A URL/checksum-format guard is not
+independent certification of source authenticity or exchange hours.
 
-Open backend/data/dev-market-revisions-vgmkpsestahkfahzdtae.sql and run its entire
-contents once in project vgmkpsestahkfahzdtae. It applies 002+003 in one transaction,
-requires fixture mode and the expected enabled owner, and refuses an existing
-market schema. Verify the project URL yourself: the database-side guard checks
-mode/owner, not Supabase's project reference. Expected final result:
-revision_schema_ready=true, data_mode=fixture.
+For any newly authorized setup, inspect exact target/history/schema/mode/owner
+first; never drop a present market schema, rerun foundation 001, change production
+to fixture or guess missing legacy manifests. Use the [Supabase map](../supabase/README.md),
+[scanner runbook](SCANNER_RUN.md) and [release readiness](PRODUCTION_READINESS.md).
+Storage sizing against real provider histories retains its original pending
+limit until separately measured; no test or sizing run occurred in this cleanup.
 
-If the market schema already exists, stop and inspect its migration state.
-Do not drop tables or rerun foundation 001. Manual SQL does not automatically
-reconcile Supabase CLI migration history; that remains a deployment task.
-
-After application, first run the read-only preflight, then the explicitly
-authorized fixture proof:
-
-    scanner/.venv/Scripts/python.exe supabase/scripts/smoke_dev_market_revisions.py
-    scanner/.venv/Scripts/python.exe supabase/scripts/smoke_dev_market_revisions.py --execute
-
-This script only accepts the allowlisted dev URL from ignored .env.development.
-It writes two small, labeled synthetic revisions under dev_market_revision_m2
-and verifies both originals plus replay. It never publishes trading signals.
-Remote owner/outsider RLS verification remains separate from this service-key proof.
-
-## Verification and rollout limits
-
-Local PGlite tests cover timestamp/cutoff isolation, omitted sessions, empty data,
-source mismatch, legacy rejection, owner/outsider/anonymous access, and a real
-Python -> PostgreSQL -> Python digest round-trip. The SQL Editor wrapper itself
-is tested against wrong mode, missing owner and duplicate application.
-Python tests cover response corruption and blocking publication on read failure.
-
-Deploy migration 003 before using the updated scanner adapter (002 alone is
-insufficient). No production migration, GitHub schedule or live market proof is
-implied by these local tests. Official calendar/universe and remaining M2 gates
-are recorded in IMPLEMENTATION_STATUS.md.
-
-## Remote development evidence - 2026-09-29
-
-The owner applied the SQL Editor handoff successfully. Independent schema
-preflight and the guarded --execute smoke passed on the allowlisted dev project:
-two receipts, bar counts 3 and 2, four changed-bar rows, exact digest read-back
-and replay verified. These checks used a backend service key. Remote JWT/RLS
-checks for this new RPC, live provider inputs and production rollout remain open.
-
-Remote access follow-up: anonymous reads/RPC denied; a disposable non-owner JWT
-saw empty private tables and could not read either an existing or random revision
-ID, nor call ingestion. The disposable Auth account was deleted. The owner
-confirmed the read-only frontend probe using their existing session. The probe
-checks two fixture receipts through the JWT/RLS RPC; canonical numeric digest
-verification remains the separately passed Python backend smoke.
-
-PostgREST returns HTTP 500 for PostgreSQL P0002; the negative probe checks that
-specific code, not any arbitrary 500. Reference:
-https://docs.postgrest.org/en/stable/references/errors.html#http-status-codes
+<!-- Compatibility anchors for consolidated historical sections. Original content is in archive/MARKET_REVISIONS_BEFORE_HANDOVER_CLEANUP_20261021.md. -->
+<a id="development-sql-editor"></a>
+<a id="verification-and-rollout-limits"></a>
+<a id="remote-development-evidence---2026-09-29"></a>

@@ -1,15 +1,13 @@
 # Backend local development
 
-Backend repository meliputi scanner Python, provider yfinance/EODHD, schema kontrak, migrasi Supabase, serta tes database. Runtime cloud mengikuti workflow yang dikonfigurasi; migration tidak otomatis mendeploy scanner. Status rilis ada di IMPLEMENTATION_STATUS.md.
-
-Persiapan production (bukan perintah deploy):
-[runbook/read-only preflight](docs/PRODUCTION_READINESS.md). Jalankan seluruh Git
-dari backend. Raw migrasi001–005 tidak boleh diulang; history harus direkonsiliasi.
-Planner offline tanpa history terverifikasi sengaja menolak melanjutkan.
+Run backend Git and commands in this independent repository. [PROJECT_CONTEXT](PROJECT_CONTEXT.md)
+describes the stack and snapshot boundary; [status](IMPLEMENTATION_STATUS.md) owns dated proof.
+This page documents commands; it grants no remote execution or publication permission.
 
 ## Python engine
 
-Di Windows PowerShell:
+Python 3.12.14 is pinned in `scanner/.python-version`, with locked dependencies.
+From backend on Windows PowerShell:
 
 ```powershell
 cd scanner
@@ -19,11 +17,16 @@ uv sync --locked
 .\.venv\Scripts\python.exe -m idx_scanner.cli demo --output ..\contracts\demo-snapshot.fixture.json
 ```
 
-Gunakan Python 3.12.14. fixtures/, kalender fixture-*, dan snapshot demo adalah data sintetis. Jangan mengubah fixture menjadi fallback saat provider gagal.
+The demo command writes a synthetic contract fixture; run it only for an authorized
+fixture/engine update and review the diff. `fixtures/`, `fixture-*` calendars and
+demo snapshots never replace missing live provider data. On Windows temporary-path
+failures, use a fresh writable task-specific `--basetemp` under ignored `data/`;
+do not weaken checks or broadly change ACLs.
 
-## Supabase migration/RLS lokal
+## Supabase migration/RLS local
 
-Pastikan venv Python sudah terpasang karena test membuat snapshot synthetic melalui engine. Node.js 22.23.2 dan npm 12.0.2 diperlukan untuk test PGlite.
+Node.js 22.23.2 and npm 12.0.2 are pinned by `supabase/package.json`.
+Install scanner dependencies first because SQL tests generate engine fixtures.
 
 ```powershell
 cd supabase
@@ -31,20 +34,38 @@ npm.cmd ci
 npm.cmd test
 ```
 
-PGlite adalah PostgreSQL sementara di memori. Simulasi role/JWT menguji SQL migration dan kontrol akses secara lokal; hasilnya bukan koneksi Supabase live. Jangan menjalankan migration ke project pengguna tanpa memastikan URL project development secara eksplisit.
+PGlite creates an in-memory PostgreSQL test database with simulated Auth roles/claims.
+It proves neither hosted Supabase behavior nor independent sessions/real JWT/HTTP.
+Native Docker checks are opt-in; verify an isolated target and actual loopback
+bindings before starting accounts or fixture workloads. See the
+[Auth/disposable guide](docs/AUTH_AND_DISPOSABLE_SMOKE_GUIDE.md).
 
 ## Environment
 
-Salin .env.example menjadi .env lokal bila memakai adapter/provider. Isi secret di environment lokal atau secret store tepercaya saja. Jangan commit file .env. SUPABASE_SECRET_KEY hanya backend/runner; EODHD key juga backend saja. Supabase URL dan frontend publishable key berada di repository frontend.
+Use the existing `.env.example` as a local template when a task needs a provider.
+Do not overwrite an existing env file; keep secrets in a trusted environment/store,
+outside Git/chat/logs. `SUPABASE_SECRET_KEY` and `EODHD_API_TOKEN` stay backend-only.
+Development helpers read their specified ignored development env; generic CLI
+commands do not implicitly load env files. Check the exact source before use.
+Cloud runtime has separate secrets, independent of local operator files.
 
-Probe provider tidak menerbitkan sinyal. EODHD meminta EODHD_API_TOKEN. Mapping ticker wajib Anda verifikasi. Action corporate yang belum direkonsiliasi menahan sinyal.
+Verify the intended project URL/ref and live/fixture mode before any connection.
+Never change production mode to pass a guard or create persistent production QA
+trades. Apply only reviewed pending forward migrations after fresh history/schema
+checks; applied migrations are immutable. The [Supabase map](supabase/README.md)
+and [release checklist](docs/PRODUCTION_READINESS.md) own those boundaries.
 
-## Batas implementasi saat ini
+## Implementation and operational evidence
 
-Empat entry rules, indikator, exit paper, provider adapter, Supabase scan RPC dan snapshot/reload adapter tersedia secara lokal. Owner Auth/RLS sudah dibuktikan di development. Penyimpanan dan rekonstruksi revisi market tersedia secara lokal; migrasi 002-003 dan smoke test revisi sudah berhasil di Supabase development. Scheduler scan live, kalender/universe resmi, paper persistence, actual ledger, dan integrasi live masih dalam pengembangan. Lihat IMPLEMENTATION_STATUS.md dan docs/LOCAL_PROVIDER_PROBE.md untuk bukti terkini.
+The dated record is schema 001–016 at the 15 October evidence cutoff; no connection
+was made to recheck that here. Supabase setup, actual-ledger, paper and scheduler
+capabilities must not be inferred from old 001-only/dev-only paragraphs.
+[Scanner/paper/recovery commands](docs/SCANNER_RUN.md) map current source entrypoints.
+[Actual journal](docs/ACTUAL_JOURNAL.md), [market revisions](docs/MARKET_REVISIONS.md)
+and [test matrix](docs/TEST_MATRIX.md) route task-specific contracts and checks.
+[Original development notes](docs/archive/DEVELOPMENT_BEFORE_HANDOVER_CLEANUP_20261021.md)
+retain historical rollout proof and limitations; do not replay their old migrations.
 
-Panduan migrasi revisi development dan smoke test: docs/MARKET_REVISIONS.md.
-
-M4 actual ledger/analytics/export dan hasil rollout 005 di development mode
-fixture, serta koreksi konflik 006: [docs/ACTUAL_JOURNAL.md](docs/ACTUAL_JOURNAL.md).
-HTTP 412 owner JWT perlu retest frontend; production belum menerima 005/006.
+<!-- Compatibility anchors for consolidated historical sections. Original content is in docs/archive/DEVELOPMENT_BEFORE_HANDOVER_CLEANUP_20261021.md. -->
+<a id="supabase-migrationrls-lokal"></a>
+<a id="batas-implementasi-saat-ini"></a>

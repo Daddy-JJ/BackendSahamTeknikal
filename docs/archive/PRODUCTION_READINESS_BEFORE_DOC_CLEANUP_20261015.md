@@ -1,3 +1,7 @@
+> HISTORICAL / NOT AN ACTIVE TASK / NOT AUTHORIZATION.
+> Source-date evidence only. Follow [current status](../../IMPLEMENTATION_STATUS.md)
+> and [instructions](../../AGENTS.md); old approvals do not authorize new work.
+
 <!-- Historical snapshot, archived 2026-10-15. Source: docs/PRODUCTION_READINESS.md.
 Original SHA256: 523f6fcd9457959f99135ec8602826cd083607531b865b7ce352ba3077c3175f.
 Body preserved except relative Markdown links rebased for this archive directory.

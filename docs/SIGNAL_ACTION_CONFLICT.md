@@ -1,10 +1,10 @@
 # Signal action conflict contract — migration007
 
-`202610010007_signal_action_conflict_http.sql` was applied to development
-`vgmkpsestahkfahzdtae` on 2026-10-01 (success observed02:47 UTC), with
-`data_mode=fixture`. It is not applied to production. It replaces `set_signal_action` with exactly001's
-function, changing only CREATE to CREATE OR REPLACE and custom40001 to PT412.
-001 remains immutable. No financial engine, signal, fill, fee or policy change.
+Migration `202610010007_signal_action_conflict_http.sql` preserves the original
+001 function semantics while changing custom 40001 to PT412 via CREATE OR REPLACE.
+Applied migration files remain immutable. No ledger, fee, fill or policy rule changes.
+[Status](../IMPLEMENTATION_STATUS.md) owns dated rollout proof; schema 001–016 is
+recorded there at the 15 October cutoff, without a fresh remote check here.
 
 RPC signature remains `set_signal_action(p_signal_id text, p_action text,
 p_expected_revision integer, p_request_id uuid)`. Enabled owner required. Request
@@ -17,50 +17,26 @@ Failures leave no action change, receipt or audit event. Refresh current state;
 only a new user intent gets a new UUID. Do not treat a replay receipt as current
 state or create a trade from a watchlist/planned annotation.
 
-Frontend was inspected read-only. Its only current `set_signal_action` caller is
-the development owner probe in `src/app/auth/check/actions.ts`; it fails safely
-on any RPC error and does not retry that error. Backend tests execute that exact
-function with injected PT412 and23514, verifying failure redirect, one call and
-unchanged named arguments. It has no dedicated scanner conflict message yet.
-The existing actual-journal UI already accepts PT412; that does not prove a
-production scanner action UI. Frontend must add/verify a dedicated stale message
-when exposing scanner mutations. No frontend files were modified.
+## Consumer and proof boundaries
 
-SQL tests cover exact replay, changed-payload conflict, old receipt after newer
-revision, stale revision, no receipt/audit residue, owner isolation and disabled
-owner, as well as eight concurrent caller submissions to PGlite. PGlite0.5.8 is
-single-connection PostgreSQL18.3 WASM: queued requests do **not** verify two
-independent PostgreSQL sessions, advisory lock waiting or hosted HTTP mapping.
+A consumer must fail safely on RPC errors, preserve named arguments and surface
+stale state explicitly; refresh before a new intent. Scanner annotations never
+create fills/trades. Verify the current caller and dedicated conflict UX in its
+source rather than treating an older development probe as a production UI audit.
 
-Development preflight confirmed005/006, one enabled owner and the old40001
-function. A checksum-verified, fixture-guarded SQL Editor handoff applied007;
-postcheck returned PT412 present,40001 absent, and one existing signal-action
-receipt/audit. `supabase/tests/dev_signal_conflict_smoke.sql` then passed in a
-hosted rollback-only transaction: exact replay returned one result, changed
-payload returned23514, stale new request returnedPT412, and only the successful
-request added a receipt/audit inside the transaction. The final ROLLBACK left
-the pre-existing one receipt/audit. This used a SQL-simulated owner claim, **not
-a genuine Auth JWT or separate database sessions**. SQL Editor application is
-not a Supabase CLI history entry. Real owner JWT/PostgREST and two-session tests
-remain open.
-
-On2026-10-01 the local `/auth/check` page showed an active development owner
-session and an existing watchlist action at revision1 with one request and one
-audit. The page exposed no control for a fresh RPC call, and its probe did not
-send a new mutation because that action already exists. It did not expose the
-original request UUID/payload needed for an exact replay. No JWT was inspected
-or copied; no new action was added to shared fixture data. Therefore the hosted
-SQL simulation above remains the only 007 write-path smoke in this task. A new
-successful request would add a permanent action/audit to shared development;
-run the real HTTP cases on an authorized disposable target or after recovering
-the exact existing replay inputs through an approved owner-only path.
+[Original conflict handoff](archive/SIGNAL_ACTION_CONFLICT_BEFORE_HANDOVER_CLEANUP_20261021.md)
+retains development application, local tests, SQL-claim rollback and browser limits.
+Queued PGlite calls are not independent sessions or genuine JWT/hosted HTTP proof.
+Later local-disposable and release evidence remain separately labelled in status.
 
 ## Two-session rehearsal to run on an authorized disposable database
 
-Not executed yet; user has no authorized disposable target/DB credentials.
-Use actual PostgreSQL, full001–007 schema, fixture mode, one enabled test owner
-and a signal from `tests/export_scan_fixture.py`. Never run this setup on live
-production or use shared development as a restore target.
+This procedure was not executed by the documentation cleanup. Original unexecuted
+rehearsal limits are retained in the archive; current credentials/target availability
+are unknown here. Use an explicitly authorized isolated PostgreSQL fixture target,
+compatible schema with at least the original 001–007 prerequisites, one enabled test
+owner and a signal from `tests/export_scan_fixture.py`. Check current migration history
+first. Never run this setup on live production or use shared development as a restore target.
 
 For each scenario choose fresh request UUIDs and record revision before/after.
 Both clients BEGIN, SET LOCAL ROLE authenticated and set the same database-local

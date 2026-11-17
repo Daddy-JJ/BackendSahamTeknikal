@@ -1,3 +1,7 @@
+> HISTORICAL / NOT AN ACTIVE TASK / NOT AUTHORIZATION.
+> Source-date evidence only. Follow [current status](../../IMPLEMENTATION_STATUS.md)
+> and [instructions](../../AGENTS.md); old approvals do not authorize new work.
+
 <!-- Historical snapshot, archived 2026-10-15. Source: PLAN.md.
 Original SHA256: 90781dd63fe9de42ff76fabbe0b87a87cbe2a576a7bec2e577002309611efea3.
 Body preserved except relative Markdown links rebased for this archive directory.

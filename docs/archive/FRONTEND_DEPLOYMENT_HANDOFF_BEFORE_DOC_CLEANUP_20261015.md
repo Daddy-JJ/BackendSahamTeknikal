@@ -1,3 +1,7 @@
+> HISTORICAL / NOT AN ACTIVE TASK / NOT AUTHORIZATION.
+> Source-date evidence only. Follow [current status](../../IMPLEMENTATION_STATUS.md)
+> and [instructions](../../AGENTS.md); old approvals do not authorize new work.
+
 <!-- Historical snapshot, archived 2026-10-15. Source: docs/FRONTEND_DEPLOYMENT_HANDOFF.md.
 Original SHA256: 57cf2c47e9e2c1c080fcded641994d0312bd17e2e2978b1558e27a486e6433f3.
 Body preserved except relative Markdown links rebased for this archive directory.

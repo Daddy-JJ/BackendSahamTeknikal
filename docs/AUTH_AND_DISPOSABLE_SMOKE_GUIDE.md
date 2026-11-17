@@ -1,126 +1,87 @@
-# Owner login and disposable smoke target — 2026-10-02
+# Owner login and disposable smoke guide
 
-## Latest execution evidence
-
-Production CLI history001–007 is complete; frontend reports production owner
-GitHub login and owner/anon read checks. Backend local disposable real Auth/HTTP
-smoke passed19 assertion groups on2026-10-02, including outsider/disabled-owner,
-journal lifecycle, replay/conflict/PT412, independent sessions and cursor200+1.
-This is not hosted production mutation/RLS proof. See
-SCANNER_LIVE_READINESS.md and docs/evidence/disposable-*.json.
-
-The local CLI initially published ports on all interfaces despite the requested
-network default. Actual Docker bindings were corrected and verified as127.0.0.1
-before creating test accounts. All five running disposable containers were
-stopped after smoke; volumes and stopped original containers were retained.
-Before any restart, inspect actual bindings again; do not assume the older
-startup recipe below enforces loopback. No production QA trades were created.
-
-No frontend edits or Vercel deployment were performed by this backend chat.
-Production rollout is authorized; credential entry remains an operator action.
-Do not paste credentials, OAuth callback codes or JWT into chat/logs/files.
+Reusable isolation/security procedure; reviewed 21 October 2026 without execution.
+[Status](../IMPLEMENTATION_STATUS.md) owns dated schema/release and proof limits.
+[Original guide](archive/AUTH_AND_DISPOSABLE_SMOKE_GUIDE_BEFORE_HANDOVER_CLEANUP_20261021.md)
+retains local smoke results, startup failure/binding correction and earlier setup.
+Old rollout approval is historical; it is not permission to create Auth users,
+change production settings, start containers or write permanent QA financial rows.
 
 ## Production owner session
 
-1. Finish guarded CLI001 reconciliation and002–007 before journal/API smoke.
-   Review sanitized script output, actual history and schema/FK/RPC postflight.
-2. In GitHub Settings → Developer settings → OAuth Apps, create a dedicated
-   production OAuth app yourself. Callback:
-   `https://hcjfxbynqzsaidlwvdfx.supabase.co/auth/v1/callback`.
-   Homepage is the actual app origin; localhost3050 is acceptable for this
-   preliminary local login test. This does not prove a Vercel deployment.
-3. In the exact production Supabase project, Authentication → Sign In / Providers
-   → GitHub, enter Client ID/Client Secret privately and enable the provider.
-   The operator must enter and submit new credentials; do not send them to an agent.
-4. For local owner login, permit the exact application redirect
-   `http://localhost:3050/auth/callback`. Keep final Site URL/HTTPS callback tied
-   to the verified Vercel origin when frontend deployment is separately authorized.
-   The application callback differs from the GitHub provider callback above.
-   Do not add broad production/preview wildcard redirects.
-5. Ask the frontend chat to run its EXISTING local login/Auth-check against the
-   production URL/public key, without UI changes, commit/push or Vercel deployment.
-   Public key is retrieved privately from the production Dashboard; service-role
-   keys remain backend-only. This backend chat does not modify frontend config.
-6. Use the existing owner's GitHub account. Supabase issues the session JWT itself.
-   Verified-email identity linking can preserve an existing user, but verify the
-   resulting UUID against the existing enabled owner membership. Do not assume
-   matching account names imply matching UUIDs, and do not promote a new account.
-7. Report only: correct project, authenticated user/owner match boolean, enabled
-   owner boolean, HTTP status/error codes, contract version and aggregate counts.
-   Never copy a token from browser storage/network tools. Backend production
-   owner read smoke is distinct from SQL claims and service-role preflight.
+Verify intended project/ref/mode, schema history/capabilities and existing enabled
+owner before a scoped smoke. Already-applied migrations are not setup work to repeat.
+For an authorized Auth configuration change, the operator privately creates/uses the
+dedicated OAuth app and submits Client ID/secret in the intended Supabase provider.
+Provider callback is `https://<project-ref>.supabase.co/auth/v1/callback`;
+application callback is `/auth/callback` on the exact allowed app origin.
+Keep development/production origins separate, no broad preview wildcard redirects.
+Enabling GitHub is not an Auth session or owner-RLS proof.
 
-Without working OAuth credentials/login, this gate is BLOCKED. Enabling GitHub
-alone is not an owner session or RLS proof. Outsider/disabled-owner writes must
-use an explicitly approved safe target; never disable the sole production owner.
+Use the existing owner's actual app login. Auth issues the JWT; verify returned UID
+against existing enabled membership. Verified-email linking/account names do not
+authorize promotion or imply UUID equality. Dashboard login is not the app session.
+Do not extract/copy browser tokens, accept service-key owner impersonation or sign
+manual JWTs. Use protected prompts/environment; never passwords/JWT/callback codes
+in chat, shell arguments, transcripts, screenshots, logs, files or Git.
 
-## Disposable target without a new paid/cloud project
+Report only correct-project/owner-match/enabled booleans, safe HTTP/error codes,
+contract versions and aggregate counts. Owner browser, SQL-role, service preflight
+and real owner/outsider JWT prove distinct boundaries. Do not disable the sole
+production owner or create/promote an account to manufacture a denial test.
+A credential/login failure stays blocked for that boundary while safe work continues.
 
-An OFFLINE sandbox was prepared at
-`backend/data/idx-smoke-local-20261002/supabase/`. CLI2.119.0 init completed;
-project_id=`idx-smoke-local-20261002`, PostgreSQL major17, seed/analytics disabled,
-all seven migration copies match the release manifest. No container was started,
-Auth account created, migration applied, cloud project linked or production data
-copied. This is preparation, not an available/tested target yet.
+Development-only read probes exist in `supabase/scripts/verify_dev_owner_rls.py`
+(`--check-config`, optional protected `--access-token` prompt) and
+`verify_dev_non_owner_rls.py` (account creation requires explicit execute/isolation).
+Verify their allowlisted development URL and exact source before any use.
+A disposable cleanup marker prevents duplicate accounts after interruption; recover
+that target explicitly instead of creating more users or deleting unrelated ones.
 
-Start only this local sandbox. Suppress raw CLI output because startup/status
-can display local API/JWT/service keys. Do not use a transcript or paste output.
+## Disposable local target
 
-```powershell
-Set-Location C:\xampp\htdocs\SahamTeknikal\backend
-$taskCli = "$env:LOCALAPPDATA\npm-cache\_npx\c34c3565ecb5471d\node_modules\@supabase\cli-windows-x64\bin\supabase.exe"
-$taskSandbox = Join-Path (Get-Location) 'data/idx-smoke-local-20261002'
-$taskNetwork = 'idx-smoke-loopback-20261002'
-# Create a dedicated network; if the name already exists, review it first.
-docker --context desktop-linux network create --driver bridge `
-  --opt com.docker.network.bridge.host_binding_ipv4=127.0.0.1 $taskNetwork
-if ($LASTEXITCODE -ne 0) { throw 'Network preparation failed; review before start' }
-$taskOutput = & $taskCli start --workdir $taskSandbox --network-id $taskNetwork 2>&1
-$taskExit = $LASTEXITCODE
-Remove-Variable taskOutput
-if ($taskExit -ne 0) { throw 'Disposable start failed; request sanitized diagnostics' }
-'Disposable start completed; health and actual bindings still need verification'
-```
+Use only a verified isolated sandbox under ignored `data/` with its own project ID,
+fixture mode, intended frozen schema, empty starting Auth/workload and local secrets.
+Never link it to cloud, clone production Auth/data, reuse production secrets, reset
+shared development, silently upgrade a service or pause another project for a slot.
 
-Do not use `--ignore-health-check`, `--linked`, `db reset`, production DB URLs,
-or production secrets. Before testing, inspect actual Docker port bindings and
-health for containers belonging to this project. Require loopback-only API/DB
-bindings; a successful start does not establish that. Check actual local CLI
-history; start may already apply migrations. Apply only remaining local migrations
-with `migration up --local --workdir $taskSandbox`, capturing/suppressing output.
-Never repair local history to claim a migration that did not execute.
+The historical CLI startup accepted a custom bridge default yet exposed ports on all
+interfaces. Require inspection of actual Docker port bindings and health before
+creating accounts/trades, including after every restart: API/DB must bind loopback
+only. A successful start/network setting is insufficient. Stop the exact unsafe
+sandbox before fixture identities/workload; preserve data/volumes unless cleanup
+is explicitly authorized. The archived cache-specific CLI path is not portable.
 
-Then, on the fresh local target only:
+Suppress raw start/status output because it can contain local keys; keep it in
+memory without transcripts. Use a trusted pinned CLI, no `--ignore-health-check`,
+`--linked`, production URLs/secrets or broad `db reset`. Check actual local migration
+history: startup may already apply SQL. Apply only remaining verified local versions;
+never repair history to claim an unexecuted migration.
 
-- Verify007/schema/FK/RPC and zero Auth users/members/workload first.
-- Set fixture mode on this sandbox only. Do not change production or shared dev.
-- Create local test Auth accounts for ownerA, ownerB, outsider and disabled owner;
-  explicitly grant memberships only for those disposable accounts. Local Auth
-  issues their JWT on login; no manually signed JWT and no production identities.
-- Test real Auth/PostgREST request replay/conflicts, HTTP412, ledger/analytics,
-  CSV/cursor201 and two independent clients/connections. Compare final failed
-  request counts/revisions/audit and cross-owner visibility. Financial calculations
-  remain in backend RPCs. Keep QA data clearly fixture.
-- Retain sanitized evidence of target, actual history, modes, HTTP codes, counts
-  and independent sessions. Stop only this sandbox after tests; no destructive
-  cleanup of shared projects or immutable production rows.
+After readiness, scoped tests may create disposable ownerA/ownerB/outsider/disabled
+accounts and grant only their intended memberships. Auth logins supply real local
+JWTs. Test row isolation, anon/direct DML denial, replay/changed payload/stale PT412,
+ledger corrections/fees/analytics/CSV, cursor 200+1 and independent clients/sessions.
+Compare revisions/receipts/audit and failed-request residue. Financial math stays
+in canonical RPC. Label every local fixture. Stop only this sandbox after testing.
+Nonempty owner data matters: denial on an empty table is narrower than row isolation.
 
-Local Auth/PostgREST evidence is local evidence, not production smoke. It can
-exercise mutating contracts safely but cannot replace real production owner/
-anon/RLS readiness. Production mutation lifecycle remains untested without
-genuine owner-approved trade entries or another expressly approved isolation
-strategy; do not manufacture permanent TEST trades to obtain a green gate.
+## Hosted alternative and evidence limits
 
-## Hosted disposable alternative
+An operator may provision a dedicated hosted QA target only when authorized, then
+provide its ref and privately provision secrets. Do not buy/upgrade/repurpose shared
+projects silently. Verify target/mode/schema/users before setup. Hosted QA remains
+QA evidence; local disposable Auth/HTTP remains local evidence.
 
-If an available hosted project slot exists, the operator may create a dedicated
-QA project and provide only its project ref. Do not silently upgrade, pause the
-shared development project, clone production Auth/data, or reuse production keys.
-Initialize the frozen schema, fixture mode and disposable users only on that
-verified QA target. A hosted QA result is still not production evidence.
+Production mutation lifecycle/error/concurrency needs genuine owner-approved activity
+to retain or a separately approved isolation design. Never seed immutable permanent
+TEST trades just to close a gate. SQL rollback fixtures can test database contracts
+without becoming real JWT/HTTP/browser proof. A one-page real CSV does not prove
+>200-row HTTP pagination. Record skips, owner waivers and unavailable tests honestly;
+an archived waiver belongs only to its original release/source.
 
-Sources checked for this guide:
-- https://supabase.com/docs/guides/auth/social-login/auth-github
-- https://supabase.com/docs/guides/auth/auth-identity-linking
-- https://supabase.com/docs/guides/local-development/cli/getting-started
-- Local pinned CLI `init --help`, `start --help`, `migration up --help`.
+<!-- Compatibility anchors for consolidated historical sections. Original content is in archive/AUTH_AND_DISPOSABLE_SMOKE_GUIDE_BEFORE_HANDOVER_CLEANUP_20261021.md. -->
+<a id="owner-login-and-disposable-smoke-target--2026-10-02"></a>
+<a id="latest-execution-evidence"></a>
+<a id="disposable-target-without-a-new-paidcloud-project"></a>
+<a id="hosted-disposable-alternative"></a>

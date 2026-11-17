@@ -1,21 +1,35 @@
 # Backend implementation status
 
-Evidence cutoff: **15 October 2026**. This summary consolidates existing recorded release
+Evidence cutoff: **15 October 2026**; documentation reconciled **21 October 2026**. This summary consolidates existing recorded release
 proof; the documentation cleanup did not recheck production or rerun application tests.
 Read [active plan](PLAN.md) for work to do, [handoff](CODEX_HANDOFF.md) for continuation,
 and [readiness](docs/PRODUCTION_READINESS.md) for release checks. Older receipts and all dated
 unreconciled findings remain in [status history](docs/archive/IMPLEMENTATION_STATUS_BEFORE_DOC_CLEANUP_20261015.md).
 
+## Current data maintenance — 21 October 2026
+
+Owner-approved production journal reset **COMPLETE**: actual 2→0, paper58→6 pending
+(3 per exit), historical evaluations29→3 new pending/zero-session observations.
+Retained BUKA/PGEO/SGER signals21October still target entry22October; no synthetic fills.
+Canonical hosted SQL-role reporting/retry verified;21 preservation fingerprints equal;
+GitHub scanner/chart workflows and Supabase watchdog restored to their prior active state.
+Local12/12 fixture tests/security review PASS. Application source/schema/deployment unchanged.
+[Reset receipt](docs/JOURNAL_RESET_20261021.md) records scope, scoped encrypted backup,
+chart cache exclusion, operational audit retention and owner-browser NOT VERIFIED limits.
+This operation supplies no authorization to repeat a reset or publish local documentation.
+
 ## Recorded release
 
 | Boundary | Recorded result |
 | --- | --- |
-| Backend runtime source | `dce85b12274e34fbb3a7b36c962e930b4b80b4d3`; final docs-only source `298bb557b6339174e2d6899d4e951536a871c980` |
+| Backend runtime source | `dce85b12274e34fbb3a7b36c962e930b4b80b4d3`; later recorded docs-only main `719bc8c7f4deff2f945a0825cc92f6685cf48661` (earlier docs receipt `298bb557b6339174e2d6899d4e951536a871c980`) |
 | Supabase | Migrations 001-016 applied; exact pending 013-016 checksums/CLI dry-run/ACL checked |
 | Chart cloud run | `38695021871` SUCCESS; 100/100 latest tickers, 288 immutable artifacts, no fixture artifacts |
 | Chart quality | Complete/current through 14 October at recorded verification; future sessions not implied |
-| Frontend | Production source `92705f9e47c4bedb6872e350ea4093a6fd472761`, Vercel deployment `7085991505` SUCCESS |
-| Public HTTP smoke | 8 routes/14 assets passed; anonymous chart/export denied; chart failure envelope/no-store checked |
+| Frontend chart release (earlier 15 October) | Source `92705f9e47c4bedb6872e350ea4093a6fd472761`, Vercel deployment `7085991505` SUCCESS |
+| Frontend Scanner relayout (later 15 October) | Source `513870f6020983ddb20ba022c946eaffd223fce6`; Vercel Production `7092738529` SUCCESS, recorded `2026-10-15T12:37:40Z` |
+| Repository delivery | Backend documentation-only `719bc8c7f4deff2f945a0825cc92f6685cf48661` and frontend `513870f` were recorded pushed with clean trees; this is historical delivery, not the 21 October working state |
+| Public HTTP smoke | Later relayout Production check: 8 routes/14 assets passed; expected CSS markers; anonymous chart/export HTTP401; checked responses/assets had no credential-pattern matches. Earlier chart failure-envelope/no-store checks remain their own proof |
 | Financial isolation | 18 economic/config fingerprints and all-page canonical reports matched while paused; after resume all nonoperational fields still matched |
 | Operational reconciliation | Raw reports changed at six explicit watchdog enabled/last_checked_at paths; those captured fields alone were normalized for comparison |
 | Cloud automation | Prior GitHub workflow, Supabase watchdog and Cron states restored/active; operator laptop is not a runtime dependency |
@@ -77,8 +91,40 @@ all historical rows was not independently reconstructed by this read-only verifi
   schema/data; prior app source `11234b7`/deployment `7037684774`. Instant CLI rollback unavailable
   without Vercel auth; authorized source revert/push is the fallback, not database recovery.
 
-Current frontend work is the four-stage detail relayout; it requires no backend change.
+The four-stage frontend Scanner detail relayout is recorded released on 15 October;
+no backend implementation follows from it. The documentation cleanup is complete locally;
+no task is active in [PLAN](PLAN.md). No live check, application test, publication or deployment
+was performed by this 21 October reconciliation.
 The [canonical SOT](SOT.md), actual ledger/CSV and versioned contracts retain authority.
-Workspace-level dated proof, when available: [chart verification](../docs/CHART_V1_LOCAL_VERIFICATION.md).
+Workspace-level chart proof is optional material at `docs/CHART_V1_LOCAL_VERIFICATION.md`
+outside this repo. Use the local recorded summary and [release history](docs/archive/IMPLEMENTATION_STATUS_BEFORE_DOC_CLEANUP_20261015.md)
+when it is unavailable; do not infer fresh or missing proof.
 Private operator receipts remain ignored locally; never publish raw OHLC, journal/runtime payloads,
 credentials or backup contents as documentation evidence.
+
+## Historical limits retained for task-specific review
+
+Documentation cleanup, 21 October: D1-D4 implemented locally; all 285 tracked non-Markdown
+files and protected SOT/chart/legal/checksums unchanged. Primary rule/contract review,
+archive preservation, links/anchors and diff checks PASS. Independent backend fresh-reader
+and workspace reviews PASS; the PT412 contract-documentation omission was restored and
+independently rechecked. D1-D5 complete locally. See [traceability](docs/AGENT_RULE_TRACEABILITY_20261021.md)
+and [PLAN](PLAN.md); these are uncommitted Markdown edits, not new app/cloud verification.
+
+The [archive index](docs/archive/README.md) preserves original reports, hashes and
+all old headings. Their earlier scheduler-off/001-only/dev-only/no-deploy claims
+remain scoped to their dates; the release table above supersedes those current-status
+claims. Archiving is not a finding resolution or a renewal of old approval.
+
+| Historical source | Limitation retained; next action only within an authorized task |
+| --- | --- |
+| [Actual journal](docs/archive/ACTUAL_JOURNAL_BEFORE_HANDOVER_CLEANUP_20261021.md) | SQL-role vs real-JWT evidence, multi-page HTTP/download gap, no cash/EOD equity metrics, estimated fees and immutable development audit history stay explicit |
+| [Signal conflict](docs/archive/SIGNAL_ACTION_CONFLICT_BEFORE_HANDOVER_CLEANUP_20261021.md) | Queued PGlite calls do not prove independent sessions; dedicated consumer stale/conflict UX and real hosted write-path scope need source-specific verification |
+| [Source review](docs/MARKET_SOURCE_STATUS.md), [recovery](docs/SCANNER_RECOVERY_REPORT_20261003.md), [finalization](docs/BACKEND_FINALIZATION_REPORT_20261003.md) | Owner-workbook vs independent attachment provenance; amendments/archive gaps, historical execution-time and warm-up limits remain their own evidence. Do not infer current holds or current provider plan from old counts |
+| [Live readiness](docs/SCANNER_LIVE_READINESS.md), [real trade](docs/REAL_TRADE_READINESS_20261003.md) | Outsider/concurrency skips, disabled-owner/raw receipt/error-path gaps and one-row vs >200 export proof are not closed by later public deployment smoke |
+| [Manual result](docs/MANUAL_PUBLICATION_RESULT_20261003.md), [candidate plan](docs/MANUAL_PUBLICATION_PLAN_20261003.md) | Original failed postflight followed a committed receipt; GET-only recovery did not recover lost original before/after hashes. Exact old approval/candidate is expired; interrupted checkpoint means outcome unknown until reconciliation |
+| [Persisted provenance](docs/archive/BACKEND_FINALIZATION_REPORT_20261003_BEFORE_HANDOVER_CLEANUP_20261021.md#persisted-provenance-contract-limitation) | Old held/no-signal run snapshots lacked complete per-item revision-ID/fetch-time bindings; never select an arbitrary latest revision as that chosen run input. Reassess source/contract before claiming a newer extension closes this |
+
+The temporary dev-only `braces` advisory exception remains a recorded exception;
+no dependency patch or new permanent exception is implied. Owner waivers remain
+release-specific. Private operator evidence is not copied out of ignored `data/`.
