@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sahamteknikal.local/contracts/broker-flow-v1.schema.json",
+  "title": "BrokerFlowV1",
+  "description": "Canonical contract for IDX Market-Wide Broker Flow and Ticker Bandarmology Intelligence",
+  "type": "object",
+  "required": ["date", "market_summary", "top_accumulations", "top_distributions", "top_brokers"],
+  "properties": {
+    "date": {
+      "type": "string",
+      "description": "Trading session date (YYYY-MM-DD)"
+    },
+    "market_summary": {
+      "type": "object",
+      "required": ["quadrant_counts", "total_classified", "smart_money_net", "total_turnover"],
+      "properties": {
+        "quadrant_counts": {
+          "type": "object",
+          "required": ["markup_akumulasi", "markup_distribusi", "markdown_akumulasi", "markdown_distribusi"],
+          "properties": {
+            "markup_akumulasi": { "type": "integer", "minimum": 0 },
+            "markup_distribusi": { "type": "integer", "minimum": 0 },
+            "markdown_akumulasi": { "type": "integer", "minimum": 0 },
+            "markdown_distribusi": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "total_classified": { "type": "integer", "minimum": 0 },
+        "smart_money_net": { "type": "number" },
+        "total_turnover": { "type": "number", "minimum": 0 }
+      }
+    },
+    "top_accumulations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["ticker", "close", "change_percent", "top_buyers", "sum_buy", "smart_money_net"],
+        "properties": {
+          "ticker": { "type": "string" },
+          "close": { "type": "number" },
+          "change_percent": { "type": "number" },
+          "top_buyers": { "type": "string" },
+          "sum_buy": { "type": "number" },
+          "smart_money_net": { "type": "number" }
+        }
+      }
+    },
+    "top_distributions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["ticker", "close", "change_percent", "top_sellers", "sum_sell", "smart_money_net"],
+        "properties": {
+          "ticker": { "type": "string" },
+          "close": { "type": "number" },
+          "change_percent": { "type": "number" },
+          "top_sellers": { "type": "string" },
+          "sum_sell": { "type": "number" },
+          "smart_money_net": { "type": "number" }
+        }
+      }
+    },
+    "top_brokers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["broker", "buy_value", "sell_value", "net_value", "stocks_count"],
+        "properties": {
+          "broker": { "type": "string" },
+          "buy_value": { "type": "number" },
+          "sell_value": { "type": "number" },
+          "net_value": { "type": "number" },
+          "stocks_count": { "type": "string" }
+        }
+      }
+    },
+    "sector_flows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["sector", "stocks_count", "smart_money_net", "total_value"],
+        "properties": {
+          "sector": { "type": "string" },
+          "stocks_count": { "type": "integer" },
+          "smart_money_net": { "type": "number" },
+          "total_value": { "type": "number" }
+        }
+      }
+    }
+  }
+}
