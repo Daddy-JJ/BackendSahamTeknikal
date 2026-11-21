@@ -10,6 +10,12 @@ from idx_scanner.broker_flow import (
     classify_market_quadrant,
     analyze_counterparty,
     synthesize_trade_plan,
+    calculate_counterparty_purity_index,
+    evaluate_bandar_action_verdict,
+    calculate_horizon_momentum,
+    FOREIGN_BROKER_CODES,
+    DANANTARA_GOV_BROKER_CODES,
+    RETAIL_BROKER_CODES,
 )
 
 
@@ -75,3 +81,66 @@ def test_synthesize_trade_plan():
     assert "BUY ON PULLBACK" in plan_ma["action"]
     assert "1 : 3.0" in plan_ma["rr_ratio"]
     assert "rentetan beli asing 4 sesi" in plan_ma["note"]
+
+
+def test_broker_taxonomy_and_danantara():
+    assert "BK" in FOREIGN_BROKER_CODES
+    assert "KZ" in FOREIGN_BROKER_CODES
+    assert "CC" in DANANTARA_GOV_BROKER_CODES
+    assert "NI" in DANANTARA_GOV_BROKER_CODES  # BNI Sekuritas is Danantara/Gov
+    assert "XL" in RETAIL_BROKER_CODES  # Stockbit
+    assert "XC" in RETAIL_BROKER_CODES  # Ajaib
+    assert "YP" in RETAIL_BROKER_CODES  # Mirae
+
+
+def test_calculate_counterparty_purity_index():
+    # 80B bought by smart money, 60B sold by retail -> 75%
+    purity = calculate_counterparty_purity_index(80_000_000_000.0, 60_000_000_000.0)
+    assert purity == 75.0
+
+    # Over 100% capped
+    purity_full = calculate_counterparty_purity_index(50_000_000_000.0, 80_000_000_000.0)
+    assert purity_full == 100.0
+
+    # Zero smart money buy -> 0%
+    assert calculate_counterparty_purity_index(0.0, 10_000_000.0) == 0.0
+
+
+def test_evaluate_bandar_action_verdict():
+    # Sweet spot entry: positive flow, gap +1.0%
+    verdict_sweet = evaluate_bandar_action_verdict(50_000_000_000.0, 1.0)
+    assert verdict_sweet["verdict"] == "SWEET SPOT BUY"
+    assert verdict_sweet["grade"] == "Grade A"
+
+    # Weakness absorption: positive flow, gap -2.5%
+    verdict_dip = evaluate_bandar_action_verdict(80_000_000_000.0, -2.5)
+    assert verdict_dip["verdict"] == "ACCUMULATE DIP"
+    assert verdict_dip["grade"] == "Grade B+"
+
+    # Chasing risk: positive flow, gap +12.0%
+    verdict_chase = evaluate_bandar_action_verdict(30_000_000_000.0, 12.0)
+    assert "CHASING RISK" in verdict_chase["verdict"]
+    assert verdict_chase["grade"] == "Grade C"
+
+    # Bull trap: negative flow, retail net buyer
+    verdict_trap = evaluate_bandar_action_verdict(-40_000_000_000.0, 0.5, is_retail_net_buyer=True)
+    assert "BULL TRAP" in verdict_trap["verdict"]
+    assert verdict_trap["grade"] == "Grade D"
+
+    # Heavy distribution
+    verdict_dist = evaluate_bandar_action_verdict(-100_000_000_000.0, -4.0, is_retail_net_buyer=False)
+    assert verdict_dist["verdict"] == "HEAVY DISTRIBUTION"
+    assert verdict_dist["grade"] == "Grade F"
+
+
+def test_calculate_horizon_momentum():
+    # Flow 2D is 40B (rate 20B/day), Flow 10D is 100B (rate 10B/day) -> accelerating
+    mom_acc = calculate_horizon_momentum(40_000_000_000.0, 70_000_000_000.0, 100_000_000_000.0)
+    assert mom_acc["is_accelerating"] is True
+    assert mom_acc["status"] == "ACCELERATING_INFLOW"
+    assert mom_acc["acc_rate"] == 10_000_000_000.0
+
+    # Flow 2D is -10B, Flow 10D is 50B -> fading
+    mom_fade = calculate_horizon_momentum(-10_000_000_000.0, 10_000_000_000.0, 50_000_000_000.0)
+    assert mom_fade["is_accelerating"] is False
+    assert mom_fade["status"] == "FADING_OR_STABLE"

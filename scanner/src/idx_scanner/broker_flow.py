@@ -68,8 +68,105 @@ def classify_market_quadrant(price_change_pct: float, flow_net_value: float) -> 
         return "markdown_akumulasi" if flow_net_value > 0 else "markdown_distribusi"
 
 
-RETAIL_BROKER_CODES = {"YP", "PD", "XC", "XL", "NI", "KK", "SQ"}
-SMART_MONEY_BROKER_CODES = {"BK", "KZ", "AK", "RX", "ZP", "YU", "CC", "BB", "CS"}
+FOREIGN_BROKER_CODES = {"BK", "KZ", "AK", "RX", "ZP", "YU", "CS"}
+DANANTARA_GOV_BROKER_CODES = {"CC", "NI", "BB", "AZ", "LG"}
+RETAIL_BROKER_CODES = {"XL", "XC", "YP", "PD", "SQ", "KK"}
+SMART_MONEY_BROKER_CODES = FOREIGN_BROKER_CODES.union(DANANTARA_GOV_BROKER_CODES)
+
+
+def calculate_counterparty_purity_index(
+    smart_money_buy_val: float,
+    retail_sell_val: float,
+) -> float:
+    """
+    Calculates the counterparty purity percentage.
+    High percentage indicates smart money is absorbing retail panic selling.
+    """
+    if smart_money_buy_val <= 0:
+        return 0.0
+    return round(min(smart_money_buy_val, max(0.0, retail_sell_val)) / smart_money_buy_val * 100.0, 2)
+
+
+def evaluate_bandar_action_verdict(
+    flow_net_value: float,
+    gap_pct: float,
+    is_retail_net_buyer: bool = False,
+    quadrant: str = "markup_akumulasi",
+) -> Dict[str, Any]:
+    """
+    Evaluates actionable stock decision:
+    - SWEET_SPOT_BUY: Flow > 0, gap_pct in [-2.0%, +3.5%], retail not trap buyer
+    - WEAKNESS_ABSORPTION: Flow > 0, gap_pct < -2.0% (markdown absorption)
+    - CHASING_RISK: Flow > 0, gap_pct > +8.0%
+    - BULL_TRAP_AVOID: Flow <= 0, retail net buying
+    - HEAVY_DISTRIBUTION: Flow <= 0, markdown distribution
+    """
+    if flow_net_value <= 0:
+        if is_retail_net_buyer:
+            return {
+                "verdict": "BULL TRAP / AVOID",
+                "grade": "Grade D",
+                "description": "Ritel menampung jualan smart money (exit liquidity). Hindari mengejar harga.",
+                "action": "AVOID / SELL ON STRENGTH",
+            }
+        return {
+            "verdict": "HEAVY DISTRIBUTION",
+            "grade": "Grade F",
+            "description": "Tekanan jual smart money konsisten dan belum ada pivot serapan.",
+            "action": "HARD AVOID",
+        }
+
+    # Flow is positive
+    if gap_pct < -2.0:
+        return {
+            "verdict": "ACCUMULATE DIP",
+            "grade": "Grade B+",
+            "description": f"Weakness absorption: harga berada di area diskon ({gap_pct}%) di bawah modal bandar.",
+            "action": "SWING BUY / ACCUMULATE",
+        }
+
+    if gap_pct <= 3.5:
+        return {
+            "verdict": "SWEET SPOT BUY",
+            "grade": "Grade A",
+            "description": f"Golden entry zone: harga sangat dekat dengan modal bandar (+{gap_pct}%). Risk/reward optimal.",
+            "action": "BUY ON PULLBACK / BREAKOUT",
+        }
+
+    if gap_pct > 8.0:
+        return {
+            "verdict": "CHASING RISK / WAIT RETEST",
+            "grade": "Grade C",
+            "description": f"Overheated: harga telah terbang +{gap_pct}% di atas modal bandar. Tunggu pullback.",
+            "action": "WAIT FOR PULLBACK",
+        }
+
+    return {
+        "verdict": "BUY ON PULLBACK",
+        "grade": "Grade B",
+        "description": f"Akumulasi terkonfirmasi, gap +{gap_pct}% dari modal bandar. Beli saat koreksi wajar.",
+        "action": "BUY ON PULLBACK",
+    }
+
+
+def calculate_horizon_momentum(
+    flow_2d: float,
+    flow_5d: float,
+    flow_10d: float,
+) -> Dict[str, Any]:
+    """
+    Determines if smart money accumulation is accelerating or fading.
+    """
+    rate_2d = flow_2d / 2.0
+    rate_10d = flow_10d / 10.0
+    acc_rate = rate_2d - rate_10d
+    is_accelerating = acc_rate > 0
+
+    return {
+        "acc_rate": round(acc_rate, 2),
+        "is_accelerating": is_accelerating,
+        "status": "ACCELERATING_INFLOW" if is_accelerating else "FADING_OR_STABLE",
+    }
 
 
 def analyze_counterparty(top_buyers: List[Dict[str, Any]], top_sellers: List[Dict[str, Any]]) -> Dict[str, Any]:
