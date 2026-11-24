@@ -1,0 +1,96 @@
+name: Scheduled Daily Broker Flow & Bandarmology Sync
+
+on:
+  schedule:
+    # 10:30 UTC = 17:30 WIB (Primary, right after IDX EOD finalization)
+    - cron: '30 10 * * 1-5'
+    # 11:45 UTC = 18:45 WIB (Recovery)
+    - cron: '45 11 * * 1-5'
+
+  workflow_dispatch:
+    inputs:
+      target_date:
+        description: 'Target EOD date in YYYY-MM-DD format (empty = latest available)'
+        required: false
+        default: ''
+      all_universe:
+        description: 'Sync entire IDX universe (955 tickers)'
+        type: boolean
+        default: false
+      limit:
+        description: 'Limit number of tickers to sync (empty = default candidate pool)'
+        required: false
+        default: '100'
+      concurrency:
+        description: 'Worker concurrency pool size (default: 12)'
+        required: false
+        default: '12'
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: broker-flow-sync
+  cancel-in-progress: false
+
+jobs:
+  sync-broker-flow:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: true
+
+      - name: Setup Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.14'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install uv==0.12.5
+          uv sync --locked --project scanner
+
+      - name: Run daily broker flow sync
+        env:
+          MAX_TRADE_MCP_URL: ${{ secrets.MAX_TRADE_MCP_URL || 'https://eod.maxlong.my.id/mcp' }}
+          MAX_TRADE_MCP_TOKEN: ${{ secrets.MAX_TRADE_MCP_TOKEN || 'YeU65tY4n40eBTsC_CFSrFYnaCHL1YEmuwE72sE4hSk' }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL || vars.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          TARGET_DATE: ${{ inputs.target_date }}
+          ALL_UNIVERSE: ${{ inputs.all_universe }}
+          LIMIT: ${{ inputs.limit }}
+          CONCURRENCY: ${{ inputs.concurrency }}
+
+        run: |
+          ARGS="--concurrency ${CONCURRENCY:-12}"
+
+          if [ -n "$TARGET_DATE" ]; then
+            ARGS="$ARGS --date $TARGET_DATE"
+          fi
+
+          if [ "$ALL_UNIVERSE" = "true" ]; then
+            ARGS="$ARGS --all"
+          elif [ -n "$LIMIT" ] && [ "$LIMIT" -gt 0 ]; then
+            ARGS="$ARGS --limit $LIMIT"
+          fi
+
+          PYTHONPATH=scanner/src scanner/.venv/bin/python \
+            scanner/src/idx_scanner/daily_broker_flow_sync.py \
+            $ARGS
+
+      - name: Retain snapshot artifact
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: broker-flow-snapshot
+          path: |
+            backend/data/broker_flow_snapshot_latest.json
+            frontend/src/data/broker_flow_snapshot_latest.json
+          retention-days: 14
+          if-no-files-found: warn
