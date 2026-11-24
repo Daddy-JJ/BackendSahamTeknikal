@@ -243,6 +243,7 @@ async def async_sync_daily_broker_flow(
     limit: Optional[int] = None,
     concurrency: int = 12,
     client: Optional[AsyncMaxTradeMcpClient] = None,
+    require_today: bool = False,
 ) -> Dict[str, Any]:
     """
     Main asynchronous orchestration routine for daily broker flow sync.
@@ -262,6 +263,23 @@ async def async_sync_daily_broker_flow(
         if avail and "dates" in avail and avail["dates"]:
             latest_avail_date = avail["dates"][-1]["date"]
             logger.info("Latest available broker data on server: %s", latest_avail_date)
+
+        # If require_today is requested (e.g. primary run at 18:30 WIB), verify feed availability
+        if require_today and not target_date:
+            today_iso = datetime.now().strftime("%Y-%m-%d")
+            # Only check on trading days (Mon-Fri)
+            if datetime.now().weekday() < 5 and latest_avail_date != today_iso:
+                logger.info(
+                    "EOD feed for today (%s) not yet released by provider (latest is %s). Exiting gracefully; fallback run at 20:00 WIB will process.",
+                    today_iso,
+                    latest_avail_date,
+                )
+                return {
+                    "status": "WAITING_FALLBACK",
+                    "snapshot_date": latest_avail_date,
+                    "total_tickers_indexed": 0,
+                    "message": f"Waiting for today ({today_iso}) data release. Latest is {latest_avail_date}.",
+                }
 
         query_date = target_date or latest_avail_date
 
@@ -559,6 +577,7 @@ def sync_daily_broker_flow(
     concurrency: int = 12,
     client: Optional[Any] = None,
     output_dir: Optional[Path] = None,
+    require_today: bool = False,
 ) -> Dict[str, Any]:
     """Synchronous entry point wrapping async_sync_daily_broker_flow."""
     return asyncio.run(
@@ -568,6 +587,7 @@ def sync_daily_broker_flow(
             all_universe=all_universe,
             limit=limit,
             concurrency=concurrency,
+            require_today=require_today,
         )
     )
 
@@ -579,6 +599,7 @@ def main():
     parser.add_argument("--limit", type=int, help="Limit number of tickers to sync")
     parser.add_argument("--tickers", type=str, help="Comma-separated tickers to sync, e.g. BBRI,BMRI,ISAT")
     parser.add_argument("--concurrency", type=int, default=12, help="Number of concurrent workers (default: 12)")
+    parser.add_argument("--require-today", action="store_true", help="Only proceed if today's EOD data has been published by feed")
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -591,6 +612,7 @@ def main():
         all_universe=args.all,
         limit=args.limit,
         concurrency=args.concurrency,
+        require_today=args.require_today,
     )
     print(
         f"Sync completed successfully. Indexed {res['total_tickers_indexed']} tickers for date {res['snapshot_date']}."

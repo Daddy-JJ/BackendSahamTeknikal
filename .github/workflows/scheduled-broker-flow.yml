@@ -2,10 +2,10 @@ name: Scheduled Daily Broker Flow & Bandarmology Sync
 
 on:
   schedule:
-    # 10:30 UTC = 17:30 WIB (Primary, right after IDX EOD finalization)
-    - cron: '30 10 * * 1-5'
-    # 11:45 UTC = 18:45 WIB (Recovery)
-    - cron: '45 11 * * 1-5'
+    # 11:30 UTC = 18:30 WIB (Primary, right after IDX EOD clearance)
+    - cron: '30 11 * * 1-5'
+    # 13:00 UTC = 20:00 WIB (Fallback / Recovery retry)
+    - cron: '0 13 * * 1-5'
 
   workflow_dispatch:
     inputs:
@@ -80,9 +80,23 @@ jobs:
             ARGS="$ARGS --limit $LIMIT"
           fi
 
+          # On primary 18:30 WIB schedule, require today's data so missing feed exits cleanly for 20:00 WIB fallback
+          if [ -z "$TARGET_DATE" ] && [ "${{ github.event.schedule }}" = "30 11 * * 1-5" ]; then
+            ARGS="$ARGS --require-today"
+          fi
+
           PYTHONPATH=scanner/src scanner/.venv/bin/python \
             scanner/src/idx_scanner/daily_broker_flow_sync.py \
             $ARGS
+
+      - name: Commit and push updated snapshot
+        if: success()
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add backend/data/broker_flow_snapshot_latest.json data/broker_flow_snapshot_latest.json 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "chore(broker-flow): auto-sync daily snapshot [skip ci]"
+          git push origin main || true
 
       - name: Retain snapshot artifact
         if: always()
