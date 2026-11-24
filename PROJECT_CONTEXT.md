@@ -5,9 +5,9 @@ This is portable project context, not a new policy or a live-health receipt.
 
 ## Shared project facts
 
-SahamTeknikal is an IDX end-of-day scanner and research workspace.
-It provides deterministic signals, persistent paper experiments, a separate actual
-journal, canonical reporting, signal research and immutable canonical chart views.
+SahamTeknikal is an IDX end-of-day scanner, Smart Money Flow & Bandarmology sync engine, and research workspace.
+It provides deterministic signals, multi-horizon bandarmology analytics (2D/5D/10D) over 955 IDX tickers,
+persistent paper experiments, a separate actual journal, canonical reporting, signal research and immutable canonical chart views.
 Financial calculations, indicators, signals, fills, risk, fees, P&L and official
 statistics belong to backend/RPC output. The frontend validates and formats them.
 Paper and actual books remain separate; AI is not an authoritative trading engine.

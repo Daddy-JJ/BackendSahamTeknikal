@@ -10,6 +10,8 @@ dispatch, change automation, replay history or mutate production.
 | Source | Purpose and side effects |
 | --- | --- |
 | [CLI](../scanner/src/idx_scanner/cli.py), [run command](../scanner/src/idx_scanner/run_command.py) | `demo` writes synthetic fixture; `fetch` performs provider IO only; `run` preflights, and `--execute` fetches/persists/publishes |
+| [Daily broker flow sync](../scanner/src/idx_scanner/daily_broker_flow_sync.py) | async concurrent Max MCP sync across 955 tickers; multi-horizon 2D/5D/10D flow; upserts to Supabase & writes frontend JSON snapshot |
+| [Scheduled broker flow workflow](../.github/workflows/scheduled-broker-flow.yml) | GitHub schedule (17:30 & 18:45 WIB weekdays) running `daily_broker_flow_sync.py` with 12 workers |
 | [Scheduled runner](../supabase/scripts/scheduled_scanner_runner.py) | scanner plus persistent paper processing; `--target`, `--execute`, `--require-usable`, `--paper-only` are explicit controls |
 | [Scheduled workflow](../.github/workflows/scheduled-scanner.yml) | GitHub schedule/dispatch invokes that runner; runtime secrets are cloud-side |
 | [Manual provider workflow](../.github/workflows/manual-provider-smoke.yml), [manual scanner smoke](../.github/workflows/manual-scanner-smoke.yml) | connectivity/capture/evaluation proof; do not infer database publication |
@@ -18,10 +20,11 @@ dispatch, change automation, replay history or mutate production.
 | [Local paper helper](../supabase/scripts/paper_journal_runner.py) | local diagnostic JSON/summary; not authoritative persistent cloud paper state |
 
 From backend, inspect source/arguments for the assigned task. These examples
-document supported help commands; they were not executed during cleanup:
+document supported help commands:
 
 ```powershell
 .\scanner\.venv\Scripts\python.exe -m idx_scanner.cli run --help
+.\scanner\.venv\Scripts\python.exe scanner\src\idx_scanner\daily_broker_flow_sync.py --help
 .\scanner\.venv\Scripts\python.exe supabase\scripts\scheduled_scanner_runner.py --help
 .\scanner\.venv\Scripts\python.exe supabase\scripts\chart_artifact_runner.py --help
 .\scanner\.venv\Scripts\python.exe supabase\scripts\prepare_manual_publication.py --help
@@ -120,6 +123,29 @@ bypass expired forward-window guards. Pre-write checkpoint flags cannot prove no
 write after interruption. Preserve original failure separately from GET-only recovery.
 The [manual result](MANUAL_PUBLICATION_RESULT_20261003.md) records lost original
 before/after hashes; later checkpoints do not retroactively recover them.
+
+## Daily Broker Flow and Bandarmology Sync
+
+The high-performance broker flow pipeline synchronizes smart money flow and bandarmology indicators
+across the master 955-ticker universe (`config/live/idx-universe-955.json`) using async MCP calls
+to `max-trade`.
+
+```powershell
+# Preflight dry-run (first 10 tickers)
+.\scanner\.venv\Scripts\python.exe scanner\src\idx_scanner\daily_broker_flow_sync.py --limit 10 --dry-run
+
+# Run full market sync (all 955 tickers) with 12 concurrent workers
+.\scanner\.venv\Scripts\python.exe scanner\src\idx_scanner\daily_broker_flow_sync.py --all --concurrency 12
+
+# Sync specific historical date
+.\scanner\.venv\Scripts\python.exe scanner\src\idx_scanner\daily_broker_flow_sync.py --all --date 2026-11-20
+```
+
+- **Output Destinations**:
+  - Supabase table: `broker_flow_ticker_horizons` (upserted by `(ticker, date)`).
+  - Frontend static fallback: `frontend/public/data/broker_flow_horizons.json` (<200KB bundle).
+- **Concurrency & Timing**: 12 concurrent workers complete all 955 tickers in ~40 seconds.
+- **Automated Workflow**: `.github/workflows/scheduled-broker-flow.yml` runs automatically on GitHub Actions at 17:30 and 18:45 WIB Monday-Friday, synchronizing data and committing updated snapshots.
 
 ## Chart and release boundaries
 

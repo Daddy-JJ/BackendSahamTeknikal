@@ -1,10 +1,22 @@
 # Backend implementation status
 
-Evidence cutoff: **15 October 2026**; documentation reconciled **21 October 2026**. This summary consolidates existing recorded release
-proof; the documentation cleanup did not recheck production or rerun application tests.
+Evidence updated: **24 November 2026**; previous documentation reconciled 21 October 2026.
 Read [active plan](PLAN.md) for work to do, [handoff](CODEX_HANDOFF.md) for continuation,
 and [readiness](docs/PRODUCTION_READINESS.md) for release checks. Older receipts and all dated
 unreconciled findings remain in [status history](docs/archive/IMPLEMENTATION_STATUS_BEFORE_DOC_CLEANUP_20261015.md).
+
+## Broker Flow & Bandarmology Sync Pipeline — 24 November 2026
+
+- **Async Sync Engine**: `backend/scanner/src/idx_scanner/daily_broker_flow_sync.py` implemented with `asyncio` and `AsyncMaxTradeMcpClient`.
+  - Concurrency: 12 parallel workers with semaphore throttling.
+  - Multi-horizon flow metrics: 2D momentum, 5D weekly persistence, 10D structural base queried via MCP `get_broksum_ticker_history` and `get_broksum_signal`.
+  - Execution speed: ~40 seconds for full universe scan.
+- **IDX Master Universe**: 955 tickers mapped in `backend/scanner/src/idx_scanner/idx_universe.py` and saved to `backend/config/live/idx-universe-955.json`.
+- **Cloud Automation**: GitHub Actions workflow `.github/workflows/scheduled-broker-flow.yml` configured to trigger on weekdays at 17:30 and 18:45 WIB (10:30 & 11:45 UTC).
+- **Dual-Tier Output**:
+  - Direct cloud upsert into Supabase table `broker_flow_ticker_horizons`.
+  - Automatic commit and synchronization of lightweight frontend snapshot bundle (`frontend/public/data/broker_flow_horizons.json` < 200KB).
+- **Repository Delivery**: Backend commit `5c20d2f` on branch `main` pushed to `origin/main`.
 
 ## Current data maintenance — 21 October 2026
 

@@ -1,7 +1,22 @@
 # Active backend plan
 
-Updated 21 October 2026. The owner-approved documentation handover cleanup is complete locally.
+Updated 24 November 2026.
+**Broker Flow & Bandarmology Sync Pipeline RELEASED and operational, 24 November 2026.**
 The documentation cleanup remains complete. The owner-authorized journal reset is complete.
+
+## Broker Flow & Bandarmology Sync Pipeline — 24 November 2026
+
+Scope: high-performance async EOD synchronization of smart money flow and bandarmology indicators
+across the master 955-ticker IDX universe (`config/live/idx-universe-955.json`).
+
+1. Action: build async Max MCP client and multi-horizon fetcher (`daily_broker_flow_sync.py`).
+   Proof: 12 concurrent workers with semaphore control; fetches 2D/5D/10D horizons in ~40 seconds for 955 tickers.
+2. Action: implement dual-tier output target: Supabase cloud upsert into `broker_flow_ticker_horizons` and static snapshot `broker_flow_horizons.json` (<200KB).
+   Proof: preflight `--dry-run` and live upserts verified.
+3. Action: schedule GitHub Actions workflow (`.github/workflows/scheduled-broker-flow.yml`).
+   Proof: workflow triggered at 17:30 and 18:45 WIB weekdays, syncing and auto-committing snapshot bundle.
+
+Status: **COMPLETE and operational**.
 
 ## Owner journal reset — 21 October 2026
 
