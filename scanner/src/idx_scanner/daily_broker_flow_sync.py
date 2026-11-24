@@ -35,6 +35,15 @@ DEFAULT_MCP_TOKEN = os.getenv(
     "MAX_TRADE_MCP_TOKEN", "YeU65tY4n40eBTsC_CFSrFYnaCHL1YEmuwE72sE4hSk"
 )
 
+# Explicit featured tickers from Market Quadrants and Daily Insights to guarantee 100% detail coverage
+FEATURED_QUADRANT_TICKERS = [
+    "MBMA", "AMMN", "TINS", "AADI", "BREN", "NCKL", "INDF", "BRIS", "ACES", "ELSA",
+    "PGEO", "CPIN", "INCO", "EXCL", "ADMR", "MEDC", "IRSX", "INOV", "IDEA", "ERAA",
+    "CTRA", "PWON", "BMRI", "BBRI", "ISAT", "PTRO", "EMAS", "PGAS", "UNTR", "ICBP",
+    "KLBF", "SIDO", "BBCA", "TLKM", "ASII", "WIFI", "MDKA", "BUMI", "BRPT", "INDY",
+    "JPFA", "GOTO", "NAYZ", "LOPI", "ANTM", "KOTA",
+]
+
 
 class MaxTradeMcpClient:
     """Client for querying the Max Trade MCP Server."""
@@ -268,10 +277,11 @@ def sync_daily_broker_flow(
     # We populate multi-horizon profiles (2D, 5D, 10D) for ranked tickers
     ticker_horizons = {}
 
-    # Extract all unique tickers from accumulations, distributions, and quadrant data
+    # Extract all unique tickers from accumulations, distributions, quadrant data, and featured quadrant lists
     candidate_tickers = list(
         dict.fromkeys(
-            [t["ticker"] for t in top_accumulations]
+            FEATURED_QUADRANT_TICKERS
+            + [t["ticker"] for t in top_accumulations]
             + [t["ticker"] for t in top_distributions]
             + [s["ticker"] for stocks in quadrant_stocks.values() for s in stocks[:20]]
         )
