@@ -17,7 +17,7 @@ import logging
 import os
 import sys
 import time
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -236,6 +236,40 @@ async def upsert_to_supabase(rows: List[Dict[str, Any]]) -> bool:
         return False
 
 
+WIB_TZ = timezone(timedelta(hours=7))
+
+
+def resolve_horizon_start_dates(avail_dates: List[str], end_date: str) -> Dict[str, str]:
+    """Compute genuine 2D/5D/10D exchange calendar start dates anchored at end_date."""
+    eligible = [d for d in sorted(set(avail_dates)) if d <= end_date]
+    if not eligible:
+        return {"2D": end_date, "5D": end_date, "10D": end_date}
+    return {
+        "2D": eligible[max(0, len(eligible) - 2)],
+        "5D": eligible[max(0, len(eligible) - 5)],
+        "10D": eligible[max(0, len(eligible) - 10)],
+    }
+
+
+def resolve_snapshot_output_paths(
+    module_file: Optional[Path] = None,
+) -> Tuple[Path, Optional[Path]]:
+    """
+    Resolve backend repo snapshot output path and optional sibling frontend bundle path.
+    Works cleanly both in standalone BackendSahamTeknikal checkout (GitHub Actions)
+    and inside local monorepo workspace.
+    """
+    src_file = (module_file or Path(__file__)).resolve()
+    backend_repo_dir = src_file.parents[3]
+    backend_data_file = backend_repo_dir / "data" / "broker_flow_snapshot_latest.json"
+    workspace_frontend = (
+        backend_repo_dir.parent / "frontend" / "src" / "data" / "broker_flow_snapshot_latest.json"
+    )
+    frontend_repo_dir = backend_repo_dir.parent / "frontend"
+    frontend_data_file = workspace_frontend if frontend_repo_dir.exists() else None
+    return backend_data_file, frontend_data_file
+
+
 async def async_sync_daily_broker_flow(
     target_date: Optional[str] = None,
     tickers: Optional[List[str]] = None,
@@ -250,27 +284,32 @@ async def async_sync_daily_broker_flow(
     Fetches ranking, quadrant classification, market snapshot, and multi-horizon broker flows.
     """
     mcp_client = client or AsyncMaxTradeMcpClient()
-    date_str = target_date or datetime.now().strftime("%Y-%m-%d")
+    now_wib = datetime.now(WIB_TZ)
+    date_str = target_date or now_wib.strftime("%Y-%m-%d")
+    lookback_start = (now_wib - timedelta(days=45)).strftime("%Y-%m-%d")
 
     logger.info("Starting Daily Broker Flow sync for date: %s (Concurrency: %d)", date_str, concurrency)
 
     async with httpx.AsyncClient(timeout=30.0) as http_client:
         # 1. Check availability
         avail = await mcp_client.call_tool(
-            http_client, "get_broksum_availability", {"startDate": "2026-11-01"}
+            http_client, "get_broksum_availability", {"startDate": lookback_start}
         )
-        latest_avail_date = date_str
-        if avail and "dates" in avail and avail["dates"]:
-            latest_avail_date = avail["dates"][-1]["date"]
-            logger.info("Latest available broker data on server: %s", latest_avail_date)
+        avail_date_list: List[str] = (
+            sorted({str(d["date"]) for d in avail["dates"] if d.get("date")})
+            if avail and isinstance(avail.get("dates"), list)
+            else []
+        )
+        latest_avail_date = avail_date_list[-1] if avail_date_list else date_str
+        logger.info("Latest available broker data on server: %s", latest_avail_date)
 
         # If require_today is requested (e.g. primary run at 18:30 WIB), verify feed availability
         if require_today and not target_date:
-            today_iso = datetime.now().strftime("%Y-%m-%d")
-            # Only check on trading days (Mon-Fri)
-            if datetime.now().weekday() < 5 and latest_avail_date != today_iso:
+            today_iso = now_wib.strftime("%Y-%m-%d")
+            # Only check on trading days (Mon-Fri WIB)
+            if now_wib.weekday() < 5 and latest_avail_date != today_iso:
                 logger.info(
-                    "EOD feed for today (%s) not yet released by provider (latest is %s). Exiting gracefully; fallback run at 20:00 WIB will process.",
+                    "EOD feed for today (%s) not yet released by provider (latest is %s). Exiting gracefully; fallback run at 20:00/22:00 WIB will process.",
                     today_iso,
                     latest_avail_date,
                 )
@@ -282,6 +321,7 @@ async def async_sync_daily_broker_flow(
                 }
 
         query_date = target_date or latest_avail_date
+        horizon_starts = resolve_horizon_start_dates(avail_date_list, query_date)
 
         # 2. Fetch market ranking & quadrant classification concurrently
         acc_ranking_task = mcp_client.call_tool(
@@ -416,15 +456,18 @@ async def async_sync_daily_broker_flow(
         # Worker for a single ticker across 2D, 5D, 10D
         async def fetch_ticker_multi_horizon(t: str) -> Tuple[str, Dict[str, Any]]:
             async with sem:
-                # 2D, 5D, 10D anchor dates
+                d2_start = horizon_starts["2D"]
+                d5_start = horizon_starts["5D"]
+                d10_start = horizon_starts["10D"]
+
                 t_2d_task = mcp_client.call_tool(
-                    http_client, "get_broksum_ticker_brokers", {"ticker": t, "startDate": "2026-11-19", "endDate": query_date, "limit": 3}
+                    http_client, "get_broksum_ticker_brokers", {"ticker": t, "startDate": d2_start, "endDate": query_date, "limit": 20}
                 )
                 t_5d_task = mcp_client.call_tool(
-                    http_client, "get_broksum_ticker_brokers", {"ticker": t, "startDate": "2026-11-16", "endDate": query_date, "limit": 3}
+                    http_client, "get_broksum_ticker_brokers", {"ticker": t, "startDate": d5_start, "endDate": query_date, "limit": 20}
                 )
                 t_10d_task = mcp_client.call_tool(
-                    http_client, "get_broksum_ticker_brokers", {"ticker": t, "startDate": "2026-11-09", "endDate": query_date, "limit": 3}
+                    http_client, "get_broksum_ticker_brokers", {"ticker": t, "startDate": d10_start, "endDate": query_date, "limit": 20}
                 )
 
                 t_2d, t_5d, t_10d = await asyncio.gather(t_2d_task, t_5d_task, t_10d_task)
@@ -444,9 +487,9 @@ async def async_sync_daily_broker_flow(
 
                 horizons_map = {}
                 for h_key, h_data, h_lbl, h_rng in [
-                    ("2D", t_2d, "2 Hari Bursa (Inisiasi & Momentum)", "19 - 20 Nov 2026"),
-                    ("5D", t_5d, "5 Hari Bursa (Weekly Persistence)", "16 - 20 Nov 2026"),
-                    ("10D", t_10d, "10 Hari Bursa (Structural Base)", "09 - 20 Nov 2026"),
+                    ("2D", t_2d, "2 Hari Bursa (Inisiasi & Momentum)", f"{d2_start} s/d {query_date}"),
+                    ("5D", t_5d, "5 Hari Bursa (Weekly Persistence)", f"{d5_start} s/d {query_date}"),
+                    ("10D", t_10d, "10 Hari Bursa (Structural Base)", f"{d10_start} s/d {query_date}"),
                 ]:
                     if h_data and "records" in h_data and h_data["records"]:
                         buyers = [r for r in h_data["records"] if r.get("netSide") == "BUY"]
@@ -545,26 +588,22 @@ async def async_sync_daily_broker_flow(
             "ticker_horizons": frontend_horizons,
         }
 
-        base_proj_dir = Path(__file__).resolve().parents[4]
-        backend_data_file = base_proj_dir / "backend" / "data" / "broker_flow_snapshot_latest.json"
-        frontend_data_file = (
-            base_proj_dir / "frontend" / "src" / "data" / "broker_flow_snapshot_latest.json"
-        )
-
+        backend_data_file, frontend_data_file = resolve_snapshot_output_paths()
         backend_data_file.parent.mkdir(parents=True, exist_ok=True)
-        frontend_data_file.parent.mkdir(parents=True, exist_ok=True)
 
         with open(backend_data_file, "w", encoding="utf-8") as f:
             json.dump(full_snapshot, f, indent=2)
         logger.info("Saved backend full snapshot (%d tickers) to: %s", len(ticker_horizons), backend_data_file)
 
-        with open(frontend_data_file, "w", encoding="utf-8") as f:
-            json.dump(frontend_snapshot, f, indent=2)
-        logger.info(
-            "Saved frontend lightweight bundle (%d tickers) to: %s",
-            len(frontend_horizons),
-            frontend_data_file,
-        )
+        if frontend_data_file is not None:
+            frontend_data_file.parent.mkdir(parents=True, exist_ok=True)
+            with open(frontend_data_file, "w", encoding="utf-8") as f:
+                json.dump(frontend_snapshot, f, indent=2)
+            logger.info(
+                "Saved frontend lightweight bundle (%d tickers) to: %s",
+                len(frontend_horizons),
+                frontend_data_file,
+            )
 
         return full_snapshot
 

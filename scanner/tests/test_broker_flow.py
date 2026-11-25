@@ -144,3 +144,34 @@ def test_calculate_horizon_momentum():
     mom_fade = calculate_horizon_momentum(-10_000_000_000.0, 10_000_000_000.0, 50_000_000_000.0)
     assert mom_fade["is_accelerating"] is False
     assert mom_fade["status"] == "FADING_OR_STABLE"
+
+
+def test_resolve_horizon_start_dates_and_paths(tmp_path):
+    from pathlib import Path
+    from idx_scanner.daily_broker_flow_sync import (
+        resolve_horizon_start_dates,
+        resolve_snapshot_output_paths,
+    )
+
+    avail = [
+        "2026-11-11", "2026-11-12", "2026-11-13",
+        "2026-11-16", "2026-11-17", "2026-11-18",
+        "2026-11-19", "2026-11-20", "2026-11-23", "2026-11-24",
+    ]
+    starts = resolve_horizon_start_dates(avail, "2026-11-24")
+    assert starts == {"2D": "2026-11-23", "5D": "2026-11-18", "10D": "2026-11-11"}
+
+    # Simulated standalone BackendSahamTeknikal checkout (no sibling frontend dir)
+    fake_backend = tmp_path / "BackendSahamTeknikal"
+    fake_mod = fake_backend / "scanner" / "src" / "idx_scanner" / "daily_broker_flow_sync.py"
+    fake_mod.parent.mkdir(parents=True)
+    fake_mod.touch()
+    b_path, f_path = resolve_snapshot_output_paths(fake_mod)
+    assert b_path == fake_backend.resolve() / "data" / "broker_flow_snapshot_latest.json"
+    assert f_path is None
+
+    # Simulated monorepo with sibling frontend dir
+    (tmp_path / "frontend").mkdir()
+    b_path2, f_path2 = resolve_snapshot_output_paths(fake_mod)
+    assert f_path2 == (tmp_path / "frontend" / "src" / "data" / "broker_flow_snapshot_latest.json").resolve()
+

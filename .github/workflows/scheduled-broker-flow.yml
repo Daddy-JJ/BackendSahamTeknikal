@@ -6,6 +6,8 @@ on:
     - cron: '30 11 * * 1-5'
     # 13:00 UTC = 20:00 WIB (Fallback / Recovery retry)
     - cron: '0 13 * * 1-5'
+    # 15:00 UTC = 22:00 WIB (Late Feed Recovery retry)
+    - cron: '0 15 * * 1-5'
 
   workflow_dispatch:
     inputs:
@@ -94,9 +96,16 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add backend/data/broker_flow_snapshot_latest.json data/broker_flow_snapshot_latest.json 2>/dev/null || true
+          git add data/broker_flow_snapshot_latest.json 2>/dev/null || true
           git diff --staged --quiet || git commit -m "chore(broker-flow): auto-sync daily snapshot [skip ci]"
           git push origin main || true
+
+      - name: Trigger optional Vercel deploy hook
+        if: success() && env.VERCEL_DEPLOY_HOOK_URL != ''
+        env:
+          VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          curl -fsS -X POST "$VERCEL_DEPLOY_HOOK_URL" || true
 
       - name: Retain snapshot artifact
         if: always()
@@ -104,7 +113,6 @@ jobs:
         with:
           name: broker-flow-snapshot
           path: |
-            backend/data/broker_flow_snapshot_latest.json
-            frontend/src/data/broker_flow_snapshot_latest.json
+            data/broker_flow_snapshot_latest.json
           retention-days: 14
           if-no-files-found: warn
