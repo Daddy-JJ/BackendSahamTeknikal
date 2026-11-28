@@ -23,9 +23,27 @@ def calculate_bandar_average_cost(buyers: List[Dict[str, Any]]) -> float:
     total_volume_shares = 0
 
     for b in buyers:
-        val = float(b.get("buyValue") or b.get("buy_value") or 0.0)
-        vol = int(b.get("buyVolume") or b.get("buy_volume") or 0)
-        avg_price = float(b.get("buyAvgPrice") or b.get("buy_avg_price") or 0.0)
+        val = float(
+            b.get("buyValue")
+            or b.get("buy_value")
+            or b.get("netValue")
+            or b.get("net_value")
+            or 0.0
+        )
+        vol = int(
+            b.get("buyVolume")
+            or b.get("buy_volume")
+            or b.get("netVolume")
+            or b.get("net_volume")
+            or 0
+        )
+        avg_price = float(
+            b.get("buyAvgPrice")
+            or b.get("buy_avg_price")
+            or b.get("avgPrice")
+            or b.get("avg_price")
+            or 0.0
+        )
 
         if val > 0 and vol > 0:
             total_value += val
@@ -276,7 +294,7 @@ def synthesize_trade_plan(
     streak_note = f" dengan rentetan beli asing {foreign_streak} sesi" if foreign_streak > 1 else ""
 
     return {
-        "action": "BUY ON PULLBACK / BREAKOUT",
+        "action": "BUY ON PULLBACK",
         "entry_zone": f"{entry_low} - {entry_high}",
         "stop_loss": f"{sl_price} (Risk ~4.5%)",
         "target_price": f"{tp_price} (Reward ~13.5%)",

@@ -1,5 +1,4 @@
 // Supabase Edge Function: Daily EOD Broker Flow & Bandarmology Aggregator
-// Scheduled via pg_cron at 18:30 WIB (11:30 UTC) Monday-Friday
 
 function reply(status, body) {
   return new Response(JSON.stringify(body), {
@@ -10,117 +9,128 @@ function reply(status, body) {
 
 export function createHandler({ env, fetchImpl = fetch }) {
   return async (request) => {
-    if (request.method !== "POST" && request.method !== "GET") {
+    if (request.method !== "POST") {
       return reply(405, { error: "method_not_allowed" });
     }
 
     const serviceKey = env("SUPABASE_SERVICE_ROLE_KEY");
     const supabaseUrl = env("SUPABASE_URL") || "https://hcjfxbynqzsaidlwvdfx.supabase.co";
 
-    // Optional auth header check
+    if (!serviceKey) {
+      return reply(503, { error: "service_key_not_configured" });
+    }
+
     const authHeader = request.headers.get("Authorization");
-    if (!authHeader && !serviceKey) {
+    if (authHeader !== `Bearer ${serviceKey}`) {
       return reply(401, { error: "unauthorized" });
     }
 
-    // 1. Try to read dynamic incoming snapshot payload
     let incomingPayload = null;
-    if (request.method === "POST") {
-      try {
-        const bodyText = await request.text();
-        if (bodyText && bodyText.trim().length > 0) {
-          incomingPayload = JSON.parse(bodyText);
-        }
-      } catch (err) {
-        return reply(400, { error: "invalid_json_body", details: String(err) });
+    try {
+      const bodyText = await request.text();
+      if (!bodyText || bodyText.trim().length === 0) {
+        return reply(400, { error: "empty_payload" });
       }
+      incomingPayload = JSON.parse(bodyText);
+    } catch (err) {
+      return reply(400, { error: "invalid_json_body", details: String(err) });
     }
 
-    const todayStr = new Date().toISOString().split("T")[0];
-    const snapshotDate = incomingPayload?.snapshot_date || todayStr;
+    const snapshotDate = incomingPayload?.snapshot_date;
+    const marketSummary = incomingPayload?.market_summary;
+    if (
+      typeof snapshotDate !== "string" ||
+      !/^\d{4}-\d{2}-\d{2}$/.test(snapshotDate) ||
+      !marketSummary ||
+      typeof marketSummary !== "object"
+    ) {
+      return reply(400, {
+        error: "invalid_snapshot_payload",
+        message: "snapshot_date (YYYY-MM-DD) and market_summary are required.",
+      });
+    }
 
-    // Use dynamic data provided, or structured live schema
     const payload = {
       snapshot_date: snapshotDate,
       data_mode: "live",
-      market_summary: incomingPayload?.market_summary || {
-        date: snapshotDate,
-        quadrant_counts: {
-          markup_akumulasi: 0,
-          markup_distribusi: 0,
-          markdown_akumulasi: 0,
-          markdown_distribusi: 0,
-        },
-        total_classified: 0,
-        smart_money_net: 0,
-        total_turnover: 0,
-      },
-      top_accumulations: incomingPayload?.top_accumulations || [],
-      top_distributions: incomingPayload?.top_distributions || [],
-      status: "synced_successfully",
-      timestamp: new Date().toISOString(),
+      market_summary: marketSummary,
+      top_accumulations: Array.isArray(incomingPayload.top_accumulations)
+        ? incomingPayload.top_accumulations
+        : [],
+      top_distributions: Array.isArray(incomingPayload.top_distributions)
+        ? incomingPayload.top_distributions
+        : [],
+      top_brokers: Array.isArray(incomingPayload.top_brokers) ? incomingPayload.top_brokers : [],
+      sector_flows: Array.isArray(incomingPayload.sector_flows) ? incomingPayload.sector_flows : [],
+      quadrant_maps:
+        incomingPayload.quadrant_maps && typeof incomingPayload.quadrant_maps === "object"
+          ? incomingPayload.quadrant_maps
+          : {},
     };
 
-    if (serviceKey && supabaseUrl) {
-      try {
-        // Upsert into broker_flow_snapshots
-        const insertRes = await fetchImpl(`${supabaseUrl}/rest/v1/broker_flow_snapshots`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            apikey: serviceKey,
-            Authorization: `Bearer ${serviceKey}`,
-            Prefer: "resolution=merge-duplicates",
-          },
-          body: JSON.stringify(payload),
-          signal: AbortSignal.timeout(10000),
+    try {
+      const insertRes = await fetchImpl(`${supabaseUrl}/rest/v1/broker_flow_snapshots`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: serviceKey,
+          Authorization: `Bearer ${serviceKey}`,
+          Prefer: "resolution=merge-duplicates",
+        },
+        body: JSON.stringify(payload),
+        signal: AbortSignal.timeout(10000),
+      });
+
+      if (!insertRes.ok) {
+        return reply(502, {
+          success: false,
+          error: "supabase_snapshot_upsert_failed",
+          status: insertRes.status,
         });
+      }
 
-        // If ticker_horizons provided, batch upsert into broker_flow_ticker_horizons
-        if (incomingPayload?.ticker_horizons && typeof incomingPayload.ticker_horizons === "object") {
-          const tickerRows = Object.entries(incomingPayload.ticker_horizons).map(([ticker, horizons]) => ({
-            ticker: ticker.toUpperCase().trim(),
-            snapshot_date: snapshotDate,
-            horizon_2d: horizons["2D"] || {},
-            horizon_5d: horizons["5D"] || {},
-            horizon_10d: horizons["10D"] || {},
-          }));
+      if (incomingPayload.ticker_horizons && typeof incomingPayload.ticker_horizons === "object") {
+        const tickerRows = Object.entries(incomingPayload.ticker_horizons).map(([ticker, horizons]) => ({
+          ticker: ticker.toUpperCase().trim(),
+          snapshot_date: snapshotDate,
+          horizon_2d: horizons["2D"] || {},
+          horizon_5d: horizons["5D"] || {},
+          horizon_10d: horizons["10D"] || {},
+        }));
 
-          if (tickerRows.length > 0) {
-            await fetchImpl(`${supabaseUrl}/rest/v1/broker_flow_ticker_horizons`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                apikey: serviceKey,
-                Authorization: `Bearer ${serviceKey}`,
-                Prefer: "resolution=merge-duplicates",
-              },
-              body: JSON.stringify(tickerRows),
-              signal: AbortSignal.timeout(15000),
+        if (tickerRows.length > 0) {
+          const tickerRes = await fetchImpl(`${supabaseUrl}/rest/v1/broker_flow_ticker_horizons`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              apikey: serviceKey,
+              Authorization: `Bearer ${serviceKey}`,
+              Prefer: "resolution=merge-duplicates",
+            },
+            body: JSON.stringify(tickerRows),
+            signal: AbortSignal.timeout(15000),
+          });
+          if (!tickerRes.ok) {
+            return reply(502, {
+              success: false,
+              error: "supabase_horizons_upsert_failed",
+              status: tickerRes.status,
             });
           }
         }
-
-        if (insertRes.ok) {
-          return reply(200, {
-            success: true,
-            message: `Snapshot broker flow untuk ${snapshotDate} berhasil diperbarui di Supabase database.`,
-            data: payload,
-          });
-        }
-      } catch (err) {
-        // Fallback response if DB insert is mocked or offline
-        return reply(200, {
-          success: true,
-          message: `Snapshot diproses (local/dry-run mode).`,
-          data: payload,
-        });
       }
-    }
 
-    return reply(200, {
-      success: true,
-      data: payload,
-    });
+      return reply(200, {
+        success: true,
+        message: `Snapshot broker flow untuk ${snapshotDate} berhasil diperbarui di Supabase database.`,
+        data: payload,
+      });
+    } catch (err) {
+      return reply(502, {
+        success: false,
+        error: "supabase_unreachable",
+        details: String(err),
+      });
+    }
   };
 }

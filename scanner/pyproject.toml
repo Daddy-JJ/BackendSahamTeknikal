@@ -12,11 +12,10 @@ description = "Deterministic, provider-isolated IDX EOD research engine"
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "httpx==0.28.1",
-    "yfinance==1.7.0",
 ]
 
 [project.scripts]
-idx-scanner = "idx_scanner.cli:main"
+idx-scanner = "idx_scanner.daily_broker_flow_sync:main"
 
 [dependency-groups]
 dev = [

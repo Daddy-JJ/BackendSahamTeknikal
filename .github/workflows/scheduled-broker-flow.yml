@@ -29,7 +29,7 @@ on:
         default: '12'
 
 permissions:
-  contents: write
+  contents: read
   actions: read
 
 concurrency:
@@ -40,12 +40,12 @@ jobs:
   sync-broker-flow:
     runs-on: ubuntu-24.04
     timeout-minutes: 25
+    env:
+      VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-        with:
-          persist-credentials: true
 
       - name: Setup Python
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
@@ -60,7 +60,7 @@ jobs:
       - name: Run daily broker flow sync
         env:
           MAX_TRADE_MCP_URL: ${{ secrets.MAX_TRADE_MCP_URL || 'https://eod.maxlong.my.id/mcp' }}
-          MAX_TRADE_MCP_TOKEN: ${{ secrets.MAX_TRADE_MCP_TOKEN || 'YeU65tY4n40eBTsC_CFSrFYnaCHL1YEmuwE72sE4hSk' }}
+          MAX_TRADE_MCP_TOKEN: ${{ secrets.MAX_TRADE_MCP_TOKEN }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL || vars.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
@@ -91,25 +91,14 @@ jobs:
             scanner/src/idx_scanner/daily_broker_flow_sync.py \
             $ARGS
 
-      - name: Commit and push updated snapshot
-        if: success()
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/broker_flow_snapshot_latest.json 2>/dev/null || true
-          git diff --staged --quiet || git commit -m "chore(broker-flow): auto-sync daily snapshot [skip ci]"
-          git push origin main || true
-
       - name: Trigger optional Vercel deploy hook
         if: success() && env.VERCEL_DEPLOY_HOOK_URL != ''
-        env:
-          VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
         run: |
           curl -fsS -X POST "$VERCEL_DEPLOY_HOOK_URL" || true
 
       - name: Retain snapshot artifact
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@ea165f8d65b6e75b5404499e92b4886f43607fa02
         with:
           name: broker-flow-snapshot
           path: |

@@ -30,6 +30,13 @@ def test_calculate_bandar_average_cost_weighted():
     avg = calculate_bandar_average_cost(buyers)
     assert avg == 343.33
 
+    # Also handles netValue / netVolume from get_broksum_ticker_brokers
+    net_buyers = [
+        {"code": "BK", "netVolume": 2000, "netValue": 68000000.0},
+        {"code": "AK", "netVolume": 1000, "netValue": 35000000.0},
+    ]
+    assert calculate_bandar_average_cost(net_buyers) == 343.33
+
 
 def test_calculate_bandar_gap_pct():
     gap_profit = calculate_bandar_gap_pct(close_price=350.0, bandar_avg_cost=340.0)
@@ -174,4 +181,122 @@ def test_resolve_horizon_start_dates_and_paths(tmp_path):
     (tmp_path / "frontend").mkdir()
     b_path2, f_path2 = resolve_snapshot_output_paths(fake_mod)
     assert f_path2 == (tmp_path / "frontend" / "src" / "data" / "broker_flow_snapshot_latest.json").resolve()
+
+
+def test_build_ticker_detail_record_and_sync_pipeline(tmp_path):
+    from idx_scanner.daily_broker_flow_sync import (
+        build_ticker_detail_record,
+        sync_daily_broker_flow,
+    )
+
+    detail = build_ticker_detail_record(
+        ticker="MBMA",
+        horizon="5D",
+        horizon_label="5 Hari",
+        date_range="2026-11-23 s/d 2026-11-27",
+        close_price=360.0,
+        change_pct=4.5,
+        net_value=60_000_000_000.0,
+        net_volume_lots=1_500_000,
+        bandar_cost=345.0,
+        top_buyers=[{"code": "BK", "name": "JPM", "investor_group": "FOREIGN", "net_value": 80_000_000_000.0, "avg_price": 345.0}],
+        top_sellers=[{"code": "YP", "name": "Mirae", "investor_group": "LOCAL", "net_value": -20_000_000_000.0, "avg_price": 350.0}],
+        why_insight="Lead BK",
+    )
+    assert detail["concentration_pct"] == 80.0
+    assert "BK" in detail["counterparty_note"]
+    assert "YP" in detail["counterparty_note"]
+
+    class FakeMcpClient:
+        async def call_tool(self, http_client, tool_name, arguments, timeout=25.0):
+            if tool_name == "get_broksum_availability":
+                return {"dates": [{"date": "2026-11-26"}, {"date": "2026-11-27"}]}
+            if tool_name == "get_broksum_market_ranking":
+                if arguments.get("side") == "accumulation":
+                    return {
+                        "records": [
+                            {
+                                "ticker": "ASII",
+                                "close": 5750,
+                                "changePercent": 2.0,
+                                "foreignNetValue": 120_000_000_000,
+                                "governmentNetValue": 10_000_000_000,
+                                "topBuyerNetValueTopN": 150_000_000_000,
+                                "topSellerNetValueTopN": 40_000_000_000,
+                                "topNetBuyer": {"code": "AK"},
+                                "bandarSignal": {"score": 45},
+                            }
+                        ]
+                    }
+                return {
+                    "records": [
+                        {
+                            "ticker": "ASII",
+                            "close": 5750,
+                            "changePercent": 2.0,
+                            "foreignNetValue": 120_000_000_000,
+                            "topSellerNetValueTopN": 40_000_000_000,
+                            "topNetSeller": {"code": "BK"},
+                        },
+                        {
+                            "ticker": "BBRI",
+                            "close": 3070,
+                            "changePercent": -1.5,
+                            "foreignNetValue": -250_000_000_000,
+                            "topSellerNetValueTopN": 300_000_000_000,
+                            "topNetSeller": {"code": "ZP"},
+                        },
+                    ]
+                }
+            if tool_name == "get_broksum_market_quadrant":
+                return {
+                    "totalTickers": 2,
+                    "summary": {
+                        "markup_akumulasi": 1,
+                        "markup_distribusi": 0,
+                        "markdown_akumulasi": 0,
+                        "markdown_distribusi": 1,
+                    },
+                    "records": [
+                        {"ticker": "ASII", "close": 5750, "changePercent": 2.0, "quadrant": "markup_akumulasi", "smartMoneyNet": 130_000_000_000, "turnoverValue": 500_000_000_000},
+                        {"ticker": "BBRI", "close": 3070, "changePercent": -1.5, "quadrant": "markdown_distribusi", "smartMoneyNet": -250_000_000_000, "turnoverValue": 600_000_000_000},
+                    ],
+                }
+            if tool_name == "get_market_snapshot":
+                return {
+                    "records": [
+                        {"ticker": "ASII", "close": 5750, "changePercent": 2.0, "volume": 10000, "tradeValue": 500_000_000_000},
+                        {"ticker": "BBRI", "close": 3070, "changePercent": -1.5, "volume": 20000, "tradeValue": 600_000_000_000},
+                    ]
+                }
+            if tool_name == "get_broksum_ticker_brokers":
+                ticker = arguments["ticker"]
+                if ticker == "BBRI":
+                    if arguments.get("sort") == "net_value_asc":
+                        return {"records": [{"code": "ZP", "netSide": "SELL", "netValue": -300_000_000_000, "netVolume": -970000, "sellAvgPrice": 3080}]}
+                    return {"records": [{"code": "XL", "netSide": "BUY", "netValue": 50_000_000_000, "netVolume": 160000, "buyAvgPrice": 3070}]}
+                if arguments.get("sort") == "net_value_asc":
+                    return {"records": [{"code": "BK", "netSide": "SELL", "netValue": -40_000_000_000, "netVolume": -70000, "sellAvgPrice": 5740}]}
+                return {"records": [{"code": "AK", "netSide": "BUY", "netValue": 150_000_000_000, "netVolume": 260000, "buyAvgPrice": 5730}]}
+            if tool_name == "get_broksum_signal":
+                if arguments["ticker"] == "BBRI":
+                    return {"label": "STRONG_DISTRIBUTION", "score": -40, "components": {"brokerConcentration": 31.2}, "summary": {"foreignNetValue": -250_000_000_000}}
+                return {"label": "STRONG_ACCUMULATION", "score": 52, "components": {"brokerConcentration": 28.5}, "summary": {"foreignNetValue": 120_000_000_000}}
+            return {}
+
+    res = sync_daily_broker_flow(
+        tickers=["ASII", "BBRI"],
+        client=FakeMcpClient(),
+        output_dir=tmp_path,
+    )
+    assert res["market_summary"]["smart_money_net"] == -120_000_000_000
+    acc_tickers = {x["ticker"] for x in res["top_accumulations"]}
+    dist_tickers = {x["ticker"] for x in res["top_distributions"]}
+    assert acc_tickers.isdisjoint(dist_tickers)
+    assert "smart_money_net" in res["top_accumulations"][0]
+    assert "smart_money_net" in res["top_distributions"][0]
+    assert res["ticker_horizons"]["BBRI"]["5D"]["quadrant"] == "markdown_distribusi"
+    assert res["ticker_horizons"]["BBRI"]["5D"]["concentration_pct"] == 31.2
+    assert (tmp_path / "broker_flow_snapshot_latest.json").exists()
+
 
