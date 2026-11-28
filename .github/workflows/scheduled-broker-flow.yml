@@ -91,6 +91,18 @@ jobs:
             scanner/src/idx_scanner/daily_broker_flow_sync.py \
             $ARGS
 
+      - name: Run daily SahamTeknikal v2 market & screener sync
+        env:
+          MAX_TRADE_MCP_URL: ${{ secrets.MAX_TRADE_MCP_URL || 'https://eod.maxlong.my.id/mcp' }}
+          MAX_TRADE_MCP_TOKEN: ${{ secrets.MAX_TRADE_MCP_TOKEN }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL || vars.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: |
+          PYTHONPATH=scanner/src scanner/.venv/bin/python \
+            scanner/src/idx_scanner/mcp_bulk_sync.py \
+            --incremental
+
       - name: Trigger optional Vercel deploy hook
         if: success() && env.VERCEL_DEPLOY_HOOK_URL != ''
         run: |
