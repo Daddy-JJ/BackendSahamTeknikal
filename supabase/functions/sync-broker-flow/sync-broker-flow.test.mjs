@@ -9,6 +9,16 @@ const env = (key) =>
   })[key];
 
 test("sync-broker-flow rejects GET, unauthorized POST, and empty/zero payloads", async () => {
+  const envMissingUrl = (key) => (key === "SUPABASE_SERVICE_ROLE_KEY" ? "test-service-role" : undefined);
+  const misconfiguredHandler = createHandler({
+    env: envMissingUrl,
+    fetchImpl: async () => assert.fail("must not fetch when SUPABASE_URL missing"),
+  });
+  const misconfRes = await misconfiguredHandler(
+    new Request("https://example.supabase.co/functions/v1/sync-broker-flow", { method: "POST", body: "{}" })
+  );
+  assert.equal(misconfRes.status, 503);
+
   const handler = createHandler({
     env,
     fetchImpl: async () => assert.fail("must not write to Supabase on invalid request"),

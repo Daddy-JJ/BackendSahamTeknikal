@@ -14,10 +14,10 @@ export function createHandler({ env, fetchImpl = fetch }) {
     }
 
     const serviceKey = env("SUPABASE_SERVICE_ROLE_KEY");
-    const supabaseUrl = env("SUPABASE_URL") || "https://hcjfxbynqzsaidlwvdfx.supabase.co";
+    const supabaseUrl = env("SUPABASE_URL");
 
-    if (!serviceKey) {
-      return reply(503, { error: "service_key_not_configured" });
+    if (!serviceKey || !supabaseUrl) {
+      return reply(503, { error: "supabase_env_not_configured" });
     }
 
     const authHeader = request.headers.get("Authorization");
